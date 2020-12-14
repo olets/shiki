@@ -4,6 +4,7 @@ import dts from 'rollup-plugin-dts'
 import typescript from 'rollup-plugin-typescript2'
 import copy from 'rollup-plugin-copy'
 import replace from '@rollup/plugin-replace'
+import { terser } from 'rollup-plugin-terser'
 import { version } from './package.json'
 
 const external = ['onigasm', 'vscode-textmate']
@@ -22,7 +23,14 @@ export default [
         format: 'esm'
       }
     ],
-    plugins: [typescript(), nodeResolve(), commonjs()]
+    plugins: [
+      replace({
+        __BROWSER__: JSON.stringify(false)
+      }),
+      typescript(),
+      nodeResolve(),
+      commonjs()
+    ]
   },
   {
     input: 'src/index.ts',
@@ -58,7 +66,15 @@ export default [
         ]
       }
     ],
-    plugins: [typescript(), nodeResolve(), commonjs()]
+    plugins: [
+      replace({
+        __BROWSER__: JSON.stringify(true)
+      }),
+      typescript(),
+      nodeResolve(),
+      commonjs(),
+      terser()
+    ]
   },
   {
     input: 'src/index.ts',
