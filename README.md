@@ -1,11 +1,13 @@
 ### remark-shiki-twoslash
 
-Sets up markdown code blocks to run through [shiki](https://shiki.matsu.io) which means it gets the VS Code quality
+[You might first want to read the user docs.](https://shikijs.github.io/twoslash/).
+
+This module sets up markdown code blocks to run through [shiki](https://shiki.matsu.io) which means it gets the VS Code quality
 syntax highlighting, with optional inline TypeScript compiler-backed tooling.
 
 Why Shiki? Shiki uses the same syntax highlighter engine as VS Code, which means no matter how complex your code is - it will syntax highlight correctly.
 
-In addition to all the languages shiki handles ([it's a lot](https://github.com/octref/shiki/blob/master/packages/languages/README.md#literal-values)), this module adds opt-in [@typescript/twoslash](https://github.com/microsoft/TypeScript-Website/tree/v2/packages/ts-twoslasher) rendering for TypeScript code blocks and tsconfig JSON files.
+In addition to all the languages shiki handles (and [it's a lot](https://github.com/octref/shiki/blob/master/packages/languages/README.md#literal-values)), this module adds opt-in [@typescript/twoslash](https://github.com/microsoft/TypeScript-Website/tree/v2/packages/ts-twoslasher) rendering for TypeScript code blocks and tsconfig JSON files.
 
 This module powers the code samples on the TypeScript website.
 
@@ -31,249 +33,257 @@ With Shiki Twoslash, you can explain complicated code in a way that lets people 
 
 1. **Add the CSS**
 
-   This CSS comes from the [TypeScript website's scss](https://github.com/microsoft/TypeScript-website/blob/v2/packages/typescriptlang-org/src/templates/markdown-twoslash.scss)
+   This CSS is based on from the [TypeScript website's scss](https://github.com/microsoft/TypeScript-website/blob/v2/packages/typescriptlang-org/src/templates/markdown-twoslash.scss)
 
    You should consider it a base to work from, rather than a perfect for every project reference.
 
-   ```css
-   /* Code blocks look like: 
-   <pre class='shiki [theme-name] twoslash'>
-    <div class='language-id>[lang-id]</div>
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=../../packages/shiki-twoslash/style.css) -->
+<!-- The below code snippet is automatically added from ../../packages/shiki-twoslash/style.css -->
+```css
+/*  Start of Shiki Twoslash CSS
+
+Code blocks look like: 
+
+<pre class='shiki lsp twoslash [theme-name]'>
+  <div class='language-id>[lang-id]</div>
     <div class='code-container'>
-       <code>
-        <div class='line'>[the code as a series of spans]</div>
-       </code>
+      <code>[the code as a series of spans]</code>
+      <a href='playground...'>Try</a> (optional)
     </div>
-   </pre> 
-   */
-   pre {
-     /* Give the text some space to breathe */
-     padding: 12px;
-     /* All code samples get a grey border, twoslash ones get a different color */
-     border-left: 1px solid #999;
-     border-bottom: 1px solid #999;
-     margin-bottom: 3rem;
-     /* Important to allow the code to move horizontally;
-    */
-     overflow: auto;
-     /* So that folks know you can highlight */
-     position: relative;
-   }
-   pre.shiki {
-     overflow: initial;
-   }
-   pre.shiki:hover .dim {
-     opacity: 1;
-   }
-   pre.shiki div.dim {
-     opacity: 0.5;
-   }
-   pre.shiki div.dim,
-   pre.shiki div.highlight {
-     margin: 0;
-     padding: 0;
-   }
-   pre.shiki div.highlight {
-     opacity: 1;
-     background-color: #f1f8ff;
-   }
-   pre.shiki div.line {
-     min-height: 1rem;
-   }
-   pre.twoslash {
-     border-color: #719af4;
-   }
-   pre .code-container {
-     overflow: auto;
-   }
-   pre .code-container > a {
-     position: absolute;
-     right: 8px;
-     bottom: 8px;
-     border-radius: 4px;
-     border: 1px solid #719af4;
-     padding: 0 8px;
-     color: #719af4;
-     text-decoration: none;
-     opacity: 0;
-     transition-timing-function: ease;
-     transition: opacity 0.3s;
-   }
-   @media (prefers-reduced-motion: reduce) {
-     pre .code-container > a {
-       transition: none;
-     }
-   }
-   pre .code-container > a:hover {
-     color: white;
-     background-color: #719af4;
-   }
-   pre .code-container:hover a {
-     opacity: 1;
-   }
-   pre code {
-     /** Style setup */
-     font-size: 15px;
-     font-family: var(--code-font);
-     white-space: pre;
-     -webkit-overflow-scrolling: touch;
-   }
-   pre code a {
-     text-decoration: none;
-   }
-   pre data-err {
-     background: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%206%203'%20enable-background%3D'new%200%200%206%203'%20height%3D'3'%20width%3D'6'%3E%3Cg%20fill%3D'%23c94824'%3E%3Cpolygon%20points%3D'5.5%2C0%202.5%2C3%201.1%2C3%204.1%2C0'%2F%3E%3Cpolygon%20points%3D'4%2C0%206%2C2%206%2C0.6%205.4%2C0'%2F%3E%3Cpolygon%20points%3D'0%2C2%201%2C3%202.4%2C3%200%2C0.6'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
-       repeat-x bottom left;
-     padding-bottom: 3px;
-   }
-   pre .query {
-     margin-bottom: 10px;
-     color: #137998;
-     display: inline-block;
-   }
-   pre .error,
-   pre .error-behind {
-     margin-left: -14px;
-     margin-top: 8px;
-     margin-bottom: 4px;
-     padding: 6px;
-     padding-left: 14px;
-     width: calc(100% - 19px);
-     white-space: pre-wrap;
-     display: block;
-   }
-   pre .error {
-     position: absolute;
-     background-color: #fee;
-     border-left: 2px solid #bf1818;
-     /* Give the space to the error code */
-     display: flex;
-     align-items: center;
-     color: black;
-   }
-   pre .error .code {
-     display: none;
-   }
-   pre .error-behind {
-     user-select: none;
-     color: #fee;
-   }
-   pre .arrow {
-     /* Transparent background */
-     background-color: #eee;
-     position: relative;
-     top: -7px;
-     margin-left: 0.1rem;
-     /* Edges */
-     border-left: 1px solid #eee;
-     border-top: 1px solid #eee;
-     transform: translateY(25%) rotate(45deg);
-     /* Size */
-     height: 8px;
-     width: 8px;
-   }
-   pre .popover {
-     margin-bottom: 10px;
-     background-color: #eee;
-     display: inline-block;
-     padding: 0 0.5rem 0.3rem;
-     margin-top: 10px;
-     border-radius: 3px;
-   }
-   pre .inline-completions ul.dropdown {
-     display: inline-block;
-     position: absolute;
-     width: 240px;
-     background-color: gainsboro;
-     color: grey;
-     padding-top: 4px;
-     font-family: "JetBrains Mono", Menlo, Monaco, Consolas, Courier New, monospace;
-     font-size: 0.8rem;
-     margin: 0;
-     padding: 0;
-     border-left: 4px solid #4b9edd;
-   }
-   pre .inline-completions ul.dropdown::before {
-     background-color: #4b9edd;
-     width: 2px;
-     position: absolute;
-     top: -1.2rem;
-     left: -3px;
-     content: " ";
-   }
-   pre .inline-completions ul.dropdown li {
-     overflow-x: hidden;
-     padding-left: 4px;
-     margin-bottom: 4px;
-   }
-   pre .inline-completions ul.dropdown li.deprecated {
-     text-decoration: line-through;
-   }
-   pre .inline-completions ul.dropdown li span.result-found {
-     color: #4b9edd;
-   }
-   pre .inline-completions ul.dropdown li span.result {
-     width: 100px;
-     color: black;
-     display: inline-block;
-   }
-   .dark-theme .markdown pre {
-     background-color: #d8d8d8;
-     border-color: #ddd;
-     filter: invert(98%) hue-rotate(180deg);
-   }
-   data-lsp {
-     /* Ensures there's no 1px jump when the hover happens above */
-     border-bottom: 1px dotted transparent;
-     /* Fades in unobtrusively */
-     transition-timing-function: ease;
-     transition: border-color 0.3s;
-     /* Respect people's wishes to not have animations */
-   }
-   @media (prefers-reduced-motion: reduce) {
-     data-lsp {
-       transition: none;
-     }
-   }
-   /** When you mouse over the pre, show the underlines */
-   pre:hover data-lsp {
-     border-color: #747474;
-   }
-   /** The tooltip-like which provides the LSP response */
-   #twoslash-mouse-hover-info {
-     background-color: #3f3f3f;
-     color: #fff;
-     text-align: left;
-     padding: 5px 8px;
-     border-radius: 2px;
-     font-family: "Cascadia Mono-SemiLight", "JetBrains Mono", Menlo, Monaco, Consolas, Courier New, monospace;
-     font-size: 14px;
-     white-space: pre-wrap;
-     border-radius: 2px;
-     z-index: 100;
-     pointer-events: none;
-   }
-   ```
+  </pre> 
+*/
 
-1. **Add the JS** for hover info to your component:
 
-   In a React codebase:
+pre {
+	/* In theory shiki will overwrite these, but this is to make sure there are defaults regardless */
+	 background-color: white;
+	 color: black;
 
-   ```jsx
-   import React, { useEffect } from "react"
-   import { setupTwoslashHovers } from "shiki-twoslash/dist/dom";
+	/* Give it some space to breathe */
+	 padding: 12px;
 
-   export default () => {
-     // Add a the hovers
-     useEffect(setupTwoslashHovers, [])
+	/* All code samples get a grey border, twoslash ones get a different color */
+	 border-left: 1px solid #999;
+	 border-bottom: 1px solid #999;
 
-       // Normal JSX for your component
-     return </>
-   }
-   ```
+	 margin-bottom: 3rem;
 
-   In a non-React codebase, you can still call `setupTwoslashHovers` via a bundler or module import, it will set up all
-   of the hovers on the page, this will need to be _after_ the HTML is set up.
+    /* Important to allow the code to move horizontally; */
+    overflow-x: auto;
+    position: relative;
+}
+ pre.shiki {
+    overflow-x: auto;
+}
+ pre.shiki:hover .dim {
+	 opacity: 1;
+}
+ pre.shiki div.dim {
+	 opacity: 0.5;
+}
+ pre.shiki div.dim, pre.shiki div.highlight {
+	 margin: 0;
+	 padding: 0;
+}
+ pre.shiki div.highlight {
+	 opacity: 1;
+	 background-color: #f1f8ff;
+}
+ pre.shiki div.line {
+	 min-height: 1rem;
+}
+
+/* Visually differentiates twoslash code samples  */
+ pre.twoslash {
+	 border-color: #719af4;
+}
+
+/** When you mouse over the pre, show the underlines */
+pre.twoslash:hover data-lsp {
+    border-color: #747474;
+}
+
+/** The tooltip-like which provides the LSP response */
+pre.twoslash data-lsp:hover::before {
+    content: attr(lsp);
+    position: absolute;
+    transform: translate(0, 1rem);
+
+    background-color: #3f3f3f;
+    color: #fff;
+    text-align: left;
+    padding: 5px 8px;
+    border-radius: 2px;
+    font-family: "JetBrains Mono", Menlo, Monaco, Consolas, Courier New, monospace;
+    font-size: 14px;
+    white-space: pre-wrap;
+}
+
+pre .code-container {
+	 overflow: auto;
+}
+/* The try button */
+ pre .code-container > a {
+	 position: absolute;
+	 right: 8px;
+	 bottom: 8px;
+	 border-radius: 4px;
+	 border: 1px solid #719af4;
+	 padding: 0 8px;
+	 color: #719af4;
+	 text-decoration: none;
+	 opacity: 0;
+	 transition-timing-function: ease;
+	 transition: opacity 0.3s;
+}
+/* Respect no animations */
+@media (prefers-reduced-motion: reduce) {
+	 pre .code-container > a {
+		 transition: none;
+	}
+}
+ pre .code-container > a:hover {
+	 color: white;
+	 background-color: #719af4;
+}
+ pre .code-container:hover a {
+	 opacity: 1;
+}
+
+ pre code {
+	 font-size: 15px;
+	 font-family: "JetBrains Mono", Menlo, Monaco, Consolas, Courier New, monospace;;
+	 white-space: pre;
+	 -webkit-overflow-scrolling: touch;
+}
+ pre code a {
+	 text-decoration: none;
+}
+ pre data-err {
+    /* Extracted from VS Code */
+	 background: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%206%203'%20enable-background%3D'new%200%200%206%203'%20height%3D'3'%20width%3D'6'%3E%3Cg%20fill%3D'%23c94824'%3E%3Cpolygon%20points%3D'5.5%2C0%202.5%2C3%201.1%2C3%204.1%2C0'%2F%3E%3Cpolygon%20points%3D'4%2C0%206%2C2%206%2C0.6%205.4%2C0'%2F%3E%3Cpolygon%20points%3D'0%2C2%201%2C3%202.4%2C3%200%2C0.6'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") repeat-x bottom left;
+	 padding-bottom: 3px;
+}
+ pre .query {
+	 margin-bottom: 10px;
+	 color: #137998;
+	 display: inline-block;
+}
+
+  /* In order to have the 'popped out' style design and to not break the layout
+  /* we need to place a fake and un-selectable copy of the error which _isn't_ broken out
+  /* behind the actual error message.
+
+  /* This sections keeps both of those two in in sync  */
+
+ pre .error, pre .error-behind {
+	 margin-left: -14px;
+	 margin-top: 8px;
+	 margin-bottom: 4px;
+	 padding: 6px;
+	 padding-left: 14px;
+	 width: calc(100% - 19px);
+	 white-space: pre-wrap;
+	 display: block;
+}
+ pre .error {
+	 position: absolute;
+	 background-color: #fee;
+	 border-left: 2px solid #bf1818;
+	/* Give the space to the error code */
+	 display: flex;
+	 align-items: center;
+	 color: black;
+}
+ pre .error .code {
+	 display: none;
+}
+ pre .error-behind {
+	 user-select: none;
+	 color: #fee;
+}
+/* Queries */
+ pre .arrow {
+	/* Transparent background */
+	 background-color: #eee;
+	 position: relative;
+	 top: -7px;
+	 margin-left: 0.1rem;
+	/* Edges */
+	 border-left: 1px solid #eee;
+	 border-top: 1px solid #eee;
+	 transform: translateY(25%) rotate(45deg);
+	/* Size */
+	 height: 8px;
+	 width: 8px;
+}
+ pre .popover {
+	 margin-bottom: 10px;
+	 background-color: #eee;
+	 display: inline-block;
+	 padding: 0 0.5rem 0.3rem;
+	 margin-top: 10px;
+	 border-radius: 3px;
+}
+/* Completion */
+ pre .inline-completions ul.dropdown {
+	 display: inline-block;
+	 position: absolute;
+	 width: 240px;
+	 background-color: gainsboro;
+	 color: grey;
+	 padding-top: 4px;
+	 font-family: var(--code-font);
+	 font-size: 0.8rem;
+	 margin: 0;
+	 padding: 0;
+	 border-left: 4px solid #4b9edd;
+}
+ pre .inline-completions ul.dropdown::before {
+	 background-color: #4b9edd;
+	 width: 2px;
+	 position: absolute;
+	 top: -1.2rem;
+	 left: -3px;
+	 content: " ";
+}
+ pre .inline-completions ul.dropdown li {
+	 overflow-x: hidden;
+	 padding-left: 4px;
+	 margin-bottom: 4px;
+}
+ pre .inline-completions ul.dropdown li.deprecated {
+	 text-decoration: line-through;
+}
+ pre .inline-completions ul.dropdown li span.result-found {
+	 color: #4b9edd;
+}
+ pre .inline-completions ul.dropdown li span.result {
+	 width: 100px;
+	 color: black;
+	 display: inline-block;
+}
+ .dark-theme .markdown pre {
+	 background-color: #d8d8d8;
+	 border-color: #ddd;
+	 filter: invert(98%) hue-rotate(180deg);
+}
+ data-lsp {
+	/* Ensures there's no 1px jump when the hover happens */
+	 border-bottom: 1px dotted transparent;
+	/* Fades in unobtrusively */
+	 transition-timing-function: ease;
+	 transition: border-color 0.3s;
+}
+/* Respect people's wishes to not have animations */
+ @media (prefers-reduced-motion: reduce) {
+	 data-lsp {
+		 transition: none;
+	}
+}
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
 
 ### Verify
 
@@ -318,7 +328,11 @@ Then it worked, and you should be able to hover over `createLabel` to see it's t
 ### Plugin Config
 
 This plugin passes the config options directly to Shiki and Twoslash. You probably will want to
-[set `theme`](https://github.com/octref/shiki/blob/master/packages/themes/README.md#shiki-themes), then also the [TwoslashOptions here](https://www.npmjs.com/package/@typescript/twoslash#api-1).
+[set `theme`](https://github.com/octref/shiki/blob/master/packages/themes/README.md#shiki-themes). The full reference for the plugin options [is available here](https://github.com/shikijs/twoslash/blob/main/packages/shiki-twoslash/README.md#user-settings).
+
+### Learning Twoslash
+
+The TypeScript website has a learning environment for twoslash in the [Bug Workbench](https://www.typescriptlang.org/dev/bug-workbench/).
 
 ### Light / Dark Modes
 
@@ -399,3 +413,11 @@ Finally here is `c`:
 c.toString()
 ```
 ````
+
+### Editor Experience
+
+See [VSCode Twoslash](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-twoslash) to get auto-complete for twoslash markup and quick links to the Twoslash online REPL.
+
+### CLI Tooling
+
+See [twoslash-cli](https://www.npmjs.com/package/twoslash-cli) to have a CI which verifies your code samples.
