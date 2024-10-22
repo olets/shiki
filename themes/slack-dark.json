@@ -1,57 +1,57 @@
 {
-  "name": "slack-dark",
-  "type": "dark",
   "colors": {
-    "activityBarBadge.background": "#1D978D",
-    "editor.background": "#222222",
-    "editor.foreground": "#E6E6E6",
-    "editor.inactiveSelectionBackground": "#3a3d41",
-    "editor.selectionHighlightBackground": "#add6ff26",
-    "editorIndentGuide.activeBackground": "#707070",
-    "editorIndentGuide.background": "#404040",
-    "input.placeholderForeground": "#7A7A7A",
-    "list.dropBackground": "#383b3d",
-    "list.activeSelectionBackground": "#222222",
-    "list.focusBackground": "#0077B5",
-    "menu.background": "#252526",
-    "menu.foreground": "#E6E6E6",
-    "settings.numberInputBackground": "#292929",
-    "settings.textInputBackground": "#292929",
-    "sideBarTitle.foreground": "#E6E6E6",
-    "statusBar.background": "#222222",
-    "statusBar.noFolderBackground": "#141414",
-    "statusBar.debuggingBackground": "#1D978D",
-    "list.hoverBackground": "#222222",
-    "gitDecoration.modifiedResourceForeground": "#ECB22E",
-    "gitDecoration.deletedResourceForeground": "#FFF",
-    "gitDecoration.untrackedResourceForeground": "#ECB22E",
-    "gitDecoration.ignoredResourceForeground": "#877583",
-    "gitDecoration.addedResourceForeground": "#ECB22E",
-    "gitDecoration.conflictingResourceForeground": "#FFF",
-    "editor.lineHighlightBorder": "#141414",
-    "editor.lineHighlightBackground": "#141414",
-    "editorSuggestWidget.selectedBackground": "#0077B5",
-    "sideBarSectionHeader.background": "#222222",
     "activityBar.background": "#222222",
+    "activityBarBadge.background": "#1D978D",
     "button.background": "#0077B5",
     "button.foreground": "#FFF",
     "button.hoverBackground": "#005076",
-    "extensionButton.prominentBackground": "#0077B5",
-    "extensionButton.prominentForeground": "#FFF",
-    "extensionButton.prominentHoverBackground": "#005076",
     "debugExceptionWidget.background": "#141414",
     "debugExceptionWidget.border": "#FFF",
     "debugToolBar.background": "#141414",
+    "editor.background": "#222222",
+    "editor.foreground": "#E6E6E6",
+    "editor.inactiveSelectionBackground": "#3a3d41",
+    "editor.lineHighlightBackground": "#141414",
+    "editor.lineHighlightBorder": "#141414",
+    "editor.selectionHighlightBackground": "#add6ff26",
+    "editorIndentGuide.activeBackground": "#707070",
+    "editorIndentGuide.background": "#404040",
+    "editorLink.activeForeground": "#0077B5",
+    "editorSuggestWidget.selectedBackground": "#0077B5",
+    "extensionButton.prominentBackground": "#0077B5",
+    "extensionButton.prominentForeground": "#FFF",
+    "extensionButton.prominentHoverBackground": "#005076",
+    "focusBorder": "#0077B5",
+    "gitDecoration.addedResourceForeground": "#ECB22E",
+    "gitDecoration.conflictingResourceForeground": "#FFF",
+    "gitDecoration.deletedResourceForeground": "#FFF",
+    "gitDecoration.ignoredResourceForeground": "#877583",
+    "gitDecoration.modifiedResourceForeground": "#ECB22E",
+    "gitDecoration.untrackedResourceForeground": "#ECB22E",
+    "input.placeholderForeground": "#7A7A7A",
+    "list.activeSelectionBackground": "#222222",
+    "list.dropBackground": "#383b3d",
+    "list.focusBackground": "#0077B5",
+    "list.hoverBackground": "#222222",
+    "menu.background": "#252526",
+    "menu.foreground": "#E6E6E6",
+    "notificationLink.foreground": "#0077B5",
+    "settings.numberInputBackground": "#292929",
+    "settings.textInputBackground": "#292929",
+    "sideBarSectionHeader.background": "#222222",
+    "sideBarTitle.foreground": "#E6E6E6",
+    "statusBar.background": "#222222",
+    "statusBar.debuggingBackground": "#1D978D",
+    "statusBar.noFolderBackground": "#141414",
+    "textLink.activeForeground": "#0077B5",
+    "textLink.foreground": "#0077B5",
     "titleBar.activeBackground": "#222222",
     "titleBar.activeForeground": "#E6E6E6",
     "titleBar.inactiveBackground": "#222222",
-    "titleBar.inactiveForeground": "#7A7A7A",
-    "focusBorder": "#0077B5",
-    "textLink.activeForeground": "#0077B5",
-    "textLink.foreground": "#0077B5",
-    "editorLink.activeForeground": "#0077B5",
-    "notificationLink.foreground": "#0077B5"
+    "titleBar.inactiveForeground": "#7A7A7A"
   },
+  "displayName": "Slack Dark",
+  "name": "slack-dark",
   "tokenColors": [
     {
       "scope": ["meta.embedded", "source.groovy.embedded"],
@@ -204,7 +204,6 @@
       }
     },
     {
-      "name": "brackets of XML/HTML tags",
       "scope": "punctuation.definition.tag",
       "settings": {
         "foreground": "#808080"
@@ -283,7 +282,6 @@
       }
     },
     {
-      "name": "String interpolation",
       "scope": [
         "punctuation.definition.template-expression.begin",
         "punctuation.definition.template-expression.end",
@@ -294,7 +292,6 @@
       }
     },
     {
-      "name": "Reset JavaScript string interpolation expression",
       "scope": ["meta.template.expression"],
       "settings": {
         "foreground": "#d4d4d4"
@@ -351,7 +348,10 @@
       }
     },
     {
-      "scope": ["punctuation.section.embedded.begin.php", "punctuation.section.embedded.end.php"],
+      "scope": [
+        "punctuation.section.embedded.begin.php",
+        "punctuation.section.embedded.end.php"
+      ],
       "settings": {
         "foreground": "#569cd6"
       }
@@ -369,7 +369,6 @@
       }
     },
     {
-      "name": "coloring of the Java import and package identifiers",
       "scope": [
         "storage.modifier.import.java",
         "variable.language.wildcard.java",
@@ -380,21 +379,22 @@
       }
     },
     {
-      "name": "this.self",
       "scope": "variable.language",
       "settings": {
         "foreground": "#569cd6"
       }
     },
     {
-      "name": "Function declarations",
-      "scope": ["entity.name.function", "support.function", "support.constant.handlebars"],
+      "scope": [
+        "entity.name.function",
+        "support.function",
+        "support.constant.handlebars"
+      ],
       "settings": {
         "foreground": "#DCDCAA"
       }
     },
     {
-      "name": "Types declaration and references",
       "scope": [
         "meta.return-type",
         "support.class",
@@ -432,7 +432,6 @@
       }
     },
     {
-      "name": "Types declaration and references, TS grammar specific",
       "scope": [
         "meta.type.cast.expr",
         "meta.type.new.expr",
@@ -446,14 +445,12 @@
       }
     },
     {
-      "name": "Control flow keywords",
       "scope": "keyword.control",
       "settings": {
         "foreground": "#C586C0"
       }
     },
     {
-      "name": "Variable and parameter name",
       "scope": [
         "variable",
         "meta.definition.variable.name",
@@ -465,14 +462,12 @@
       }
     },
     {
-      "name": "Object keys, TS grammar specific",
       "scope": ["meta.object-literal.key"],
       "settings": {
         "foreground": "#9CDCFE"
       }
     },
     {
-      "name": "CSS property value",
       "scope": [
         "support.constant.property-value",
         "support.constant.font-name",
@@ -487,7 +482,6 @@
       }
     },
     {
-      "name": "Regular expression groups",
       "scope": [
         "punctuation.definition.group.regexp",
         "punctuation.definition.group.assertion.regexp",
@@ -560,5 +554,6 @@
         "foreground": "#b267e6"
       }
     }
-  ]
+  ],
+  "type": "dark"
 }
