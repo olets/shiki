@@ -1,5 +1,11 @@
 # Contributing
 
+> Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+
+Check the [Issues](ttps://github.com/olets/remark-shiki-twoslash/issues) to see if your topic has been discussed before or if it is being worked on. You may also want to check the roadmap (see above).
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
+
 ## Setup
 
 Using a triangular workflow is recommended. `main` will pull from and push to `origin/main`. `upstream-main` will pull from `upstream/main` and push to `origin/upstream-main`.
