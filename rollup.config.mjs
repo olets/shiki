@@ -78,14 +78,14 @@ export default defineConfig([
     output: {
       file: "dist/index.unpkg.iife.js",
       format: "iife",
-      name: "shiki",
+      name: "@olets/shiki",
       extend: true,
       globals,
     },
     plugins: [
       replace({
         __BROWSER__: JSON.stringify(true),
-        __CDN_ROOT__: `https://unpkg.com/shiki@${pkg.version}/`,
+        __CDN_ROOT__: `https://unpkg.com/@olets/shiki@${pkg.version}/`,
       }),
       esbuild(),
       nodeResolve(),
@@ -98,14 +98,14 @@ export default defineConfig([
     output: {
       file: "dist/index.jsdelivr.iife.js",
       format: "iife",
-      name: "shiki",
+      name: "@olets/shiki",
       extend: true,
       globals,
     },
     plugins: [
       replace({
         __BROWSER__: JSON.stringify(true),
-        __CDN_ROOT__: `https://cdn.jsdelivr.net/npm/shiki@${pkg.version}/`,
+        __CDN_ROOT__: `https://cdn.jsdelivr.net/npm/@olets/shiki@${pkg.version}/`,
       }),
       esbuild(),
       nodeResolve(),
