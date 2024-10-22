@@ -1,62 +1,55 @@
-<p>
-  <h2 align="center">Shiki</h2>
-</p>
-<p align="center">
-  Shiki is a beautiful Syntax Highlighter. <a href="http://shiki.matsu.io">Demo</a>.
-</p>
+# shiki
 
-## Usage
+This is a fork of [shikijs/shikis's shiki package at v0.x](https://github.com/shikijs/shiki/tree/v0.14.7/packages/shiki) made available as a standalone repo.
 
-```sh
-npm i shiki
+Learn more in this repo's [CONTRIBUTING.md](CONTRIBUTING.md), and in [shikijs/shikijs's shiki package's v0.x README.md](https://github.com/shikijs/shiki/blob/v0.14.7/packages/shiki/README.md).
+
+## Installation
+
+### Bun
+
+```shell
+bun add github:olets/shiki
 ```
 
-```js
-const shiki = require('shiki')
+### NPM
 
-shiki
-  .getHighlighter({
-    theme: 'nord'
-  })
-  .then(highlighter => {
-    console.log(highlighter.codeToHtml(`console.log('shiki');`, { lang: 'js' }))
-  })
-
-// <pre class="shiki" style="background-color: #2e3440"><code>
-//   <!-- Highlighted Code -->
-// </code></pre>
+```shell
+npm add olets/shiki
 ```
 
-```html
-<script src="https://unpkg.com/shiki"></script>
-<script>
-  shiki
-    .getHighlighter({
-      theme: 'nord'
-    })
-    .then(highlighter => {
-      const code = highlighter.codeToHtml(`console.log('shiki');`, { lang: 'js' })
-      document.getElementById('output').innerHTML = code
-    })
-</script>
+### pnpm
+
+```shell
+pnpm add https://github.com/olets/shiki.git
 ```
 
-Clone [shikijs/shiki-starter](https://github.com/shikijs/shiki-starter) to play with Shiki, or try it out on [Repl.it](https://repl.it/@octref/shiki-starter).
+### Yarn
 
-Learn more from the GitHub repo: [shikijs/shiki](https://github.com/shikijs/shiki).
+#### v2+
 
+```shell
+yarn add shiki@olets/shiki
+```
 
-## Credits
+#### v1
 
-- Shiki uses [vscode-oniguruma](https://github.com/microsoft/vscode-oniguruma)
-- A lot of code is based on [vscode-textmate](https://github.com/Microsoft/vscode-textmate)
+```shell
+yarn add https://github.com/olets/shiki.git
+```
 
-## Sponsorship
+## Contributing
 
-If you find Shiki useful, please consider sponsoring my Open Source development. Thank you 🙏
+> Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
-https://github.com/sponsors/octref
+Check the [Issues](ttps://github.com/olets/shiki/issues) to see if your topic has been discussed before or if it is being worked on. You may also want to check the roadmap (see above).
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
 ## License
 
-MIT © [Pine Wu](https://github.com/octref)
+<a href="https://github.com/olets/shiki">@olets/shiki</a> by <a href="https://github.com/olets">Henry Bley-Vroman</a> is released under the [MIT license](LICENSE).
+
+## Acknowledgments
+
+Forked from <https://github.com/shikijs/twoslash/tree/main/packages/shiki>.
