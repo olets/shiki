@@ -1,9 +1,9 @@
 {
-  "name": "shiki",
+  "name": "@olets/shiki",
   "version": "0.14.7",
   "description": "shiki",
-  "author": "Pine Wu <octref@gmail.com>",
-  "homepage": "https://github.com/octref/shiki/tree/main/packages/shiki",
+  "author": "Henry Bley-Vroman",
+  "homepage": "https://github.com/olets/shiki",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -28,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/octref/shiki.git"
+    "url": "git+https://github.com/olets/shiki.git"
   },
   "dependencies": {
     "ansi-sequence-parser": "^1.1.0",
