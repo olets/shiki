@@ -1,18 +1,17 @@
 {
-  "name": "remark-shiki-twoslash",
+  "name": "@olets/remark-shiki-twoslash",
   "version": "3.1.7",
   "license": "MIT",
-  "homepage": "https://github.com/shikijs/twoslash",
+  "homepage": "https://github.com/olets/remark-shiki-twoslash",
   "repository": {
-    "url": "https://github.com/shikijs/twoslash.git",
-    "directory": "packages/remark-shiki-twoslash",
+    "url": "https://github.com/olets/remark-shiki-twoslash.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/shikijs/twoslash/issues"
+    "url": "https://github.com/olets/remark-shiki-twoslash/issues"
   },
   "description": "A remark plugin which renders code samples for all languages via Shiki, but has some real cool features for TS/JS code",
-  "author": "Orta Therox",
+  "author": "Henry Bley-Vroman",
   "main": "./dist/index.js",
   "module": "./dist/remark-shiki-twoslash.esm.js",
   "typings": "./dist/index.d.ts",
