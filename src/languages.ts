@@ -7,229 +7,285 @@ export type Lang =
   | "abap"
   | "actionscript-3"
   | "ada"
+  | "angular-expression"
+  | "angular-html"
+  | "angular-inline-style"
+  | "angular-inline-template"
+  | "angular-let-declaration"
+  | "angular-template-blocks"
+  | "angular-template"
+  | "angular-ts"
   | "apache"
   | "apex"
   | "apl"
   | "applescript"
   | "ara"
+  | "asciidoc"
   | "asm"
   | "astro"
   | "awk"
   | "ballerina"
+  | "bash"
   | "bat"
   | "batch"
+  | "be"
   | "beancount"
   | "berry"
-  | "be"
   | "bibtex"
   | "bicep"
   | "blade"
   | "c"
+  | "c#"
+  | "c++"
   | "cadence"
   | "cdc"
   | "clarity"
-  | "clojure"
   | "clj"
+  | "clojure"
   | "cmake"
+  | "cmd"
   | "cobol"
+  | "codeowners"
   | "codeql"
-  | "ql"
   | "coffee"
+  | "common-lisp"
+  | "console"
+  | "coq"
   | "cpp"
-  | "c++"
+  | "cql"
   | "crystal"
-  | "csharp"
-  | "c#"
   | "cs"
+  | "csharp"
   | "css"
   | "csv"
   | "cue"
   | "cypher"
-  | "cql"
   | "d"
   | "dart"
   | "dax"
+  | "desktop"
   | "diff"
   | "docker"
   | "dockerfile"
+  | "dotenv"
   | "dream-maker"
+  | "edge"
   | "elixir"
   | "elm"
+  | "emacs-lisp"
   | "erb"
-  | "erlang"
   | "erl"
-  | "fish"
-  | "fsharp"
+  | "erlang"
+  | "es-tag-css"
+  | "es-tag-glsl"
+  | "es-tag-html"
+  | "es-tag-sql"
+  | "es-tag-xml"
   | "f#"
+  | "fennel"
+  | "fish"
+  | "fluent"
+  | "fortran-fixed-form"
+  | "fortran-free-form"
   | "fs"
+  | "fsharp"
+  | "fsl"
   | "gdresource"
   | "gdscript"
   | "gdshader"
+  | "genie"
   | "gherkin"
   | "git-commit"
   | "git-rebase"
-  | "glimmer-js"
   | "gjs"
+  | "gleam"
+  | "glimmer-js"
   | "glimmer-ts"
-  | "gts"
   | "glsl"
   | "gnuplot"
   | "go"
-  | "graphql"
   | "gql"
+  | "graphql"
   | "groovy"
+  | "gts"
   | "hack"
   | "haml"
   | "handlebars"
-  | "hbs"
   | "haskell"
-  | "hs"
+  | "haxe"
+  | "hbs"
   | "hcl"
   | "hjson"
   | "hlsl"
+  | "hs"
+  | "html-derivative"
   | "html"
   | "http"
+  | "hxml"
+  | "hy"
   | "imba"
   | "ini"
-  | "properties"
+  | "jade"
   | "java"
   | "javascript"
-  | "js"
   | "jinja-html"
   | "jison"
+  | "js"
   | "json"
   | "json5"
   | "jsonc"
   | "jsonl"
   | "jsonnet"
   | "jssm"
-  | "fsl"
   | "jsx"
   | "julia"
   | "kotlin"
+  | "kql"
   | "kt"
   | "kts"
   | "kusto"
-  | "kql"
   | "latex"
+  | "lean"
   | "less"
   | "liquid"
   | "lisp"
+  | "log"
   | "logo"
   | "lua"
+  | "luau"
   | "make"
   | "makefile"
+  | "markdown-vue"
   | "markdown"
-  | "md"
   | "marko"
   | "matlab"
+  | "md"
   | "mdc"
   | "mdx"
   | "mermaid"
+  | "mipsasm"
   | "mojo"
-  | "narrat"
+  | "move"
   | "nar"
+  | "narrat"
   | "nextflow"
   | "nf"
   | "nginx"
   | "nim"
   | "nix"
-  | "nushell"
   | "nu"
-  | "objective-c"
+  | "nushell"
   | "objc"
+  | "objective-c"
   | "objective-cpp"
   | "ocaml"
   | "pascal"
   | "perl"
+  | "perl6"
   | "php"
   | "plsql"
+  | "po"
   | "postcss"
   | "powerquery"
   | "powershell"
-  | "ps"
-  | "ps1"
   | "prisma"
   | "prolog"
+  | "properties"
   | "proto"
+  | "ps"
+  | "ps1"
   | "pug"
-  | "jade"
   | "puppet"
   | "purescript"
-  | "python"
   | "py"
+  | "python"
+  | "ql"
+  | "qml"
+  | "qmldir"
+  | "qss"
   | "r"
+  | "racket"
   | "raku"
-  | "perl6"
   | "razor"
+  | "rb"
   | "reg"
+  | "regexp"
   | "rel"
   | "riscv"
+  | "rs"
   | "rst"
   | "ruby"
-  | "rb"
   | "rust"
-  | "rs"
   | "sas"
   | "sass"
   | "scala"
   | "scheme"
   | "scss"
-  | "shaderlab"
-  | "shader"
-  | "shellscript"
-  | "bash"
   | "sh"
+  | "shader"
+  | "shaderlab"
   | "shell"
-  | "zsh"
+  | "shellscript"
   | "shellsession"
-  | "console"
   | "smalltalk"
   | "solidity"
+  | "soy"
   | "sparql"
-  | "splunk"
   | "spl"
+  | "splunk"
   | "sql"
   | "ssh-config"
   | "stata"
-  | "stylus"
   | "styl"
+  | "stylus"
   | "svelte"
   | "swift"
   | "system-verilog"
+  | "systemd"
   | "tasl"
   | "tcl"
+  | "templ"
+  | "terraform"
   | "tex"
   | "toml"
+  | "ts-tags"
+  | "ts"
+  | "tsv"
   | "tsx"
   | "turtle"
   | "twig"
   | "typescript"
-  | "ts"
+  | "typespec"
+  | "typst"
   | "v"
+  | "vala"
   | "vb"
-  | "cmd"
   | "verilog"
   | "vhdl"
-  | "viml"
   | "vim"
+  | "viml"
   | "vimscript"
+  | "vue-directives"
   | "vue-html"
+  | "vue-interpolations"
+  | "vue-sfc-style-variable-injection"
   | "vue"
-  | "vyper"
   | "vy"
+  | "vyper"
   | "wasm"
   | "wenyan"
-  | "文言"
   | "wgsl"
-  | "wolfram"
+  | "wikitext"
   | "wl"
+  | "wolfram"
   | "xml"
   | "xsl"
   | "yaml"
   | "yml"
   | "zenscript"
-  | "zig";
+  | "zig"
+  | "zsh"
+  | "文言";
 
 export const languages: ILanguageRegistration[] = [
   {
@@ -252,6 +308,54 @@ export const languages: ILanguageRegistration[] = [
     path: "ada.tmLanguage.json",
     displayName: "Ada",
     samplePath: "ada.sample",
+  },
+  {
+    id: "angular-expression",
+    scopeName: "source.angular.expression",
+    path: "angular-expression.tmLanguage.json",
+    displayName: "Angular Expression",
+  },
+  {
+    id: "angular-html",
+    scopeName: "source.angular.html",
+    path: "angular-html.tmLanguage.json",
+    displayName: "Angular HTML",
+  },
+  {
+    id: "angular-inline-style",
+    scopeName: "source.angular.inline.style",
+    path: "angular-inline-style.tmLanguage.json",
+    displayName: "Angular Inline Style",
+  },
+  {
+    id: "angular-inline-template",
+    scopeName: "source.angular.inline.template",
+    path: "angular-inline-template.tmLanguage.json",
+    displayName: "Angular Inline Template",
+  },
+  {
+    id: "angular-let-declaration",
+    scopeName: "source.angular.let.declaration",
+    path: "angular-let-declaration.tmLanguage.json",
+    displayName: "Angular Let Declaration",
+  },
+  {
+    id: "angular-template",
+    scopeName: "source.angular.template",
+    path: "angular-template.tmLanguage.json",
+    displayName: "Angular Template",
+  },
+  {
+    id: "angular-template-blocks",
+    scopeName: "source.angular.template.blocks",
+    path: "angular-template-blocks.tmLanguage.json",
+    displayName: "Angular Template Blocks",
+  },
+  {
+    id: "angular-ts",
+    scopeName: "source.angular.ts",
+    path: "angular-ts.tmLanguage.json",
+    displayName: "Angular TypeScript",
   },
   {
     id: "apache",
@@ -288,6 +392,12 @@ export const languages: ILanguageRegistration[] = [
     path: "ara.tmLanguage.json",
     displayName: "Ara",
     samplePath: "ara.sample",
+  },
+  {
+    id: "asciidoc",
+    scopeName: "source.asciidoc",
+    path: "asciidoc.tmLanguage.json",
+    displayName: "AsciiDoc",
   },
   {
     id: "asm",
@@ -420,6 +530,12 @@ export const languages: ILanguageRegistration[] = [
     embeddedLangs: ["sql", "html", "java"],
   },
   {
+    id: "codeowners",
+    scopeName: "source.codeowners",
+    path: "codeowners.tmLanguage.json",
+    displayName: "CODEOWNERS",
+  },
+  {
     id: "codeql",
     scopeName: "source.ql",
     path: "codeql.tmLanguage.json",
@@ -434,6 +550,18 @@ export const languages: ILanguageRegistration[] = [
     displayName: "CoffeeScript",
     samplePath: "coffee.sample",
     embeddedLangs: ["javascript"],
+  },
+  {
+    id: "common-lisp",
+    scopeName: "source.common.lisp",
+    path: "common-lisp.tmLanguage.json",
+    displayName: "Common Lisp",
+  },
+  {
+    id: "coq",
+    scopeName: "source.coq",
+    path: "coq.tmLanguage.json",
+    displayName: "Coq",
   },
   {
     id: "cpp",
@@ -511,6 +639,12 @@ export const languages: ILanguageRegistration[] = [
     samplePath: "dax.sample",
   },
   {
+    id: "desktop",
+    scopeName: "source.desktop",
+    path: "desktop.tmLanguage.json",
+    displayName: "Desktop",
+  },
+  {
     id: "diff",
     scopeName: "source.diff",
     path: "diff.tmLanguage.json",
@@ -526,11 +660,23 @@ export const languages: ILanguageRegistration[] = [
     aliases: ["dockerfile"],
   },
   {
+    id: "dotenv",
+    scopeName: "source.dotenv",
+    path: "dotenv.tmLanguage.json",
+    displayName: "dotEnv",
+  },
+  {
     id: "dream-maker",
     scopeName: "source.dm",
     path: "dream-maker.tmLanguage.json",
     displayName: "Dream Maker",
     samplePath: "dream-maker.sample",
+  },
+  {
+    id: "edge",
+    scopeName: "source.edge",
+    path: "edge.tmLanguage.json",
+    displayName: "Edge",
   },
   {
     id: "elixir",
@@ -549,6 +695,12 @@ export const languages: ILanguageRegistration[] = [
     embeddedLangs: ["glsl"],
   },
   {
+    id: "emacs-lisp",
+    scopeName: "source.emacs.lisp",
+    path: "emacs-lisp.tmLanguage.json",
+    displayName: "Emacs Lisp",
+  },
+  {
     id: "erb",
     scopeName: "text.html.erb",
     path: "erb.tmLanguage.json",
@@ -565,11 +717,65 @@ export const languages: ILanguageRegistration[] = [
     aliases: ["erl"],
   },
   {
+    id: "es-tag-css",
+    scopeName: "source.es.tag.css",
+    path: "es-tag-css.tmLanguage.json",
+    displayName: "ES Tag CSS",
+  },
+  {
+    id: "es-tag-glsl",
+    scopeName: "source.es.tag.glsl",
+    path: "es-tag-glsl.tmLanguage.json",
+    displayName: "ES Tag GLSL",
+  },
+  {
+    id: "es-tag-html",
+    scopeName: "source.es.tag.html",
+    path: "es-tag-html.tmLanguage.json",
+    displayName: "ES Tag HTML",
+  },
+  {
+    id: "es-tag-sql",
+    scopeName: "source.es.tag.sql",
+    path: "es-tag-sql.tmLanguage.json",
+    displayName: "ES Tag SQL",
+  },
+  {
+    id: "es-tag-xml",
+    scopeName: "source.es.tag.xml",
+    path: "es-tag-xml.tmLanguage.json",
+    displayName: "ES Tag XML",
+  },
+  {
+    id: "fennel",
+    scopeName: "source.fennel",
+    path: "fennel.tmLanguage.json",
+    displayName: "Fennel",
+  },
+  {
     id: "fish",
     scopeName: "source.fish",
     path: "fish.tmLanguage.json",
     displayName: "Fish",
     samplePath: "fish.sample",
+  },
+  {
+    id: "fluent",
+    scopeName: "source.fluent",
+    path: "fluent.tmLanguage.json",
+    displayName: "Fluent",
+  },
+  {
+    id: "fortran-fixed-form",
+    scopeName: "source.fortran.fixed.form",
+    path: "fortran-fixed-form.tmLanguage.json",
+    displayName: "Fortran (Fixed Form)",
+  },
+  {
+    id: "fortran-free-form",
+    scopeName: "source.fortran.free.form",
+    path: "fortran-free-form.tmLanguage.json",
+    displayName: "Fortran (Free Form)",
   },
   {
     id: "fsharp",
@@ -603,6 +809,12 @@ export const languages: ILanguageRegistration[] = [
     samplePath: "gdshader.sample",
   },
   {
+    id: "genie",
+    scopeName: "source.genie",
+    path: "genie.tmLanguage.json",
+    displayName: "Genie",
+  },
+  {
     id: "gherkin",
     scopeName: "text.gherkin.feature",
     path: "gherkin.tmLanguage.json",
@@ -622,6 +834,12 @@ export const languages: ILanguageRegistration[] = [
     path: "git-rebase.tmLanguage.json",
     displayName: "Git Rebase Message",
     embeddedLangs: ["shellscript"],
+  },
+  {
+    id: "gleam",
+    scopeName: "source.gleam",
+    path: "gleam.tmLanguage.json",
+    displayName: "Gleam",
   },
   {
     id: "glimmer-js",
@@ -711,6 +929,12 @@ export const languages: ILanguageRegistration[] = [
     aliases: ["hs"],
   },
   {
+    id: "haxe",
+    scopeName: "source.haxe",
+    path: "haxe.tmLanguage.json",
+    displayName: "Haxe",
+  },
+  {
     id: "hcl",
     scopeName: "source.hcl",
     path: "hcl.tmLanguage.json",
@@ -740,12 +964,30 @@ export const languages: ILanguageRegistration[] = [
     embeddedLangs: ["javascript", "css"],
   },
   {
+    id: "html-derivative",
+    scopeName: "source.html.derivative",
+    path: "html-derivative.tmLanguage.json",
+    displayName: "HTML (Derivative)",
+  },
+  {
     id: "http",
     scopeName: "source.http",
     path: "http.tmLanguage.json",
     displayName: "HTTP",
     samplePath: "http.sample",
     embeddedLangs: ["shellscript", "json", "xml", "graphql"],
+  },
+  {
+    id: "hxml",
+    scopeName: "source.hxml",
+    path: "hxml.tmLanguage.json",
+    displayName: "HXML",
+  },
+  {
+    id: "hy",
+    scopeName: "source.hy",
+    path: "hy.tmLanguage.json",
+    displayName: "Hy",
   },
   {
     id: "imba",
@@ -893,6 +1135,12 @@ export const languages: ILanguageRegistration[] = [
     ],
   },
   {
+    id: "lean",
+    scopeName: "source.lean",
+    path: "lean.tmLanguage.json",
+    displayName: "Lean 4",
+  },
+  {
     id: "less",
     scopeName: "source.css.less",
     path: "less.tmLanguage.json",
@@ -915,6 +1163,12 @@ export const languages: ILanguageRegistration[] = [
     samplePath: "lisp.sample",
   },
   {
+    id: "log",
+    scopeName: "source.log",
+    path: "log.tmLanguage.json",
+    displayName: "Log file",
+  },
+  {
     id: "logo",
     scopeName: "source.logo",
     path: "logo.tmLanguage.json",
@@ -928,6 +1182,12 @@ export const languages: ILanguageRegistration[] = [
     displayName: "Lua",
     samplePath: "lua.sample",
     embeddedLangs: ["c"],
+  },
+  {
+    id: "luau",
+    scopeName: "source.luau",
+    path: "luau.tmLanguage.json",
+    displayName: "Luau",
   },
   {
     id: "make",
@@ -997,6 +1257,12 @@ export const languages: ILanguageRegistration[] = [
       "latex",
       "bibtex",
     ],
+  },
+  {
+    id: "markdown-vue",
+    scopeName: "source.markdown.vue",
+    path: "markdown-vue.tmLanguage.json",
+    displayName: "Markdown Vue",
   },
   {
     id: "marko",
@@ -1080,11 +1346,23 @@ export const languages: ILanguageRegistration[] = [
     samplePath: "mermaid.sample",
   },
   {
+    id: "mipsasm",
+    scopeName: "source.mipsasm",
+    path: "mipsasm.tmLanguage.json",
+    displayName: "MIPS Assembly",
+  },
+  {
     id: "mojo",
     scopeName: "source.mojo",
     path: "mojo.tmLanguage.json",
     displayName: "MagicPython",
     samplePath: "mojo.sample",
+  },
+  {
+    id: "move",
+    scopeName: "source.move",
+    path: "move.tmLanguage.json",
+    displayName: "Move",
   },
   {
     id: "narrat",
@@ -1194,6 +1472,12 @@ export const languages: ILanguageRegistration[] = [
     samplePath: "plsql.sample",
   },
   {
+    id: "po",
+    scopeName: "source.po",
+    path: "po.tmLanguage.json",
+    displayName: "Gettext PO",
+  },
+  {
     id: "postcss",
     scopeName: "source.css.postcss",
     path: "postcss.tmLanguage.json",
@@ -1276,11 +1560,35 @@ export const languages: ILanguageRegistration[] = [
     aliases: ["py"],
   },
   {
+    id: "qml",
+    scopeName: "source.qml",
+    path: "qml.tmLanguage.json",
+    displayName: "QML",
+  },
+  {
+    id: "qmldir",
+    scopeName: "source.qmldir",
+    path: "qmldir.tmLanguage.json",
+    displayName: "QML Directory",
+  },
+  {
+    id: "qss",
+    scopeName: "source.qss",
+    path: "qss.tmLanguage.json",
+    displayName: "Qt Style Sheets",
+  },
+  {
     id: "r",
     scopeName: "source.r",
     path: "r.tmLanguage.json",
     displayName: "R",
     samplePath: "r.sample",
+  },
+  {
+    id: "racket",
+    scopeName: "source.racket",
+    path: "racket.tmLanguage.json",
+    displayName: "Racket",
   },
   {
     id: "raku",
@@ -1304,6 +1612,12 @@ export const languages: ILanguageRegistration[] = [
     path: "reg.tmLanguage.json",
     displayName: "Windows Registry Script",
     samplePath: "reg.sample",
+  },
+  {
+    id: "regexp",
+    scopeName: "source.regexp",
+    path: "regexp.tmLanguage.json",
+    displayName: "RegExp",
   },
   {
     id: "rel",
@@ -1439,6 +1753,12 @@ export const languages: ILanguageRegistration[] = [
     samplePath: "solidity.sample",
   },
   {
+    id: "soy",
+    scopeName: "source.soy",
+    path: "soy.tmLanguage.json",
+    displayName: "Closure Templates",
+  },
+  {
     id: "sparql",
     scopeName: "source.sparql",
     path: "sparql.tmLanguage.json",
@@ -1519,6 +1839,12 @@ export const languages: ILanguageRegistration[] = [
     samplePath: "system-verilog.sample",
   },
   {
+    id: "systemd",
+    scopeName: "source.systemd",
+    path: "systemd.tmLanguage.json",
+    displayName: "Systemd Units",
+  },
+  {
     id: "tasl",
     scopeName: "source.tasl",
     path: "tasl.tmLanguage.json",
@@ -1531,6 +1857,18 @@ export const languages: ILanguageRegistration[] = [
     path: "tcl.tmLanguage.json",
     displayName: "Tcl",
     samplePath: "tcl.sample",
+  },
+  {
+    id: "templ",
+    scopeName: "source.templ",
+    path: "templ.tmLanguage.json",
+    displayName: "Templ",
+  },
+  {
+    id: "terraform",
+    scopeName: "source.terraform",
+    path: "terraform.tmLanguage.json",
+    displayName: "Terraform",
   },
   {
     id: "tex",
@@ -1546,6 +1884,18 @@ export const languages: ILanguageRegistration[] = [
     path: "toml.tmLanguage.json",
     displayName: "TOML",
     samplePath: "toml.sample",
+  },
+  {
+    id: "ts-tags",
+    scopeName: "source.ts.tags",
+    path: "ts-tags.tmLanguage.json",
+    displayName: "TypeScript with Tags",
+  },
+  {
+    id: "tsv",
+    scopeName: "source.tsv",
+    path: "tsv.tmLanguage.json",
+    displayName: "TSV",
   },
   {
     id: "tsx",
@@ -1578,11 +1928,29 @@ export const languages: ILanguageRegistration[] = [
     aliases: ["ts"],
   },
   {
+    id: "typespec",
+    scopeName: "source.typespec",
+    path: "typespec.tmLanguage.json",
+    displayName: "TypeSpec",
+  },
+  {
+    id: "typst",
+    scopeName: "source.typst",
+    path: "typst.tmLanguage.json",
+    displayName: "Typst",
+  },
+  {
     id: "v",
     scopeName: "source.v",
     path: "v.tmLanguage.json",
     displayName: "V",
     samplePath: "v.sample",
+  },
+  {
+    id: "vala",
+    scopeName: "source.vala",
+    path: "vala.tmLanguage.json",
+    displayName: "Vala",
   },
   {
     id: "vb",
@@ -1615,14 +1983,6 @@ export const languages: ILanguageRegistration[] = [
     aliases: ["vim", "vimscript"],
   },
   {
-    id: "vue-html",
-    scopeName: "text.html.vue-html",
-    path: "vue-html.tmLanguage.json",
-    displayName: "Vue HTML",
-    samplePath: "vue-html.sample",
-    embeddedLangs: ["vue", "javascript"],
-  },
-  {
     id: "vue",
     scopeName: "source.vue",
     path: "vue.tmLanguage.json",
@@ -1648,6 +2008,32 @@ export const languages: ILanguageRegistration[] = [
       "toml",
       "graphql",
     ],
+  },
+  {
+    id: "vue-directives",
+    scopeName: "source.vue.directives",
+    path: "vue-directives.tmLanguage.json",
+    displayName: "Vue Directives",
+  },
+  {
+    id: "vue-html",
+    scopeName: "text.html.vue-html",
+    path: "vue-html.tmLanguage.json",
+    displayName: "Vue HTML",
+    samplePath: "vue-html.sample",
+    embeddedLangs: ["vue", "javascript"],
+  },
+  {
+    id: "vue-interpolations",
+    scopeName: "source.vue.interpolations",
+    path: "vue-interpolations.tmLanguage.json",
+    displayName: "Vue Interpolations",
+  },
+  {
+    id: "vue-sfc-style-variable-injection",
+    scopeName: "source.vue.sfc.style.variable.injection",
+    path: "vue-sfc-style-variable-injection.tmLanguage.json",
+    displayName: "Vue Sfc Style Variable Injection",
   },
   {
     id: "vyper",
@@ -1678,6 +2064,12 @@ export const languages: ILanguageRegistration[] = [
     path: "wgsl.tmLanguage.json",
     displayName: "WGSL",
     samplePath: "wgsl.sample",
+  },
+  {
+    id: "wikitext",
+    scopeName: "source.wikitext",
+    path: "wikitext.tmLanguage.json",
+    displayName: "Wikitext",
   },
   {
     id: "wolfram",
