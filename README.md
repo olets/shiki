@@ -1,5 +1,8 @@
 ### remark-shiki-twoslash
 
+> [!NOTE]  
+> This is [shikijs/twoslash's remark-shiki-twoslash package](https://github.com/shikijs/twoslash/tree/main/packages/remark-shiki-twoslash) forked and split into a standalone repo. Learn more in [CONTRIBUTING.md](CONTRIBUTING.md).
+
 [You might first want to read the user docs first](https://shikijs.github.io/twoslash/).
 
 This module sets up markdown code blocks to run through [shiki](https://shiki.matsu.io) which means it gets the VS Code quality
