@@ -25,7 +25,7 @@ git checkout main
 ```
 git fetch
 git fetch upstream
-git diff upstream/main..upstream-main -- ./packages/shiki-twoslash ./
+git diff upstream/main..upstream-main -- ./packages/remark-shiki-twoslash ./
 ```
 
 and port any diff over to `main`.
@@ -37,16 +37,21 @@ This repo was created by
 1. Create this repo via the GitHub web UI
 1. Cloning the fork
 1. In the clone, running
+
     ```shell
     git clone https://github.com/shikijs/twoslash remark-shiki-twoslash
     cd remark-shiki-twoslash
-    git remote set-url origin https://github.com/olets/remark-shiki-twoslash
-    git switch -c upstream-main
-    git push
     git config remote.pushdefault origin
     git config push.default current
-    git branch --setup-upstream-to=upstream/main
+    git remote set-url origin https://github.com/olets/remark-shiki-twoslash
+    git remote add upstream https://github.com/shikijs/twoslash remark-shiki-twoslash
     git switch main
-    git reset --hard $(git subtree split -P packages/remark-shiki-twoslash)
-    git push --force-with-lease
+    git subtree split -P packages/remark-shiki-twoslash -b remark-shiki-twoslash-package
+    git reset --hard remark-shiki-twoslash-package
+    git branch -d remark-shiki-twoslash-package
+    git push
+    git switch upstream-main
+    git push
+    git fetch upstream/main
+    git branch --set-upstream-to=upstream/main
     ```
