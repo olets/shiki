@@ -1,18 +1,17 @@
 {
-  "name": "shiki-twoslash",
+  "name": "@olets/shiki-twoslash",
   "version": "3.1.3",
   "license": "MIT",
-  "homepage": "https://github.com/shikijs/twoslash",
+  "homepage": "https://github.com/olets/shiki-twoslash",
   "repository": {
-    "url": "https://github.com/shikijs/twoslash.git",
-    "directory": "packages/shiki-twoslash",
+    "url": "https://github.com/olets/shiki-twoslash.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/shikijs/twoslash/issues"
+    "url": "https://github.com/olets/shiki-twoslash/issues"
   },
   "description": "API primitives to mix Shiki with Twoslash",
-  "author": "Orta Therox",
+  "author": "Henry Bley-Vroman",
   "main": "./dist/index.js",
   "module": "./dist/shiki-twoslash.esm.js",
   "typings": "./dist/index.d.ts",
