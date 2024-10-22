@@ -1,4 +1,4 @@
-type Lines = import("shiki").IThemedToken[][];
+type Lines = import("@olets/shiki").IThemedToken[][];
 type TwoSlash = import("@typescript/twoslash").TwoSlashReturn;
 
 import { TwoslashShikiOptions } from "..";

@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@olets/shiki': github:olets/shiki
   '@types/jest': ^25.1.3
   '@typescript/twoslash': 3.2.1
   '@typescript/vfs': 1.4.0
@@ -9,16 +10,15 @@ specifiers:
   jest-file-snapshot: ^0.5.0
   prettier: ^2.3.0
   remark: ^13.0.0
-  shiki: 0.14.3
   tsdx: ^0.14.1
   tslib: ^1.10.0
   unified: ^8.4.2
 
 dependencies:
+  '@olets/shiki': github.com/olets/shiki/0e98852f43877633c6f0d85588f8eed6b0f10680
   '@typescript/twoslash': 3.2.1
   '@typescript/vfs': 1.4.0
   fenceparser: 2.2.0
-  shiki: 0.14.3
 
 devDependencies:
   '@types/jest': 25.2.3
@@ -6321,15 +6321,6 @@ packages:
     dev: true
     optional: true
 
-  /shiki/0.14.3:
-    resolution: {integrity: sha512-U3S/a+b0KS+UkTyMjoNojvTgrBHjgp7L6ovhFVZsXmBGnVdQ4K4U9oK0z63w538S91ATngv1vXigHCSWOwnr+g==}
-    dependencies:
-      ansi-sequence-parser: 1.1.1
-      jsonc-parser: 3.3.1
-      vscode-oniguruma: 1.7.0
-      vscode-textmate: 8.0.0
-    dev: false
-
   /side-channel/1.0.6:
     resolution: {integrity: sha512-fDW/EZ6Q9RiO8eFG8Hj+7u/oW+XrPTIChwCOM2+th2A6OblDtYYIpve9m+KvI9Z4C9qSEXlaGR6bTEYHReuglA==}
     engines: {node: '>= 0.4'}
@@ -7450,3 +7441,15 @@ packages:
   /zwitch/1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
     dev: true
+
+  github.com/olets/shiki/0e98852f43877633c6f0d85588f8eed6b0f10680:
+    resolution: {tarball: https://codeload.github.com/olets/shiki/tar.gz/0e98852f43877633c6f0d85588f8eed6b0f10680}
+    name: '@olets/shiki'
+    version: 0.14.7
+    engines: {node: 18.20.4}
+    dependencies:
+      ansi-sequence-parser: 1.1.1
+      jsonc-parser: 3.3.1
+      vscode-oniguruma: 1.7.0
+      vscode-textmate: 8.0.0
+    dev: false

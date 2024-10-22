@@ -1,6 +1,6 @@
-type Lines = import("shiki").IThemedToken[][];
+type Lines = import("@olets/shiki").IThemedToken[][];
 
-import type { IThemedToken } from "shiki";
+import type { IThemedToken } from "@olets/shiki";
 import { escapeHtml, Meta } from "../utils";
 import { tsconfig } from "../tsconfig-oneliners.generated";
 import {

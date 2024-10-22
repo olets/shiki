@@ -30,10 +30,10 @@
     "lint": "tsdx lint"
   },
   "dependencies": {
+    "@olets/shiki": "github:olets/shiki",
     "@typescript/twoslash": "3.2.1",
     "@typescript/vfs": "1.4.0",
-    "fenceparser": "^2.2.0",
-    "shiki": "0.14.3"
+    "fenceparser": "^2.2.0"
   },
   "peerDependencies": {
     "typescript": ">3"

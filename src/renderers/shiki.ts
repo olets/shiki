@@ -9,7 +9,7 @@ import {
   preOpenerFromRenderingOptsWithExtras,
 } from "./plain";
 
-type Lines = import("shiki").IThemedToken[][];
+type Lines = import("@olets/shiki").IThemedToken[][];
 
 export function defaultShikiRenderer(
   lines: Lines,

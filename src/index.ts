@@ -3,7 +3,7 @@ import {
   Highlighter,
   HighlighterOptions,
   IThemedToken,
-} from "shiki";
+} from "@olets/shiki";
 import {
   twoslasher,
   TwoSlashOptions,
