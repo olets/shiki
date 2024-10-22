@@ -13,8 +13,8 @@ import copy from "rollup-plugin-copy";
 import terser from "@rollup/plugin-terser";
 import rollupReplace from "@rollup/plugin-replace";
 import { defineConfig } from "rollup";
-import { resolve } from "path";
-import { readFileSync } from "fs";
+// import { resolve } from "path";
+// import { readFileSync } from "fs";
 
 const replace = (opts) => {
   return rollupReplace({
@@ -23,18 +23,18 @@ const replace = (opts) => {
   });
 };
 
-const pkg = JSON.parse(readFileSync("./package.json", "utf8"));
+// const pkg = JSON.parse(readFileSync("./package.json", "utf8"));
 
-const external = ["vscode-oniguruma", "vscode-textmate"];
-const globals = {
-  "vscode-oniguruma": "vscode-oniguruma",
-  "vscode-textmate": "vscode-textmate",
-};
+// const external = ["vscode-oniguruma", "vscode-textmate"];
+// const globals = {
+//   "vscode-oniguruma": "vscode-oniguruma",
+//   "vscode-textmate": "vscode-textmate",
+// };
 
 export default defineConfig([
   {
     input: "src/index.ts",
-    external,
+    // external,
     output: [
       {
         file: "dist/index.js",
@@ -60,7 +60,7 @@ export default defineConfig([
     output: {
       file: "dist/index.browser.mjs",
       format: "esm",
-      globals,
+      // globals,
     },
     plugins: [
       replace({
@@ -73,46 +73,46 @@ export default defineConfig([
       terser(),
     ],
   },
-  {
-    input: "src/index.ts",
-    output: {
-      file: "dist/index.unpkg.iife.js",
-      format: "iife",
-      name: "@olets/shiki",
-      extend: true,
-      globals,
-    },
-    plugins: [
-      replace({
-        __BROWSER__: JSON.stringify(true),
-        __CDN_ROOT__: `https://unpkg.com/@olets/shiki@${pkg.version}/`,
-      }),
-      esbuild(),
-      nodeResolve(),
-      commonjs(),
-      terser(),
-    ],
-  },
-  {
-    input: "src/index.ts",
-    output: {
-      file: "dist/index.jsdelivr.iife.js",
-      format: "iife",
-      name: "@olets/shiki",
-      extend: true,
-      globals,
-    },
-    plugins: [
-      replace({
-        __BROWSER__: JSON.stringify(true),
-        __CDN_ROOT__: `https://cdn.jsdelivr.net/npm/@olets/shiki@${pkg.version}/`,
-      }),
-      esbuild(),
-      nodeResolve(),
-      commonjs(),
-      terser(),
-    ],
-  },
+  // {
+  //   input: "src/index.ts",
+  //   output: {
+  //     file: "dist/index.unpkg.iife.js",
+  //     format: "iife",
+  //     name: "@olets/shiki",
+  //     extend: true,
+  //     globals,
+  //   },
+  //   plugins: [
+  //     replace({
+  //       __BROWSER__: JSON.stringify(true),
+  //       __CDN_ROOT__: `https://unpkg.com/@olets/shiki@${pkg.version}/`,
+  //     }),
+  //     esbuild(),
+  //     nodeResolve(),
+  //     commonjs(),
+  //     terser(),
+  //   ],
+  // },
+  // {
+  //   input: "src/index.ts",
+  //   output: {
+  //     file: "dist/index.jsdelivr.iife.js",
+  //     format: "iife",
+  //     name: "@olets/shiki",
+  //     extend: true,
+  //     globals,
+  //   },
+  //   plugins: [
+  //     replace({
+  //       __BROWSER__: JSON.stringify(true),
+  //       __CDN_ROOT__: `https://cdn.jsdelivr.net/npm/@olets/shiki@${pkg.version}/`,
+  //     }),
+  //     esbuild(),
+  //     nodeResolve(),
+  //     commonjs(),
+  //     terser(),
+  //   ],
+  // },
   {
     input: "src/index.ts",
     output: [
@@ -125,10 +125,10 @@ export default defineConfig([
       dts(),
       copy({
         targets: [
-          {
-            src: resolve("node_modules/vscode-oniguruma/release/onig.wasm"),
-            dest: "dist",
-          },
+          // {
+          //   src: resolve("node_modules/vscode-oniguruma/release/onig.wasm"),
+          //   dest: "dist",
+          // },
         ],
       }),
     ],
