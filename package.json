@@ -29,12 +29,12 @@
     "lint": "tsdx lint"
   },
   "dependencies": {
+    "@olets/shiki": "github:olets/shiki",
     "@types/unist": "^2.0.0",
     "@typescript/twoslash": "3.2.1",
     "@typescript/vfs": "1.4.0",
     "fenceparser": "^2.2.0",
     "regenerator-runtime": "^0.13.7",
-    "shiki": "0.14.7",
     "shiki-twoslash": "github:olets/shiki-twoslash",
     "tslib": "2.1.0",
     "unist-util-visit": "^2.0.0"
