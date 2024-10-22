@@ -37,16 +37,21 @@ This repo was created by
 1. Creating this repo via the GitHub web UI
 1. Cloning the fork
 1. In the clone, running
+    
     ```shell
     git clone https://github.com/shikijs/twoslash shiki-twoslash
     cd shiki-twoslash
-    git remote set-url origin https://github.com/olets/shiki-twoslash
-    git switch -c upstream-main
-    git push
     git config remote.pushdefault origin
     git config push.default current
-    git branch --setup-upstream-to=upstream/main
+    git remote set-url origin https://github.com/olets/shiki-twoslash
+    git remote add upstream https://github.com/shikijs/twoslash shiki-twoslash
     git switch main
-    git reset --hard $(git subtree split -P packages/shiki-twoslash)
-    git push --force-with-lease
+    git subtree split -P packages/shiki-twoslash -b shiki-twoslash-package
+    git reset --hard shiki-twoslash-package
+    git branch -d shiki-twoslash-package
+    git push
+    git switch upstream-main
+    git push
+    git fetch upstream/main
+    git branch --set-upstream-to=upstream/main
     ```
