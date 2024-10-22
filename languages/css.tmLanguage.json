@@ -1,12 +1,11 @@
 {
+  "displayName": "CSS",
   "information_for_contributors": [
     "This file has been converted from https://github.com/microsoft/vscode-css/blob/master/grammars/css.cson",
     "If you want to provide a fix or improvement, please create a pull request against the original repository.",
     "Once accepted there, we are happy to receive an update request."
   ],
-  "version": "https://github.com/microsoft/vscode-css/commit/c216f777497265700ff336f739328e5197e012cd",
   "name": "css",
-  "scopeName": "source.css",
   "patterns": [
     {
       "include": "#comment-block"
@@ -820,6 +819,177 @@
         }
       ]
     },
+    "functional-pseudo-classes": {
+      "patterns": [
+        {
+          "begin": "(?i)((:)dir)(\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.other.attribute-name.pseudo-class.css"
+            },
+            "2": {
+              "name": "punctuation.definition.entity.css"
+            },
+            "3": {
+              "name": "punctuation.section.function.begin.bracket.round.css"
+            }
+          },
+          "end": "\\)",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.function.end.bracket.round.css"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#comment-block"
+            },
+            {
+              "include": "#escapes"
+            },
+            {
+              "match": "(?i)(?<![\\w-])(ltr|rtl)(?![\\w-])",
+              "name": "support.constant.text-direction.css"
+            },
+            {
+              "include": "#property-values"
+            }
+          ]
+        },
+        {
+          "begin": "(?i)((:)lang)(\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.other.attribute-name.pseudo-class.css"
+            },
+            "2": {
+              "name": "punctuation.definition.entity.css"
+            },
+            "3": {
+              "name": "punctuation.section.function.begin.bracket.round.css"
+            }
+          },
+          "end": "\\)",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.function.end.bracket.round.css"
+            }
+          },
+          "patterns": [
+            {
+              "match": "(?<=[(,\\s])[a-zA-Z]+(-[a-zA-Z0-9]*|\\\\(?:[0-9a-fA-F]{1,6}|.))*(?=[),\\s])",
+              "name": "support.constant.language-range.css"
+            },
+            {
+              "begin": "\"",
+              "beginCaptures": {
+                "0": {
+                  "name": "punctuation.definition.string.begin.css"
+                }
+              },
+              "end": "\"",
+              "endCaptures": {
+                "0": {
+                  "name": "punctuation.definition.string.end.css"
+                }
+              },
+              "name": "string.quoted.double.css",
+              "patterns": [
+                {
+                  "include": "#escapes"
+                },
+                {
+                  "match": "(?<=[\"\\s])[a-zA-Z*]+(-[a-zA-Z0-9*]*)*(?=[\"\\s])",
+                  "name": "support.constant.language-range.css"
+                }
+              ]
+            },
+            {
+              "begin": "'",
+              "beginCaptures": {
+                "0": {
+                  "name": "punctuation.definition.string.begin.css"
+                }
+              },
+              "end": "'",
+              "endCaptures": {
+                "0": {
+                  "name": "punctuation.definition.string.end.css"
+                }
+              },
+              "name": "string.quoted.single.css",
+              "patterns": [
+                {
+                  "include": "#escapes"
+                },
+                {
+                  "match": "(?<=['\\s])[a-zA-Z*]+(-[a-zA-Z0-9*]*)*(?=['\\s])",
+                  "name": "support.constant.language-range.css"
+                }
+              ]
+            },
+            {
+              "include": "#commas"
+            }
+          ]
+        },
+        {
+          "begin": "(?i)((:)(?:not|has|matches|where|is))(\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.other.attribute-name.pseudo-class.css"
+            },
+            "2": {
+              "name": "punctuation.definition.entity.css"
+            },
+            "3": {
+              "name": "punctuation.section.function.begin.bracket.round.css"
+            }
+          },
+          "end": "\\)",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.function.end.bracket.round.css"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#selector-innards"
+            }
+          ]
+        },
+        {
+          "begin": "(?i)((:)nth-(?:last-)?(?:child|of-type))(\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.other.attribute-name.pseudo-class.css"
+            },
+            "2": {
+              "name": "punctuation.definition.entity.css"
+            },
+            "3": {
+              "name": "punctuation.section.function.begin.bracket.round.css"
+            }
+          },
+          "end": "\\)",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.function.end.bracket.round.css"
+            }
+          },
+          "patterns": [
+            {
+              "match": "(?i)[+-]?(\\d+n?|n)(\\s*[+-]\\s*\\d+)?",
+              "name": "constant.numeric.css"
+            },
+            {
+              "match": "(?i)even|odd",
+              "name": "support.constant.parity.css"
+            }
+          ]
+        }
+      ]
+    },
     "functions": {
       "patterns": [
         {
@@ -1073,8 +1243,8 @@
           "name": "meta.function.variable.css",
           "patterns": [
             {
-              "name": "variable.argument.css",
-              "match": "(?x)\n--\n(?:[-a-zA-Z_]    | [^\\x00-\\x7F])     # First letter\n(?:[-a-zA-Z0-9_] | [^\\x00-\\x7F]      # Remainder of identifier\n  |\\\\(?:[0-9a-fA-F]{1,6}|.)\n)*"
+              "match": "(?x)\n--\n(?:[-a-zA-Z_]    | [^\\x00-\\x7F])     # First letter\n(?:[-a-zA-Z0-9_] | [^\\x00-\\x7F]      # Remainder of identifier\n  |\\\\(?:[0-9a-fA-F]{1,6}|.)\n)*",
+              "name": "variable.argument.css"
             },
             {
               "include": "#property-values"
@@ -1083,176 +1253,9 @@
         }
       ]
     },
-    "functional-pseudo-classes": {
-      "patterns": [
-        {
-          "begin": "(?i)((:)dir)(\\()",
-          "beginCaptures": {
-            "1": {
-              "name": "entity.other.attribute-name.pseudo-class.css"
-            },
-            "2": {
-              "name": "punctuation.definition.entity.css"
-            },
-            "3": {
-              "name": "punctuation.section.function.begin.bracket.round.css"
-            }
-          },
-          "end": "\\)",
-          "endCaptures": {
-            "0": {
-              "name": "punctuation.section.function.end.bracket.round.css"
-            }
-          },
-          "patterns": [
-            {
-              "include": "#comment-block"
-            },
-            {
-              "include": "#escapes"
-            },
-            {
-              "match": "(?i)(?<![\\w-])(ltr|rtl)(?![\\w-])",
-              "name": "support.constant.text-direction.css"
-            },
-            {
-              "include": "#property-values"
-            }
-          ]
-        },
-        {
-          "begin": "(?i)((:)lang)(\\()",
-          "beginCaptures": {
-            "1": {
-              "name": "entity.other.attribute-name.pseudo-class.css"
-            },
-            "2": {
-              "name": "punctuation.definition.entity.css"
-            },
-            "3": {
-              "name": "punctuation.section.function.begin.bracket.round.css"
-            }
-          },
-          "end": "\\)",
-          "endCaptures": {
-            "0": {
-              "name": "punctuation.section.function.end.bracket.round.css"
-            }
-          },
-          "patterns": [
-            {
-              "match": "(?<=[(,\\s])[a-zA-Z]+(-[a-zA-Z0-9]*|\\\\(?:[0-9a-fA-F]{1,6}|.))*(?=[),\\s])",
-              "name": "support.constant.language-range.css"
-            },
-            {
-              "begin": "\"",
-              "beginCaptures": {
-                "0": {
-                  "name": "punctuation.definition.string.begin.css"
-                }
-              },
-              "end": "\"",
-              "endCaptures": {
-                "0": {
-                  "name": "punctuation.definition.string.end.css"
-                }
-              },
-              "name": "string.quoted.double.css",
-              "patterns": [
-                {
-                  "include": "#escapes"
-                },
-                {
-                  "match": "(?<=[\"\\s])[a-zA-Z*]+(-[a-zA-Z0-9*]*)*(?=[\"\\s])",
-                  "name": "support.constant.language-range.css"
-                }
-              ]
-            },
-            {
-              "begin": "'",
-              "beginCaptures": {
-                "0": {
-                  "name": "punctuation.definition.string.begin.css"
-                }
-              },
-              "end": "'",
-              "endCaptures": {
-                "0": {
-                  "name": "punctuation.definition.string.end.css"
-                }
-              },
-              "name": "string.quoted.single.css",
-              "patterns": [
-                {
-                  "include": "#escapes"
-                },
-                {
-                  "match": "(?<=['\\s])[a-zA-Z*]+(-[a-zA-Z0-9*]*)*(?=['\\s])",
-                  "name": "support.constant.language-range.css"
-                }
-              ]
-            },
-            {
-              "include": "#commas"
-            }
-          ]
-        },
-        {
-          "begin": "(?i)((:)(?:not|has|matches|where|is))(\\()",
-          "beginCaptures": {
-            "1": {
-              "name": "entity.other.attribute-name.pseudo-class.css"
-            },
-            "2": {
-              "name": "punctuation.definition.entity.css"
-            },
-            "3": {
-              "name": "punctuation.section.function.begin.bracket.round.css"
-            }
-          },
-          "end": "\\)",
-          "endCaptures": {
-            "0": {
-              "name": "punctuation.section.function.end.bracket.round.css"
-            }
-          },
-          "patterns": [
-            {
-              "include": "#selector-innards"
-            }
-          ]
-        },
-        {
-          "begin": "(?i)((:)nth-(?:last-)?(?:child|of-type))(\\()",
-          "beginCaptures": {
-            "1": {
-              "name": "entity.other.attribute-name.pseudo-class.css"
-            },
-            "2": {
-              "name": "punctuation.definition.entity.css"
-            },
-            "3": {
-              "name": "punctuation.section.function.begin.bracket.round.css"
-            }
-          },
-          "end": "\\)",
-          "endCaptures": {
-            "0": {
-              "name": "punctuation.section.function.end.bracket.round.css"
-            }
-          },
-          "patterns": [
-            {
-              "match": "(?i)[+-]?(\\d+n?|n)(\\s*[+-]\\s*\\d+)?",
-              "name": "constant.numeric.css"
-            },
-            {
-              "match": "(?i)even|odd",
-              "name": "support.constant.parity.css"
-            }
-          ]
-        }
-      ]
+    "media-feature-keywords": {
+      "match": "(?xi)\n(?<=^|\\s|:|\\*/)\n(?: portrait                  # Orientation\n  | landscape\n  | progressive               # Scan types\n  | interlace\n  | fullscreen                # Display modes\n  | standalone\n  | minimal-ui\n  | browser\n  | hover\n)\n(?=\\s|\\)|$)",
+      "name": "support.constant.property-value.css"
     },
     "media-features": {
       "captures": {
@@ -1267,10 +1270,6 @@
         }
       },
       "match": "(?xi)\n(?<=^|\\s|\\(|\\*/)           # Preceded by whitespace, bracket or comment\n(?:\n  # Standardised features\n  (\n    (?:min-|max-)?            # Range features\n    (?: height\n      | width\n      | aspect-ratio\n      | color\n      | color-index\n      | monochrome\n      | resolution\n    )\n    | grid                    # Discrete features\n    | scan\n    | orientation\n    | display-mode\n    | hover\n  )\n  |\n  # Deprecated features\n  (\n    (?:min-|max-)?            # Deprecated in Media Queries 4\n    device-\n    (?: height\n      | width\n      | aspect-ratio\n    )\n  )\n  |\n  # Vendor extensions\n  (\n    (?:\n      # Spec-compliant syntax\n      [-_]\n      (?: webkit              # Webkit/Blink\n        | apple|khtml         # Webkit aliases\n        | epub                # ePub3\n        | moz                 # Gecko\n        | ms                  # Microsoft\n        | o                   # Presto (pre-Opera 15)\n        | xv|ah|rim|atsc|     # Less common vendors\n          hp|tc|wap|ro\n      )\n      |\n      # Non-standard prefixes\n      (?: mso                 # Microsoft Office\n        | prince              # YesLogic\n      )\n    )\n    -\n    [\\w-]+                   # Feature name\n    (?=                       # Terminates correctly\n      \\s*                    # Possible whitespace\n      (?:                     # Possible injected comment\n        /\\*\n        (?:[^*]|\\*[^/])*\n        \\*/\n      )?\n      \\s*\n      [:)]                    # Ends with a colon or closed bracket\n    )\n  )\n)\n(?=\\s|$|[><:=]|\\)|/\\*)     # Terminates cleanly"
-    },
-    "media-feature-keywords": {
-      "match": "(?xi)\n(?<=^|\\s|:|\\*/)\n(?: portrait                  # Orientation\n  | landscape\n  | progressive               # Scan types\n  | interlace\n  | fullscreen                # Display modes\n  | standalone\n  | minimal-ui\n  | browser\n  | hover\n)\n(?=\\s|\\)|$)",
-      "name": "support.constant.property-value.css"
     },
     "media-query": {
       "begin": "\\G",
@@ -1541,13 +1540,13 @@
               "name": "punctuation.separator.key-value.css"
             }
           },
+          "contentName": "meta.property-value.css",
           "end": "\\s*(;)|\\s*(?=}|\\))",
           "endCaptures": {
             "1": {
               "name": "punctuation.terminator.rule.css"
             }
           },
-          "contentName": "meta.property-value.css",
           "patterns": [
             {
               "include": "#comment-block"
@@ -1861,5 +1860,7 @@
         }
       ]
     }
-  }
+  },
+  "scopeName": "source.css",
+  "version": "https://github.com/microsoft/vscode-css/commit/c216f777497265700ff336f739328e5197e012cd"
 }

@@ -1,5 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "displayName": "DAX",
   "name": "dax",
   "patterns": [
     {
@@ -22,79 +23,27 @@
     }
   ],
   "repository": {
-    "parameters": {
-      "patterns": [
-        {
-          "name": "meta.function.definition.parameters.dax",
-          "comment": "build out variable assignment",
-          "begin": "\\b(?<!\\.)(VAR)\\b(?<!\\.)\\b",
-          "end": "=",
-          "beginCaptures": {
-            "1": {
-              "name": "keyword.control.dax"
-            },
-            "2": {
-              "name": "variable.other.readwrite.dax"
-            }
-          },
-          "endCaptures": {
-            "0": {
-              "name": "keyword.operator.assignment.dax"
-            }
-          },
-          "patterns": [
-            {
-              "name": "keyword.control.dax",
-              "match": "(?x)\n = \n"
-            }
-          ]
-        },
-        {
-          "name": "variable.other.constant.dax",
-          "match": "[_$[:alpha:]][_$[:alnum:]]*"
-        }
-      ]
-    },
-    "labels": {
-      "patterns": [
-        {
-          "match": "(^(.*?)\\s*(:=|!=))",
-          "captures": {
-            "1": {
-              "name": "punctuation.separator.label.dax"
-            },
-            "2": {
-              "name": "entity.name.label.dax"
-            }
-          }
-        }
-      ]
-    },
-    "numbers": {
-      "name": "constant.numeric.dax",
-      "match": "(?x)        # turn on extended mode\n  -?        # an optional minus\n  (?:\n    0       # a zero\n    |       # ...or...\n    [1-9]   # a 1-9 character\n    \\d*     # followed by zero or more digits\n  )\n  (?:\n    (?:\n      \\.    # a period\n      \\d+   # followed by one or more digits\n    )?\n    (?:\n      [eE]  # an e character\n      [+-]? # followed by an option +/-\n      \\d+   # followed by one or more digits\n    )?      # make exponent optional\n  )?        # make decimal portion optional"
-    },
     "comments": {
       "patterns": [
         {
-          "name": "comment.line.dax",
           "begin": "//",
-          "end": "\n",
           "captures": {
             "0": {
               "name": "punctuation.definition.comment.dax"
             }
-          }
+          },
+          "end": "\n",
+          "name": "comment.line.dax"
         },
         {
-          "name": "comment.line.dax",
           "begin": "--",
-          "end": "\n",
           "captures": {
             "0": {
               "name": "punctuation.definition.comment.dax"
             }
-          }
+          },
+          "end": "\n",
+          "name": "comment.line.dax"
         },
         {
           "begin": "/\\*",
@@ -115,24 +64,24 @@
           "name": "variable.language.dax"
         },
         {
-          "name": "keyword.control.dax",
-          "match": "\\b(DEFINE|EVALUATE|ORDER BY|RETURN|VAR)\\b"
+          "match": "\\b(DEFINE|EVALUATE|ORDER BY|RETURN|VAR)\\b",
+          "name": "keyword.control.dax"
         },
         {
-          "name": "keyword.array.constructor.dax",
-          "match": "(?x)\n { | }"
+          "match": "(?x)\n { | }",
+          "name": "keyword.array.constructor.dax"
         },
         {
-          "name": "keyword.operator.comparison.dax",
-          "match": "(?x)\n > | < | >= | <= | =(?!==)\n"
+          "match": "(?x)\n > | < | >= | <= | =(?!==)\n",
+          "name": "keyword.operator.comparison.dax"
         },
         {
-          "name": "keyword.operator.logical.dax",
-          "match": "(?x)\n && | IN | NOT | \\|\\|"
+          "match": "(?x)\n && | IN | NOT | \\|\\|",
+          "name": "keyword.operator.logical.dax"
         },
         {
-          "name": "keyword.arithmetic.operator.dax",
-          "match": "(?x)\n \\+ | \\- | \\* | \\/ \n"
+          "match": "(?x)\n \\+ | \\- | \\* | \\/ \n",
+          "name": "keyword.arithmetic.operator.dax"
         },
         {
           "begin": "\\[",
@@ -151,14 +100,18 @@
         }
       ]
     },
-    "strings": {
-      "name": "string.quoted.double.dax",
-      "begin": "\"",
-      "end": "\"",
+    "labels": {
       "patterns": [
         {
-          "name": "constant.character.escape.dax",
-          "match": "\\\\."
+          "captures": {
+            "1": {
+              "name": "punctuation.separator.label.dax"
+            },
+            "2": {
+              "name": "entity.name.label.dax"
+            }
+          },
+          "match": "(^(.*?)\\s*(:=|!=))"
         }
       ]
     },
@@ -177,6 +130,54 @@
               "name": "meta.brace.round.dax"
             }
           }
+        }
+      ]
+    },
+    "numbers": {
+      "match": "(?x)        # turn on extended mode\n  -?        # an optional minus\n  (?:\n    0       # a zero\n    |       # ...or...\n    [1-9]   # a 1-9 character\n    \\d*     # followed by zero or more digits\n  )\n  (?:\n    (?:\n      \\.    # a period\n      \\d+   # followed by one or more digits\n    )?\n    (?:\n      [eE]  # an e character\n      [+-]? # followed by an option +/-\n      \\d+   # followed by one or more digits\n    )?      # make exponent optional\n  )?        # make decimal portion optional",
+      "name": "constant.numeric.dax"
+    },
+    "parameters": {
+      "patterns": [
+        {
+          "begin": "\\b(?<!\\.)(VAR)\\b(?<!\\.)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.dax"
+            },
+            "2": {
+              "name": "variable.other.readwrite.dax"
+            }
+          },
+          "comment": "build out variable assignment",
+          "end": "=",
+          "endCaptures": {
+            "0": {
+              "name": "keyword.operator.assignment.dax"
+            }
+          },
+          "name": "meta.function.definition.parameters.dax",
+          "patterns": [
+            {
+              "match": "(?x)\n = \n",
+              "name": "keyword.control.dax"
+            }
+          ]
+        },
+        {
+          "match": "[_$[:alpha:]][_$[:alnum:]]*",
+          "name": "variable.other.constant.dax"
+        }
+      ]
+    },
+    "strings": {
+      "begin": "\"",
+      "end": "\"",
+      "name": "string.quoted.double.dax",
+      "patterns": [
+        {
+          "match": "\\\\.",
+          "name": "constant.character.escape.dax"
         }
       ]
     }

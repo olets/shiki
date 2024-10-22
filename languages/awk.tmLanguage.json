@@ -1,5 +1,8 @@
 {
-  "fileTypes": ["awk"],
+  "displayName": "AWK",
+  "fileTypes": [
+    "awk"
+  ],
   "name": "awk",
   "patterns": [
     {

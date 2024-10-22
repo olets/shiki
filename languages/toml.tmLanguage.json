@@ -1,5 +1,8 @@
 {
-  "fileTypes": ["toml"],
+  "displayName": "TOML",
+  "fileTypes": [
+    "toml"
+  ],
   "keyEquivalent": "^~T",
   "name": "toml",
   "patterns": [

@@ -1,12 +1,11 @@
 {
+  "displayName": "PowerShell",
   "information_for_contributors": [
     "This file has been converted from https://github.com/PowerShell/EditorSyntax/blob/master/PowerShellSyntax.tmLanguage",
     "If you want to provide a fix or improvement, please create a pull request against the original repository.",
     "Once accepted there, we are happy to receive an update request."
   ],
-  "version": "https://github.com/PowerShell/EditorSyntax/commit/742f0b5d4b60f5930c0b47fcc1f646860521296e",
   "name": "powershell",
-  "scopeName": "source.powershell",
   "patterns": [
     {
       "begin": "<#",
@@ -70,6 +69,7 @@
       "include": "#doubleQuotedStringEscapes"
     },
     {
+      "applyEndPatternLast": true,
       "begin": "['\\x{2018}-\\x{201B}]",
       "beginCaptures": {
         "0": {
@@ -77,7 +77,6 @@
         }
       },
       "end": "['\\x{2018}-\\x{201B}]",
-      "applyEndPatternLast": true,
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.string.end.powershell"
@@ -204,14 +203,14 @@
           "name": "keyword.control.powershell"
         }
       },
+      "comment": "This should be moved to the repository at some point.",
       "end": "$",
       "patterns": [
         {
           "match": ".+",
           "name": "string.unquoted.powershell"
         }
-      ],
-      "comment": "This should be moved to the repository at some point."
+      ]
     },
     {
       "comment": "This should only be relevant inside a class but will require a rework of how classes are matched. This is a temp fix.",
@@ -273,23 +272,42 @@
     }
   ],
   "repository": {
-    "commentLine": {
-      "begin": "(?<![`\\\\-])(#)#*",
-      "captures": {
-        "1": {
-          "name": "punctuation.definition.comment.powershell"
+    "RequiresDirective": {
+      "begin": "(?<=#)(?i:(requires))\\s",
+      "beginCaptures": {
+        "0": {
+          "name": "keyword.control.requires.powershell"
         }
       },
-      "end": "$\\n?",
-      "name": "comment.line.powershell",
+      "end": "$",
+      "name": "meta.requires.powershell",
       "patterns": [
         {
-          "include": "#commentEmbeddedDocs"
+          "match": "\\-(?i:Modules|PSSnapin|RunAsAdministrator|ShellId|Version|Assembly|PSEdition)",
+          "name": "keyword.other.powershell"
         },
         {
-          "include": "#RequiresDirective"
+          "match": "(?<!-)\\b\\p{L}+|\\d+(?:\\.\\d+)*",
+          "name": "variable.parameter.powershell"
+        },
+        {
+          "include": "#hashtable"
         }
       ]
+    },
+    "UsingDirective": {
+      "captures": {
+        "1": {
+          "name": "keyword.control.using.powershell"
+        },
+        "2": {
+          "name": "keyword.other.powershell"
+        },
+        "3": {
+          "name": "variable.parameter.powershell"
+        }
+      },
+      "match": "(?<!\\w)(?i:(using))\\s+(?i:(namespace|module))\\s+(?i:((?:\\w+(?:\\.)?)+))"
     },
     "attribute": {
       "begin": "(\\[)\\s*\\b(?i)(cmdletbinding|alias|outputtype|parameter|validatenotnull|validatenotnullorempty|validatecount|validateset|allownull|allowemptycollection|allowemptystring|validatescript|validaterange|validatepattern|validatelength|supportswildcards)\\b",
@@ -327,7 +345,6 @@
               "include": "$self"
             },
             {
-              "match": "(?i)\\b(mandatory|valuefrompipeline|valuefrompipelinebypropertyname|valuefromremainingarguments|position|parametersetname|defaultparametersetname|supportsshouldprocess|supportspaging|positionalbinding|helpuri|confirmimpact|helpmessage)\\b(?:\\s+)?(=)?",
               "captures": {
                 "1": {
                   "name": "variable.parameter.attribute.powershell"
@@ -335,7 +352,8 @@
                 "2": {
                   "name": "keyword.operator.assignment.powershell"
                 }
-              }
+              },
+              "match": "(?i)\\b(mandatory|valuefrompipeline|valuefrompipelinebypropertyname|valuefromremainingarguments|position|parametersetname|defaultparametersetname|supportsshouldprocess|supportspaging|positionalbinding|helpuri|confirmimpact|helpmessage)\\b(?:\\s+)?(=)?"
             }
           ]
         }
@@ -403,6 +421,62 @@
         }
       ]
     },
+    "commentLine": {
+      "begin": "(?<![`\\\\-])(#)#*",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.comment.powershell"
+        }
+      },
+      "end": "$\\n?",
+      "name": "comment.line.powershell",
+      "patterns": [
+        {
+          "include": "#commentEmbeddedDocs"
+        },
+        {
+          "include": "#RequiresDirective"
+        }
+      ]
+    },
+    "doubleQuotedString": {
+      "applyEndPatternLast": true,
+      "begin": "[\"\\x{201C}-\\x{201E}]",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.powershell"
+        }
+      },
+      "end": "[\"\\x{201C}-\\x{201E}]",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.powershell"
+        }
+      },
+      "name": "string.quoted.double.powershell",
+      "patterns": [
+        {
+          "match": "(?i)\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,64}\\b"
+        },
+        {
+          "include": "#variableNoProperty"
+        },
+        {
+          "include": "#doubleQuotedStringEscapes"
+        },
+        {
+          "match": "[\"\\x{201C}-\\x{201E}]{2}",
+          "name": "constant.character.escape.powershell"
+        },
+        {
+          "include": "#interpolation"
+        },
+        {
+          "match": "`\\s*$",
+          "name": "keyword.other.powershell"
+        }
+      ]
+    },
     "doubleQuotedStringEscapes": {
       "patterns": [
         {
@@ -411,19 +485,6 @@
         },
         {
           "include": "#unicodeEscape"
-        }
-      ]
-    },
-    "unicodeEscape": {
-      "comment": "`u{xxxx} added in PowerShell 6.0",
-      "patterns": [
-        {
-          "match": "`u\\{(?:(?:10)?([0-9a-fA-F]){1,4}|0?\\g<1>{1,5})}",
-          "name": "constant.character.escape.powershell"
-        },
-        {
-          "match": "`u(?:\\{[0-9a-fA-F]{,6}.)?",
-          "name": "invalid.character.escape.powershell"
         }
       ]
     },
@@ -450,21 +511,45 @@
         }
       ]
     },
-    "subexpression": {
-      "begin": "\\(",
+    "hashtable": {
+      "begin": "(@)(\\{)",
       "beginCaptures": {
-        "0": {
-          "name": "punctuation.section.group.begin.powershell"
+        "1": {
+          "name": "keyword.other.hashtable.begin.powershell"
+        },
+        "2": {
+          "name": "punctuation.section.braces.begin.powershell"
         }
       },
-      "end": "\\)",
+      "end": "(\\})",
       "endCaptures": {
-        "0": {
-          "name": "punctuation.section.group.end.powershell"
+        "1": {
+          "name": "punctuation.section.braces.end.powershell"
         }
       },
-      "name": "meta.group.simple.subexpression.powershell",
+      "name": "meta.hashtable.powershell",
       "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.string.begin.powershell"
+            },
+            "2": {
+              "name": "variable.other.readwrite.powershell"
+            },
+            "3": {
+              "name": "punctuation.definition.string.end.powershell"
+            },
+            "4": {
+              "name": "keyword.operator.assignment.powershell"
+            }
+          },
+          "match": "\\b((?:\\'|\\\")?)(\\w+)((?:\\'|\\\")?)(?:\\s+)?(=)(?:\\s+)?",
+          "name": "meta.hashtable.assignment.powershell"
+        },
+        {
+          "include": "#scriptblock"
+        },
         {
           "include": "$self"
         }
@@ -607,6 +692,26 @@
         }
       ]
     },
+    "subexpression": {
+      "begin": "\\(",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.group.begin.powershell"
+        }
+      },
+      "end": "\\)",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.group.end.powershell"
+        }
+      },
+      "name": "meta.group.simple.subexpression.powershell",
+      "patterns": [
+        {
+          "include": "$self"
+        }
+      ]
+    },
     "type": {
       "begin": "\\[",
       "beginCaptures": {
@@ -627,6 +732,19 @@
         },
         {
           "include": "$self"
+        }
+      ]
+    },
+    "unicodeEscape": {
+      "comment": "`u{xxxx} added in PowerShell 6.0",
+      "patterns": [
+        {
+          "match": "`u\\{(?:(?:10)?([0-9a-fA-F]){1,4}|0?\\g<1>{1,5})}",
+          "name": "constant.character.escape.powershell"
+        },
+        {
+          "match": "`u(?:\\{[0-9a-fA-F]{,6}.)?",
+          "name": "invalid.character.escape.powershell"
         }
       ]
     },
@@ -771,43 +889,6 @@
         }
       ]
     },
-    "UsingDirective": {
-      "match": "(?<!\\w)(?i:(using))\\s+(?i:(namespace|module))\\s+(?i:((?:\\w+(?:\\.)?)+))",
-      "captures": {
-        "1": {
-          "name": "keyword.control.using.powershell"
-        },
-        "2": {
-          "name": "keyword.other.powershell"
-        },
-        "3": {
-          "name": "variable.parameter.powershell"
-        }
-      }
-    },
-    "RequiresDirective": {
-      "begin": "(?<=#)(?i:(requires))\\s",
-      "beginCaptures": {
-        "0": {
-          "name": "keyword.control.requires.powershell"
-        }
-      },
-      "end": "$",
-      "name": "meta.requires.powershell",
-      "patterns": [
-        {
-          "match": "\\-(?i:Modules|PSSnapin|RunAsAdministrator|ShellId|Version|Assembly|PSEdition)",
-          "name": "keyword.other.powershell"
-        },
-        {
-          "match": "(?<!-)\\b\\p{L}+|\\d+(?:\\.\\d+)*",
-          "name": "variable.parameter.powershell"
-        },
-        {
-          "include": "#hashtable"
-        }
-      ]
-    },
     "variableNoProperty": {
       "patterns": [
         {
@@ -942,88 +1023,8 @@
           "match": "(?i:(\\$)(\\{)((?:\\p{L}|\\d|_)+:)?([^}]*[^}`])(\\}))"
         }
       ]
-    },
-    "hashtable": {
-      "begin": "(@)(\\{)",
-      "beginCaptures": {
-        "1": {
-          "name": "keyword.other.hashtable.begin.powershell"
-        },
-        "2": {
-          "name": "punctuation.section.braces.begin.powershell"
-        }
-      },
-      "end": "(\\})",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.section.braces.end.powershell"
-        }
-      },
-      "name": "meta.hashtable.powershell",
-      "patterns": [
-        {
-          "captures": {
-            "1": {
-              "name": "punctuation.definition.string.begin.powershell"
-            },
-            "2": {
-              "name": "variable.other.readwrite.powershell"
-            },
-            "3": {
-              "name": "punctuation.definition.string.end.powershell"
-            },
-            "4": {
-              "name": "keyword.operator.assignment.powershell"
-            }
-          },
-          "match": "\\b((?:\\'|\\\")?)(\\w+)((?:\\'|\\\")?)(?:\\s+)?(=)(?:\\s+)?",
-          "name": "meta.hashtable.assignment.powershell"
-        },
-        {
-          "include": "#scriptblock"
-        },
-        {
-          "include": "$self"
-        }
-      ]
-    },
-    "doubleQuotedString": {
-      "begin": "[\"\\x{201C}-\\x{201E}]",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.begin.powershell"
-        }
-      },
-      "end": "[\"\\x{201C}-\\x{201E}]",
-      "applyEndPatternLast": true,
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.end.powershell"
-        }
-      },
-      "name": "string.quoted.double.powershell",
-      "patterns": [
-        {
-          "match": "(?i)\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,64}\\b"
-        },
-        {
-          "include": "#variableNoProperty"
-        },
-        {
-          "include": "#doubleQuotedStringEscapes"
-        },
-        {
-          "match": "[\"\\x{201C}-\\x{201E}]{2}",
-          "name": "constant.character.escape.powershell"
-        },
-        {
-          "include": "#interpolation"
-        },
-        {
-          "match": "`\\s*$",
-          "name": "keyword.other.powershell"
-        }
-      ]
     }
-  }
+  },
+  "scopeName": "source.powershell",
+  "version": "https://github.com/PowerShell/EditorSyntax/commit/742f0b5d4b60f5930c0b47fcc1f646860521296e"
 }

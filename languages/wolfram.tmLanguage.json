@@ -1,129 +1,82 @@
 {
+  "displayName": "Wolfram",
+  "fileTypes": [
+    "wl",
+    "m",
+    "wls",
+    "wlt",
+    "mt"
+  ],
   "name": "wolfram",
-  "scopeName": "source.wolfram",
-  "fileTypes": ["wl", "m", "wls", "wlt", "mt"],
   "patterns": [
     {
       "include": "#main"
     }
   ],
   "repository": {
-    "main": {
+    "association-group": {
+      "begin": "<\\|",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.associations.begin.wolfram"
+        }
+      },
+      "end": "\\|>",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.associations.end.wolfram"
+        }
+      },
+      "name": "meta.associations.wolfram",
       "patterns": [
-        {
-          "include": "#shebang"
-        },
-        {
-          "include": "#simple-toplevel-definitions"
-        },
         {
           "include": "#expressions"
         }
       ]
     },
-    "shebang": {
-      "name": "comment.line.shebang.wolfram",
-      "match": "\\A(#!).*(?=$)",
-      "captures": {
-        "1": {
-          "name": "punctuation.definition.comment.wolfram"
+    "brace-group": {
+      "begin": "\\{",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.braces.begin.wolfram"
         }
-      }
-    },
-    "simple-toplevel-definitions": {
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.braces.end.wolfram"
+        }
+      },
+      "name": "meta.braces.wolfram",
       "patterns": [
         {
-          "match": "^\\s*(Attributes|Format|Options)\\s*(\\[)(`?(?:(?:[$[:alpha:]][$[:alnum:]]*)`)*)((?:[$[:alpha:]][$[:alnum:]]*))(\\])\\s*(:=|=(?!!|=|\\.))",
-          "captures": {
-            "1": {
-              "name": "support.function.builtin.wolfram"
-            },
-            "2": {
-              "name": "punctuation.section.brackets.begin.wolfram"
-            },
-            "3": {
-              "name": "meta.function.wolfram entity.name.Context.wolfram"
-            },
-            "4": {
-              "name": "meta.function.wolfram entity.name.function.wolfram"
-            },
-            "5": {
-              "name": "punctuation.section.brackets.end.wolfram"
-            },
-            "6": {
-              "name": "keyword.operator.assignment.wolfram"
-            }
-          }
-        },
-        {
-          "match": "^\\s*(`?(?:(?:[$[:alpha:]][$[:alnum:]]*)`)*)((?:[$[:alpha:]][$[:alnum:]]*))(?=\\s*(\\[(?>[^\\[\\]]+|\\g<-1>)*\\])\\s*(?:/;.*)?(?::=|=(?!!|=|\\.)))",
-          "captures": {
-            "1": {
-              "name": "meta.function.wolfram entity.name.Context.wolfram"
-            },
-            "2": {
-              "name": "meta.function.wolfram entity.name.function.wolfram"
-            }
-          }
-        },
-        {
-          "match": "^\\s*(`?(?:(?:[$[:alpha:]][$[:alnum:]]*)`)*)((?:[$[:alpha:]][$[:alnum:]]*))(?=\\s*(?:/;.*)?(?::=|=(?!!|=|\\.)))",
-          "captures": {
-            "1": {
-              "name": "meta.function.wolfram entity.name.Context.wolfram"
-            },
-            "2": {
-              "name": "meta.function.wolfram entity.name.constant.wolfram"
-            }
-          }
+          "include": "#expressions"
         }
       ]
     },
-    "expressions": {
+    "bracket-group": {
+      "begin": "::\\[|\\[",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.brackets.begin.wolfram"
+        }
+      },
+      "end": "\\]",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.brackets.end.wolfram"
+        }
+      },
+      "name": "meta.brackets.wolfram",
       "patterns": [
         {
-          "include": "#comments"
-        },
-        {
-          "include": "#escaped_character_symbols"
-        },
-        {
-          "include": "#escaped_characters"
-        },
-        {
-          "include": "#out"
-        },
-        {
-          "include": "#slot"
-        },
-        {
-          "include": "#literals"
-        },
-        {
-          "include": "#groups"
-        },
-        {
-          "include": "#stringifying-operators"
-        },
-        {
-          "include": "#operators"
-        },
-        {
-          "include": "#pattern-operators"
-        },
-        {
-          "include": "#symbols"
-        },
-        {
-          "match": "(?:!|&|'|\\*|\\+|,|-|\\.|/|:|;|<|=|>|\\?|@|\\\\|\\^|\\||~)",
-          "name": "invalid.illegal"
+          "include": "#expressions"
         }
       ]
     },
     "comments": {
       "patterns": [
         {
-          "name": "comment.block",
           "begin": "\\(\\*",
           "beginCaptures": {
             "0": {
@@ -136,6 +89,7 @@
               "name": "punctuation.definition.comment.wolfram"
             }
           },
+          "name": "comment.block",
           "patterns": [
             {
               "include": "#comments"
@@ -412,14 +366,118 @@
         }
       ]
     },
-    "string_escaped_characters": {
+    "expressions": {
       "patterns": [
         {
-          "match": "\\\\[bfnrt\\\"\\\\<>]",
-          "name": "donothighlight.constant.character.escape"
+          "include": "#comments"
+        },
+        {
+          "include": "#escaped_character_symbols"
         },
         {
           "include": "#escaped_characters"
+        },
+        {
+          "include": "#out"
+        },
+        {
+          "include": "#slot"
+        },
+        {
+          "include": "#literals"
+        },
+        {
+          "include": "#groups"
+        },
+        {
+          "include": "#stringifying-operators"
+        },
+        {
+          "include": "#operators"
+        },
+        {
+          "include": "#pattern-operators"
+        },
+        {
+          "include": "#symbols"
+        },
+        {
+          "match": "(?:!|&|'|\\*|\\+|,|-|\\.|/|:|;|<|=|>|\\?|@|\\\\|\\^|\\||~)",
+          "name": "invalid.illegal"
+        }
+      ]
+    },
+    "groups": {
+      "patterns": [
+        {
+          "match": "\\\\\\)",
+          "name": "invalid.illegal.stray-linearsyntaxparens-end.wolfram"
+        },
+        {
+          "match": "\\)",
+          "name": "invalid.illegal.stray-parens-end.wolfram"
+        },
+        {
+          "match": "\\[\\s+\\[",
+          "name": "invalid.whitespace.Part.wolfram"
+        },
+        {
+          "match": "\\]\\s+\\]",
+          "name": "invalid.whitespace.Part.wolfram"
+        },
+        {
+          "match": "\\]\\]",
+          "name": "invalid.illegal.stray-parts-end.wolfram"
+        },
+        {
+          "match": "\\]",
+          "name": "invalid.illegal.stray-brackets-end.wolfram"
+        },
+        {
+          "match": "\\}",
+          "name": "invalid.illegal.stray-braces-end.wolfram"
+        },
+        {
+          "match": "\\|>",
+          "name": "invalid.illegal.stray-associations-end.wolfram"
+        },
+        {
+          "include": "#linearsyntaxparen-group"
+        },
+        {
+          "include": "#paren-group"
+        },
+        {
+          "include": "#part-group"
+        },
+        {
+          "include": "#bracket-group"
+        },
+        {
+          "include": "#brace-group"
+        },
+        {
+          "include": "#association-group"
+        }
+      ]
+    },
+    "linearsyntaxparen-group": {
+      "begin": "\\\\\\(",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.linearsyntaxparens.begin.wolfram"
+        }
+      },
+      "end": "\\\\\\)",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.linearsyntaxparens.end.wolfram"
+        }
+      },
+      "name": "meta.linearsyntaxparens.wolfram",
+      "patterns": [
+        {
+          "include": "#expressions"
         }
       ]
     },
@@ -430,6 +488,19 @@
         },
         {
           "include": "#strings"
+        }
+      ]
+    },
+    "main": {
+      "patterns": [
+        {
+          "include": "#shebang"
+        },
+        {
+          "include": "#simple-toplevel-definitions"
+        },
+        {
+          "include": "#expressions"
         }
       ]
     },
@@ -609,126 +680,6 @@
         }
       ]
     },
-    "strings": {
-      "patterns": [
-        {
-          "name": "string.quoted.double",
-          "begin": "\"",
-          "beginCaptures": {
-            "0": {
-              "name": "punctuation.definition.string.begin"
-            }
-          },
-          "end": "\"",
-          "endCaptures": {
-            "0": {
-              "name": "punctuation.definition.string.end"
-            }
-          },
-          "patterns": [
-            {
-              "include": "#string_escaped_characters"
-            }
-          ]
-        }
-      ]
-    },
-    "stringifying-operators": {
-      "patterns": [
-        {
-          "match": "(>>>)(?=\\s*\")",
-          "captures": {
-            "1": {
-              "name": "keyword.operator.PutAppend.wolfram"
-            }
-          }
-        },
-        {
-          "match": "(>>>)\\s*(\\w+)",
-          "captures": {
-            "1": {
-              "name": "keyword.operator.PutAppend.wolfram"
-            },
-            "2": {
-              "name": "string.unquoted.wolfram"
-            }
-          }
-        },
-        {
-          "match": ">>>",
-          "name": "invalid.illegal"
-        },
-        {
-          "match": "(::)(?=\\s*\")",
-          "captures": {
-            "1": {
-              "name": "keyword.operator.MessageName.wolfram"
-            }
-          }
-        },
-        {
-          "match": "(::)([[:alpha:]][[:alnum:]]*)",
-          "captures": {
-            "1": {
-              "name": "keyword.operator.MessageName.wolfram"
-            },
-            "2": {
-              "name": "string.unquoted.wolfram"
-            }
-          }
-        },
-        {
-          "match": "::",
-          "name": "invalid.illegal"
-        },
-        {
-          "match": "(<<)(?=\\s*\")",
-          "captures": {
-            "1": {
-              "name": "keyword.operator.Get.wolfram"
-            }
-          }
-        },
-        {
-          "match": "(<<)\\s*([`[:alpha:]][`[:alnum:]]*)",
-          "captures": {
-            "1": {
-              "name": "keyword.operator.Get.wolfram"
-            },
-            "2": {
-              "name": "string.unquoted.wolfram"
-            }
-          }
-        },
-        {
-          "match": "<<",
-          "name": "invalid.illegal"
-        },
-        {
-          "match": "(>>)(?=\\s*\")",
-          "captures": {
-            "1": {
-              "name": "keyword.operator.Put.wolfram"
-            }
-          }
-        },
-        {
-          "match": "(>>)\\s*(\\w*)",
-          "captures": {
-            "1": {
-              "name": "keyword.operator.Put.wolfram"
-            },
-            "2": {
-              "name": "string.unquoted.wolfram"
-            }
-          }
-        },
-        {
-          "match": ">>",
-          "name": "invalid.illegal"
-        }
-      ]
-    },
     "operators": {
       "patterns": [
         {
@@ -874,6 +825,283 @@
         {
           "match": "(?:>|\\^|\\.|:|@|~)",
           "name": "keyword.operator.wolfram"
+        }
+      ]
+    },
+    "out": {
+      "patterns": [
+        {
+          "match": "%\\d+",
+          "name": "keyword.other.Out.wolfram"
+        },
+        {
+          "match": "%+",
+          "name": "keyword.other.Out.wolfram"
+        }
+      ]
+    },
+    "paren-group": {
+      "begin": "\\(",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.parens.begin.wolfram"
+        }
+      },
+      "end": "\\)",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.parens.end.wolfram"
+        }
+      },
+      "name": "meta.parens.wolfram",
+      "patterns": [
+        {
+          "include": "#expressions"
+        }
+      ]
+    },
+    "part-group": {
+      "begin": "\\[\\[",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.parts.begin.wolfram"
+        }
+      },
+      "end": "\\]\\]",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.parts.end.wolfram"
+        }
+      },
+      "name": "meta.parts.wolfram",
+      "patterns": [
+        {
+          "include": "#expressions"
+        }
+      ]
+    },
+    "pattern-operators": {
+      "patterns": [
+        {
+          "match": "___",
+          "name": "keyword.operator.BlankNullSequence.wolfram"
+        },
+        {
+          "match": "__",
+          "name": "keyword.operator.BlankSequence.wolfram"
+        },
+        {
+          "match": "_\\.",
+          "name": "keyword.operator.Optional.wolfram"
+        },
+        {
+          "match": "_",
+          "name": "keyword.operator.Blank.wolfram"
+        }
+      ]
+    },
+    "shebang": {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.comment.wolfram"
+        }
+      },
+      "match": "\\A(#!).*(?=$)",
+      "name": "comment.line.shebang.wolfram"
+    },
+    "simple-toplevel-definitions": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "support.function.builtin.wolfram"
+            },
+            "2": {
+              "name": "punctuation.section.brackets.begin.wolfram"
+            },
+            "3": {
+              "name": "meta.function.wolfram entity.name.Context.wolfram"
+            },
+            "4": {
+              "name": "meta.function.wolfram entity.name.function.wolfram"
+            },
+            "5": {
+              "name": "punctuation.section.brackets.end.wolfram"
+            },
+            "6": {
+              "name": "keyword.operator.assignment.wolfram"
+            }
+          },
+          "match": "^\\s*(Attributes|Format|Options)\\s*(\\[)(`?(?:(?:[$[:alpha:]][$[:alnum:]]*)`)*)((?:[$[:alpha:]][$[:alnum:]]*))(\\])\\s*(:=|=(?!!|=|\\.))"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "meta.function.wolfram entity.name.Context.wolfram"
+            },
+            "2": {
+              "name": "meta.function.wolfram entity.name.function.wolfram"
+            }
+          },
+          "match": "^\\s*(`?(?:(?:[$[:alpha:]][$[:alnum:]]*)`)*)((?:[$[:alpha:]][$[:alnum:]]*))(?=\\s*(\\[(?>[^\\[\\]]+|\\g<-1>)*\\])\\s*(?:/;.*)?(?::=|=(?!!|=|\\.)))"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "meta.function.wolfram entity.name.Context.wolfram"
+            },
+            "2": {
+              "name": "meta.function.wolfram entity.name.constant.wolfram"
+            }
+          },
+          "match": "^\\s*(`?(?:(?:[$[:alpha:]][$[:alnum:]]*)`)*)((?:[$[:alpha:]][$[:alnum:]]*))(?=\\s*(?:/;.*)?(?::=|=(?!!|=|\\.)))"
+        }
+      ]
+    },
+    "slot": {
+      "patterns": [
+        {
+          "match": "#[[:alpha:]][[:alnum:]]*",
+          "name": "keyword.other.Slot.wolfram"
+        },
+        {
+          "match": "##\\d*",
+          "name": "keyword.other.SlotSequence.wolfram"
+        },
+        {
+          "match": "#\\d*",
+          "name": "keyword.other.Slot.wolfram"
+        }
+      ]
+    },
+    "string_escaped_characters": {
+      "patterns": [
+        {
+          "match": "\\\\[bfnrt\\\"\\\\<>]",
+          "name": "donothighlight.constant.character.escape"
+        },
+        {
+          "include": "#escaped_characters"
+        }
+      ]
+    },
+    "stringifying-operators": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "keyword.operator.PutAppend.wolfram"
+            }
+          },
+          "match": "(>>>)(?=\\s*\")"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "keyword.operator.PutAppend.wolfram"
+            },
+            "2": {
+              "name": "string.unquoted.wolfram"
+            }
+          },
+          "match": "(>>>)\\s*(\\w+)"
+        },
+        {
+          "match": ">>>",
+          "name": "invalid.illegal"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "keyword.operator.MessageName.wolfram"
+            }
+          },
+          "match": "(::)(?=\\s*\")"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "keyword.operator.MessageName.wolfram"
+            },
+            "2": {
+              "name": "string.unquoted.wolfram"
+            }
+          },
+          "match": "(::)([[:alpha:]][[:alnum:]]*)"
+        },
+        {
+          "match": "::",
+          "name": "invalid.illegal"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "keyword.operator.Get.wolfram"
+            }
+          },
+          "match": "(<<)(?=\\s*\")"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "keyword.operator.Get.wolfram"
+            },
+            "2": {
+              "name": "string.unquoted.wolfram"
+            }
+          },
+          "match": "(<<)\\s*([`[:alpha:]][`[:alnum:]]*)"
+        },
+        {
+          "match": "<<",
+          "name": "invalid.illegal"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "keyword.operator.Put.wolfram"
+            }
+          },
+          "match": "(>>)(?=\\s*\")"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "keyword.operator.Put.wolfram"
+            },
+            "2": {
+              "name": "string.unquoted.wolfram"
+            }
+          },
+          "match": "(>>)\\s*(\\w*)"
+        },
+        {
+          "match": ">>",
+          "name": "invalid.illegal"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "begin": "\"",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin"
+            }
+          },
+          "end": "\"",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end"
+            }
+          },
+          "name": "string.quoted.double",
+          "patterns": [
+            {
+              "include": "#string_escaped_characters"
+            }
+          ]
         }
       ]
     },
@@ -2136,228 +2364,7 @@
           "name": "symbol.unrecognized.wolfram"
         }
       ]
-    },
-    "groups": {
-      "patterns": [
-        {
-          "match": "\\\\\\)",
-          "name": "invalid.illegal.stray-linearsyntaxparens-end.wolfram"
-        },
-        {
-          "match": "\\)",
-          "name": "invalid.illegal.stray-parens-end.wolfram"
-        },
-        {
-          "match": "\\[\\s+\\[",
-          "name": "invalid.whitespace.Part.wolfram"
-        },
-        {
-          "match": "\\]\\s+\\]",
-          "name": "invalid.whitespace.Part.wolfram"
-        },
-        {
-          "match": "\\]\\]",
-          "name": "invalid.illegal.stray-parts-end.wolfram"
-        },
-        {
-          "match": "\\]",
-          "name": "invalid.illegal.stray-brackets-end.wolfram"
-        },
-        {
-          "match": "\\}",
-          "name": "invalid.illegal.stray-braces-end.wolfram"
-        },
-        {
-          "match": "\\|>",
-          "name": "invalid.illegal.stray-associations-end.wolfram"
-        },
-        {
-          "include": "#linearsyntaxparen-group"
-        },
-        {
-          "include": "#paren-group"
-        },
-        {
-          "include": "#part-group"
-        },
-        {
-          "include": "#bracket-group"
-        },
-        {
-          "include": "#brace-group"
-        },
-        {
-          "include": "#association-group"
-        }
-      ]
-    },
-    "linearsyntaxparen-group": {
-      "name": "meta.linearsyntaxparens.wolfram",
-      "begin": "\\\\\\(",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.section.linearsyntaxparens.begin.wolfram"
-        }
-      },
-      "end": "\\\\\\)",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.section.linearsyntaxparens.end.wolfram"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#expressions"
-        }
-      ]
-    },
-    "paren-group": {
-      "name": "meta.parens.wolfram",
-      "begin": "\\(",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.section.parens.begin.wolfram"
-        }
-      },
-      "end": "\\)",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.section.parens.end.wolfram"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#expressions"
-        }
-      ]
-    },
-    "part-group": {
-      "name": "meta.parts.wolfram",
-      "begin": "\\[\\[",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.section.parts.begin.wolfram"
-        }
-      },
-      "end": "\\]\\]",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.section.parts.end.wolfram"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#expressions"
-        }
-      ]
-    },
-    "bracket-group": {
-      "name": "meta.brackets.wolfram",
-      "begin": "::\\[|\\[",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.section.brackets.begin.wolfram"
-        }
-      },
-      "end": "\\]",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.section.brackets.end.wolfram"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#expressions"
-        }
-      ]
-    },
-    "brace-group": {
-      "name": "meta.braces.wolfram",
-      "begin": "\\{",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.section.braces.begin.wolfram"
-        }
-      },
-      "end": "\\}",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.section.braces.end.wolfram"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#expressions"
-        }
-      ]
-    },
-    "association-group": {
-      "name": "meta.associations.wolfram",
-      "begin": "<\\|",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.section.associations.begin.wolfram"
-        }
-      },
-      "end": "\\|>",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.section.associations.end.wolfram"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#expressions"
-        }
-      ]
-    },
-    "pattern-operators": {
-      "patterns": [
-        {
-          "match": "___",
-          "name": "keyword.operator.BlankNullSequence.wolfram"
-        },
-        {
-          "match": "__",
-          "name": "keyword.operator.BlankSequence.wolfram"
-        },
-        {
-          "match": "_\\.",
-          "name": "keyword.operator.Optional.wolfram"
-        },
-        {
-          "match": "_",
-          "name": "keyword.operator.Blank.wolfram"
-        }
-      ]
-    },
-    "out": {
-      "patterns": [
-        {
-          "match": "%\\d+",
-          "name": "keyword.other.Out.wolfram"
-        },
-        {
-          "match": "%+",
-          "name": "keyword.other.Out.wolfram"
-        }
-      ]
-    },
-    "slot": {
-      "patterns": [
-        {
-          "match": "#[[:alpha:]][[:alnum:]]*",
-          "name": "keyword.other.Slot.wolfram"
-        },
-        {
-          "match": "##\\d*",
-          "name": "keyword.other.SlotSequence.wolfram"
-        },
-        {
-          "match": "#\\d*",
-          "name": "keyword.other.Slot.wolfram"
-        }
-      ]
     }
-  }
+  },
+  "scopeName": "source.wolfram"
 }

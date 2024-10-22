@@ -1,5 +1,11 @@
 {
-  "fileTypes": ["vhd", "vhdl", "vho", "vht"],
+  "displayName": "VHDL",
+  "fileTypes": [
+    "vhd",
+    "vhdl",
+    "vho",
+    "vht"
+  ],
   "name": "vhdl",
   "patterns": [
     {
@@ -390,21 +396,6 @@
             "1": {
               "name": "entity.name.section.entity_instantiation.vhdl"
             },
-            "2": {
-              "name": "punctuation.vhdl"
-            },
-            "4": {
-              "name": "keyword.language.vhdl"
-            },
-            "5": {
-              "name": "keyword.language.vhdl"
-            },
-            "8": {
-              "name": "entity.name.tag.library.reference.vhdl"
-            },
-            "9": {
-              "name": "invalid.illegal.invalid.identifier.vhdl"
-            },
             "10": {
               "name": "punctuation.vhdl"
             },
@@ -423,8 +414,23 @@
             "19": {
               "name": "invalid.illegal.invalid.identifier.vhdl"
             },
+            "2": {
+              "name": "punctuation.vhdl"
+            },
             "21": {
               "name": "punctuation.vhdl"
+            },
+            "4": {
+              "name": "keyword.language.vhdl"
+            },
+            "5": {
+              "name": "keyword.language.vhdl"
+            },
+            "8": {
+              "name": "entity.name.tag.library.reference.vhdl"
+            },
+            "9": {
+              "name": "invalid.illegal.invalid.identifier.vhdl"
             }
           },
           "end": ";",
@@ -740,7 +746,7 @@
     "keywords": {
       "patterns": [
         {
-          "match": "'(?i:active|ascending|base|delayed|driving|event|high|image|instance|instance_name|last|last_value|left|leftof|length|low|path|path_name|pos|pred|quiet|range|reverse|reverse_range|right|rightof|simple|simple_name|stable|succ|transaction|val|value)\\b",
+          "match": "'(?i:active|ascending|base|delayed|driving|driving_value|event|high|image|instance|instance_name|last|last_value|left|leftof|length|low|path|path_name|pos|pred|quiet|range|reverse|reverse_range|right|rightof|simple|simple_name|stable|succ|transaction|val|value)\\b",
           "name": "keyword.attributes.vhdl"
         },
         {
@@ -859,115 +865,6 @@
             {
               "include": "#protected_pattern"
             },
-            {
-              "include": "#function_prototype_pattern"
-            },
-            {
-              "include": "#procedure_prototype_pattern"
-            },
-            {
-              "include": "#type_pattern"
-            },
-            {
-              "include": "#subtype_pattern"
-            },
-            {
-              "include": "#record_pattern"
-            },
-            {
-              "include": "#component_pattern"
-            },
-            {
-              "include": "#cleanup"
-            }
-          ]
-        }
-      ]
-    },
-    "protected_body_pattern": {
-      "patterns": [
-        {
-          "begin": "(?x)\n\t\t\t\t\t\t\\b((?i:type))\\s+\n\n\t\t\t\t\t\t# The valid identifier $2 or the invalid one $3\n\t\t\t\t\t\t(([a-zA-Z][a-zA-Z\\d_]*)|(.+?))\\s+\n\n\t\t\t\t\t\t\\b((?i:is\\s+protected\\s+body))\\s+\n\t\t\t\t\t",
-          "beginCaptures": {
-            "1": {
-              "name": "keyword.language.vhdl"
-            },
-            "3": {
-              "name": "entity.name.section.protected_body.begin.vhdl"
-            },
-            "4": {
-              "name": "invalid.illegal.invalid.identifier.vhdl"
-            },
-            "5": {
-              "name": "keyword.language.vhdl"
-            }
-          },
-          "end": "(?x)\n\t\t\t\t\t\t\\b((?i:end\\s+protected\\s+body))\n\n\t\t\t\t\t\t# Optional identifier\n\t\t\t\t\t\t(\\s+((\\3)|(.+?)))?\n\n\t\t\t\t\t\t(?=\\s*;)\n\t\t\t\t\t\t",
-          "endCaptures": {
-            "1": {
-              "name": "keyword.language.vhdl"
-            },
-            "4": {
-              "name": "entity.name.section.protected_body.end.vhdl"
-            },
-            "5": {
-              "name": "invalid.illegal.mismatched.identifier.vhdl"
-            }
-          },
-          "patterns": [
-            {
-              "include": "#function_definition_pattern"
-            },
-            {
-              "include": "#procedure_definition_pattern"
-            },
-            {
-              "include": "#type_pattern"
-            },
-            {
-              "include": "#subtype_pattern"
-            },
-            {
-              "include": "#record_pattern"
-            },
-            {
-              "include": "#cleanup"
-            }
-          ]
-        }
-      ]
-    },
-    "protected_pattern": {
-      "patterns": [
-        {
-          "begin": "(?x)\n\t\t\t\t\t\t\\b((?i:type))\\s+\n\n\t\t\t\t\t\t# The valid identifier $2 or the invalid one $3\n\t\t\t\t\t\t(([a-zA-Z][a-zA-Z\\d_]*)|(.+?))\\s+\n\n\t\t\t\t\t\t\\b((?i:is\\s+protected))\\s+\n\n\t\t\t\t\t\t# Not body\n\t\t\t\t\t\t(?!(?i:body))\n\t\t\t\t\t",
-          "beginCaptures": {
-            "1": {
-              "name": "keyword.language.vhdls"
-            },
-            "3": {
-              "name": "entity.name.section.protected.begin.vhdl"
-            },
-            "4": {
-              "name": "invalid.illegal.invalid.identifier.vhdl"
-            },
-            "5": {
-              "name": "keyword.language.vhdl"
-            }
-          },
-          "end": "(?x)\n\t\t\t\t\t\t\\b((?i:end\\s+protected))\n\n\t\t\t\t\t\t# Optional identifier\n\t\t\t\t\t\t(\\s+((\\3)|(.+?)))?\n\n\t\t\t\t\t\t# Not body\n\t\t\t\t\t\t(?!(?i:body))\n\n\t\t\t\t\t\t(?=\\s*;)\n\t\t\t\t\t",
-          "endCaptures": {
-            "1": {
-              "name": "keyword.language.vhdl"
-            },
-            "4": {
-              "name": "entity.name.section.protected.end.vhdl"
-            },
-            "5": {
-              "name": "invalid.illegal.mismatched.identifier.vhdl"
-            }
-          },
-          "patterns": [
             {
               "include": "#function_prototype_pattern"
             },
@@ -1170,7 +1067,7 @@
     "process_pattern": {
       "patterns": [
         {
-          "begin": "(?x)\n\t\t\t\t\t\t# From the beginning of the line\n\t\t\t\t\t\t^\\s*\n\n\t\t\t\t\t\t(\n\t\t\t\t\t\t\t# Optional identifier $2\n\t\t\t\t\t\t\t([a-zA-Z][a-zA-Z0-9_]*)\n\n\t\t\t\t\t\t\t# Colon $3\n\t\t\t\t\t\t\t\\s*(:)\\s*\n\t\t\t\t\t\t)?\n\n\t\t\t\t\t\t# The word process #4\n\t\t\t\t\t\t((?i:process\\b))\n\t\t\t\t\t",
+          "begin": "(?x)\n\t\t\t\t\t\t# From the beginning of the line\n\t\t\t\t\t\t^\\s*\n\n\t\t\t\t\t\t(\n\t\t\t\t\t\t\t# Optional identifier $2\n\t\t\t\t\t\t\t([a-zA-Z][a-zA-Z0-9_]*)\n\n\t\t\t\t\t\t\t# Colon $3\n\t\t\t\t\t\t\t\\s*(:)\\s*\n\t\t\t\t\t\t)?\n\n\t\t\t\t\t\t# The word process #4\n\t\t\t\t\t\t(\n\t\t\t\t\t\t\t(?:postponed\\s+)?\n\t\t\t\t\t\t\t(?i:process\\b)\n\t\t\t\t\t\t)\n\t\t\t\t\t",
           "beginCaptures": {
             "2": {
               "name": "entity.name.section.process.begin.vhdl"
@@ -1182,7 +1079,7 @@
               "name": "keyword.language.vhdl"
             }
           },
-          "end": "(?x)\n\t\t\t\t\t\t# The word end $1\n\t\t\t\t\t\t((?i:end))\n\n\t\t\t\t\t\t# Optional word process $3\n\t\t\t\t\t\t(\\s+((?i:process)))\n\n\t\t\t\t\t\t# Optional identifier $6 or invalid identifier $7\n\t\t\t\t\t\t(\\s+((\\2)|(.+?)))?\n\n\t\t\t\t\t\t(?=\\s*;)\n\t\t\t\t\t",
+          "end": "(?x)\n\t\t\t\t\t\t# The word end $1\n\t\t\t\t\t\t((?i:end))\n\n\t\t\t\t\t\t# Optional word process $3\n\t\t\t\t\t\t(\\s+(\n\t\t\t\t\t\t\t(?:postponed\\s+)?\n\t\t\t\t\t\t\t(?i:process)\n\t\t\t\t\t\t))\n\n\t\t\t\t\t\t# Optional identifier $6 or invalid identifier $7\n\t\t\t\t\t\t(\\s+((\\2)|(.+?)))?\n\n\t\t\t\t\t\t(?=\\s*;)\n\t\t\t\t\t",
           "endCaptures": {
             "1": {
               "name": "keyword.language.vhdl"
@@ -1200,6 +1097,115 @@
           "patterns": [
             {
               "include": "#control_patterns"
+            },
+            {
+              "include": "#cleanup"
+            }
+          ]
+        }
+      ]
+    },
+    "protected_body_pattern": {
+      "patterns": [
+        {
+          "begin": "(?x)\n\t\t\t\t\t\t\\b((?i:type))\\s+\n\n\t\t\t\t\t\t# The valid identifier $2 or the invalid one $3\n\t\t\t\t\t\t(([a-zA-Z][a-zA-Z\\d_]*)|(.+?))\\s+\n\n\t\t\t\t\t\t\\b((?i:is\\s+protected\\s+body))\\s+\n\t\t\t\t\t",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.language.vhdl"
+            },
+            "3": {
+              "name": "entity.name.section.protected_body.begin.vhdl"
+            },
+            "4": {
+              "name": "invalid.illegal.invalid.identifier.vhdl"
+            },
+            "5": {
+              "name": "keyword.language.vhdl"
+            }
+          },
+          "end": "(?x)\n\t\t\t\t\t\t\\b((?i:end\\s+protected\\s+body))\n\n\t\t\t\t\t\t# Optional identifier\n\t\t\t\t\t\t(\\s+((\\3)|(.+?)))?\n\n\t\t\t\t\t\t(?=\\s*;)\n\t\t\t\t\t\t",
+          "endCaptures": {
+            "1": {
+              "name": "keyword.language.vhdl"
+            },
+            "4": {
+              "name": "entity.name.section.protected_body.end.vhdl"
+            },
+            "5": {
+              "name": "invalid.illegal.mismatched.identifier.vhdl"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#function_definition_pattern"
+            },
+            {
+              "include": "#procedure_definition_pattern"
+            },
+            {
+              "include": "#type_pattern"
+            },
+            {
+              "include": "#subtype_pattern"
+            },
+            {
+              "include": "#record_pattern"
+            },
+            {
+              "include": "#cleanup"
+            }
+          ]
+        }
+      ]
+    },
+    "protected_pattern": {
+      "patterns": [
+        {
+          "begin": "(?x)\n\t\t\t\t\t\t\\b((?i:type))\\s+\n\n\t\t\t\t\t\t# The valid identifier $2 or the invalid one $3\n\t\t\t\t\t\t(([a-zA-Z][a-zA-Z\\d_]*)|(.+?))\\s+\n\n\t\t\t\t\t\t\\b((?i:is\\s+protected))\\s+\n\n\t\t\t\t\t\t# Not body\n\t\t\t\t\t\t(?!(?i:body))\n\t\t\t\t\t",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.language.vhdls"
+            },
+            "3": {
+              "name": "entity.name.section.protected.begin.vhdl"
+            },
+            "4": {
+              "name": "invalid.illegal.invalid.identifier.vhdl"
+            },
+            "5": {
+              "name": "keyword.language.vhdl"
+            }
+          },
+          "end": "(?x)\n\t\t\t\t\t\t\\b((?i:end\\s+protected))\n\n\t\t\t\t\t\t# Optional identifier\n\t\t\t\t\t\t(\\s+((\\3)|(.+?)))?\n\n\t\t\t\t\t\t# Not body\n\t\t\t\t\t\t(?!(?i:body))\n\n\t\t\t\t\t\t(?=\\s*;)\n\t\t\t\t\t",
+          "endCaptures": {
+            "1": {
+              "name": "keyword.language.vhdl"
+            },
+            "4": {
+              "name": "entity.name.section.protected.end.vhdl"
+            },
+            "5": {
+              "name": "invalid.illegal.mismatched.identifier.vhdl"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#function_prototype_pattern"
+            },
+            {
+              "include": "#procedure_prototype_pattern"
+            },
+            {
+              "include": "#type_pattern"
+            },
+            {
+              "include": "#subtype_pattern"
+            },
+            {
+              "include": "#record_pattern"
+            },
+            {
+              "include": "#component_pattern"
             },
             {
               "include": "#cleanup"

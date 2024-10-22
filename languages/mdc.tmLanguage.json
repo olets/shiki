@@ -1,8 +1,8 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-  "name": "mdc",
+  "displayName": "MDC",
   "injectionSelector": "L:text.html.markdown",
-  "scopeName": "text.markdown.mdc",
+  "name": "mdc",
   "patterns": [
     {
       "include": "#component_block"
@@ -12,203 +12,9 @@
     }
   ],
   "repository": {
-    "block": {
-      "patterns": [
-        {
-          "include": "#component_block"
-        },
-        {
-          "include": "text.html.markdown#separator"
-        },
-        {
-          "include": "#heading"
-        },
-        {
-          "include": "#blockquote"
-        },
-        {
-          "include": "#lists"
-        },
-        {
-          "include": "text.html.markdown#fenced_code_block"
-        },
-        {
-          "include": "text.html.markdown#link-def"
-        },
-        {
-          "include": "text.html.markdown#html"
-        },
-        {
-          "include": "#paragraph"
-        }
-      ]
-    },
-    "inline": {
-      "patterns": [
-        {
-          "include": "#component_inline"
-        },
-        {
-          "include": "#span"
-        },
-        {
-          "include": "#attributes"
-        }
-      ]
-    },
-    "span": {
-      "match": "(?x)\n  (\\[)           # Open\n    ([^]]*)\n  (\\])\n  (               # attributes\n    ({)\n      ([^{]*)\n    (})\n  )?\n  \\s",
-      "name": "span.component.mdc",
-      "captures": {
-        "1": {
-          "name": "punctuation.definition.tag.start.component"
-        },
-        "2": {
-          "name": "string.other.link.description.title.markdown"
-        },
-        "3": {
-          "name": "punctuation.definition.tag.end.component"
-        },
-        "4": {
-          "patterns": [
-            {
-              "include": "#attributes"
-            }
-          ]
-        }
-      }
-    },
-    "attributes": {
-      "match": "(?x)(               # attributes\n    ({)\n      ([^{]*)\n    (})\n  )",
-      "name": "attributes.mdc",
-      "captures": {
-        "1": {
-          "name": "punctuation.definition.tag.start.component"
-        },
-        "3": {
-          "patterns": [
-            {
-              "include": "#attribute"
-            }
-          ]
-        },
-        "4": {
-          "name": "punctuation.definition.tag.end.component"
-        }
-      }
-    },
-    "component_inline": {
-      "match": "(?x)\n  (^|\\G|\\s+)\n  (:)              # component colon\n  (?i:             # component name\n    (\\w[\\w\\d-]*)\n  )\n  (\n      ({[^}]*})        # attributes\n      (\\[[^\\]]*\\])? # slot\n      # reverse order\n    | (\\[[^\\]]*\\])  # slot\n      ({[^}]*})?       # attributes\n  )?\n  \\s",
-      "name": "inline.component.mdc",
-      "captures": {
-        "2": {
-          "name": "punctuation.definition.tag.start.component"
-        },
-        "3": {
-          "name": "entity.name.tag.component"
-        },
-        "5": {
-          "patterns": [
-            {
-              "include": "#attributes"
-            }
-          ]
-        },
-        "6": {
-          "patterns": [
-            {
-              "include": "#span"
-            }
-          ]
-        },
-        "7": {
-          "patterns": [
-            {
-              "include": "#span"
-            }
-          ]
-        },
-        "8": {
-          "patterns": [
-            {
-              "include": "#attributes"
-            }
-          ]
-        }
-      }
-    },
-    "component_block": {
-      "begin": "(?x)\n  (^|\\G)(\\s*)\n  (:{2,})     # component colons\n  (?i:\n    (\\w[\\w\\d-]+)   # component name\n    (                 # folowing spaces or attributes\n        \\s*\n      | \\s*({[^{]*})\n    )\n    $\n  )",
-      "name": "block.component.mdc",
-      "end": "(^|\\G)(\\2)(\\3)\\s*$",
-      "beginCaptures": {
-        "3": {
-          "name": "punctuation.definition.tag.start.mdc"
-        },
-        "4": {
-          "name": "entity.name.tag.mdc"
-        },
-        "5": {
-          "patterns": [
-            {
-              "include": "#attributes"
-            }
-          ]
-        }
-      },
-      "endCaptures": {
-        "3": {
-          "name": "punctuation.definition.tag.end.mdc"
-        }
-      },
-      "patterns": [
-        {
-          "match": "(^|\\G)\\s*([:]{2,})$",
-          "captures": {
-            "2": {
-              "name": "punctuation.definition.tag.end.mdc"
-            }
-          }
-        },
-        {
-          "include": "#content"
-        }
-      ]
-    },
-    "content": {
-      "begin": "(^|\\G)(\\s*)(.*)",
-      "while": "(^|\\G)(?!\\s*([:]{2,})\\s*$)",
-      "contentName": "meta.embedded.block.mdc",
-      "patterns": [
-        {
-          "begin": "(^|\\G)(\\s*)(-{3})(\\s*)$",
-          "end": "(^|\\G)(\\s*(-{3})(\\s*)$)",
-          "patterns": [
-            {
-              "include": "source.yaml"
-            }
-          ]
-        },
-        {
-          "match": "^(\\s*)(#[\\w\\-\\_]*)\\s*(<!--(.*)-->)?$",
-          "captures": {
-            "2": {
-              "name": "entity.other.attribute-name.html"
-            },
-            "3": {
-              "name": "comment.block.html"
-            }
-          }
-        },
-        {
-          "include": "#block"
-        }
-      ]
-    },
     "attribute": {
       "patterns": [
         {
-          "match": "(?x)\n  (\n    ([^=><\\s]*)  # attribute name\n    (             # attribute value\n        =[\"]([^\"]*)([\"])|[']([^']*)(['])\n      | =[^\\s'\"}]*\n    )?\n    \\s*\n  )",
           "captures": {
             "2": {
               "name": "entity.other.attribute-name.html"
@@ -220,7 +26,8 @@
                 }
               ]
             }
-          }
+          },
+          "match": "(?x)\n  (\n    ([^=><\\s]*)  # attribute name\n    (             # attribute value\n        =[\"]([^\"]*)([\"])|[']([^']*)(['])\n      | =[^\\s'\"}]*\n    )?\n    \\s*\n  )"
         }
       ]
     },
@@ -287,6 +94,179 @@
         }
       ]
     },
+    "attributes": {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.tag.start.component"
+        },
+        "3": {
+          "patterns": [
+            {
+              "include": "#attribute"
+            }
+          ]
+        },
+        "4": {
+          "name": "punctuation.definition.tag.end.component"
+        }
+      },
+      "match": "(?x)(               # attributes\n    ({)\n      ([^{]*)\n    (})\n  )",
+      "name": "attributes.mdc"
+    },
+    "block": {
+      "patterns": [
+        {
+          "include": "#component_block"
+        },
+        {
+          "include": "text.html.markdown#separator"
+        },
+        {
+          "include": "#heading"
+        },
+        {
+          "include": "#blockquote"
+        },
+        {
+          "include": "#lists"
+        },
+        {
+          "include": "text.html.markdown#fenced_code_block"
+        },
+        {
+          "include": "text.html.markdown#link-def"
+        },
+        {
+          "include": "text.html.markdown#html"
+        },
+        {
+          "include": "#paragraph"
+        }
+      ]
+    },
+    "blockquote": {
+      "begin": "(^|\\G)[ ]*(>) ?",
+      "captures": {
+        "2": {
+          "name": "punctuation.definition.quote.begin.markdown"
+        }
+      },
+      "name": "markup.quote.markdown",
+      "patterns": [
+        {
+          "include": "#block"
+        }
+      ],
+      "while": "(^|\\G)\\s*(>) ?"
+    },
+    "component_block": {
+      "begin": "(?x)\n  (^|\\G)(\\s*)\n  (:{2,})     # component colons\n  (?i:\n    (\\w[\\w\\d-]+)   # component name\n    (                 # folowing spaces or attributes\n        \\s*\n      | \\s*({[^{]*})\n    )\n    $\n  )",
+      "beginCaptures": {
+        "3": {
+          "name": "punctuation.definition.tag.start.mdc"
+        },
+        "4": {
+          "name": "entity.name.tag.mdc"
+        },
+        "5": {
+          "patterns": [
+            {
+              "include": "#attributes"
+            }
+          ]
+        }
+      },
+      "end": "(^|\\G)(\\2)(\\3)\\s*$",
+      "endCaptures": {
+        "3": {
+          "name": "punctuation.definition.tag.end.mdc"
+        }
+      },
+      "name": "block.component.mdc",
+      "patterns": [
+        {
+          "captures": {
+            "2": {
+              "name": "punctuation.definition.tag.end.mdc"
+            }
+          },
+          "match": "(^|\\G)\\s*([:]{2,})$"
+        },
+        {
+          "include": "#content"
+        }
+      ]
+    },
+    "component_inline": {
+      "captures": {
+        "2": {
+          "name": "punctuation.definition.tag.start.component"
+        },
+        "3": {
+          "name": "entity.name.tag.component"
+        },
+        "5": {
+          "patterns": [
+            {
+              "include": "#attributes"
+            }
+          ]
+        },
+        "6": {
+          "patterns": [
+            {
+              "include": "#span"
+            }
+          ]
+        },
+        "7": {
+          "patterns": [
+            {
+              "include": "#span"
+            }
+          ]
+        },
+        "8": {
+          "patterns": [
+            {
+              "include": "#attributes"
+            }
+          ]
+        }
+      },
+      "match": "(?x)\n  (^|\\G|\\s+)\n  (:)              # component colon\n  (?i:             # component name\n    (\\w[\\w\\d-]*)\n  )\n  (\n      ({[^}]*})        # attributes\n      (\\[[^\\]]*\\])? # slot\n      # reverse order\n    | (\\[[^\\]]*\\])  # slot\n      ({[^}]*})?       # attributes\n  )?\n  \\s",
+      "name": "inline.component.mdc"
+    },
+    "content": {
+      "begin": "(^|\\G)(\\s*)(.*)",
+      "contentName": "meta.embedded.block.mdc",
+      "patterns": [
+        {
+          "begin": "(^|\\G)(\\s*)(-{3})(\\s*)$",
+          "end": "(^|\\G)(\\s*(-{3})(\\s*)$)",
+          "patterns": [
+            {
+              "include": "source.yaml"
+            }
+          ]
+        },
+        {
+          "captures": {
+            "2": {
+              "name": "entity.other.attribute-name.html"
+            },
+            "3": {
+              "name": "comment.block.html"
+            }
+          },
+          "match": "^(\\s*)(#[\\w\\-\\_]*)\\s*(<!--(.*)-->)?$"
+        },
+        {
+          "include": "#block"
+        }
+      ],
+      "while": "(^|\\G)(?!\\s*([:]{2,})\\s*$)"
+    },
     "entities": {
       "patterns": [
         {
@@ -332,13 +312,33 @@
       ]
     },
     "heading": {
-      "match": "(?:^|\\G)[ ]*(#{1,6}\\s+(.*?)(\\s+#{1,6})?\\s*)$",
       "captures": {
         "1": {
           "patterns": [
             {
+              "captures": {
+                "1": {
+                  "name": "punctuation.definition.heading.markdown"
+                },
+                "2": {
+                  "name": "entity.name.section.markdown",
+                  "patterns": [
+                    {
+                      "include": "text.html.markdown#inline"
+                    },
+                    {
+                      "include": "text.html.derivative"
+                    }
+                  ]
+                },
+                "3": {
+                  "name": "punctuation.definition.heading.markdown"
+                }
+              },
               "match": "(#{6})\\s+(.*?)(?:\\s+(#+))?\\s*$",
-              "name": "heading.6.markdown",
+              "name": "heading.6.markdown"
+            },
+            {
               "captures": {
                 "1": {
                   "name": "punctuation.definition.heading.markdown"
@@ -357,11 +357,11 @@
                 "3": {
                   "name": "punctuation.definition.heading.markdown"
                 }
-              }
-            },
-            {
+              },
               "match": "(#{5})\\s+(.*?)(?:\\s+(#+))?\\s*$",
-              "name": "heading.5.markdown",
+              "name": "heading.5.markdown"
+            },
+            {
               "captures": {
                 "1": {
                   "name": "punctuation.definition.heading.markdown"
@@ -380,11 +380,11 @@
                 "3": {
                   "name": "punctuation.definition.heading.markdown"
                 }
-              }
-            },
-            {
+              },
               "match": "(#{4})\\s+(.*?)(?:\\s+(#+))?\\s*$",
-              "name": "heading.4.markdown",
+              "name": "heading.4.markdown"
+            },
+            {
               "captures": {
                 "1": {
                   "name": "punctuation.definition.heading.markdown"
@@ -403,11 +403,11 @@
                 "3": {
                   "name": "punctuation.definition.heading.markdown"
                 }
-              }
-            },
-            {
+              },
               "match": "(#{3})\\s+(.*?)(?:\\s+(#+))?\\s*$",
-              "name": "heading.3.markdown",
+              "name": "heading.3.markdown"
+            },
+            {
               "captures": {
                 "1": {
                   "name": "punctuation.definition.heading.markdown"
@@ -426,34 +426,11 @@
                 "3": {
                   "name": "punctuation.definition.heading.markdown"
                 }
-              }
-            },
-            {
+              },
               "match": "(#{2})\\s+(.*?)(?:\\s+(#+))?\\s*$",
-              "name": "heading.2.markdown",
-              "captures": {
-                "1": {
-                  "name": "punctuation.definition.heading.markdown"
-                },
-                "2": {
-                  "name": "entity.name.section.markdown",
-                  "patterns": [
-                    {
-                      "include": "text.html.markdown#inline"
-                    },
-                    {
-                      "include": "text.html.derivative"
-                    }
-                  ]
-                },
-                "3": {
-                  "name": "punctuation.definition.heading.markdown"
-                }
-              }
+              "name": "heading.2.markdown"
             },
             {
-              "match": "(#{1})\\s+(.*?)(?:\\s+(#+))?\\s*$",
-              "name": "heading.1.markdown",
               "captures": {
                 "1": {
                   "name": "punctuation.definition.heading.markdown"
@@ -472,11 +449,14 @@
                 "3": {
                   "name": "punctuation.definition.heading.markdown"
                 }
-              }
+              },
+              "match": "(#{1})\\s+(.*?)(?:\\s+(#+))?\\s*$",
+              "name": "heading.1.markdown"
             }
           ]
         }
       },
+      "match": "(?:^|\\G)[ ]*(#{1,6}\\s+(.*?)(\\s+#{1,6})?\\s*)$",
       "name": "markup.heading.markdown",
       "patterns": [
         {
@@ -493,6 +473,19 @@
         {
           "match": "^(-{3,})(?=[ \\t]*$\\n?)",
           "name": "markup.heading.setext.2.markdown"
+        }
+      ]
+    },
+    "inline": {
+      "patterns": [
+        {
+          "include": "#component_inline"
+        },
+        {
+          "include": "#span"
+        },
+        {
+          "include": "#attributes"
         }
       ]
     },
@@ -552,20 +545,28 @@
       ],
       "while": "(^|\\G)((?=\\s*[-=]{3,}\\s*$)|[ ]{4,}(?=\\S))"
     },
-    "blockquote": {
-      "begin": "(^|\\G)[ ]*(>) ?",
+    "span": {
       "captures": {
+        "1": {
+          "name": "punctuation.definition.tag.start.component"
+        },
         "2": {
-          "name": "punctuation.definition.quote.begin.markdown"
+          "name": "string.other.link.description.title.markdown"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.end.component"
+        },
+        "4": {
+          "patterns": [
+            {
+              "include": "#attributes"
+            }
+          ]
         }
       },
-      "name": "markup.quote.markdown",
-      "patterns": [
-        {
-          "include": "#block"
-        }
-      ],
-      "while": "(^|\\G)\\s*(>) ?"
+      "match": "(?x)\n  (\\[)           # Open\n    ([^]]*)\n  (\\])\n  (               # attributes\n    ({)\n      ([^{]*)\n    (})\n  )?\n  \\s",
+      "name": "span.component.mdc"
     }
-  }
+  },
+  "scopeName": "text.markdown.mdc"
 }

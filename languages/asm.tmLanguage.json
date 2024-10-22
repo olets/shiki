@@ -1,5 +1,12 @@
 {
-  "fileTypes": ["asm", "nasm", "yasm", "inc", "s"],
+  "displayName": "Assembly",
+  "fileTypes": [
+    "asm",
+    "nasm",
+    "yasm",
+    "inc",
+    "s"
+  ],
   "name": "asm",
   "patterns": [
     {

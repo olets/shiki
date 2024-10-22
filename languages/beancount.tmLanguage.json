@@ -1,5 +1,8 @@
 {
-  "fileTypes": ["beancount"],
+  "displayName": "Beancount",
+  "fileTypes": [
+    "beancount"
+  ],
   "name": "beancount",
   "patterns": [
     {
@@ -290,80 +293,6 @@
       ]
     },
     {
-      "name": "meta.directive.notetotext.beancount",
-      "comment": "Note as Oneliner Transaction directive",
-      "begin": "([0-9]{4})([\\-|/])([0-9]{2})([\\-|/])([0-9]{2})\\s+(note)(?=(.*\\*\\\"\\s))",
-      "beginCaptures": {
-        "1": {
-          "name": "constant.numeric.date.year.beancount"
-        },
-        "2": {
-          "name": "punctuation.separator.beancount"
-        },
-        "3": {
-          "name": "constant.numeric.date.month.beancount"
-        },
-        "4": {
-          "name": "punctuation.separator.beancount"
-        },
-        "5": {
-          "name": "constant.numeric.date.day.beancount"
-        },
-        "6": {
-          "name": "support.function.directive.beancount"
-        }
-      },
-      "end": "(?=(^\\s*$|^\\S))",
-      "patterns": [
-        {
-          "include": "#meta"
-        },
-        {
-          "include": "#account"
-        },
-        {
-          "name": "punctuation.separator.beancount",
-          "match": "(?<=\\s)\\\""
-        },
-        {
-          "include": "#cost"
-        },
-        {
-          "include": "#amount"
-        },
-        {
-          "begin": "(\\*|\\!)",
-          "beginCaptures": {
-            "0": {
-              "name": "support.function.directive.beancount"
-            }
-          },
-          "end": "(\\*\\\")",
-          "endCaptures": {
-            "0": {
-              "name": "punctuation.separator.beancount"
-            }
-          },
-          "patterns": [
-            {
-              "name": "constant.character.escape.beancount",
-              "match": "\\\\."
-            },
-            {
-              "include": "#tag"
-            },
-            {
-              "name": "string.quoted.double.beancount",
-              "match": "([^\\\"])"
-            }
-          ]
-        },
-        {
-          "include": "#illegal"
-        }
-      ]
-    },
-    {
       "begin": "([0-9]{4})([\\-|/])([0-9]{2})([\\-|/])([0-9]{2})\\s(note|document)",
       "beginCaptures": {
         "1": {
@@ -550,7 +479,7 @@
       "begin": "([A-Z][a-z]+)(:)",
       "beginCaptures": {
         "1": {
-          "name": "constant.language.beancount"
+          "name": "variable.language.beancount"
         },
         "2": {
           "name": "punctuation.separator.beancount"
@@ -563,7 +492,7 @@
           "begin": "(\\S+)([:]?)",
           "beginCaptures": {
             "1": {
-              "name": "variable.account.beancount"
+              "name": "variable.other.account.beancount"
             },
             "2": {
               "name": "punctuation.separator.beancount"
@@ -582,31 +511,6 @@
         }
       ]
     },
-    "bool": {
-      "captures": {
-        "0": {
-          "name": "constant.language.bool.beancount"
-        },
-        "2": {
-          "name": "constant.numeric.currency.beancount"
-        },
-        "3": {
-          "name": "entity.type.commodity.beancount"
-        }
-      },
-      "match": "TRUE|FALSE"
-    },
-    "number": {
-      "captures": {
-        "1": {
-          "name": "keyword.operator.modifier.beancount"
-        },
-        "2": {
-          "name": "constant.numeric.currency.beancount"
-        }
-      },
-      "match": "([\\-|\\+]?)(\\d+(?:,\\d{3})*(?:\\.\\d*)?)"
-    },
     "amount": {
       "captures": {
         "1": {
@@ -616,11 +520,25 @@
           "name": "constant.numeric.currency.beancount"
         },
         "3": {
-          "name": "entity.type.commodity.beancount"
+          "name": "entity.name.type.commodity.beancount"
         }
       },
       "match": "([\\-|\\+]?)(\\d+(?:,\\d{3})*(?:\\.\\d*)?)\\s*([A-Z][A-Z0-9\\'\\.\\_\\-]{0,22}[A-Z0-9])",
       "name": "meta.amount.beancount"
+    },
+    "bool": {
+      "captures": {
+        "0": {
+          "name": "constant.language.bool.beancount"
+        },
+        "2": {
+          "name": "constant.numeric.currency.beancount"
+        },
+        "3": {
+          "name": "entity.name.type.commodity.beancount"
+        }
+      },
+      "match": "TRUE|FALSE"
     },
     "comments": {
       "captures": {
@@ -632,7 +550,7 @@
     },
     "commodity": {
       "match": "([A-Z][A-Z0-9\\'\\.\\_\\-]{0,22}[A-Z0-9])",
-      "name": "entity.type.commodity.beancount"
+      "name": "entity.name.type.commodity.beancount"
     },
     "cost": {
       "begin": "\\{\\{?",
@@ -748,6 +666,17 @@
           "include": "#illegal"
         }
       ]
+    },
+    "number": {
+      "captures": {
+        "1": {
+          "name": "keyword.operator.modifier.beancount"
+        },
+        "2": {
+          "name": "constant.numeric.currency.beancount"
+        }
+      },
+      "match": "([\\-|\\+]?)(\\d+(?:,\\d{3})*(?:\\.\\d*)?)"
     },
     "posting": {
       "begin": "^\\s+(?=([A-Z\\!]))",

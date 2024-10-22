@@ -1,12 +1,10 @@
 {
+  "displayName": "Batch File",
   "information_for_contributors": [
     "This file has been converted from https://github.com/mmims/language-batchfile/blob/master/grammars/batchfile.cson",
     "If you want to provide a fix or improvement, please create a pull request against the original repository.",
     "Once accepted there, we are happy to receive an update request."
   ],
-  "version": "https://github.com/mmims/language-batchfile/commit/6154ae25a24e01ac9329e7bcf958e093cd8733a9",
-  "name": "bat",
-  "scopeName": "source.batchfile",
   "injections": {
     "L:meta.block.repeat.batchfile": {
       "patterns": [
@@ -16,6 +14,7 @@
       ]
     }
   },
+  "name": "bat",
   "patterns": [
     {
       "include": "#commands"
@@ -52,54 +51,6 @@
     }
   ],
   "repository": {
-    "commands": {
-      "patterns": [
-        {
-          "match": "(?<=^|[\\s@])(?i:adprep|append|arp|assoc|at|atmadm|attrib|auditpol|autochk|autoconv|autofmt|bcdboot|bcdedit|bdehdcfg|bitsadmin|bootcfg|brea|cacls|cd|certreq|certutil|change|chcp|chdir|chglogon|chgport|chgusr|chkdsk|chkntfs|choice|cipher|clip|cls|clscluadmin|cluster|cmd|cmdkey|cmstp|color|comp|compact|convert|copy|cprofile|cscript|csvde|date|dcdiag|dcgpofix|dcpromo|defra|del|dfscmd|dfsdiag|dfsrmig|diantz|dir|dirquota|diskcomp|diskcopy|diskpart|diskperf|diskraid|diskshadow|dispdiag|doin|dnscmd|doskey|driverquery|dsacls|dsadd|dsamain|dsdbutil|dsget|dsmgmt|dsmod|dsmove|dsquery|dsrm|edit|endlocal|eraseesentutl|eventcreate|eventquery|eventtriggers|evntcmd|expand|extract|fc|filescrn|find|findstr|finger|flattemp|fonde|forfiles|format|freedisk|fsutil|ftp|ftype|fveupdate|getmac|gettype|gpfixup|gpresult|gpupdate|graftabl|hashgen|hep|helpctr|hostname|icacls|iisreset|inuse|ipconfig|ipxroute|irftp|ismserv|jetpack|klist|ksetup|ktmutil|ktpass|label|ldifd|ldp|lodctr|logman|logoff|lpq|lpr|macfile|makecab|manage-bde|mapadmin|md|mkdir|mklink|mmc|mode|more|mount|mountvol|move|mqbup|mqsvc|mqtgsvc|msdt|msg|msiexec|msinfo32|mstsc|nbtstat|net computer|net group|net localgroup|net print|net session|net share|net start|net stop|net use|net user|net view|net|netcfg|netdiag|netdom|netsh|netstat|nfsadmin|nfsshare|nfsstat|nlb|nlbmgr|nltest|nslookup|ntackup|ntcmdprompt|ntdsutil|ntfrsutl|openfiles|pagefileconfig|path|pathping|pause|pbadmin|pentnt|perfmon|ping|pnpunatten|pnputil|popd|powercfg|powershell|powershell_ise|print|prncnfg|prndrvr|prnjobs|prnmngr|prnport|prnqctl|prompt|pubprn|pushd|pushprinterconnections|pwlauncher|qappsrv|qprocess|query|quser|qwinsta|rasdial|rcp|rd|rdpsign|regentc|recover|redircmp|redirusr|reg|regini|regsvr32|relog|ren|rename|rendom|repadmin|repair-bde|replace|reset session|rxec|risetup|rmdir|robocopy|route|rpcinfo|rpcping|rsh|runas|rundll32|rwinsta|sc|schtasks|scp|scwcmd|secedit|serverceipoptin|servrmanagercmd|serverweroptin|setspn|setx|sfc|sftp|shadow|shift|showmount|shutdown|sort|ssh|ssh-add|ssh-agent|ssh-keygen|ssh-keyscan|start|storrept|subst|sxstrace|ysocmgr|systeminfo|takeown|tapicfg|taskkill|tasklist|tcmsetup|telnet|tftp|time|timeout|title|tlntadmn|tpmvscmgr|tpmvscmgr|tacerpt|tracert|tree|tscon|tsdiscon|tsecimp|tskill|tsprof|type|typeperf|tzutil|uddiconfig|umount|unlodctr|ver|verifier|verif|vol|vssadmin|w32tm|waitfor|wbadmin|wdsutil|wecutil|wevtutil|where|whoami|winnt|winnt32|winpop|winrm|winrs|winsat|wlbs|wmic|wscript|wsl|xcopy)(?=$|\\s)",
-          "name": "keyword.command.batchfile"
-        },
-        {
-          "begin": "(?i)(?<=^|[\\s@])(echo)(?:(?=$|\\.|:)|\\s+(?:(on|off)(?=\\s*$))?)",
-          "beginCaptures": {
-            "1": {
-              "name": "keyword.command.batchfile"
-            },
-            "2": {
-              "name": "keyword.other.special-method.batchfile"
-            }
-          },
-          "end": "(?=$\\n|[&|><)])",
-          "patterns": [
-            {
-              "include": "#escaped_characters"
-            },
-            {
-              "include": "#variables"
-            },
-            {
-              "include": "#numbers"
-            },
-            {
-              "include": "#strings"
-            }
-          ]
-        },
-        {
-          "match": "(?i)(?<=^|[\\s@])(setlocal)(?:\\s*$|\\s+(EnableExtensions|DisableExtensions|EnableDelayedExpansion|DisableDelayedExpansion)(?=\\s*$))",
-          "captures": {
-            "1": {
-              "name": "keyword.command.batchfile"
-            },
-            "2": {
-              "name": "keyword.other.special-method.batchfile"
-            }
-          }
-        },
-        {
-          "include": "#command_set"
-        }
-      ]
-    },
     "command_set": {
       "patterns": [
         {
@@ -113,6 +64,29 @@
           "patterns": [
             {
               "include": "#command_set_inside"
+            }
+          ]
+        }
+      ]
+    },
+    "command_set_group": {
+      "patterns": [
+        {
+          "begin": "\\(",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.group.begin.batchfile"
+            }
+          },
+          "end": "\\)",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.group.end.batchfile"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#command_set_inside_arithmetic"
             }
           ]
         }
@@ -235,29 +209,6 @@
         }
       ]
     },
-    "command_set_group": {
-      "patterns": [
-        {
-          "begin": "\\(",
-          "beginCaptures": {
-            "0": {
-              "name": "punctuation.section.group.begin.batchfile"
-            }
-          },
-          "end": "\\)",
-          "endCaptures": {
-            "0": {
-              "name": "punctuation.section.group.end.batchfile"
-            }
-          },
-          "patterns": [
-            {
-              "include": "#command_set_inside_arithmetic"
-            }
-          ]
-        }
-      ]
-    },
     "command_set_inside_arithmetic": {
       "patterns": [
         {
@@ -275,7 +226,6 @@
     "command_set_operators": {
       "patterns": [
         {
-          "match": "([^ ]*)(\\+\\=|\\-\\=|\\*\\=|\\/\\=|%%\\=|&\\=|\\|\\=|\\^\\=|<<\\=|>>\\=)",
           "captures": {
             "1": {
               "name": "variable.other.readwrite.batchfile"
@@ -283,7 +233,8 @@
             "2": {
               "name": "keyword.operator.assignment.augmented.batchfile"
             }
-          }
+          },
+          "match": "([^ ]*)(\\+\\=|\\-\\=|\\*\\=|\\/\\=|%%\\=|&\\=|\\|\\=|\\^\\=|<<\\=|>>\\=)"
         },
         {
           "match": "\\+|\\-|/|\\*|%%|\\||&|\\^|<<|>>|~",
@@ -294,7 +245,6 @@
           "name": "keyword.operator.logical.batchfile"
         },
         {
-          "match": "([^ =]*)(=)",
           "captures": {
             "1": {
               "name": "variable.other.readwrite.batchfile"
@@ -302,7 +252,8 @@
             "2": {
               "name": "keyword.operator.assignment.batchfile"
             }
-          }
+          },
+          "match": "([^ =]*)(=)"
         }
       ]
     },
@@ -339,6 +290,54 @@
               "include": "#escaped_characters"
             }
           ]
+        }
+      ]
+    },
+    "commands": {
+      "patterns": [
+        {
+          "match": "(?<=^|[\\s@])(?i:adprep|append|arp|assoc|at|atmadm|attrib|auditpol|autochk|autoconv|autofmt|bcdboot|bcdedit|bdehdcfg|bitsadmin|bootcfg|brea|cacls|cd|certreq|certutil|change|chcp|chdir|chglogon|chgport|chgusr|chkdsk|chkntfs|choice|cipher|clip|cls|clscluadmin|cluster|cmd|cmdkey|cmstp|color|comp|compact|convert|copy|cprofile|cscript|csvde|date|dcdiag|dcgpofix|dcpromo|defra|del|dfscmd|dfsdiag|dfsrmig|diantz|dir|dirquota|diskcomp|diskcopy|diskpart|diskperf|diskraid|diskshadow|dispdiag|doin|dnscmd|doskey|driverquery|dsacls|dsadd|dsamain|dsdbutil|dsget|dsmgmt|dsmod|dsmove|dsquery|dsrm|edit|endlocal|eraseesentutl|eventcreate|eventquery|eventtriggers|evntcmd|expand|extract|fc|filescrn|find|findstr|finger|flattemp|fonde|forfiles|format|freedisk|fsutil|ftp|ftype|fveupdate|getmac|gettype|gpfixup|gpresult|gpupdate|graftabl|hashgen|hep|helpctr|hostname|icacls|iisreset|inuse|ipconfig|ipxroute|irftp|ismserv|jetpack|klist|ksetup|ktmutil|ktpass|label|ldifd|ldp|lodctr|logman|logoff|lpq|lpr|macfile|makecab|manage-bde|mapadmin|md|mkdir|mklink|mmc|mode|more|mount|mountvol|move|mqbup|mqsvc|mqtgsvc|msdt|msg|msiexec|msinfo32|mstsc|nbtstat|net computer|net group|net localgroup|net print|net session|net share|net start|net stop|net use|net user|net view|net|netcfg|netdiag|netdom|netsh|netstat|nfsadmin|nfsshare|nfsstat|nlb|nlbmgr|nltest|nslookup|ntackup|ntcmdprompt|ntdsutil|ntfrsutl|openfiles|pagefileconfig|path|pathping|pause|pbadmin|pentnt|perfmon|ping|pnpunatten|pnputil|popd|powercfg|powershell|powershell_ise|print|prncnfg|prndrvr|prnjobs|prnmngr|prnport|prnqctl|prompt|pubprn|pushd|pushprinterconnections|pwlauncher|qappsrv|qprocess|query|quser|qwinsta|rasdial|rcp|rd|rdpsign|regentc|recover|redircmp|redirusr|reg|regini|regsvr32|relog|ren|rename|rendom|repadmin|repair-bde|replace|reset session|rxec|risetup|rmdir|robocopy|route|rpcinfo|rpcping|rsh|runas|rundll32|rwinsta|sc|schtasks|scp|scwcmd|secedit|serverceipoptin|servrmanagercmd|serverweroptin|setspn|setx|sfc|sftp|shadow|shift|showmount|shutdown|sort|ssh|ssh-add|ssh-agent|ssh-keygen|ssh-keyscan|start|storrept|subst|sxstrace|ysocmgr|systeminfo|takeown|tapicfg|taskkill|tasklist|tcmsetup|telnet|tftp|time|timeout|title|tlntadmn|tpmvscmgr|tpmvscmgr|tacerpt|tracert|tree|tscon|tsdiscon|tsecimp|tskill|tsprof|type|typeperf|tzutil|uddiconfig|umount|unlodctr|ver|verifier|verif|vol|vssadmin|w32tm|waitfor|wbadmin|wdsutil|wecutil|wevtutil|where|whoami|winnt|winnt32|winpop|winrm|winrs|winsat|wlbs|wmic|wscript|wsl|xcopy)(?=$|\\s)",
+          "name": "keyword.command.batchfile"
+        },
+        {
+          "begin": "(?i)(?<=^|[\\s@])(echo)(?:(?=$|\\.|:)|\\s+(?:(on|off)(?=\\s*$))?)",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.command.batchfile"
+            },
+            "2": {
+              "name": "keyword.other.special-method.batchfile"
+            }
+          },
+          "end": "(?=$\\n|[&|><)])",
+          "patterns": [
+            {
+              "include": "#escaped_characters"
+            },
+            {
+              "include": "#variables"
+            },
+            {
+              "include": "#numbers"
+            },
+            {
+              "include": "#strings"
+            }
+          ]
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "keyword.command.batchfile"
+            },
+            "2": {
+              "name": "keyword.other.special-method.batchfile"
+            }
+          },
+          "match": "(?i)(?<=^|[\\s@])(setlocal)(?:\\s*$|\\s+(EnableExtensions|DisableExtensions|EnableDelayedExpansion|DisableDelayedExpansion)(?=\\s*$))"
+        },
+        {
+          "include": "#command_set"
         }
       ]
     },
@@ -411,7 +410,6 @@
           "name": "keyword.control.statement.batchfile"
         },
         {
-          "match": "(?<=^|\\s)(?i)(if)\\s+(?:(not)\\s+)?(exist|defined|errorlevel|cmdextversion)(?=\\s)",
           "captures": {
             "1": {
               "name": "keyword.control.conditional.batchfile"
@@ -422,7 +420,8 @@
             "3": {
               "name": "keyword.other.special-method.batchfile"
             }
-          }
+          },
+          "match": "(?<=^|\\s)(?i)(if)\\s+(?:(not)\\s+)?(exist|defined|errorlevel|cmdextversion)(?=\\s)"
         },
         {
           "match": "(?<=^|\\s)(?i)(?:if|else)(?=$|\\s)",
@@ -435,8 +434,8 @@
               "name": "keyword.control.repeat.batchfile"
             }
           },
-          "name": "meta.block.repeat.batchfile",
           "end": "\\n",
+          "name": "meta.block.repeat.batchfile",
           "patterns": [
             {
               "begin": "(?<=[\\s^])(?i)in(?=\\s)",
@@ -475,7 +474,6 @@
     "labels": {
       "patterns": [
         {
-          "match": "(?i)(?:^\\s*|(?<=call|goto)\\s*)(:)([^+=,;:\\s]\\S*)",
           "captures": {
             "1": {
               "name": "punctuation.separator.batchfile"
@@ -483,7 +481,8 @@
             "2": {
               "name": "keyword.other.special-method.batchfile"
             }
-          }
+          },
+          "match": "(?i)(?:^\\s*|(?<=call|goto)\\s*)(:)([^+=,;:\\s]\\S*)"
         }
       ]
     },
@@ -554,12 +553,12 @@
     "repeatParameter": {
       "patterns": [
         {
-          "match": "(%%)(?:(?i:~[fdpnxsatz]*(?:\\$PATH:)?)?[a-zA-Z])",
           "captures": {
             "1": {
               "name": "punctuation.definition.variable.batchfile"
             }
           },
+          "match": "(%%)(?:(?i:~[fdpnxsatz]*(?:\\$PATH:)?)?[a-zA-Z])",
           "name": "variable.parameter.repeat.batchfile"
         }
       ]
@@ -592,25 +591,6 @@
               "include": "#variables"
             }
           ]
-        }
-      ]
-    },
-    "variables": {
-      "patterns": [
-        {
-          "match": "(%)(?:(?i:~[fdpnxsatz]*(?:\\$PATH:)?)?\\d|\\*)",
-          "captures": {
-            "1": {
-              "name": "punctuation.definition.variable.batchfile"
-            }
-          },
-          "name": "variable.parameter.batchfile"
-        },
-        {
-          "include": "#variable"
-        },
-        {
-          "include": "#variable_delayed_expansion"
         }
       ]
     },
@@ -769,7 +749,6 @@
     "variable_substring": {
       "patterns": [
         {
-          "match": "([+-]?\\d+)(?:(,)([+-]?\\d+))?",
           "captures": {
             "1": {
               "name": "constant.numeric.batchfile"
@@ -780,9 +759,31 @@
             "3": {
               "name": "constant.numeric.batchfile"
             }
-          }
+          },
+          "match": "([+-]?\\d+)(?:(,)([+-]?\\d+))?"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.variable.batchfile"
+            }
+          },
+          "match": "(%)(?:(?i:~[fdpnxsatz]*(?:\\$PATH:)?)?\\d|\\*)",
+          "name": "variable.parameter.batchfile"
+        },
+        {
+          "include": "#variable"
+        },
+        {
+          "include": "#variable_delayed_expansion"
         }
       ]
     }
-  }
+  },
+  "scopeName": "source.batchfile",
+  "version": "https://github.com/mmims/language-batchfile/commit/6154ae25a24e01ac9329e7bcf958e093cd8733a9"
 }

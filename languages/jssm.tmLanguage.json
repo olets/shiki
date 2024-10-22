@@ -1,5 +1,9 @@
 {
-  "fileTypes": ["jssm", "jssm_state"],
+  "displayName": "JSSM",
+  "fileTypes": [
+    "jssm",
+    "jssm_state"
+  ],
   "name": "jssm",
   "patterns": [
     {

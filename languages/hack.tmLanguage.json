@@ -1,9 +1,13 @@
 {
-  "scopeName": "source.hack",
-  "name": "hack",
-  "fileTypes": ["hh", "php", "hack"],
+  "displayName": "Hack",
+  "fileTypes": [
+    "hh",
+    "php",
+    "hack"
+  ],
   "foldingStartMarker": "(/\\*|\\{\\s*$|<<<HTML)",
   "foldingStopMarker": "(\\*/|^\\s*\\}|^HTML;)",
+  "name": "hack",
   "patterns": [
     {
       "include": "text.html.basic"
@@ -13,6 +17,53 @@
     }
   ],
   "repository": {
+    "attributes": {
+      "patterns": [
+        {
+          "begin": "(<<)(?!<)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.attributes.php"
+            }
+          },
+          "end": "(>>)",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.attributes.php"
+            }
+          },
+          "name": "meta.attributes.php",
+          "patterns": [
+            {
+              "include": "#comments"
+            },
+            {
+              "match": "([A-Za-z_][A-Za-z0-9_]*)",
+              "name": "entity.other.attribute-name.php"
+            },
+            {
+              "begin": "(\\()",
+              "beginCaptures": {
+                "1": {
+                  "name": "punctuation.definition.parameters.begin.php"
+                }
+              },
+              "end": "(\\))",
+              "endCaptures": {
+                "1": {
+                  "name": "punctuation.definition.parameters.end.php"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "#language"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
     "class-builtin": {
       "patterns": [
         {
@@ -112,136 +163,6 @@
         }
       ]
     },
-    "generics": {
-      "patterns": [
-        {
-          "begin": "(<)",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.generics.php"
-            }
-          },
-          "end": "(>)",
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.definition.generics.php"
-            }
-          },
-          "name": "meta.generics.php",
-          "patterns": [
-            {
-              "include": "#comments"
-            },
-            {
-              "include": "#generics"
-            },
-            {
-              "match": "([-+])?([A-Za-z_][A-Za-z0-9_]*)(?:\\s+(as|super)\\s+([A-Za-z_][A-Za-z0-9_]*))?",
-              "name": "support.type.php"
-            },
-            {
-              "include": "#type-annotation"
-            }
-          ]
-        }
-      ]
-    },
-    "implements": {
-      "patterns": [
-        {
-          "begin": "(?i)(implements)\\s+",
-          "beginCaptures": {
-            "1": {
-              "name": "storage.modifier.implements.php"
-            }
-          },
-          "end": "(?i)(?=[;{])",
-          "patterns": [
-            {
-              "include": "#comments"
-            },
-            {
-              "begin": "(?i)(?=[a-z0-9_\\\\]+)",
-              "contentName": "meta.other.inherited-class.php",
-              "end": "(?i)(?:\\s*(?:,|(?=[^a-z0-9_\\\\\\s]))\\s*)",
-              "patterns": [
-                {
-                  "begin": "(?i)(?=\\\\?[a-z_0-9]+\\\\)",
-                  "end": "(?i)([a-z_][a-z_0-9]*)?(?=[^a-z0-9_\\\\])",
-                  "endCaptures": {
-                    "1": {
-                      "name": "entity.other.inherited-class.php"
-                    }
-                  },
-                  "patterns": [
-                    {
-                      "include": "#namespace"
-                    }
-                  ]
-                },
-                {
-                  "include": "#class-builtin"
-                },
-                {
-                  "include": "#namespace"
-                },
-                {
-                  "match": "(?i)[a-z_][a-z_0-9]*",
-                  "name": "entity.other.inherited-class.php"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    "attributes": {
-      "patterns": [
-        {
-          "begin": "(<<)(?!<)",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.attributes.php"
-            }
-          },
-          "end": "(>>)",
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.definition.attributes.php"
-            }
-          },
-          "name": "meta.attributes.php",
-          "patterns": [
-            {
-              "include": "#comments"
-            },
-            {
-              "match": "([A-Za-z_][A-Za-z0-9_]*)",
-              "name": "entity.other.attribute-name.php"
-            },
-            {
-              "begin": "(\\()",
-              "beginCaptures": {
-                "1": {
-                  "name": "punctuation.definition.parameters.begin.php"
-                }
-              },
-              "end": "(\\))",
-              "endCaptures": {
-                "1": {
-                  "name": "punctuation.definition.parameters.end.php"
-                }
-              },
-              "patterns": [
-                {
-                  "include": "#language"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
     "constants": {
       "patterns": [
         {
@@ -311,89 +232,6 @@
         }
       ]
     },
-    "function-return-type": {
-      "patterns": [
-        {
-          "begin": "(:)",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.type.php"
-            }
-          },
-          "end": "(?=[{;])",
-          "patterns": [
-            {
-              "include": "#comments"
-            },
-            {
-              "include": "#type-annotation"
-            },
-            {
-              "include": "#class-name"
-            }
-          ]
-        }
-      ]
-    },
-    "type-annotation": {
-      "name": "support.type.php",
-      "patterns": [
-        {
-          "match": "\\b(?:bool|int|float|string|resource|mixed|arraykey|nonnull|dict|vec|keyset)\\b",
-          "name": "support.type.php"
-        },
-        {
-          "begin": "([A-Za-z_][A-Za-z0-9_]*)<",
-          "beginCaptures": {
-            "1": {
-              "name": "support.class.php"
-            }
-          },
-          "end": ">",
-          "patterns": [
-            {
-              "include": "#type-annotation"
-            }
-          ]
-        },
-        {
-          "begin": "(shape\\()",
-          "end": "((,|\\.\\.\\.)?\\s*\\))",
-          "endCaptures": {
-            "1": {
-              "name": "keyword.operator.key.php"
-            }
-          },
-          "name": "storage.type.shape.php",
-          "patterns": [
-            {
-              "include": "#type-annotation"
-            },
-            {
-              "include": "#strings"
-            },
-            {
-              "include": "#constants"
-            }
-          ]
-        },
-        {
-          "begin": "\\(",
-          "end": "\\)",
-          "patterns": [
-            {
-              "include": "#type-annotation"
-            }
-          ]
-        },
-        {
-          "include": "#class-name"
-        },
-        {
-          "include": "#comments"
-        }
-      ]
-    },
     "function-arguments": {
       "patterns": [
         {
@@ -407,7 +245,6 @@
         },
         {
           "begin": "(?xi)((\\$+)[a-z_\\x{7f}-\\x{ff}][a-z0-9_\\x{7f}-\\x{ff}]*)  # The variable name",
-          "end": "(?xi)\n\\s*(?=,|\\)|$) # A closing parentheses (end of argument list) or a comma",
           "beginCaptures": {
             "1": {
               "name": "variable.other.php"
@@ -416,47 +253,21 @@
               "name": "punctuation.definition.variable.php"
             }
           },
+          "end": "(?xi)\n\\s*(?=,|\\)|$) # A closing parentheses (end of argument list) or a comma",
           "patterns": [
             {
               "begin": "(=)",
-              "end": "(?=,|\\))",
               "beginCaptures": {
                 "1": {
                   "name": "keyword.operator.assignment.php"
                 }
               },
+              "end": "(?=,|\\))",
               "patterns": [
                 {
                   "include": "#language"
                 }
               ]
-            }
-          ]
-        }
-      ]
-    },
-    "literal-collections": {
-      "patterns": [
-        {
-          "begin": "(Vector|ImmVector|Set|ImmSet|Map|ImmMap|Pair)\\s*({)",
-          "end": "(})",
-          "beginCaptures": {
-            "1": {
-              "name": "support.class.php"
-            },
-            "2": {
-              "name": "punctuation.section.array.begin.php"
-            }
-          },
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.section.array.end.php"
-            }
-          },
-          "name": "meta.collection.literal.php",
-          "patterns": [
-            {
-              "include": "#language"
             }
           ]
         }
@@ -502,6 +313,64 @@
         }
       ]
     },
+    "function-return-type": {
+      "patterns": [
+        {
+          "begin": "(:)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.type.php"
+            }
+          },
+          "end": "(?=[{;])",
+          "patterns": [
+            {
+              "include": "#comments"
+            },
+            {
+              "include": "#type-annotation"
+            },
+            {
+              "include": "#class-name"
+            }
+          ]
+        }
+      ]
+    },
+    "generics": {
+      "patterns": [
+        {
+          "begin": "(<)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.generics.php"
+            }
+          },
+          "end": "(>)",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.generics.php"
+            }
+          },
+          "name": "meta.generics.php",
+          "patterns": [
+            {
+              "include": "#comments"
+            },
+            {
+              "include": "#generics"
+            },
+            {
+              "match": "([-+])?([A-Za-z_][A-Za-z0-9_]*)(?:\\s+(as|super)\\s+([A-Za-z_][A-Za-z0-9_]*))?",
+              "name": "support.type.php"
+            },
+            {
+              "include": "#type-annotation"
+            }
+          ]
+        }
+      ]
+    },
     "heredoc": {
       "patterns": [
         {
@@ -541,6 +410,55 @@
         }
       ]
     },
+    "implements": {
+      "patterns": [
+        {
+          "begin": "(?i)(implements)\\s+",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.modifier.implements.php"
+            }
+          },
+          "end": "(?i)(?=[;{])",
+          "patterns": [
+            {
+              "include": "#comments"
+            },
+            {
+              "begin": "(?i)(?=[a-z0-9_\\\\]+)",
+              "contentName": "meta.other.inherited-class.php",
+              "end": "(?i)(?:\\s*(?:,|(?=[^a-z0-9_\\\\\\s]))\\s*)",
+              "patterns": [
+                {
+                  "begin": "(?i)(?=\\\\?[a-z_0-9]+\\\\)",
+                  "end": "(?i)([a-z_][a-z_0-9]*)?(?=[^a-z0-9_\\\\])",
+                  "endCaptures": {
+                    "1": {
+                      "name": "entity.other.inherited-class.php"
+                    }
+                  },
+                  "patterns": [
+                    {
+                      "include": "#namespace"
+                    }
+                  ]
+                },
+                {
+                  "include": "#class-builtin"
+                },
+                {
+                  "include": "#namespace"
+                },
+                {
+                  "match": "(?i)[a-z_][a-z_0-9]*",
+                  "name": "entity.other.inherited-class.php"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
     "instantiation": {
       "begin": "(?i)(new)\\s+",
       "beginCaptures": {
@@ -559,6 +477,42 @@
         },
         {
           "include": "#variable-name"
+        }
+      ]
+    },
+    "interface": {
+      "begin": "^(?i)\\s*(?:(public|internal)\\s+)?(interface)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.modifier.php"
+        },
+        "2": {
+          "name": "storage.type.interface.php"
+        }
+      },
+      "end": "(?=[;{])",
+      "name": "meta.interface.php",
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "storage.modifier.extends.php"
+            }
+          },
+          "match": "\\b(extends)\\b"
+        },
+        {
+          "include": "#generics"
+        },
+        {
+          "include": "#namespace"
+        },
+        {
+          "match": "(?i)[a-z0-9_]+",
+          "name": "entity.name.type.class.php"
         }
       ]
     },
@@ -603,42 +557,6 @@
       },
       "match": "(?i)(\\$+)([a-z_][a-z_0-9]*)(?=\\s*\\()",
       "name": "meta.function-call.invoke.php"
-    },
-    "interface": {
-      "begin": "^(?i)\\s*(?:(public|internal)\\s+)?(interface)\\b",
-      "beginCaptures": {
-        "1": {
-          "name": "storage.modifier.php"
-        },
-        "2": {
-          "name": "storage.type.interface.php"
-        }
-      },
-      "name": "meta.interface.php",
-      "end": "(?=[;{])",
-      "patterns": [
-        {
-          "include": "#comments"
-        },
-        {
-          "match": "\\b(extends)\\b",
-          "captures": {
-            "1": {
-              "name": "storage.modifier.extends.php"
-            }
-          }
-        },
-        {
-          "include": "#generics"
-        },
-        {
-          "include": "#namespace"
-        },
-        {
-          "match": "(?i)[a-z0-9_]+",
-          "name": "entity.name.type.class.php"
-        }
-      ]
     },
     "language": {
       "patterns": [
@@ -990,7 +908,6 @@
               "include": "#namespace"
             },
             {
-              "match": "(?xi)\n([a-z_\\x{7f}-\\x{10ffff}][a-z0-9_\\x{7f}-\\x{10ffff}]*)                 # Exception class\n((?:\\s*\\|\\s*[a-z_\\x{7f}-\\x{10ffff}][a-z0-9_\\x{7f}-\\x{10ffff}]*)*) # Optional additional exception classes\n\\s*\n((\\$+)[a-z_\\x{7f}-\\x{10ffff}][a-z0-9_\\x{7f}-\\x{10ffff}]*)           # Variable",
               "captures": {
                 "1": {
                   "name": "support.class.exception.php"
@@ -1013,7 +930,8 @@
                 "4": {
                   "name": "punctuation.definition.variable.php"
                 }
-              }
+              },
+              "match": "(?xi)\n([a-z_\\x{7f}-\\x{10ffff}][a-z0-9_\\x{7f}-\\x{10ffff}]*)                 # Exception class\n((?:\\s*\\|\\s*[a-z_\\x{7f}-\\x{10ffff}][a-z0-9_\\x{7f}-\\x{10ffff}]*)*) # Optional additional exception classes\n\\s*\n((\\$+)[a-z_\\x{7f}-\\x{10ffff}][a-z0-9_\\x{7f}-\\x{10ffff}]*)           # Variable"
             }
           ]
         },
@@ -1127,8 +1045,8 @@
                   "name": "punctuation.definition.parameters.begin.php"
                 }
               },
-              "end": "(?=\\))",
               "contentName": "meta.function.arguments.php",
+              "end": "(?=\\))",
               "patterns": [
                 {
                   "include": "#function-arguments"
@@ -1377,6 +1295,33 @@
         }
       ]
     },
+    "literal-collections": {
+      "patterns": [
+        {
+          "begin": "(Vector|ImmVector|Set|ImmSet|Map|ImmMap|Pair)\\s*({)",
+          "beginCaptures": {
+            "1": {
+              "name": "support.class.php"
+            },
+            "2": {
+              "name": "punctuation.section.array.begin.php"
+            }
+          },
+          "end": "(})",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.section.array.end.php"
+            }
+          },
+          "name": "meta.collection.literal.php",
+          "patterns": [
+            {
+              "include": "#language"
+            }
+          ]
+        }
+      ]
+    },
     "namespace": {
       "begin": "(?i)((namespace)|[a-z0-9_]+)?(\\\\)(?=.*?[^a-z_0-9\\\\])",
       "beginCaptures": {
@@ -1391,8 +1336,8 @@
       "name": "support.other.namespace.php",
       "patterns": [
         {
-          "name": "entity.name.type.namespace.php",
-          "match": "(?i)[a-z0-9_]+(?=\\\\)"
+          "match": "(?i)[a-z0-9_]+(?=\\\\)",
+          "name": "entity.name.type.namespace.php"
         },
         {
           "captures": {
@@ -2254,6 +2199,65 @@
         }
       ]
     },
+    "type-annotation": {
+      "name": "support.type.php",
+      "patterns": [
+        {
+          "match": "\\b(?:bool|int|float|string|resource|mixed|arraykey|nonnull|dict|vec|keyset)\\b",
+          "name": "support.type.php"
+        },
+        {
+          "begin": "([A-Za-z_][A-Za-z0-9_]*)<",
+          "beginCaptures": {
+            "1": {
+              "name": "support.class.php"
+            }
+          },
+          "end": ">",
+          "patterns": [
+            {
+              "include": "#type-annotation"
+            }
+          ]
+        },
+        {
+          "begin": "(shape\\()",
+          "end": "((,|\\.\\.\\.)?\\s*\\))",
+          "endCaptures": {
+            "1": {
+              "name": "keyword.operator.key.php"
+            }
+          },
+          "name": "storage.type.shape.php",
+          "patterns": [
+            {
+              "include": "#type-annotation"
+            },
+            {
+              "include": "#strings"
+            },
+            {
+              "include": "#constants"
+            }
+          ]
+        },
+        {
+          "begin": "\\(",
+          "end": "\\)",
+          "patterns": [
+            {
+              "include": "#type-annotation"
+            }
+          ]
+        },
+        {
+          "include": "#class-name"
+        },
+        {
+          "include": "#comments"
+        }
+      ]
+    },
     "user-function-call": {
       "begin": "(?i)(?=[a-z_0-9\\\\]*[a-z_][a-z0-9_]*\\s*\\()",
       "end": "(?i)[a-z_][a-z_0-9]*(?=\\s*\\()",
@@ -2313,6 +2317,12 @@
             "1": {
               "name": "variable.other.php"
             },
+            "10": {
+              "name": "string.unquoted.index.php"
+            },
+            "11": {
+              "name": "punctuation.section.array.end.php"
+            },
             "2": {
               "name": "punctuation.definition.variable.php"
             },
@@ -2333,12 +2343,6 @@
             },
             "9": {
               "name": "punctuation.definition.variable.php"
-            },
-            "10": {
-              "name": "string.unquoted.index.php"
-            },
-            "11": {
-              "name": "punctuation.section.array.end.php"
             }
           },
           "comment": "Simple syntax: $foo, $foo[0], $foo[$bar], $foo->bar",
@@ -2397,10 +2401,10 @@
       "comment": "Avoid < operator expressions as best we can using Zertosh's regex",
       "patterns": [
         {
-          "contentName": "source.xhp",
-          "begin": "(?<=\\(|\\{|\\[|,|&&|\\|\\||\\?|:|=|=>|\\Wreturn|^return|^)\\s*(?=<[_\\p{L}])",
-          "end": "(?=.)",
           "applyEndPatternLast": 1,
+          "begin": "(?<=\\(|\\{|\\[|,|&&|\\|\\||\\?|:|=|=>|\\Wreturn|^return|^)\\s*(?=<[_\\p{L}])",
+          "contentName": "source.xhp",
+          "end": "(?=.)",
           "patterns": [
             {
               "include": "#xhp-tag-element-name"
@@ -2409,12 +2413,161 @@
         }
       ]
     },
+    "xhp-assignment": {
+      "patterns": [
+        {
+          "comment": "look for attribute assignment",
+          "match": "=(?=\\s*(?:'|\"|{|/\\*|<|//|\\n))",
+          "name": "keyword.operator.assignment.xhp"
+        }
+      ]
+    },
+    "xhp-attribute-name": {
+      "patterns": [
+        {
+          "captures": {
+            "0": {
+              "name": "entity.other.attribute-name.xhp"
+            }
+          },
+          "comment": "look for attribute name",
+          "match": "(?<!\\S)([_\\p{L}](?:[\\p{L}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Nl}\\p{Pc}-](?<!\\.\\.))*+)(?<!\\.)(?=//|/\\*|=|\\s|>|/>)"
+        }
+      ]
+    },
+    "xhp-entities": {
+      "patterns": [
+        {
+          "captures": {
+            "0": {
+              "name": "constant.character.entity.xhp"
+            },
+            "1": {
+              "name": "punctuation.definition.entity.xhp"
+            },
+            "2": {
+              "name": "entity.name.tag.html.xhp"
+            },
+            "3": {
+              "name": "punctuation.definition.entity.xhp"
+            }
+          },
+          "comment": "Embeded HTML entities &blah",
+          "match": "(&)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)"
+        },
+        {
+          "comment": "Entity with & and invalid name",
+          "match": "&\\S*;",
+          "name": "invalid.illegal.bad-ampersand.xhp"
+        }
+      ]
+    },
+    "xhp-evaluated-code": {
+      "begin": "{",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.embedded.begin.xhp"
+        }
+      },
+      "contentName": "source.php.xhp",
+      "end": "}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.embedded.end.xhp"
+        }
+      },
+      "name": "meta.embedded.expression.php",
+      "patterns": [
+        {
+          "include": "#language"
+        }
+      ]
+    },
+    "xhp-html-comments": {
+      "begin": "<!--",
+      "captures": {
+        "0": {
+          "name": "punctuation.definition.comment.html"
+        }
+      },
+      "end": "--\\s*>",
+      "name": "comment.block.html",
+      "patterns": [
+        {
+          "match": "--(?!-*\\s*>)",
+          "name": "invalid.illegal.bad-comments-or-CDATA.html"
+        }
+      ]
+    },
+    "xhp-string-double-quoted": {
+      "begin": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.xhp"
+        }
+      },
+      "end": "\"(?<!\\\\\")",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.xhp"
+        }
+      },
+      "name": "string.quoted.double.php",
+      "patterns": [
+        {
+          "include": "#xhp-entities"
+        }
+      ]
+    },
+    "xhp-string-single-quoted": {
+      "begin": "'",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.xhp"
+        }
+      },
+      "end": "'(?<!\\\\')",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.xhp"
+        }
+      },
+      "name": "string.quoted.single.php",
+      "patterns": [
+        {
+          "include": "#xhp-entities"
+        }
+      ]
+    },
+    "xhp-tag-attributes": {
+      "patterns": [
+        {
+          "include": "#xhp-attribute-name"
+        },
+        {
+          "include": "#xhp-assignment"
+        },
+        {
+          "include": "#xhp-string-double-quoted"
+        },
+        {
+          "include": "#xhp-string-single-quoted"
+        },
+        {
+          "include": "#xhp-evaluated-code"
+        },
+        {
+          "include": "#xhp-tag-element-name"
+        },
+        {
+          "include": "#comments"
+        }
+      ]
+    },
     "xhp-tag-element-name": {
       "patterns": [
         {
-          "comment": "Tags that end > are trapped in #xhp-tag-termination",
           "begin": "\\s*(<)([_\\p{L}](?:[:\\p{L}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Nl}\\p{Pc}-])*+)(?=[/>\\s])(?<![\\:])",
-          "end": "\\s*(?<=</)(\\2)(>)|(/>)|((?<=</)[\\S ]*?)>",
           "beginCaptures": {
             "1": {
               "name": "punctuation.definition.tag.xhp"
@@ -2423,6 +2576,8 @@
               "name": "entity.name.tag.open.xhp"
             }
           },
+          "comment": "Tags that end > are trapped in #xhp-tag-termination",
+          "end": "\\s*(?<=</)(\\2)(>)|(/>)|((?<=</)[\\S ]*?)>",
           "endCaptures": {
             "1": {
               "name": "entity.name.tag.close.xhp"
@@ -2454,9 +2609,7 @@
     "xhp-tag-termination": {
       "patterns": [
         {
-          "comment": "uses non consuming search for </ in </tag>",
           "begin": "(?<!--)(>)",
-          "end": "(</)",
           "beginCaptures": {
             "0": {
               "name": "punctuation.definition.tag.xhp"
@@ -2465,6 +2618,8 @@
               "name": "XHPStartTagEnd"
             }
           },
+          "comment": "uses non consuming search for </ in </tag>",
+          "end": "(</)",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.tag.xhp"
@@ -2489,157 +2644,7 @@
           ]
         }
       ]
-    },
-    "xhp-tag-attributes": {
-      "patterns": [
-        {
-          "include": "#xhp-attribute-name"
-        },
-        {
-          "include": "#xhp-assignment"
-        },
-        {
-          "include": "#xhp-string-double-quoted"
-        },
-        {
-          "include": "#xhp-string-single-quoted"
-        },
-        {
-          "include": "#xhp-evaluated-code"
-        },
-        {
-          "include": "#xhp-tag-element-name"
-        },
-        {
-          "include": "#comments"
-        }
-      ]
-    },
-    "xhp-attribute-name": {
-      "patterns": [
-        {
-          "comment": "look for attribute name",
-          "match": "(?<!\\S)([_\\p{L}](?:[\\p{L}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Nl}\\p{Pc}-](?<!\\.\\.))*+)(?<!\\.)(?=//|/\\*|=|\\s|>|/>)",
-          "captures": {
-            "0": {
-              "name": "entity.other.attribute-name.xhp"
-            }
-          }
-        }
-      ]
-    },
-    "xhp-assignment": {
-      "patterns": [
-        {
-          "comment": "look for attribute assignment",
-          "name": "keyword.operator.assignment.xhp",
-          "match": "=(?=\\s*(?:'|\"|{|/\\*|<|//|\\n))"
-        }
-      ]
-    },
-    "xhp-string-double-quoted": {
-      "name": "string.quoted.double.php",
-      "begin": "\"",
-      "end": "\"(?<!\\\\\")",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.begin.xhp"
-        }
-      },
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.end.xhp"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#xhp-entities"
-        }
-      ]
-    },
-    "xhp-string-single-quoted": {
-      "name": "string.quoted.single.php",
-      "begin": "'",
-      "end": "'(?<!\\\\')",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.begin.xhp"
-        }
-      },
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.end.xhp"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#xhp-entities"
-        }
-      ]
-    },
-    "xhp-evaluated-code": {
-      "name": "meta.embedded.expression.php",
-      "begin": "{",
-      "end": "}",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.section.embedded.begin.xhp"
-        }
-      },
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.section.embedded.end.xhp"
-        }
-      },
-      "contentName": "source.php.xhp",
-      "patterns": [
-        {
-          "include": "#language"
-        }
-      ]
-    },
-    "xhp-entities": {
-      "patterns": [
-        {
-          "comment": "Embeded HTML entities &blah",
-          "match": "(&)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)",
-          "captures": {
-            "0": {
-              "name": "constant.character.entity.xhp"
-            },
-            "1": {
-              "name": "punctuation.definition.entity.xhp"
-            },
-            "2": {
-              "name": "entity.name.tag.html.xhp"
-            },
-            "3": {
-              "name": "punctuation.definition.entity.xhp"
-            }
-          }
-        },
-        {
-          "comment": "Entity with & and invalid name",
-          "match": "&\\S*;",
-          "name": "invalid.illegal.bad-ampersand.xhp"
-        }
-      ]
-    },
-    "xhp-html-comments": {
-      "begin": "<!--",
-      "captures": {
-        "0": {
-          "name": "punctuation.definition.comment.html"
-        }
-      },
-      "end": "--\\s*>",
-      "name": "comment.block.html",
-      "patterns": [
-        {
-          "match": "--(?!-*\\s*>)",
-          "name": "invalid.illegal.bad-comments-or-CDATA.html"
-        }
-      ]
     }
-  }
+  },
+  "scopeName": "source.hack"
 }

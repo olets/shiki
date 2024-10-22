@@ -1,12 +1,11 @@
 {
+  "displayName": "SCSS",
   "information_for_contributors": [
     "This file has been converted from https://github.com/atom/language-sass/blob/master/grammars/scss.cson",
     "If you want to provide a fix or improvement, please create a pull request against the original repository.",
     "Once accepted there, we are happy to receive an update request."
   ],
-  "version": "https://github.com/atom/language-sass/commit/f52ab12f7f9346cc2568129d8c4419bd3d506b47",
   "name": "scss",
-  "scopeName": "source.css.scss",
   "patterns": [
     {
       "include": "#variable_setting"
@@ -74,6 +73,30 @@
     }
   ],
   "repository": {
+    "at_rule_at_root": {
+      "begin": "\\s*((@)(at-root))(\\s+|$)",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.at-rule.at-root.scss"
+        },
+        "2": {
+          "name": "punctuation.definition.keyword.scss"
+        }
+      },
+      "end": "\\s*(?={)",
+      "name": "meta.at-rule.at-root.scss",
+      "patterns": [
+        {
+          "include": "#function_attributes"
+        },
+        {
+          "include": "#functions"
+        },
+        {
+          "include": "#selectors"
+        }
+      ]
+    },
     "at_rule_charset": {
       "begin": "\\s*((@)charset\\b)\\s*",
       "captures": {
@@ -263,7 +286,6 @@
           "name": "keyword.control.operator"
         },
         {
-          "match": "\\b([\\w-]+)(\\*)",
           "captures": {
             "1": {
               "name": "entity.other.attribute-name.module.scss"
@@ -271,7 +293,8 @@
             "2": {
               "name": "punctuation.definition.wildcard.scss"
             }
-          }
+          },
+          "match": "\\b([\\w-]+)(\\*)"
         },
         {
           "match": "\\b[\\w-]+\\b",
@@ -420,7 +443,6 @@
           ]
         },
         {
-          "match": "(?<=@include)\\s+(?:([\\w-]+)\\s*(\\.))?([\\w-]+)",
           "captures": {
             "0": {
               "name": "meta.at-rule.include.scss"
@@ -434,10 +456,10 @@
             "3": {
               "name": "entity.name.function.scss"
             }
-          }
+          },
+          "match": "(?<=@include)\\s+(?:([\\w-]+)\\s*(\\.))?([\\w-]+)"
         },
         {
-          "match": "((@)include)\\b",
           "captures": {
             "0": {
               "name": "meta.at-rule.include.scss"
@@ -448,7 +470,8 @@
             "2": {
               "name": "punctuation.definition.keyword.scss"
             }
-          }
+          },
+          "match": "((@)include)\\b"
         }
       ]
     },
@@ -466,12 +489,12 @@
       "name": "meta.at-rule.keyframes.scss",
       "patterns": [
         {
-          "match": "(?<=@keyframes)\\s+((?:[_A-Za-z][-\\w]|-[_A-Za-z])[-\\w]*)",
           "captures": {
             "1": {
               "name": "entity.name.function.scss"
             }
-          }
+          },
+          "match": "(?<=@keyframes)\\s+((?:[_A-Za-z][-\\w]|-[_A-Za-z])[-\\w]*)"
         },
         {
           "begin": "(?<=@keyframes)\\s+(\")",
@@ -480,6 +503,7 @@
               "name": "punctuation.definition.string.begin.scss"
             }
           },
+          "contentName": "entity.name.function.scss",
           "end": "\"",
           "endCaptures": {
             "0": {
@@ -487,7 +511,6 @@
             }
           },
           "name": "string.quoted.double.scss",
-          "contentName": "entity.name.function.scss",
           "patterns": [
             {
               "match": "\\\\(\\h{1,6}|.)",
@@ -505,6 +528,7 @@
               "name": "punctuation.definition.string.begin.scss"
             }
           },
+          "contentName": "entity.name.function.scss",
           "end": "'",
           "endCaptures": {
             "0": {
@@ -512,7 +536,6 @@
             }
           },
           "name": "string.quoted.single.scss",
-          "contentName": "entity.name.function.scss",
           "patterns": [
             {
               "match": "\\\\(\\h{1,6}|.)",
@@ -620,13 +643,13 @@
                       "name": "punctuation.separator.key-value.scss"
                     }
                   },
+                  "contentName": "meta.property-value.media-query.scss",
                   "end": "\\s*(;|(?=}|\\)))",
                   "endCaptures": {
                     "1": {
                       "name": "punctuation.terminator.rule.scss"
                     }
                   },
-                  "contentName": "meta.property-value.media-query.scss",
                   "patterns": [
                     {
                       "include": "#general"
@@ -677,16 +700,15 @@
           ]
         },
         {
-          "match": "(?<=@mixin)\\s+([\\w-]+)",
           "captures": {
             "1": {
               "name": "entity.name.function.scss"
             }
           },
+          "match": "(?<=@mixin)\\s+([\\w-]+)",
           "name": "meta.at-rule.mixin.scss"
         },
         {
-          "match": "((@)mixin)\\b",
           "captures": {
             "1": {
               "name": "keyword.control.at-rule.mixin.scss"
@@ -695,6 +717,7 @@
               "name": "punctuation.definition.keyword.scss"
             }
           },
+          "match": "((@)mixin)\\b",
           "name": "meta.at-rule.mixin.scss"
         }
       ]
@@ -742,7 +765,6 @@
           ]
         },
         {
-          "match": "((@)namespace)\\b",
           "captures": {
             "1": {
               "name": "keyword.control.at-rule.namespace.scss"
@@ -751,6 +773,7 @@
               "name": "punctuation.definition.keyword.scss"
             }
           },
+          "match": "((@)namespace)\\b",
           "name": "meta.at-rule.namespace.scss"
         }
       ]
@@ -805,30 +828,6 @@
         },
         {
           "include": "#property_values"
-        }
-      ]
-    },
-    "at_rule_at_root": {
-      "begin": "\\s*((@)(at-root))(\\s+|$)",
-      "end": "\\s*(?={)",
-      "beginCaptures": {
-        "1": {
-          "name": "keyword.control.at-rule.at-root.scss"
-        },
-        "2": {
-          "name": "punctuation.definition.keyword.scss"
-        }
-      },
-      "name": "meta.at-rule.at-root.scss",
-      "patterns": [
-        {
-          "include": "#function_attributes"
-        },
-        {
-          "include": "#functions"
-        },
-        {
-          "include": "#selectors"
         }
       ]
     },
@@ -970,21 +969,6 @@
         }
       ]
     },
-    "comment_docblock": {
-      "name": "comment.block.documentation.scss",
-      "begin": "///",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.comment.scss"
-        }
-      },
-      "end": "(?=$)",
-      "patterns": [
-        {
-          "include": "source.sassdoc"
-        }
-      ]
-    },
     "comment_block": {
       "begin": "/\\*",
       "beginCaptures": {
@@ -1000,6 +984,21 @@
       },
       "name": "comment.block.scss"
     },
+    "comment_docblock": {
+      "begin": "///",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.comment.scss"
+        }
+      },
+      "end": "(?=$)",
+      "name": "comment.block.documentation.scss",
+      "patterns": [
+        {
+          "include": "source.sassdoc"
+        }
+      ]
+    },
     "comment_line": {
       "begin": "//",
       "beginCaptures": {
@@ -1009,6 +1008,20 @@
       },
       "end": "\\n",
       "name": "comment.line.scss"
+    },
+    "comparison_operators": {
+      "match": "==|!=|<=|>=|<|>",
+      "name": "keyword.operator.comparison.scss"
+    },
+    "conditional_operators": {
+      "patterns": [
+        {
+          "include": "#comparison_operators"
+        },
+        {
+          "include": "#logical_operators"
+        }
+      ]
     },
     "constant_default": {
       "match": "!default",
@@ -1188,20 +1201,6 @@
         }
       ]
     },
-    "conditional_operators": {
-      "patterns": [
-        {
-          "include": "#comparison_operators"
-        },
-        {
-          "include": "#logical_operators"
-        }
-      ]
-    },
-    "comparison_operators": {
-      "match": "==|!=|<=|>=|<|>",
-      "name": "keyword.operator.comparison.scss"
-    },
     "logical_operators": {
       "match": "\\b(not|or|and)\\b",
       "name": "keyword.operator.logical.scss"
@@ -1231,7 +1230,6 @@
           "include": "#comment_line"
         },
         {
-          "match": "\\b([\\w-]+)\\s*(:)",
           "captures": {
             "1": {
               "name": "support.type.map.key.scss"
@@ -1239,7 +1237,8 @@
             "2": {
               "name": "punctuation.separator.key-value.scss"
             }
-          }
+          },
+          "match": "\\b([\\w-]+)\\s*(:)"
         },
         {
           "match": ",",
@@ -1300,6 +1299,30 @@
         }
       ]
     },
+    "parent_selector_suffix": {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.entity.css"
+        },
+        "2": {
+          "patterns": [
+            {
+              "include": "#interpolation"
+            },
+            {
+              "match": "\\\\([0-9a-fA-F]{1,6}|.)",
+              "name": "constant.character.escape.scss"
+            },
+            {
+              "match": "\\$|}",
+              "name": "invalid.illegal.identifier.scss"
+            }
+          ]
+        }
+      },
+      "match": "(?x)\n(?<=&)\n(\n  (?: [-a-zA-Z_0-9]|[^\\x00-\\x7F]     # Valid identifier characters\n    | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence\n    | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)\n    | \\$                              # Possible start of interpolation variable\n    | }                                # Possible end of interpolation\n  )+\n)                                      # Followed by either:\n(?= $                                  # - End of the line\n  | [\\s,.\\#)\\[:{>+~|]               # - Another selector\n  | /\\*                               # - A block comment\n)",
+      "name": "entity.other.attribute-name.parent-selector-suffix.css"
+    },
     "properties": {
       "patterns": [
         {
@@ -1322,13 +1345,13 @@
               "name": "punctuation.separator.key-value.scss"
             }
           },
+          "contentName": "meta.property-value.scss",
           "end": "\\s*(;|(?=}|\\)))",
           "endCaptures": {
             "1": {
               "name": "punctuation.terminator.rule.scss"
             }
           },
-          "contentName": "meta.property-value.scss",
           "patterns": [
             {
               "include": "#general"
@@ -1457,11 +1480,33 @@
       ]
     },
     "selector_attribute": {
-      "match": "(?xi)\n(\\[)\n\\s*\n(\n  (?:\n    [-a-zA-Z_0-9]|[^\\x00-\\x7F]       # Valid identifier characters\n    | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence\n    | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)\n    | \\.?\\$                          # Possible start of interpolation variable\n    | }                                # Possible end of interpolation\n  )+?\n)\n(?:\n  \\s*([~|^$*]?=)\\s*\n  (?:\n    (\n      (?:\n        [-a-zA-Z_0-9]|[^\\x00-\\x7F]       # Valid identifier characters\n        | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence\n        | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)\n        | \\.?\\$                          # Possible start of interpolation variable\n        | }                                # Possible end of interpolation\n      )+\n    )\n    |\n    ((\")(.*?)(\"))\n    |\n    ((')(.*?)('))\n  )\n)?\n\\s*\n(\\])",
-      "name": "meta.attribute-selector.scss",
       "captures": {
         "1": {
           "name": "punctuation.definition.attribute-selector.begin.bracket.square.scss"
+        },
+        "10": {
+          "name": "punctuation.definition.string.begin.scss"
+        },
+        "11": {
+          "patterns": [
+            {
+              "include": "#interpolation"
+            },
+            {
+              "match": "\\\\([0-9a-fA-F]{1,6}|.)",
+              "name": "constant.character.escape.scss"
+            },
+            {
+              "match": "\\$|}",
+              "name": "invalid.illegal.scss"
+            }
+          ]
+        },
+        "12": {
+          "name": "punctuation.definition.string.end.scss"
+        },
+        "13": {
+          "name": "punctuation.definition.attribute-selector.end.bracket.square.scss"
         },
         "2": {
           "name": "entity.other.attribute-name.attribute.scss",
@@ -1524,36 +1569,12 @@
         },
         "9": {
           "name": "string.quoted.single.attribute-value.scss"
-        },
-        "10": {
-          "name": "punctuation.definition.string.begin.scss"
-        },
-        "11": {
-          "patterns": [
-            {
-              "include": "#interpolation"
-            },
-            {
-              "match": "\\\\([0-9a-fA-F]{1,6}|.)",
-              "name": "constant.character.escape.scss"
-            },
-            {
-              "match": "\\$|}",
-              "name": "invalid.illegal.scss"
-            }
-          ]
-        },
-        "12": {
-          "name": "punctuation.definition.string.end.scss"
-        },
-        "13": {
-          "name": "punctuation.definition.attribute-selector.end.bracket.square.scss"
         }
-      }
+      },
+      "match": "(?xi)\n(\\[)\n\\s*\n(\n  (?:\n    [-a-zA-Z_0-9]|[^\\x00-\\x7F]       # Valid identifier characters\n    | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence\n    | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)\n    | \\.?\\$                          # Possible start of interpolation variable\n    | }                                # Possible end of interpolation\n  )+?\n)\n(?:\n  \\s*([~|^$*]?=)\\s*\n  (?:\n    (\n      (?:\n        [-a-zA-Z_0-9]|[^\\x00-\\x7F]       # Valid identifier characters\n        | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence\n        | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)\n        | \\.?\\$                          # Possible start of interpolation variable\n        | }                                # Possible end of interpolation\n      )+\n    )\n    |\n    ((\")(.*?)(\"))\n    |\n    ((')(.*?)('))\n  )\n)?\n\\s*\n(\\])",
+      "name": "meta.attribute-selector.scss"
     },
     "selector_class": {
-      "match": "(?x)\n(\\.)                                  # Valid class-name\n(\n  (?: [-a-zA-Z_0-9]|[^\\x00-\\x7F]     # Valid identifier characters\n    | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence\n    | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)\n    | \\.?\\$                          # Possible start of interpolation variable\n    | }                                # Possible end of interpolation\n  )+\n)                                      # Followed by either:\n(?= $                                  # - End of the line\n  | [\\s,\\#)\\[:{>+~|]                # - Another selector\n  | \\.[^$]                            # - Class selector, negating module variable\n  | /\\*                               # - A block comment\n  | ;                                  # - A semicolon\n)",
-      "name": "entity.other.attribute-name.class.css",
       "captures": {
         "1": {
           "name": "punctuation.definition.entity.css"
@@ -1573,15 +1594,15 @@
             }
           ]
         }
-      }
+      },
+      "match": "(?x)\n(\\.)                                  # Valid class-name\n(\n  (?: [-a-zA-Z_0-9]|[^\\x00-\\x7F]     # Valid identifier characters\n    | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence\n    | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)\n    | \\.?\\$                          # Possible start of interpolation variable\n    | }                                # Possible end of interpolation\n  )+\n)                                      # Followed by either:\n(?= $                                  # - End of the line\n  | [\\s,\\#)\\[:{>+~|]                # - Another selector\n  | \\.[^$]                            # - Class selector, negating module variable\n  | /\\*                               # - A block comment\n  | ;                                  # - A semicolon\n)",
+      "name": "entity.other.attribute-name.class.css"
     },
     "selector_custom": {
       "match": "\\b([a-zA-Z0-9]+(-[a-zA-Z0-9]+)+)(?=\\.|\\s++[^:]|\\s*[,\\[{]|:(link|visited|hover|active|focus|target|lang|disabled|enabled|checked|indeterminate|root|nth-(child|last-child|of-type|last-of-type)|first-child|last-child|first-of-type|last-of-type|only-child|only-of-type|empty|not|valid|invalid)(\\([0-9A-Za-z]*\\))?)",
       "name": "entity.name.tag.custom.scss"
     },
     "selector_id": {
-      "match": "(?x)\n(\\#)                                  # Valid id-name\n(\n  (?: [-a-zA-Z_0-9]|[^\\x00-\\x7F]     # Valid identifier characters\n    | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence\n    | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)\n    | \\.?\\$                          # Possible start of interpolation variable\n    | }                                # Possible end of interpolation\n  )+\n)                                      # Followed by either:\n(?= $                                  # - End of the line\n  | [\\s,\\#)\\[:{>+~|]                # - Another selector\n  | \\.[^$]                            # - Class selector, negating module variable\n  | /\\*                               # - A block comment\n)",
-      "name": "entity.other.attribute-name.id.css",
       "captures": {
         "1": {
           "name": "punctuation.definition.entity.css"
@@ -1601,55 +1622,33 @@
             }
           ]
         }
-      }
+      },
+      "match": "(?x)\n(\\#)                                  # Valid id-name\n(\n  (?: [-a-zA-Z_0-9]|[^\\x00-\\x7F]     # Valid identifier characters\n    | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence\n    | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)\n    | \\.?\\$                          # Possible start of interpolation variable\n    | }                                # Possible end of interpolation\n  )+\n)                                      # Followed by either:\n(?= $                                  # - End of the line\n  | [\\s,\\#)\\[:{>+~|]                # - Another selector\n  | \\.[^$]                            # - Class selector, negating module variable\n  | /\\*                               # - A block comment\n)",
+      "name": "entity.other.attribute-name.id.css"
     },
     "selector_placeholder": {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.entity.css"
+        },
+        "2": {
+          "patterns": [
+            {
+              "include": "#interpolation"
+            },
+            {
+              "match": "\\\\([0-9a-fA-F]{1,6}|.)",
+              "name": "constant.character.escape.scss"
+            },
+            {
+              "match": "\\$|}",
+              "name": "invalid.illegal.identifier.scss"
+            }
+          ]
+        }
+      },
       "match": "(?x)\n(%)                                    # Valid placeholder-name\n(\n  (?: [-a-zA-Z_0-9]|[^\\x00-\\x7F]     # Valid identifier characters\n    | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence\n    | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)\n    | \\.\\$                           # Possible start of interpolation module scope variable\n    | \\$                              # Possible start of interpolation variable\n    | }                                # Possible end of interpolation\n  )+\n)                                      # Followed by either:\n(?= ;                                  # - End of statement\n  | $                                  # - End of the line\n  | [\\s,\\#)\\[:{>+~|]                # - Another selector\n  | \\.[^$]                            # - Class selector, negating module variable\n  | /\\*                               # - A block comment\n)",
-      "name": "entity.other.attribute-name.placeholder.css",
-      "captures": {
-        "1": {
-          "name": "punctuation.definition.entity.css"
-        },
-        "2": {
-          "patterns": [
-            {
-              "include": "#interpolation"
-            },
-            {
-              "match": "\\\\([0-9a-fA-F]{1,6}|.)",
-              "name": "constant.character.escape.scss"
-            },
-            {
-              "match": "\\$|}",
-              "name": "invalid.illegal.identifier.scss"
-            }
-          ]
-        }
-      }
-    },
-    "parent_selector_suffix": {
-      "match": "(?x)\n(?<=&)\n(\n  (?: [-a-zA-Z_0-9]|[^\\x00-\\x7F]     # Valid identifier characters\n    | \\\\(?:[0-9a-fA-F]{1,6}|.)       # Escape sequence\n    | \\#\\{                           # Interpolation (escaped to avoid Coffeelint errors)\n    | \\$                              # Possible start of interpolation variable\n    | }                                # Possible end of interpolation\n  )+\n)                                      # Followed by either:\n(?= $                                  # - End of the line\n  | [\\s,.\\#)\\[:{>+~|]               # - Another selector\n  | /\\*                               # - A block comment\n)",
-      "name": "entity.other.attribute-name.parent-selector-suffix.css",
-      "captures": {
-        "1": {
-          "name": "punctuation.definition.entity.css"
-        },
-        "2": {
-          "patterns": [
-            {
-              "include": "#interpolation"
-            },
-            {
-              "match": "\\\\([0-9a-fA-F]{1,6}|.)",
-              "name": "constant.character.escape.scss"
-            },
-            {
-              "match": "\\$|}",
-              "name": "invalid.illegal.identifier.scss"
-            }
-          ]
-        }
-      }
+      "name": "entity.other.attribute-name.placeholder.css"
     },
     "selector_pseudo_class": {
       "patterns": [
@@ -1806,13 +1805,13 @@
     },
     "variable_setting": {
       "begin": "(?=\\$[\\w-]+\\s*:)",
+      "contentName": "meta.definition.variable.scss",
       "end": ";",
       "endCaptures": {
         "0": {
           "name": "punctuation.terminator.rule.scss"
         }
       },
-      "contentName": "meta.definition.variable.scss",
       "patterns": [
         {
           "match": "\\$[\\w-]+(?=\\s*:)",
@@ -1856,7 +1855,6 @@
     "variables": {
       "patterns": [
         {
-          "match": "\\b([\\w-]+)(\\.)(\\$[\\w-]+)\\b",
           "captures": {
             "1": {
               "name": "variable.scss"
@@ -1867,7 +1865,8 @@
             "3": {
               "name": "variable.scss"
             }
-          }
+          },
+          "match": "\\b([\\w-]+)(\\.)(\\$[\\w-]+)\\b"
         },
         {
           "match": "(\\$|\\-\\-)[A-Za-z0-9_-]+\\b",
@@ -1875,5 +1874,7 @@
         }
       ]
     }
-  }
+  },
+  "scopeName": "source.css.scss",
+  "version": "https://github.com/atom/language-sass/commit/f52ab12f7f9346cc2568129d8c4419bd3d506b47"
 }

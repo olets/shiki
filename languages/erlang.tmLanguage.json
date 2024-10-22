@@ -1,6 +1,13 @@
 {
   "comment": "The recognition of function definitions and compiler directives (such as module, record and macro definitions) requires that each of the aforementioned constructs must be the first string inside a line (except for whitespace).  Also, the function/module/record/macro names must be given unquoted.  -- desp",
-  "fileTypes": ["erl", "escript", "hrl", "xrl", "yrl"],
+  "displayName": "Erlang",
+  "fileTypes": [
+    "erl",
+    "escript",
+    "hrl",
+    "xrl",
+    "yrl"
+  ],
   "keyEquivalent": "^~E",
   "name": "erlang",
   "patterns": [
@@ -336,6 +343,31 @@
         }
       ]
     },
+    "docstring": {
+      "begin": "(?<!\")(([\"]{3,})\\s*)(\\S.*)?$",
+      "beginCaptures": {
+        "1": {
+          "name": "meta.string.quoted.triple.begin.erlang"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.erlang"
+        },
+        "3": {
+          "name": "invalid.illegal.string.erlang"
+        }
+      },
+      "comment": "Only whitespace characters are allowed after the beggining and before the closing sequences and those cannot be in the same line",
+      "end": "^(\\s*(\\2))(?!\")",
+      "endCaptures": {
+        "1": {
+          "name": "meta.string.quoted.triple.end.erlang"
+        },
+        "2": {
+          "name": "punctuation.definition.string.end.erlang"
+        }
+      },
+      "name": "string.quoted.triple.erlang"
+    },
     "everything-else": {
       "patterns": [
         {
@@ -382,6 +414,15 @@
         },
         {
           "include": "#atom"
+        },
+        {
+          "include": "#sigil-docstring"
+        },
+        {
+          "include": "#sigil-string"
+        },
+        {
+          "include": "#docstring"
         },
         {
           "include": "#string"
@@ -470,6 +511,9 @@
             "1": {
               "name": "keyword.control.fun.erlang"
             },
+            "10": {
+              "name": "punctuation.separator.function-arity.erlang"
+            },
             "4": {
               "name": "entity.name.type.class.module.erlang"
             },
@@ -484,9 +528,6 @@
             },
             "9": {
               "name": "variable.other.erlang"
-            },
-            "10": {
-              "name": "punctuation.separator.function-arity.erlang"
             }
           },
           "comment": "Implicit function expression with optional module qualifier when both module and function can be atom or variable",
@@ -545,7 +586,7 @@
           ]
         },
         {
-          "begin": "\\b(fun)\\s*+(\\()(?=(\\s*+\\())",
+          "begin": "\\b(fun)\\s*+(\\()(?=(\\s*+\\()|(\\)))",
           "beginCaptures": {
             "1": {
               "name": "entity.name.function.erlang"
@@ -1005,6 +1046,57 @@
         },
         {
           "include": "#everything-else"
+        }
+      ]
+    },
+    "internal-string-body": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.escape.erlang"
+            },
+            "3": {
+              "name": "punctuation.definition.escape.erlang"
+            }
+          },
+          "comment": "escape sequence",
+          "match": "(\\\\)([bdefnrstv\\\\'\"]|(\\^)[@-_a-z]|[0-7]{1,3}|x[\\da-fA-F]{2})",
+          "name": "constant.character.escape.erlang"
+        },
+        {
+          "match": "\\\\\\^?.?",
+          "name": "invalid.illegal.string.erlang"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.placeholder.erlang"
+            },
+            "10": {
+              "name": "punctuation.separator.placeholder-parts.erlang"
+            },
+            "6": {
+              "name": "punctuation.separator.placeholder-parts.erlang"
+            }
+          },
+          "comment": "io:fwrite format control sequence",
+          "match": "(~)((\\-)?\\d++|(\\*))?((\\.)(\\d++|(\\*))?((\\.)((\\*)|.))?)?[tlkK]*[~cfegswpWPBX#bx\\+ni]",
+          "name": "constant.character.format.placeholder.other.erlang"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.placeholder.erlang"
+            }
+          },
+          "comment": "io:fread format control sequence",
+          "match": "(~)(\\*)?(\\d++)?(t)?[~du\\-#fsacl]",
+          "name": "constant.character.format.placeholder.other.erlang"
+        },
+        {
+          "match": "~[^\"]?",
+          "name": "invalid.illegal.string.erlang"
         }
       ]
     },
@@ -1628,6 +1720,367 @@
         }
       ]
     },
+    "sigil-docstring": {
+      "begin": "(~[bBsS]?)(([\"]{3,})\\s*)(\\S.*)?$",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.string.erlang"
+        },
+        "2": {
+          "name": "meta.string.quoted.triple.begin.erlang"
+        },
+        "3": {
+          "name": "punctuation.definition.string.begin.erlang"
+        },
+        "4": {
+          "name": "invalid.illegal.string.erlang"
+        }
+      },
+      "comment": "Only whitespace characters are allowed after the beggining and before the closing sequences and those cannot be in the same line",
+      "end": "^(\\s*(\\3))(?!\")",
+      "endCaptures": {
+        "1": {
+          "name": "meta.string.quoted.triple.end.erlang"
+        },
+        "2": {
+          "name": "punctuation.definition.string.end.erlang"
+        }
+      },
+      "name": "string.quoted.tripple.sigil.erlang"
+    },
+    "sigil-string": {
+      "patterns": [
+        {
+          "include": "#sigil-string-parenthesis"
+        },
+        {
+          "include": "#sigil-string-parenthesis-verbatim"
+        },
+        {
+          "include": "#sigil-string-curly-brackets"
+        },
+        {
+          "include": "#sigil-string-curly-brackets-verbatim"
+        },
+        {
+          "include": "#sigil-string-square-brackets"
+        },
+        {
+          "include": "#sigil-string-square-brackets-verbatim"
+        },
+        {
+          "include": "#sigil-string-less-greater"
+        },
+        {
+          "include": "#sigil-string-less-greater-verbatim"
+        },
+        {
+          "include": "#sigil-string-single-character"
+        },
+        {
+          "include": "#sigil-string-single-character-verbatim"
+        },
+        {
+          "include": "#sigil-string-single-quote"
+        },
+        {
+          "include": "#sigil-string-single-quote-verbatim"
+        },
+        {
+          "include": "#sigil-string-double-quote"
+        },
+        {
+          "include": "#sigil-string-double-quote-verbatim"
+        }
+      ]
+    },
+    "sigil-string-curly-brackets": {
+      "begin": "(~[bs]?)([{])",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.string.erlang"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.erlang"
+        }
+      },
+      "end": "([}])",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.end.erlang"
+        }
+      },
+      "name": "string.quoted.curly-brackets.sigil.erlang",
+      "patterns": [
+        {
+          "include": "#internal-string-body"
+        }
+      ]
+    },
+    "sigil-string-curly-brackets-verbatim": {
+      "begin": "(~[BS])([{])",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.string.erlang"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.erlang"
+        }
+      },
+      "end": "([}])",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.end.erlang"
+        }
+      },
+      "name": "string.quoted.curly-brackets.sigil.erlang"
+    },
+    "sigil-string-double-quote": {
+      "begin": "(~[bs]?)(\")",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.string.erlang"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.erlang"
+        }
+      },
+      "end": "(\\2)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.end.erlang"
+        }
+      },
+      "name": "string.quoted.double.sigil.erlang",
+      "patterns": [
+        {
+          "include": "#internal-string-body"
+        }
+      ]
+    },
+    "sigil-string-double-quote-verbatim": {
+      "begin": "(~[BS])(\")",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.string.erlang"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.erlang"
+        }
+      },
+      "end": "(\\2)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.end.erlang"
+        }
+      },
+      "name": "string.quoted.double.sigil.erlang"
+    },
+    "sigil-string-less-greater": {
+      "begin": "(~[bs]?)(<)",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.string.erlang"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.erlang"
+        }
+      },
+      "end": "(>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.end.erlang"
+        }
+      },
+      "name": "string.quoted.less-greater.sigil.erlang",
+      "patterns": [
+        {
+          "include": "#internal-string-body"
+        }
+      ]
+    },
+    "sigil-string-less-greater-verbatim": {
+      "begin": "(~[BS])(<)",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.string.erlang"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.erlang"
+        }
+      },
+      "end": "(>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.end.erlang"
+        }
+      },
+      "name": "string.quoted.less-greater.sigil.erlang"
+    },
+    "sigil-string-parenthesis": {
+      "begin": "(~[bs]?)([(])",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.string.erlang"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.erlang"
+        }
+      },
+      "end": "([)])",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.end.erlang"
+        }
+      },
+      "name": "string.quoted.parenthesis.sigil.erlang",
+      "patterns": [
+        {
+          "include": "#internal-string-body"
+        }
+      ]
+    },
+    "sigil-string-parenthesis-verbatim": {
+      "begin": "(~[BS])([(])",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.string.erlang"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.erlang"
+        }
+      },
+      "end": "([)])",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.end.erlang"
+        }
+      },
+      "name": "string.quoted.parenthesis.sigil.erlang"
+    },
+    "sigil-string-single-character": {
+      "begin": "(~[bs]?)([/\\|`#])",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.string.erlang"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.erlang"
+        }
+      },
+      "end": "(\\2)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.end.erlang"
+        }
+      },
+      "name": "string.quoted.other.sigil.erlang",
+      "patterns": [
+        {
+          "include": "#internal-string-body"
+        }
+      ]
+    },
+    "sigil-string-single-character-verbatim": {
+      "begin": "(~[BS])([/\\|`#])",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.string.erlang"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.erlang"
+        }
+      },
+      "end": "(\\2)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.end.erlang"
+        }
+      },
+      "name": "string.quoted.other.sigil.erlang"
+    },
+    "sigil-string-single-quote": {
+      "begin": "(~[bs]?)(')",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.string.erlang"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.erlang"
+        }
+      },
+      "end": "(\\2)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.end.erlang"
+        }
+      },
+      "name": "string.quoted.single.sigil.erlang",
+      "patterns": [
+        {
+          "include": "#internal-string-body"
+        }
+      ]
+    },
+    "sigil-string-single-quote-verbatim": {
+      "begin": "(~[BS])(')",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.string.erlang"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.erlang"
+        }
+      },
+      "end": "(\\2)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.end.erlang"
+        }
+      },
+      "name": "string.quoted.single.sigil.erlang"
+    },
+    "sigil-string-square-brackets": {
+      "begin": "(~[bs]?)([\\[])",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.string.erlang"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.erlang"
+        }
+      },
+      "end": "([\\]])",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.end.erlang"
+        }
+      },
+      "name": "string.quoted.square-brackets.sigil.erlang",
+      "patterns": [
+        {
+          "include": "#internal-string-body"
+        }
+      ]
+    },
+    "sigil-string-square-brackets-verbatim": {
+      "begin": "(~[BS])([\\[])",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.string.erlang"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.erlang"
+        }
+      },
+      "end": "([\\]])",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.end.erlang"
+        }
+      },
+      "name": "string.quoted.square-brackets.sigil.erlang"
+    },
     "string": {
       "begin": "(\")",
       "beginCaptures": {
@@ -1644,63 +2097,7 @@
       "name": "string.quoted.double.erlang",
       "patterns": [
         {
-          "captures": {
-            "1": {
-              "name": "punctuation.definition.escape.erlang"
-            },
-            "3": {
-              "name": "punctuation.definition.escape.erlang"
-            }
-          },
-          "match": "(\\\\)([bdefnrstv\\\\'\"]|(\\^)[@-_a-z]|[0-7]{1,3}|x[\\da-fA-F]{2})",
-          "name": "constant.character.escape.erlang"
-        },
-        {
-          "match": "\\\\\\^?.?",
-          "name": "invalid.illegal.string.erlang"
-        },
-        {
-          "captures": {
-            "1": {
-              "name": "punctuation.definition.placeholder.erlang"
-            },
-            "3": {
-              "name": "punctuation.separator.placeholder-parts.erlang"
-            },
-            "4": {
-              "name": "punctuation.separator.placeholder-parts.erlang"
-            },
-            "6": {
-              "name": "punctuation.separator.placeholder-parts.erlang"
-            },
-            "8": {
-              "name": "punctuation.separator.placeholder-parts.erlang"
-            },
-            "10": {
-              "name": "punctuation.separator.placeholder-parts.erlang"
-            },
-            "12": {
-              "name": "punctuation.separator.placeholder-parts.erlang"
-            }
-          },
-          "match": "(~)((\\-)?\\d++|(\\*))?((\\.)(\\d++|(\\*)))?((\\.)((\\*)|.))?[~cfegswpWPBX#bx\\+ni]",
-          "name": "constant.other.placeholder.erlang"
-        },
-        {
-          "captures": {
-            "1": {
-              "name": "punctuation.definition.placeholder.erlang"
-            },
-            "2": {
-              "name": "punctuation.separator.placeholder-parts.erlang"
-            }
-          },
-          "match": "(~)(\\*)?(\\d++)?[~du\\-#fsacl]",
-          "name": "constant.other.placeholder.erlang"
-        },
-        {
-          "match": "~[^\"]?",
-          "name": "invalid.illegal.string.erlang"
+          "include": "#internal-string-body"
         }
       ]
     },

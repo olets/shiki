@@ -1,6 +1,8 @@
 {
-  "scopeName": "source.json5",
-  "fileTypes": ["json5"],
+  "displayName": "JSON5",
+  "fileTypes": [
+    "json5"
+  ],
   "name": "json5",
   "patterns": [
     {
@@ -42,6 +44,34 @@
         }
       ]
     },
+    "comments": {
+      "patterns": [
+        {
+          "match": "/{2}.*",
+          "name": "comment.single.json5"
+        },
+        {
+          "begin": "/\\*\\*(?!/)",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.comment.json5"
+            }
+          },
+          "end": "\\*/",
+          "name": "comment.block.documentation.json5"
+        },
+        {
+          "begin": "/\\*",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.comment.json5"
+            }
+          },
+          "end": "\\*/",
+          "name": "comment.block.json5"
+        }
+      ]
+    },
     "constant": {
       "match": "\\b(?:true|false|null|Infinity|NaN)\\b",
       "name": "constant.language.json5"
@@ -49,6 +79,21 @@
     "infinity": {
       "match": "(-)*\\b(?:Infinity|NaN)\\b",
       "name": "constant.language.json5"
+    },
+    "key": {
+      "name": "string.key.json5",
+      "patterns": [
+        {
+          "include": "#stringSingle"
+        },
+        {
+          "include": "#stringDouble"
+        },
+        {
+          "match": "[a-zA-Z0-9_-]",
+          "name": "string.key.json5"
+        }
+      ]
     },
     "number": {
       "patterns": [
@@ -118,31 +163,6 @@
         }
       ]
     },
-    "stringSingle": {
-      "begin": "[']",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.begin.json5"
-        }
-      },
-      "end": "[']",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.end.json5"
-        }
-      },
-      "name": "string.quoted.json5",
-      "patterns": [
-        {
-          "match": "(?x:                # turn on extended mode\n                     \\\\                # a literal backslash\n                     (?:               # ...followed by...\n                       [\"\\\\/bfnrt]     # one of these characters\n                       |               # ...or...\n                       u               # a u\n                       [0-9a-fA-F]{4}  # and four hex digits\n                     )\n                   )",
-          "name": "constant.character.escape.json5"
-        },
-        {
-          "match": "\\\\.",
-          "name": "invalid.illegal.unrecognized-string-escape.json5"
-        }
-      ]
-    },
     "stringDouble": {
       "begin": "[\"]",
       "beginCaptures": {
@@ -168,18 +188,28 @@
         }
       ]
     },
-    "key": {
-      "name": "string.key.json5",
+    "stringSingle": {
+      "begin": "[']",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.json5"
+        }
+      },
+      "end": "[']",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.json5"
+        }
+      },
+      "name": "string.quoted.json5",
       "patterns": [
         {
-          "include": "#stringSingle"
+          "match": "(?x:                # turn on extended mode\n                     \\\\                # a literal backslash\n                     (?:               # ...followed by...\n                       [\"\\\\/bfnrt]     # one of these characters\n                       |               # ...or...\n                       u               # a u\n                       [0-9a-fA-F]{4}  # and four hex digits\n                     )\n                   )",
+          "name": "constant.character.escape.json5"
         },
         {
-          "include": "#stringDouble"
-        },
-        {
-          "match": "[a-zA-Z0-9_-]",
-          "name": "string.key.json5"
+          "match": "\\\\.",
+          "name": "invalid.illegal.unrecognized-string-escape.json5"
         }
       ]
     },
@@ -208,34 +238,7 @@
           "include": "#object"
         }
       ]
-    },
-    "comments": {
-      "patterns": [
-        {
-          "match": "/{2}.*",
-          "name": "comment.single.json5"
-        },
-        {
-          "begin": "/\\*\\*(?!/)",
-          "captures": {
-            "0": {
-              "name": "punctuation.definition.comment.json5"
-            }
-          },
-          "end": "\\*/",
-          "name": "comment.block.documentation.json5"
-        },
-        {
-          "begin": "/\\*",
-          "captures": {
-            "0": {
-              "name": "punctuation.definition.comment.json5"
-            }
-          },
-          "end": "\\*/",
-          "name": "comment.block.json5"
-        }
-      ]
     }
-  }
+  },
+  "scopeName": "source.json5"
 }

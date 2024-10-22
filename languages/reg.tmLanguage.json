@@ -1,5 +1,9 @@
 {
-  "fileTypes": ["reg", "REG"],
+  "displayName": "Windows Registry Script",
+  "fileTypes": [
+    "reg",
+    "REG"
+  ],
   "name": "reg",
   "patterns": [
     {
@@ -47,24 +51,6 @@
     },
     {
       "captures": {
-        "2": {
-          "name": "punctuation.definition.quote.reg"
-        },
-        "3": {
-          "name": "support.function.regname.ini"
-        },
-        "4": {
-          "name": "punctuation.definition.quote.reg"
-        },
-        "5": {
-          "name": "punctuation.definition.equals.reg"
-        },
-        "7": {
-          "name": "keyword.operator.arithmetic.minus.reg"
-        },
-        "9": {
-          "name": "punctuation.definition.quote.reg"
-        },
         "10": {
           "name": "string.name.regdata.reg"
         },
@@ -89,6 +75,9 @@
         "19": {
           "name": "keyword.operator.arithmetic.parenthesis.reg"
         },
+        "2": {
+          "name": "punctuation.definition.quote.reg"
+        },
         "20": {
           "name": "constant.numeric.hex.size.reg"
         },
@@ -106,6 +95,21 @@
         },
         "25": {
           "name": "comment.declarationline.semicolon.reg"
+        },
+        "3": {
+          "name": "support.function.regname.ini"
+        },
+        "4": {
+          "name": "punctuation.definition.quote.reg"
+        },
+        "5": {
+          "name": "punctuation.definition.equals.reg"
+        },
+        "7": {
+          "name": "keyword.operator.arithmetic.minus.reg"
+        },
+        "9": {
+          "name": "punctuation.definition.quote.reg"
         }
       },
       "match": "^(\\s*([\"']?)(.+?)([\"']?)\\s*(=))?\\s*((-)|(([\"'])(.*?)([\"']))|(((?i:dword))(\\:)\\s*([\\dabcdefABCDEF]{1,8}))|(((?i:hex))((\\()([\\d]*)(\\)))?(\\:)(.*?)(\\\\?)))\\s*(;.*)?$",

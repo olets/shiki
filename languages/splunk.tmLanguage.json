@@ -1,5 +1,9 @@
 {
-  "fileTypes": ["splunk", "spl"],
+  "displayName": "Splunk Query Language",
+  "fileTypes": [
+    "splunk",
+    "spl"
+  ],
   "name": "splunk",
   "patterns": [
     {

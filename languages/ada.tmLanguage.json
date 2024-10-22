@@ -1,5 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "displayName": "Ada",
   "name": "ada",
   "patterns": [
     {
@@ -23,34 +24,32 @@
   ],
   "repository": {
     "abort_statement": {
-      "name": "meta.statement.abort.ada",
       "begin": "(?i)\\babort\\b",
-      "end": ";",
       "beginCaptures": {
         "0": {
           "name": "keyword.control.ada"
         }
       },
+      "end": ";",
       "endCaptures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.statement.abort.ada",
       "patterns": [
         {
-          "name": "punctuation.ada",
-          "match": ","
+          "match": ",",
+          "name": "punctuation.ada"
         },
         {
-          "name": "entity.name.task.ada",
-          "match": "\\b(\\w|\\d|\\.|_)+\\b"
+          "match": "\\b(\\w|\\d|\\.|_)+\\b",
+          "name": "entity.name.task.ada"
         }
       ]
     },
     "accept_statement": {
-      "name": "meta.statement.accept.ada",
       "begin": "(?i)\\b(accept)\\s+((?:\\w|\\d|\\.|_)+)\\b",
-      "end": "(?i)(?:\\b(end)\\s*(\\s\\2)?\\s*)?(;)",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.ada"
@@ -59,6 +58,7 @@
           "name": "entity.name.accept.ada"
         }
       },
+      "end": "(?i)(?:\\b(end)\\s*(\\s\\2)?\\s*)?(;)",
       "endCaptures": {
         "1": {
           "name": "keyword.control.ada"
@@ -70,15 +70,16 @@
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.statement.accept.ada",
       "patterns": [
         {
           "begin": "(?i)\\bdo\\b",
-          "end": "(?i)\\b(?=end)\\b",
           "beginCaptures": {
             "0": {
               "name": "keyword.control.ada"
             }
           },
+          "end": "(?i)\\b(?=end)\\b",
           "patterns": [
             {
               "include": "#statement"
@@ -91,8 +92,6 @@
       ]
     },
     "access_definition": {
-      "name": "meta.declaration.access.definition.ada",
-      "match": "(?i)(not\\s+null\\s+)?(access)\\s+(constant\\s+)?((?:\\w|\\d|\\.|_)+)\\b",
       "captures": {
         "1": {
           "name": "storage.visibility.ada"
@@ -106,12 +105,12 @@
         "4": {
           "name": "entity.name.type.ada"
         }
-      }
+      },
+      "match": "(?i)(not\\s+null\\s+)?(access)\\s+(constant\\s+)?((?:\\w|\\d|\\.|_)+)\\b",
+      "name": "meta.declaration.access.definition.ada"
     },
     "access_type_definition": {
-      "name": "meta.declaration.type.definition.access.ada",
       "begin": "(?i)\\b(not\\s+null\\s+)?(access)\\b",
-      "end": "(?i)(?=(with|;))",
       "beginCaptures": {
         "1": {
           "name": "storage.visibility.ada"
@@ -120,14 +119,16 @@
           "name": "storage.visibility.ada"
         }
       },
+      "end": "(?i)(?=(with|;))",
+      "name": "meta.declaration.type.definition.access.ada",
       "patterns": [
         {
-          "name": "storage.visibility.ada",
-          "match": "(?i)\\ball\\b"
+          "match": "(?i)\\ball\\b",
+          "name": "storage.visibility.ada"
         },
         {
-          "name": "storage.modifier.ada",
-          "match": "(?i)\\bconstant\\b"
+          "match": "(?i)\\bconstant\\b",
+          "name": "storage.modifier.ada"
         },
         {
           "include": "#subtype_mark"
@@ -136,16 +137,16 @@
     },
     "actual_parameter_part": {
       "begin": "\\(",
-      "end": "\\)",
       "captures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "end": "\\)",
       "patterns": [
         {
-          "name": "punctuation.ada",
-          "match": ","
+          "match": ",",
+          "name": "punctuation.ada"
         },
         {
           "include": "#parameter_association"
@@ -153,22 +154,22 @@
       ]
     },
     "adding_operator": {
-      "name": "keyword.operator.adding.ada",
-      "match": "(\\+|-|\\&)"
+      "match": "(\\+|-|\\&)",
+      "name": "keyword.operator.adding.ada"
     },
     "array_aggregate": {
-      "name": "meta.definition.array.aggregate.ada",
       "begin": "\\(",
-      "end": "\\)",
       "captures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "end": "\\)",
+      "name": "meta.definition.array.aggregate.ada",
       "patterns": [
         {
-          "name": "punctuation.ada",
-          "match": ","
+          "match": ",",
+          "name": "punctuation.ada"
         },
         {
           "include": "#positional_array_aggregate"
@@ -179,8 +180,6 @@
       ]
     },
     "array_component_association": {
-      "name": "meta.definition.array.aggregate.component.ada",
-      "match": "(?i)\\b([^(=>)]*)\\s*(=>)\\s*([^,\\)]+)",
       "captures": {
         "1": {
           "name": "variable.name.ada"
@@ -191,41 +190,43 @@
         "3": {
           "patterns": [
             {
-              "name": "keyword.modifier.unknown.ada",
-              "match": "<>"
+              "match": "<>",
+              "name": "keyword.modifier.unknown.ada"
             },
             {
               "include": "#expression"
             }
           ]
         }
-      }
+      },
+      "match": "(?i)\\b([^(=>)]*)\\s*(=>)\\s*([^,\\)]+)",
+      "name": "meta.definition.array.aggregate.component.ada"
     },
     "array_dimensions": {
-      "name": "meta.declaration.type.definition.array.dimensions.ada",
       "begin": "\\(",
-      "end": "\\)",
       "captures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "end": "\\)",
+      "name": "meta.declaration.type.definition.array.dimensions.ada",
       "patterns": [
         {
-          "name": "punctuation.ada",
-          "match": ","
+          "match": ",",
+          "name": "punctuation.ada"
         },
         {
-          "name": "storage.modifier.ada",
-          "match": "(?i)\\brange\\b"
+          "match": "(?i)\\brange\\b",
+          "name": "storage.modifier.ada"
         },
         {
-          "name": "keyword.modifier.unknown.ada",
-          "match": "<>"
+          "match": "<>",
+          "name": "keyword.modifier.unknown.ada"
         },
         {
-          "name": "keyword.ada",
-          "match": "\\.\\."
+          "match": "\\.\\.",
+          "name": "keyword.ada"
         },
         {
           "include": "#expression"
@@ -240,25 +241,25 @@
       ]
     },
     "array_type_definition": {
-      "name": "meta.declaration.type.definition.array.ada",
       "begin": "(?i)\\barray\\b",
-      "end": "(?i)(?=(with|;))",
       "beginCaptures": {
         "0": {
           "name": "storage.modifier.ada"
         }
       },
+      "end": "(?i)(?=(with|;))",
+      "name": "meta.declaration.type.definition.array.ada",
       "patterns": [
         {
           "include": "#array_dimensions"
         },
         {
-          "name": "storage.modifier.ada",
-          "match": "(?i)\\bof\\b"
+          "match": "(?i)\\bof\\b",
+          "name": "storage.modifier.ada"
         },
         {
-          "name": "storage.visibility.ada",
-          "match": "(?i)\\baliased\\b"
+          "match": "(?i)\\baliased\\b",
+          "name": "storage.visibility.ada"
         },
         {
           "include": "#access_definition"
@@ -269,9 +270,7 @@
       ]
     },
     "aspect_clause": {
-      "name": "meta.aspect.clause.ada",
       "begin": "(?i)\\b(for)\\b",
-      "end": ";",
       "beginCaptures": {
         "1": {
           "name": "keyword.ada"
@@ -290,20 +289,22 @@
           "name": "keyword.ada"
         }
       },
+      "end": ";",
       "endCaptures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.aspect.clause.ada",
       "patterns": [
         {
           "begin": "(?i)\\buse\\b",
-          "end": "(?=;)",
           "beginCaptures": {
             "0": {
               "name": "keyword.ada"
             }
           },
+          "end": "(?=;)",
           "endCaptures": {
             "0": {
               "name": "punctuation.ada"
@@ -323,15 +324,14 @@
         },
         {
           "begin": "(?i)(?<=for)",
-          "end": "(?i)(?=use)",
           "captures": {
             "0": {
               "name": "keyword.ada"
             }
           },
+          "end": "(?i)(?=use)",
           "patterns": [
             {
-              "match": "((?:\\w|\\d|_)+)('((?:\\w|\\d|_)+))?",
               "captures": {
                 "1": {
                   "patterns": [
@@ -347,21 +347,22 @@
                     }
                   ]
                 }
-              }
+              },
+              "match": "((?:\\w|\\d|_)+)('((?:\\w|\\d|_)+))?"
             }
           ]
         }
       ]
     },
     "aspect_definition": {
-      "name": "meta.aspect.definition.ada",
       "begin": "=>",
-      "end": "(?i)(?=(,|;|\\bis\\b))",
       "beginCaptures": {
         "0": {
           "name": "keyword.other.ada"
         }
       },
+      "end": "(?i)(?=(,|;|\\bis\\b))",
+      "name": "meta.aspect.definition.ada",
       "patterns": [
         {
           "include": "#expression"
@@ -369,8 +370,6 @@
       ]
     },
     "aspect_mark": {
-      "name": "meta.aspect.mark.ada",
-      "match": "(?i)\\b((?:\\w|\\d|\\.|_)+)(?:(')(class))?\\b",
       "captures": {
         "1": {
           "name": "keyword.control.directive.ada"
@@ -381,24 +380,25 @@
         "3": {
           "name": "entity.other.attribute-name.ada"
         }
-      }
+      },
+      "match": "(?i)\\b((?:\\w|\\d|\\.|_)+)(?:(')(class))?\\b",
+      "name": "meta.aspect.mark.ada"
     },
     "aspect_specification": {
-      "name": "meta.aspect.specification.ada",
       "begin": "(?i)\\bwith\\b",
-      "end": "(?i)(?=(;|\\bis\\b))",
       "beginCaptures": {
         "0": {
           "name": "keyword.ada"
         }
       },
+      "end": "(?i)(?=(;|\\bis\\b))",
+      "name": "meta.aspect.specification.ada",
       "patterns": [
         {
-          "name": "punctuation.ada",
-          "match": ","
+          "match": ",",
+          "name": "punctuation.ada"
         },
         {
-          "match": "(?i)\\b(null)\\s+(record)\\b",
           "captures": {
             "1": {
               "name": "storage.modifier.ada"
@@ -406,16 +406,17 @@
             "2": {
               "name": "storage.modifier.ada"
             }
-          }
+          },
+          "match": "(?i)\\b(null)\\s+(record)\\b"
         },
         {
           "begin": "(?i)\\brecord\\b",
-          "end": "(?i)\\b(end)\\s+(record)\\b",
           "beginCaptures": {
             "0": {
               "name": "storage.modifier.ada"
             }
           },
+          "end": "(?i)\\b(end)\\s+(record)\\b",
           "endCaptures": {
             "1": {
               "name": "keyword.ada"
@@ -431,12 +432,12 @@
           ]
         },
         {
-          "match": "(?i)\\bprivate\\b",
           "captures": {
             "0": {
               "name": "storage.visibility.ada"
             }
-          }
+          },
+          "match": "(?i)\\bprivate\\b"
         },
         {
           "include": "#aspect_definition"
@@ -450,9 +451,7 @@
       ]
     },
     "assignment_statement": {
-      "name": "meta.statement.assignment.ada",
       "begin": "\\b((?:\\w|\\d|\\.|_|\\(|\\)|\"|'|\\s)+)\\s*(:=)",
-      "end": ";",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -462,12 +461,12 @@
             },
             {
               "begin": "\\(",
-              "end": "\\)",
               "captures": {
                 "0": {
                   "name": "punctuation.ada"
                 }
               },
+              "end": "\\)",
               "patterns": [
                 {
                   "include": "#expression"
@@ -480,11 +479,13 @@
           "name": "keyword.operator.new.ada"
         }
       },
+      "end": ";",
       "endCaptures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.statement.assignment.ada",
       "patterns": [
         {
           "include": "#expression"
@@ -495,8 +496,6 @@
       ]
     },
     "attribute": {
-      "name": "meta.attribute.ada",
-      "match": "(')((?:\\w|\\d|_)+)\\b",
       "captures": {
         "1": {
           "name": "punctuation.ada"
@@ -504,11 +503,11 @@
         "2": {
           "name": "entity.other.attribute-name.ada"
         }
-      }
+      },
+      "match": "(')((?:\\w|\\d|_)+)\\b",
+      "name": "meta.attribute.ada"
     },
     "based_literal": {
-      "name": "constant.numeric.ada",
-      "match": "(?i)(\\d(?:(_)?\\d)*#)[0-9a-f](?:(_)?[0-9a-f])*(?:(\\.)[0-9a-f](?:(_)?[0-9a-f])*)?(#)([eE](?:\\+|\\-)?\\d(?:_?\\d)*)?",
       "captures": {
         "1": {
           "name": "constant.numeric.base.ada"
@@ -535,23 +534,9 @@
             }
           ]
         }
-      }
-    },
-    "basic_declarative_item": {
-      "patterns": [
-        {
-          "include": "#basic_declaration"
-        },
-        {
-          "include": "#aspect_clause"
-        },
-        {
-          "include": "#use_clause"
-        },
-        {
-          "include": "#keyword"
-        }
-      ]
+      },
+      "match": "(?i)(\\d(?:(_)?\\d)*#)[0-9a-f](?:(_)?[0-9a-f])*(?:(\\.)[0-9a-f](?:(_)?[0-9a-f])*)?(#)([eE](?:\\+|\\-)?\\d(?:_?\\d)*)?",
+      "name": "constant.numeric.ada"
     },
     "basic_declaration": {
       "patterns": [
@@ -587,15 +572,30 @@
         }
       ]
     },
+    "basic_declarative_item": {
+      "patterns": [
+        {
+          "include": "#basic_declaration"
+        },
+        {
+          "include": "#aspect_clause"
+        },
+        {
+          "include": "#use_clause"
+        },
+        {
+          "include": "#keyword"
+        }
+      ]
+    },
     "block_statement": {
-      "name": "meta.statement.block.ada",
       "begin": "(?i)\\bdeclare\\b",
-      "end": "(?i)\\b(end)(\\s+(?:\\w|\\d|_)+)?\\s*(;)",
       "beginCaptures": {
         "0": {
           "name": "keyword.ada"
         }
       },
+      "end": "(?i)\\b(end)(\\s+(?:\\w|\\d|_)+)?\\s*(;)",
       "endCaptures": {
         "1": {
           "name": "keyword.ada"
@@ -607,6 +607,7 @@
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.statement.block.ada",
       "patterns": [
         {
           "begin": "(?i)(?<=declare)",
@@ -653,14 +654,13 @@
       ]
     },
     "case_statement": {
-      "name": "meta.statement.case.ada",
       "begin": "(?i)\\bcase\\b",
-      "end": "(?i)\\b(end)\\s+(case)\\s*(;)",
       "beginCaptures": {
         "0": {
           "name": "keyword.control.ada"
         }
       },
+      "end": "(?i)\\b(end)\\s+(case)\\s*(;)",
       "endCaptures": {
         "1": {
           "name": "keyword.control.ada"
@@ -672,6 +672,7 @@
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.statement.case.ada",
       "patterns": [
         {
           "begin": "(?i)(?<=case)\\b",
@@ -688,27 +689,27 @@
           ]
         },
         {
-          "name": "meta.statement.case.alternative.ada",
           "begin": "(?i)\\bwhen\\b",
-          "end": "=>",
           "beginCaptures": {
             "0": {
               "name": "keyword.control.ada"
             }
           },
+          "end": "=>",
           "endCaptures": {
             "0": {
               "name": "punctuation.ada"
             }
           },
+          "name": "meta.statement.case.alternative.ada",
           "patterns": [
             {
-              "name": "keyword.modifier.unknown.ada",
-              "match": "(?i)\\bothers\\b"
+              "match": "(?i)\\bothers\\b",
+              "name": "keyword.modifier.unknown.ada"
             },
             {
-              "name": "punctuation.ada",
-              "match": "\\|"
+              "match": "\\|",
+              "name": "punctuation.ada"
             },
             {
               "include": "#expression"
@@ -721,18 +722,18 @@
       ]
     },
     "character_literal": {
-      "name": "string.quoted.single.ada",
-      "match": "'.'",
       "captures": {
         "0": {
           "patterns": [
             {
-              "name": "punctuation.definition.string.ada",
-              "match": "'"
+              "match": "'",
+              "name": "punctuation.definition.string.ada"
             }
           ]
         }
-      }
+      },
+      "match": "'.'",
+      "name": "string.quoted.single.ada"
     },
     "comment": {
       "patterns": [
@@ -751,8 +752,6 @@
       ]
     },
     "comment-doc": {
-      "name": "comment.block.documentation.ada",
-      "match": "(--)\\s*(@)(\\w+)\\s+(.*)$",
       "captures": {
         "1": {
           "name": "comment.line.double-dash.ada"
@@ -766,23 +765,24 @@
         "4": {
           "name": "comment.line.double-dash.ada"
         }
-      }
+      },
+      "match": "(--)\\s*(@)(\\w+)\\s+(.*)$",
+      "name": "comment.block.documentation.ada"
     },
     "comment-line": {
-      "name": "comment.line.double-dash.ada",
-      "match": "--.*$"
+      "match": "--.*$",
+      "name": "comment.line.double-dash.ada"
     },
     "comment-section": {
-      "name": "comment.line.double-dash.ada",
-      "match": "--\\s*([^-].*?[^-])\\s*--\\s*$",
       "captures": {
         "1": {
           "name": "entity.name.section.ada"
         }
-      }
+      },
+      "match": "--\\s*([^-].*?[^-])\\s*--\\s*$",
+      "name": "comment.line.double-dash.ada"
     },
     "component_clause": {
-      "name": "meta.aspect.clause.record.representation.component.ada",
       "begin": "(?i)\\b((?:\\w|\\d|_)+)\\b",
       "beginCaptures": {
         "0": {
@@ -795,15 +795,16 @@
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.aspect.clause.record.representation.component.ada",
       "patterns": [
         {
           "begin": "(?i)\\bat\\b",
-          "end": "(?i)\\b(?=range)\\b",
           "beginCaptures": {
             "0": {
               "name": "storage.modifier.ada"
             }
           },
+          "end": "(?i)\\b(?=range)\\b",
           "patterns": [
             {
               "include": "#expression"
@@ -816,19 +817,17 @@
       ]
     },
     "component_declaration": {
-      "name": "meta.declaration.type.definition.record.component.ada",
       "begin": "(?i)\\b((?:\\w|\\d|_)+(?:\\s*,\\s*(?:\\w|\\d|_)+)?)\\s*(:)",
-      "end": ";",
       "beginCaptures": {
         "1": {
           "patterns": [
             {
-              "name": "punctuation.ada",
-              "match": ","
+              "match": ",",
+              "name": "punctuation.ada"
             },
             {
-              "name": "variable.name.ada",
-              "match": "\\b(\\w|\\d|_)+\\b"
+              "match": "\\b(\\w|\\d|_)+\\b",
+              "name": "variable.name.ada"
             }
           ]
         },
@@ -836,17 +835,19 @@
           "name": "punctuation.ada"
         }
       },
+      "end": ";",
       "endCaptures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.declaration.type.definition.record.component.ada",
       "patterns": [
         {
           "patterns": [
             {
-              "name": "keyword.operator.new.ada",
-              "match": ":="
+              "match": ":=",
+              "name": "keyword.operator.new.ada"
             },
             {
               "include": "#expression"
@@ -861,16 +862,16 @@
     "component_definition": {
       "patterns": [
         {
-          "name": "storage.visibility.ada",
-          "match": "(?i)\\baliased\\b"
+          "match": "(?i)\\baliased\\b",
+          "name": "storage.visibility.ada"
         },
         {
-          "name": "storage.modifier.ada",
-          "match": "(?i)\\brange\\b"
+          "match": "(?i)\\brange\\b",
+          "name": "storage.modifier.ada"
         },
         {
-          "name": "keyword.ada",
-          "match": "\\.\\."
+          "match": "\\.\\.",
+          "name": "keyword.ada"
         },
         {
           "include": "#access_definition"
@@ -895,7 +896,6 @@
           "include": "#aspect_clause"
         },
         {
-          "match": "(?i)\\b(null)\\s*(;)",
           "captures": {
             "1": {
               "name": "keyword.ada"
@@ -903,30 +903,30 @@
             "2": {
               "name": "punctuation.ada"
             }
-          }
+          },
+          "match": "(?i)\\b(null)\\s*(;)"
         }
       ]
     },
     "composite_constraint": {
-      "name": "meta.declaration.constraint.composite.ada",
       "begin": "\\(",
-      "end": "\\)",
       "captures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "end": "\\)",
+      "name": "meta.declaration.constraint.composite.ada",
       "patterns": [
         {
-          "name": "punctuation.ada",
-          "match": ","
+          "match": ",",
+          "name": "punctuation.ada"
         },
         {
-          "name": "keyword.ada",
-          "match": "\\.\\."
+          "match": "\\.\\.",
+          "name": "keyword.ada"
         },
         {
-          "match": "(?i)\\b((?:\\w|\\d|_)+)\\s*(=>)\\s*([^,\\)])+\\b",
           "captures": {
             "1": {
               "name": "variable.name.ada"
@@ -941,7 +941,8 @@
                 }
               ]
             }
-          }
+          },
+          "match": "(?i)\\b((?:\\w|\\d|_)+)\\s*(=>)\\s*([^,\\)])+\\b"
         },
         {
           "include": "#expression"
@@ -949,8 +950,6 @@
       ]
     },
     "decimal_literal": {
-      "name": "constant.numeric.ada",
-      "match": "\\d(?:(_)?\\d)*(?:(\\.)\\d(?:(_)?\\d)*)?([eE](?:\\+|\\-)?\\d(?:_?\\d)*)?",
       "captures": {
         "1": {
           "name": "punctuation.ada"
@@ -968,7 +967,9 @@
             }
           ]
         }
-      }
+      },
+      "match": "\\d(?:(_)?\\d)*(?:(\\.)\\d(?:(_)?\\d)*)?([eE](?:\\+|\\-)?\\d(?:_?\\d)*)?",
+      "name": "constant.numeric.ada"
     },
     "declarative_item": {
       "patterns": [
@@ -977,6 +978,25 @@
         },
         {
           "include": "#basic_declarative_item"
+        }
+      ]
+    },
+    "delay_relative_statement": {
+      "begin": "(?i)\\b(delay)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.ada"
+        }
+      },
+      "end": ";",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.ada"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#expression"
         }
       ]
     },
@@ -991,9 +1011,7 @@
       ]
     },
     "delay_until_statement": {
-      "name": "meta.statement.delay.until.ada",
       "begin": "(?i)\\b(delay)\\s+(until)\\b",
-      "end": ";",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.ada"
@@ -1002,30 +1020,13 @@
           "name": "keyword.control.ada"
         }
       },
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.ada"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#expression"
-        }
-      ]
-    },
-    "delay_relative_statement": {
-      "begin": "(?i)\\b(delay)\\b",
       "end": ";",
-      "beginCaptures": {
-        "1": {
-          "name": "keyword.control.ada"
-        }
-      },
       "endCaptures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.statement.delay.until.ada",
       "patterns": [
         {
           "include": "#expression"
@@ -1045,8 +1046,8 @@
           "end": "(?i)(?=(\\bwith\\b|;))",
           "patterns": [
             {
-              "name": "storage.modifier.ada",
-              "match": "(?i)\\band\\b"
+              "match": "(?i)\\band\\b",
+              "name": "storage.modifier.ada"
             },
             {
               "include": "#subtype_mark"
@@ -1054,12 +1055,12 @@
           ]
         },
         {
-          "name": "storage.modifier.ada",
-          "match": "(?i)\\b(abstract|and|limited|tagged)\\b"
+          "match": "(?i)\\b(abstract|and|limited|tagged)\\b",
+          "name": "storage.modifier.ada"
         },
         {
-          "name": "storage.visibility.ada",
-          "match": "(?i)\\bprivate\\b"
+          "match": "(?i)\\bprivate\\b",
+          "name": "storage.visibility.ada"
         },
         {
           "include": "#subtype_mark"
@@ -1068,17 +1069,16 @@
     },
     "discriminant_specification": {
       "begin": "(?i)\\b((?:\\w|\\d|_)+(?:\\s*,\\s*(?:\\w|\\d|_)+)?)\\s*(:)",
-      "end": "(?=(;|\\)))",
       "beginCaptures": {
         "1": {
           "patterns": [
             {
-              "name": "punctuation.ada",
-              "match": ","
+              "match": ",",
+              "name": "punctuation.ada"
             },
             {
-              "name": "variable.name.ada",
-              "match": "\\b(\\w|\\d|_)+\\b"
+              "match": "\\b(\\w|\\d|_)+\\b",
+              "name": "variable.name.ada"
             }
           ]
         },
@@ -1086,15 +1086,16 @@
           "name": "punctuation.ada"
         }
       },
+      "end": "(?=(;|\\)))",
       "patterns": [
         {
           "begin": ":=",
-          "end": "(?=(;|\\)))",
           "beginCaptures": {
             "0": {
               "name": "keyword.operator.new.ada"
             }
           },
+          "end": "(?=(;|\\)))",
           "patterns": [
             {
               "include": "#expression"
@@ -1102,7 +1103,6 @@
           ]
         },
         {
-          "match": "(?i)(not\\s+null\\s+)?((?:\\w|\\d|\\.|_)+)\\b",
           "captures": {
             "1": {
               "name": "storage.visibility.ada"
@@ -1114,7 +1114,8 @@
                 }
               ]
             }
-          }
+          },
+          "match": "(?i)(not\\s+null\\s+)?((?:\\w|\\d|\\.|_)+)\\b"
         },
         {
           "include": "#access_definition"
@@ -1123,7 +1124,6 @@
     },
     "entry_body": {
       "begin": "(?i)\\b(entry)\\s+((?:\\w|\\d|_)+)\\b",
-      "end": "(?i)\\b(end)\\s*(\\s\\2)\\s*(;)",
       "beginCaptures": {
         "1": {
           "name": "keyword.ada"
@@ -1132,6 +1132,7 @@
           "name": "entity.name.entry.ada"
         }
       },
+      "end": "(?i)\\b(end)\\s*(\\s\\2)\\s*(;)",
       "endCaptures": {
         "1": {
           "name": "keyword.ada"
@@ -1160,12 +1161,12 @@
         },
         {
           "begin": "(?i)\\bbegin\\b",
-          "end": "(?i)\\b(?=end)\\b",
           "beginCaptures": {
             "0": {
               "name": "keyword.ada"
             }
           },
+          "end": "(?i)\\b(?=end)\\b",
           "patterns": [
             {
               "include": "#statement"
@@ -1174,12 +1175,12 @@
         },
         {
           "begin": "(?i)\\bwhen\\b",
-          "end": "(?i)\\b(?=is)\\b",
           "beginCaptures": {
             "0": {
               "name": "keyword.ada"
             }
           },
+          "end": "(?i)\\b(?=is)\\b",
           "patterns": [
             {
               "include": "#expression"
@@ -1193,7 +1194,6 @@
     },
     "entry_declaration": {
       "begin": "(?i)\\b(?:(not)?\\s+(overriding)\\s+)?(entry)\\s+((?:\\w|\\d|_)+)\\b",
-      "end": ";",
       "beginCaptures": {
         "1": {
           "name": "storage.modifier.ada"
@@ -1208,6 +1208,7 @@
           "name": "entity.name.entry.ada"
         }
       },
+      "end": ";",
       "endCaptures": {
         "0": {
           "name": "punctuation.ada"
@@ -1220,27 +1221,27 @@
       ]
     },
     "enumeration_type_definition": {
-      "name": "meta.declaration.type.definition.enumeration.ada",
       "begin": "\\(",
-      "end": "\\)",
       "beginCaptures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "end": "\\)",
       "endCaptures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.declaration.type.definition.enumeration.ada",
       "patterns": [
         {
-          "name": "punctuation.ada",
-          "match": ","
+          "match": ",",
+          "name": "punctuation.ada"
         },
         {
-          "name": "variable.name.ada",
-          "match": "\\b(\\w|\\d|_)+\\b"
+          "match": "\\b(\\w|\\d|_)+\\b",
+          "name": "variable.name.ada"
         },
         {
           "include": "#comment"
@@ -1248,18 +1249,17 @@
       ]
     },
     "exception_declaration": {
-      "name": "meta.declaration.exception.ada",
       "begin": "(?i)\\b((?:\\w|\\d|_)+(?:\\s*,\\s*(?:\\w|\\d|_)+)?)\\s*(:)\\s*(exception)",
       "beginCaptures": {
         "1": {
           "patterns": [
             {
-              "name": "punctuation.ada",
-              "match": ","
+              "match": ",",
+              "name": "punctuation.ada"
             },
             {
-              "name": "entity.name.exception.ada",
-              "match": "\\b(\\w|\\d|_)+\\b"
+              "match": "\\b(\\w|\\d|_)+\\b",
+              "name": "entity.name.exception.ada"
             }
           ]
         },
@@ -1276,6 +1276,7 @@
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.declaration.exception.ada",
       "patterns": [
         {
           "match": "(?i)\\b(renames)\\s+((\\w|\\d|_|\\.)+)",
@@ -1284,28 +1285,28 @@
       ]
     },
     "exit_statement": {
-      "name": "meta.statement.exit.ada",
       "begin": "(?i)\\bexit\\b",
-      "end": ";",
       "beginCaptures": {
         "0": {
           "name": "keyword.control.ada"
         }
       },
+      "end": ";",
       "endCaptures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.statement.exit.ada",
       "patterns": [
         {
           "begin": "(?i)\\bwhen\\b",
-          "end": "(?=;)",
           "beginCaptures": {
             "0": {
               "name": "keyword.control.ada"
             }
           },
+          "end": "(?=;)",
           "patterns": [
             {
               "include": "#expression"
@@ -1319,7 +1320,6 @@
       ]
     },
     "exponent_part": {
-      "match": "([eE])(\\+|\\-)?\\d(?:(_)?\\d)*",
       "captures": {
         "1": {
           "name": "punctuation.exponent-mark.ada"
@@ -1330,7 +1330,8 @@
         "3": {
           "name": "punctuation.ada"
         }
-      }
+      },
+      "match": "([eE])(\\+|\\-)?\\d(?:(_)?\\d)*"
     },
     "expression": {
       "name": "meta.expression.ada",
@@ -1345,12 +1346,12 @@
         },
         {
           "begin": "\\(",
-          "end": "\\)",
           "captures": {
             "0": {
               "name": "punctuation.ada"
             }
           },
+          "end": "\\)",
           "patterns": [
             {
               "include": "#expression"
@@ -1388,14 +1389,13 @@
       ]
     },
     "for_loop_statement": {
-      "name": "meta.statement.loop.for.ada",
       "begin": "(?i)\\bfor\\b",
-      "end": "(?i)\\b(end)\\s+(loop)(\\s+(?:\\w|\\d|_)+)?\\s*(;)",
       "beginCaptures": {
         "0": {
           "name": "keyword.control.ada"
         }
       },
+      "end": "(?i)\\b(end)\\s+(loop)(\\s+(?:\\w|\\d|_)+)?\\s*(;)",
       "endCaptures": {
         "1": {
           "name": "keyword.control.ada"
@@ -1410,6 +1410,7 @@
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.statement.loop.for.ada",
       "patterns": [
         {
           "begin": "(?i)(?<=for)",
@@ -1421,7 +1422,6 @@
           },
           "patterns": [
             {
-              "match": "(?i)\\b((?:\\w|\\d|_)+)\\s+(in)(\\s+reverse)?\\b",
               "captures": {
                 "1": {
                   "name": "variable.name.ada"
@@ -1432,10 +1432,10 @@
                 "3": {
                   "name": "keyword.control.ada"
                 }
-              }
+              },
+              "match": "(?i)\\b((?:\\w|\\d|_)+)\\s+(in)(\\s+reverse)?\\b"
             },
             {
-              "match": "(?i)\\b((?:\\w|\\d|_)+)(?:\\s*(:)\\s*((?:\\w|\\d|\\.|_)+))?\\s+(of)(\\s+reverse)?\\b",
               "captures": {
                 "1": {
                   "name": "variable.name.ada"
@@ -1456,7 +1456,8 @@
                 "5": {
                   "name": "keyword.control.ada"
                 }
-              }
+              },
+              "match": "(?i)\\b((?:\\w|\\d|_)+)(?:\\s*(:)\\s*((?:\\w|\\d|\\.|_)+))?\\s+(of)(\\s+reverse)?\\b"
             },
             {
               "include": "#expression"
@@ -1479,9 +1480,7 @@
       ]
     },
     "function_body": {
-      "name": "meta.declaration.function.body.ada",
       "begin": "(?i)\\b(overriding\\s+)?(function)\\s+(?:((?:\\w|\\d|\\.|_)+\\b)|(\".+\"))",
-      "end": "(?i)(?:\\b(end)\\s+(\\3|\\4)\\s*)?(;)",
       "beginCaptures": {
         "1": {
           "name": "storage.visibility.ada"
@@ -1500,6 +1499,7 @@
           ]
         }
       },
+      "end": "(?i)(?:\\b(end)\\s+(\\3|\\4)\\s*)?(;)",
       "endCaptures": {
         "1": {
           "name": "keyword.ada"
@@ -1511,15 +1511,16 @@
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.declaration.function.body.ada",
       "patterns": [
         {
           "begin": "(?i)\\bbegin\\b",
-          "end": "(?i)(?=end)",
           "beginCaptures": {
             "0": {
               "name": "keyword.ada"
             }
           },
+          "end": "(?i)(?=end)",
           "patterns": [
             {
               "include": "#handled_sequence_of_statements"
@@ -1539,7 +1540,6 @@
           "include": "#parameter_profile"
         },
         {
-          "name": "meta.function.body.spec_part.ada",
           "begin": "(?i)\\bis\\b",
           "beginCaptures": {
             "0": {
@@ -1547,9 +1547,9 @@
             }
           },
           "end": "(?i)(?=(with|begin|;))",
+          "name": "meta.function.body.spec_part.ada",
           "patterns": [
             {
-              "name": "meta.declaration.package.generic.ada",
               "begin": "(?i)\\bnew\\b",
               "beginCaptures": {
                 "0": {
@@ -1557,6 +1557,7 @@
                 }
               },
               "end": "(?=;)",
+              "name": "meta.declaration.package.generic.ada",
               "patterns": [
                 {
                   "match": "((?:\\w|\\d|\\.|_)+)",
@@ -1568,13 +1569,13 @@
               ]
             },
             {
-              "name": "meta.declaration.function.abstract.ada",
-              "match": "(?i)\\babstract\\b",
               "captures": {
                 "0": {
                   "name": "storage.modifier.ada"
                 }
-              }
+              },
+              "match": "(?i)\\babstract\\b",
+              "name": "meta.declaration.function.abstract.ada"
             },
             {
               "include": "#declarative_item"
@@ -1597,29 +1598,32 @@
       ]
     },
     "goto_statement": {
-      "name": "meta.statement.goto.ada",
       "begin": "(?i)\\bgoto\\b",
-      "end": ";",
       "beginCaptures": {
         "0": {
           "name": "keyword.control.goto.ada"
         }
       },
+      "end": ";",
       "endCaptures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
-      "patterns": [{}]
+      "name": "meta.statement.goto.ada",
+      "patterns": [
+        {
+        }
+      ]
     },
     "guard": {
       "begin": "(?i)\\bwhen\\b",
-      "end": "=>",
       "beginCaptures": {
         "0": {
           "name": "keyword.control.ada"
         }
       },
+      "end": "=>",
       "endCaptures": {
         "0": {
           "name": "keyword.other.ada"
@@ -1634,7 +1638,6 @@
     "handled_sequence_of_statements": {
       "patterns": [
         {
-          "name": "meta.handler.exception.ada",
           "begin": "(?i)\\bexception\\b",
           "beginCaptures": {
             "0": {
@@ -1642,15 +1645,16 @@
             }
           },
           "end": "(?i)\\b(?=end)\\b",
+          "name": "meta.handler.exception.ada",
           "patterns": [
             {
               "begin": "(?i)\\bwhen\\b",
-              "end": "=>",
               "beginCaptures": {
                 "0": {
                   "name": "keyword.ada"
                 }
               },
+              "end": "=>",
               "endCaptures": {
                 "0": {
                   "name": "keyword.other.ada"
@@ -1658,7 +1662,6 @@
               },
               "patterns": [
                 {
-                  "match": "\\b((?:\\w|\\d|\\.|_)+)\\s*(:)",
                   "captures": {
                     "1": {
                       "name": "variable.name.ada"
@@ -1666,7 +1669,8 @@
                     "2": {
                       "name": "punctuation.ada"
                     }
-                  }
+                  },
+                  "match": "\\b((?:\\w|\\d|\\.|_)+)\\s*(:)"
                 },
                 {
                   "match": "\\|",
@@ -1693,18 +1697,17 @@
       ]
     },
     "highest_precedence_operator": {
-      "name": "keyword.operator.highest-precedence.ada",
-      "match": "(?i)(\\*\\*|\\babs\\b|\\bnot\\b)"
+      "match": "(?i)(\\*\\*|\\babs\\b|\\bnot\\b)",
+      "name": "keyword.operator.highest-precedence.ada"
     },
     "if_statement": {
-      "name": "meta.statement.if.ada",
       "begin": "(?i)\\bif\\b",
-      "end": "(?i)\\b(end)\\s+(if)\\s*(;)",
       "beginCaptures": {
         "0": {
           "name": "keyword.control.ada"
         }
       },
+      "end": "(?i)\\b(end)\\s+(if)\\s*(;)",
       "endCaptures": {
         "1": {
           "name": "keyword.control.ada"
@@ -1716,15 +1719,16 @@
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.statement.if.ada",
       "patterns": [
         {
           "begin": "(?i)\\belsif\\b",
-          "end": "(?i)(?:(?<!\\sand)\\s+(?=then))",
           "beginCaptures": {
             "0": {
               "name": "keyword.control.ada"
             }
           },
+          "end": "(?i)(?:(?<!\\sand)\\s+(?=then))",
           "patterns": [
             {
               "include": "#expression"
@@ -1733,12 +1737,12 @@
         },
         {
           "begin": "(?i)\\belse\\b",
-          "end": "(?i)(?=end)",
           "beginCaptures": {
             "0": {
               "name": "keyword.control.ada"
             }
           },
+          "end": "(?i)(?=end)",
           "patterns": [
             {
               "include": "#statement"
@@ -1761,12 +1765,12 @@
         },
         {
           "begin": "(?i)\\bthen\\b",
-          "end": "(?i)(?=(elsif|else|end))",
           "beginCaptures": {
             "0": {
               "name": "keyword.control.ada"
             }
           },
+          "end": "(?i)(?=(elsif|else|end))",
           "patterns": [
             {
               "include": "#statement"
@@ -1787,9 +1791,7 @@
       ]
     },
     "interface_type_definition": {
-      "name": "meta.declaration.type.definition.interface.ada",
       "begin": "(?i)\\b(?:(limited|task|protected|synchronized)\\s+)?(interface)",
-      "end": "(?i)(?=(with|;))",
       "beginCaptures": {
         "1": {
           "name": "storage.modifier.ada"
@@ -1798,10 +1800,12 @@
           "name": "storage.modifier.ada"
         }
       },
+      "end": "(?i)(?=(with|;))",
+      "name": "meta.declaration.type.definition.interface.ada",
       "patterns": [
         {
-          "name": "storage.modifier.ada",
-          "match": "(?i)\\band\\b"
+          "match": "(?i)\\band\\b",
+          "name": "storage.modifier.ada"
         },
         {
           "include": "#subtype_mark"
@@ -1811,56 +1815,56 @@
     "keyword": {
       "patterns": [
         {
-          "name": "keyword.ada",
-          "match": "(?i)\\b(abort|abs|accept|all|and|at|begin|body|declare|delay|end|entry|exception|function|generic|in|is|mod|new|not|null|of|or|others|out|package|pragma|procedure|range|record|rem|renames|requeue|reverse|select|separate|some|subtype|then|type|use|when|with|xor)\\b"
+          "match": "(?i)\\b(abort|abs|accept|all|and|at|begin|body|declare|delay|end|entry|exception|function|generic|in|is|mod|new|not|null|of|or|others|out|package|pragma|procedure|range|record|rem|renames|requeue|reverse|select|separate|some|subtype|then|type|use|when|with|xor)\\b",
+          "name": "keyword.ada"
         },
         {
-          "name": "keyword.control.ada",
-          "match": "(?i)\\b(case|do|else|elsif|exit|for|goto|if|loop|raise|return|terminate|until|while)\\b"
+          "match": "(?i)\\b(case|do|else|elsif|exit|for|goto|if|loop|raise|return|terminate|until|while)\\b",
+          "name": "keyword.control.ada"
         },
         {
-          "name": "storage.modifier.ada",
-          "match": "(?i)\\b(abstract|access|aliased|array|constant|delta|digits|interface|limited|protected|synchronized|tagged|task)\\b"
+          "match": "(?i)\\b(abstract|access|aliased|array|constant|delta|digits|interface|limited|protected|synchronized|tagged|task)\\b",
+          "name": "storage.modifier.ada"
         },
         {
-          "name": "storage.visibility.ada",
-          "match": "(?i)\\b(private|overriding)\\b"
+          "match": "(?i)\\b(private|overriding)\\b",
+          "name": "storage.visibility.ada"
         },
         {
-          "name": "keyword.modifier.unknown.ada",
-          "match": "<>"
+          "match": "<>",
+          "name": "keyword.modifier.unknown.ada"
         },
         {
-          "name": "keyword.operator.arithmetic.ada",
-          "match": "(\\+|-|\\*|/)"
+          "match": "(\\+|-|\\*|/)",
+          "name": "keyword.operator.arithmetic.ada"
         },
         {
-          "name": "keyword.operator.assignment.ada",
-          "match": ":="
+          "match": ":=",
+          "name": "keyword.operator.assignment.ada"
         },
         {
-          "name": "keyword.operator.logic.ada",
-          "match": "(=|/=|<|>|<=|>=)"
+          "match": "(=|/=|<|>|<=|>=)",
+          "name": "keyword.operator.logic.ada"
         },
         {
-          "name": "keyword.operator.concatenation.ada",
-          "match": "\\&"
+          "match": "\\&",
+          "name": "keyword.operator.concatenation.ada"
         }
       ]
     },
     "known_discriminant_part": {
-      "name": "meta.declaration.type.discriminant.ada",
       "begin": "\\(",
-      "end": "\\)",
       "captures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "end": "\\)",
+      "name": "meta.declaration.type.discriminant.ada",
       "patterns": [
         {
-          "name": "punctuation.ada",
-          "match": ";"
+          "match": ";",
+          "name": "punctuation.ada"
         },
         {
           "include": "#discriminant_specification"
@@ -1868,8 +1872,6 @@
       ]
     },
     "label": {
-      "name": "meta.label.ada",
-      "match": "(<<)?((?:\\w|\\d|_)+)\\s*(:[^=]|>>)",
       "captures": {
         "1": {
           "name": "punctuation.label.ada"
@@ -1880,7 +1882,9 @@
         "3": {
           "name": "punctuation.label.ada"
         }
-      }
+      },
+      "match": "(<<)?((?:\\w|\\d|_)+)\\s*(:[^=]|>>)",
+      "name": "meta.label.ada"
     },
     "library_unit": {
       "name": "meta.library.unit.ada",
@@ -1911,16 +1915,16 @@
     },
     "modular_type_definition": {
       "begin": "(?i)\\b(mod)\\b",
-      "end": "(?i)(?=(with|;))",
       "beginCaptures": {
         "1": {
           "name": "storage.modifier.ada"
         }
       },
+      "end": "(?i)(?=(with|;))",
       "patterns": [
         {
-          "name": "keyword.modifier.unknown.ada",
-          "match": "<>"
+          "match": "<>",
+          "name": "keyword.modifier.unknown.ada"
         },
         {
           "include": "#expression"
@@ -1928,12 +1932,10 @@
       ]
     },
     "multiplying_operator": {
-      "name": "keyword.operator.multiplying.ada",
-      "match": "(?i)(\\*|/|\\bmod\\b|\\brem\\b)"
+      "match": "(?i)(\\*|/|\\bmod\\b|\\brem\\b)",
+      "name": "keyword.operator.multiplying.ada"
     },
     "null_statement": {
-      "name": "meta.statement.null.ada",
-      "match": "(?i)\\b(null)\\s*(;)",
       "captures": {
         "1": {
           "name": "keyword.ada"
@@ -1941,22 +1943,22 @@
         "2": {
           "name": "punctuation.ada"
         }
-      }
+      },
+      "match": "(?i)\\b(null)\\s*(;)",
+      "name": "meta.statement.null.ada"
     },
     "object_declaration": {
-      "name": "meta.declaration.object.ada",
       "begin": "(?i)\\b((?:\\w|\\d|_)+(?:\\s*,\\s*(?:\\w|\\d|_)+)*)\\s*(:)",
-      "end": "(;)",
       "beginCaptures": {
         "1": {
           "patterns": [
             {
-              "name": "punctuation.ada",
-              "match": ","
+              "match": ",",
+              "name": "punctuation.ada"
             },
             {
-              "name": "variable.name.ada",
-              "match": "\\b(\\w|\\d|_)+\\b"
+              "match": "\\b(\\w|\\d|_)+\\b",
+              "name": "variable.name.ada"
             }
           ]
         },
@@ -1964,11 +1966,13 @@
           "name": "punctuation.ada"
         }
       },
+      "end": "(;)",
       "endCaptures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.declaration.object.ada",
       "patterns": [
         {
           "begin": "(?<=:)",
@@ -1983,12 +1987,12 @@
           },
           "patterns": [
             {
-              "name": "storage.modifier.ada",
-              "match": "(?i)\\bconstant\\b"
+              "match": "(?i)\\bconstant\\b",
+              "name": "storage.modifier.ada"
             },
             {
-              "name": "storage.visibility.ada",
-              "match": "(?i)\\baliased\\b"
+              "match": "(?i)\\baliased\\b",
+              "name": "storage.visibility.ada"
             },
             {
               "include": "#aspect_specification"
@@ -2041,9 +2045,7 @@
       ]
     },
     "package_body": {
-      "name": "meta.declaration.package.body.ada",
       "begin": "(?i)\\b(package)\\s+(body)\\s+((?:\\w|\\d|\\.|_)+)\\b",
-      "end": "(?i)\\b(end)\\s+(\\3)\\s*(;)",
       "beginCaptures": {
         "1": {
           "name": "keyword.ada"
@@ -2059,6 +2061,7 @@
           ]
         }
       },
+      "end": "(?i)\\b(end)\\s+(\\3)\\s*(;)",
       "endCaptures": {
         "1": {
           "name": "keyword.ada"
@@ -2074,6 +2077,7 @@
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.declaration.package.body.ada",
       "patterns": [
         {
           "begin": "(?i)\\bbegin\\b",
@@ -2123,13 +2127,11 @@
       ]
     },
     "package_mark": {
-      "name": "entity.name.package.ada",
-      "match": "\\b(\\w|\\d|\\.|_)+\\b"
+      "match": "\\b(\\w|\\d|\\.|_)+\\b",
+      "name": "entity.name.package.ada"
     },
     "package_specification": {
-      "name": "meta.declaration.package.specification.ada",
       "begin": "(?i)\\b(package)\\s+((?:\\w|\\d|\\.|_)+)\\b",
-      "end": "(?i)(?:\\b(end)\\s+(\\2)\\s*)?(;)",
       "beginCaptures": {
         "1": {
           "name": "keyword.ada"
@@ -2142,6 +2144,7 @@
           ]
         }
       },
+      "end": "(?i)(?:\\b(end)\\s+(\\2)\\s*)?(;)",
       "endCaptures": {
         "1": {
           "name": "keyword.ada"
@@ -2157,6 +2160,7 @@
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.declaration.package.specification.ada",
       "patterns": [
         {
           "begin": "(?i)\\bis\\b",
@@ -2168,7 +2172,6 @@
           "end": "(?=(end|;))",
           "patterns": [
             {
-              "name": "meta.declaration.package.generic.ada",
               "begin": "(?i)\\bnew\\b",
               "beginCaptures": {
                 "0": {
@@ -2176,6 +2179,7 @@
                 }
               },
               "end": "(?=;)",
+              "name": "meta.declaration.package.generic.ada",
               "patterns": [
                 {
                   "include": "#package_mark"
@@ -2205,7 +2209,6 @@
     "parameter_association": {
       "patterns": [
         {
-          "match": "((?:\\w|\\d|_)+)\\s*(=>)",
           "captures": {
             "1": {
               "name": "variable.parameter.ada"
@@ -2213,7 +2216,8 @@
             "2": {
               "name": "keyword.other.ada"
             }
-          }
+          },
+          "match": "((?:\\w|\\d|_)+)\\s*(=>)"
         },
         {
           "include": "#expression"
@@ -2222,16 +2226,16 @@
     },
     "parameter_profile": {
       "begin": "\\(",
-      "end": "\\)",
       "captures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "end": "\\)",
       "patterns": [
         {
-          "name": "punctuation.ada",
-          "match": ";"
+          "match": ";",
+          "name": "punctuation.ada"
         },
         {
           "include": "#parameter_specification"
@@ -2241,18 +2245,18 @@
     "parameter_specification": {
       "patterns": [
         {
-          "name": "meta.type.annotation.ada",
           "begin": ":(?!=)",
-          "end": "(?=[:;)])",
           "beginCaptures": {
             "0": {
               "name": "punctuation.ada"
             }
           },
+          "end": "(?=[:;)])",
+          "name": "meta.type.annotation.ada",
           "patterns": [
             {
-              "name": "keyword.ada",
-              "match": "(?i)\\b(in|out)\\b"
+              "match": "(?i)\\b(in|out)\\b",
+              "name": "keyword.ada"
             },
             {
               "include": "#subtype_mark"
@@ -2261,12 +2265,12 @@
         },
         {
           "begin": ":=",
-          "end": "(?=[:;)])",
           "beginCaptures": {
             "0": {
               "name": "keyword.operator.new.ada"
             }
           },
+          "end": "(?=[:;)])",
           "patterns": [
             {
               "include": "#expression"
@@ -2274,22 +2278,50 @@
           ]
         },
         {
-          "name": "punctuation.ada",
-          "match": ","
+          "match": ",",
+          "name": "punctuation.ada"
         },
         {
-          "name": "variable.parameter.ada",
-          "match": "\\b(?:\\w|\\d|\\.|_)+\\b"
+          "match": "\\b(?:\\w|\\d|\\.|_)+\\b",
+          "name": "variable.parameter.ada"
         },
         {
           "include": "#comment"
         }
       ]
     },
+    "positional_array_aggregate": {
+      "name": "meta.definition.array.aggregate.positional.ada",
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "keyword.ada"
+            },
+            "2": {
+              "name": "keyword.other.ada"
+            },
+            "3": {
+              "patterns": [
+                {
+                  "match": "<>",
+                  "name": "keyword.modifier.unknown.ada"
+                },
+                {
+                  "include": "#expression"
+                }
+              ]
+            }
+          },
+          "match": "(?i)\\b(others)\\s*(=>)\\s*([^,\\)]+)"
+        },
+        {
+          "include": "#expression"
+        }
+      ]
+    },
     "pragma": {
-      "name": "meta.pragma.ada",
       "begin": "(?i)\\b(pragma)\\s+((?:\\w|\\d|_)+)\\b",
-      "end": "(;)",
       "beginCaptures": {
         "1": {
           "name": "keyword.ada"
@@ -2298,11 +2330,13 @@
           "name": "keyword.control.directive.ada"
         }
       },
+      "end": "(;)",
       "endCaptures": {
         "1": {
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.pragma.ada",
       "patterns": [
         {
           "include": "#expression"
@@ -2313,7 +2347,6 @@
       "name": "meta.preprocessor.ada",
       "patterns": [
         {
-          "match": "^\\s*(#)(if|elsif)\\s+(.*)$",
           "captures": {
             "1": {
               "name": "punctuation.definition.directive.ada"
@@ -2328,10 +2361,10 @@
                 }
               ]
             }
-          }
+          },
+          "match": "^\\s*(#)(if|elsif)\\s+(.*)$"
         },
         {
-          "match": "^\\s*(#)(end if)(;)",
           "captures": {
             "1": {
               "name": "punctuation.definition.directive.ada"
@@ -2342,10 +2375,10 @@
             "3": {
               "name": "punctuation.ada"
             }
-          }
+          },
+          "match": "^\\s*(#)(end if)(;)"
         },
         {
-          "match": "^\\s*(#)(else)",
           "captures": {
             "1": {
               "name": "punctuation.definition.directive.ada"
@@ -2353,14 +2386,13 @@
             "2": {
               "name": "keyword.control.directive.conditional"
             }
-          }
+          },
+          "match": "^\\s*(#)(else)"
         }
       ]
     },
     "procedure_body": {
-      "name": "meta.declaration.procedure.body.ada",
       "begin": "(?i)\\b(overriding\\s+)?(procedure)\\s+((?:\\w|\\d|\\.|_)+)\\b",
-      "end": "(?i)(?:\\b(end)\\s+(\\3)\\s*)?(;)",
       "beginCaptures": {
         "1": {
           "name": "storage.visibility.ada"
@@ -2372,6 +2404,7 @@
           "name": "entity.name.function.ada"
         }
       },
+      "end": "(?i)(?:\\b(end)\\s+(\\3)\\s*)?(;)",
       "endCaptures": {
         "1": {
           "name": "keyword.ada"
@@ -2383,18 +2416,18 @@
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.declaration.procedure.body.ada",
       "patterns": [
         {
           "begin": "(?i)\\bis\\b",
-          "end": "(?i)(?=(with|begin|;))",
           "beginCaptures": {
             "0": {
               "name": "keyword.ada"
             }
           },
+          "end": "(?i)(?=(with|begin|;))",
           "patterns": [
             {
-              "name": "meta.declaration.package.generic.ada",
               "begin": "(?i)\\bnew\\b",
               "beginCaptures": {
                 "0": {
@@ -2402,6 +2435,7 @@
                 }
               },
               "end": "(?=;)",
+              "name": "meta.declaration.package.generic.ada",
               "patterns": [
                 {
                   "match": "((?:\\w|\\d|\\.|_)+)",
@@ -2423,12 +2457,12 @@
         },
         {
           "begin": "(?i)\\bbegin\\b",
-          "end": "(?i)(?=\\bend\\b)",
           "beginCaptures": {
             "0": {
               "name": "keyword.ada"
             }
           },
+          "end": "(?i)(?=\\bend\\b)",
           "patterns": [
             {
               "include": "#handled_sequence_of_statements"
@@ -2450,19 +2484,19 @@
       ]
     },
     "procedure_call_statement": {
-      "name": "meta.statement.call.ada",
       "begin": "(?i)\\b((?:\\w|\\d|_|\\.)+)\\b",
-      "end": ";",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function.ada"
         }
       },
+      "end": ";",
       "endCaptures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.statement.call.ada",
       "patterns": [
         {
           "include": "#attribute"
@@ -2483,9 +2517,7 @@
       ]
     },
     "protected_body": {
-      "name": "meta.declaration.procedure.body.ada",
       "begin": "(?i)\\b(protected)\\s+(body)\\s+((?:\\w|\\d|\\.|_)+)\\b",
-      "end": "(?i)(?:\\b(end)\\s*(\\s\\3)\\s*)(;)",
       "beginCaptures": {
         "1": {
           "name": "storage.modifier.ada"
@@ -2497,6 +2529,7 @@
           "name": "entity.name.body.ada"
         }
       },
+      "end": "(?i)(?:\\b(end)\\s*(\\s\\3)\\s*)(;)",
       "endCaptures": {
         "1": {
           "name": "keyword.ada"
@@ -2508,15 +2541,16 @@
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.declaration.procedure.body.ada",
       "patterns": [
         {
           "begin": "(?i)\\bis\\b",
-          "end": "(?i)\\b(?=end)\\b",
           "beginCaptures": {
             "0": {
               "name": "keyword.ada"
             }
           },
+          "end": "(?i)\\b(?=end)\\b",
           "patterns": [
             {
               "include": "#protected_operation_item"
@@ -2560,59 +2594,59 @@
         }
       ]
     },
-    "positional_array_aggregate": {
-      "name": "meta.definition.array.aggregate.positional.ada",
-      "patterns": [
-        {
-          "match": "(?i)\\b(others)\\s*(=>)\\s*([^,\\)]+)",
-          "captures": {
-            "1": {
-              "name": "keyword.ada"
-            },
-            "2": {
-              "name": "keyword.other.ada"
-            },
-            "3": {
-              "patterns": [
-                {
-                  "name": "keyword.modifier.unknown.ada",
-                  "match": "<>"
-                },
-                {
-                  "include": "#expression"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "include": "#expression"
-        }
-      ]
-    },
-    "raise_statement": {
-      "name": "meta.statement.raise.ada",
+    "raise_expression": {
       "begin": "(?i)\\braise\\b",
-      "end": ";",
       "beginCaptures": {
         "0": {
           "name": "keyword.control.ada"
         }
       },
+      "end": "(?=;)",
+      "name": "meta.expression.raise.ada",
+      "patterns": [
+        {
+          "begin": "(?i)\\bwith\\b",
+          "beginCaptures": {
+            "0": {
+              "name": "keyword.ada"
+            }
+          },
+          "end": "(?=(;|\\))",
+          "patterns": [
+            {
+              "include": "#expression"
+            }
+          ]
+        },
+        {
+          "match": "\\b(\\w|\\d|_)+\\b",
+          "name": "entity.name.exception.ada"
+        }
+      ]
+    },
+    "raise_statement": {
+      "begin": "(?i)\\braise\\b",
+      "beginCaptures": {
+        "0": {
+          "name": "keyword.control.ada"
+        }
+      },
+      "end": ";",
       "endCaptures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.statement.raise.ada",
       "patterns": [
         {
           "begin": "(?i)\\bwith\\b",
-          "end": "(?=;)",
           "beginCaptures": {
             "0": {
               "name": "keyword.control.ada"
             }
           },
+          "end": "(?=;)",
           "patterns": [
             {
               "include": "#expression"
@@ -2620,90 +2654,30 @@
           ]
         },
         {
-          "name": "entity.name.exception.ada",
-          "match": "\\b(\\w|\\d|\\.|_)+\\b"
-        }
-      ]
-    },
-    "raise_expression": {
-      "name": "meta.expression.raise.ada",
-      "begin": "(?i)\\braise\\b",
-      "end": "(?=;)",
-      "beginCaptures": {
-        "0": {
-          "name": "keyword.control.ada"
-        }
-      },
-      "patterns": [
-        {
-          "begin": "(?i)\\bwith\\b",
-          "end": "(?=(;|\\))",
-          "beginCaptures": {
-            "0": {
-              "name": "keyword.ada"
-            }
-          },
-          "patterns": [
-            {
-              "include": "#expression"
-            }
-          ]
-        },
-        {
-          "name": "entity.name.exception.ada",
-          "match": "\\b(\\w|\\d|_)+\\b"
+          "match": "\\b(\\w|\\d|\\.|_)+\\b",
+          "name": "entity.name.exception.ada"
         }
       ]
     },
     "range_constraint": {
       "begin": "(?i)\\brange\\b",
-      "end": "(?=(\\bwith\\b|;))",
       "beginCaptures": {
         "0": {
           "name": "storage.modifier.ada"
         }
       },
+      "end": "(?=(\\bwith\\b|;))",
       "patterns": [
         {
-          "name": "keyword.ada",
-          "match": "\\.\\."
+          "match": "\\.\\.",
+          "name": "keyword.ada"
         },
         {
-          "name": "keyword.modifier.unknown.ada",
-          "match": "<>"
+          "match": "<>",
+          "name": "keyword.modifier.unknown.ada"
         },
         {
           "include": "#expression"
-        }
-      ]
-    },
-    "relational_operator": {
-      "name": "keyword.operator.relational.ada",
-      "match": "(=|/=|<|<=|>|>=)"
-    },
-    "record_representation_clause": {
-      "name": "meta.aspect.clause.record.representation.ada",
-      "begin": "(?i)\\b(record)\\b",
-      "end": "(?i)\\b(end)\\s+(record)\\b",
-      "beginCaptures": {
-        "1": {
-          "name": "storage.modifier.ada"
-        }
-      },
-      "endCaptures": {
-        "1": {
-          "name": "keyword.ada"
-        },
-        "2": {
-          "name": "storage.modifier.ada"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#component_clause"
-        },
-        {
-          "include": "#comment"
         }
       ]
     },
@@ -2715,11 +2689,35 @@
         }
       ]
     },
+    "record_representation_clause": {
+      "begin": "(?i)\\b(record)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.modifier.ada"
+        }
+      },
+      "end": "(?i)\\b(end)\\s+(record)\\b",
+      "endCaptures": {
+        "1": {
+          "name": "keyword.ada"
+        },
+        "2": {
+          "name": "storage.modifier.ada"
+        }
+      },
+      "name": "meta.aspect.clause.record.representation.ada",
+      "patterns": [
+        {
+          "include": "#component_clause"
+        },
+        {
+          "include": "#comment"
+        }
+      ]
+    },
     "record_type_definition": {
       "patterns": [
         {
-          "name": "meta.declaration.type.definition.record.null.ada",
-          "match": "(?i)\\b(?:(abstract)\\s+)?(?:(tagged)\\s+)?(?:(limited)\\s+)?(null)\\s+(record)\\b",
           "captures": {
             "1": {
               "name": "storage.modifier.ada"
@@ -2737,6 +2735,8 @@
               "name": "storage.modifier.ada"
             }
           },
+          "match": "(?i)\\b(?:(abstract)\\s+)?(?:(tagged)\\s+)?(?:(limited)\\s+)?(null)\\s+(record)\\b",
+          "name": "meta.declaration.type.definition.record.null.ada",
           "patterns": [
             {
               "include": "#component_item"
@@ -2744,9 +2744,7 @@
           ]
         },
         {
-          "name": "meta.declaration.type.definition.record.ada",
           "begin": "(?i)\\b(?:(abstract)\\s+)?(?:(tagged)\\s+)?(?:(limited)\\s+)?(record)\\b",
-          "end": "(?i)\\b(end)\\s+(record)\\b",
           "beginCaptures": {
             "1": {
               "name": "storage.modifier.ada"
@@ -2761,6 +2759,7 @@
               "name": "storage.modifier.ada"
             }
           },
+          "end": "(?i)\\b(end)\\s+(record)\\b",
           "endCaptures": {
             "1": {
               "name": "keyword.ada"
@@ -2769,6 +2768,7 @@
               "name": "storage.modifier.ada"
             }
           },
+          "name": "meta.declaration.type.definition.record.ada",
           "patterns": [
             {
               "include": "#component_item"
@@ -2778,28 +2778,28 @@
       ]
     },
     "regular_type_declaration": {
-      "name": "meta.declaration.type.definition.regular.ada",
       "begin": "(?i)\\b(type)\\b",
-      "end": ";",
       "beginCaptures": {
         "1": {
           "name": "keyword.ada"
         }
       },
+      "end": ";",
       "endCaptures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.declaration.type.definition.regular.ada",
       "patterns": [
         {
           "begin": "(?i)\\bis\\b",
-          "end": "(?i)(?=(with(?!\\s+(private))|;))",
           "beginCaptures": {
             "0": {
               "name": "keyword.ada"
             }
           },
+          "end": "(?i)(?=(with(?!\\s+(private))|;))",
           "patterns": [
             {
               "include": "#type_definition"
@@ -2823,39 +2823,43 @@
         }
       ]
     },
+    "relational_operator": {
+      "match": "(=|/=|<|<=|>|>=)",
+      "name": "keyword.operator.relational.ada"
+    },
     "requeue_statement": {
-      "name": "meta.statement.requeue.ada",
       "begin": "(?i)\\brequeue\\b",
-      "end": ";",
       "beginCaptures": {
         "0": {
           "name": "keyword.control.ada"
         }
       },
+      "end": ";",
       "endCaptures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.statement.requeue.ada",
       "patterns": [
         {
-          "name": "keyword.control.ada",
-          "match": "(?i)\\b(with|abort)\\b"
+          "match": "(?i)\\b(with|abort)\\b",
+          "name": "keyword.control.ada"
         },
         {
-          "name": "entity.name.function.ada",
-          "match": "\\b(\\w|\\d|\\.|_)+\\b"
+          "match": "\\b(\\w|\\d|\\.|_)+\\b",
+          "name": "entity.name.function.ada"
         }
       ]
     },
     "result_profile": {
       "begin": "(?i)\\breturn\\b",
-      "end": "(?=(is|with|renames|;))",
       "beginCaptures": {
         "0": {
           "name": "keyword.ada"
         }
       },
+      "end": "(?=(is|with|renames|;))",
       "patterns": [
         {
           "include": "#subtype_mark"
@@ -2863,28 +2867,28 @@
       ]
     },
     "return_statement": {
-      "name": "meta.statement.return.ada",
       "begin": "(?i)\\breturn\\b",
-      "end": ";",
       "beginCaptures": {
         "0": {
           "name": "keyword.control.ada"
         }
       },
+      "end": ";",
       "endCaptures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.statement.return.ada",
       "patterns": [
         {
           "begin": "(?i)\\bdo\\b",
-          "end": "(?i)\\b(end)\\s+(return)\\s*(?=;)",
           "beginCaptures": {
             "0": {
               "name": "keyword.control.ada"
             }
           },
+          "end": "(?i)\\b(end)\\s+(return)\\s*(?=;)",
           "endCaptures": {
             "1": {
               "name": "keyword.control.ada"
@@ -2903,7 +2907,6 @@
           ]
         },
         {
-          "match": "\\b((?:\\w|\\d|_)+)\\s*(:)\\s*((?:\\w|\\d|\\.|_)+)\\b",
           "captures": {
             "1": {
               "name": "variable.name.ada"
@@ -2914,7 +2917,8 @@
             "3": {
               "name": "entity.name.type.ada"
             }
-          }
+          },
+          "match": "\\b((?:\\w|\\d|_)+)\\s*(:)\\s*((?:\\w|\\d|\\.|_)+)\\b"
         },
         {
           "match": ":=",
@@ -2930,12 +2934,12 @@
       "patterns": [
         {
           "begin": "(?i)\\b(digits|delta)\\b",
-          "end": "(?i)(?=\\brange\\b|\\bdigits\\b|\\bwith\\b|;)",
           "beginCaptures": {
             "1": {
               "name": "storage.modifier.ada"
             }
           },
+          "end": "(?i)(?=\\brange\\b|\\bdigits\\b|\\bwith\\b|;)",
           "patterns": [
             {
               "include": "#expression"
@@ -2954,12 +2958,12 @@
       "patterns": [
         {
           "begin": "(?i)\\bterminate\\b",
-          "end": ";",
           "beginCaptures": {
             "0": {
               "name": "keyword.control.ada"
             }
           },
+          "end": ";",
           "endCaptures": {
             "0": {
               "name": "punctuation.ada"
@@ -2972,14 +2976,13 @@
       ]
     },
     "select_statement": {
-      "name": "meta.statement.select.ada",
       "begin": "(?i)\\bselect\\b",
-      "end": "(?i)\\b(end)\\s+(select)\\b",
       "beginCaptures": {
         "0": {
           "name": "keyword.control.ada"
         }
       },
+      "end": "(?i)\\b(end)\\s+(select)\\b",
       "endCaptures": {
         "1": {
           "name": "keyword.control.ada"
@@ -2988,15 +2991,16 @@
           "name": "keyword.control.ada"
         }
       },
+      "name": "meta.statement.select.ada",
       "patterns": [
         {
           "begin": "(?i)\\b(?:(or)|(?<=select))\\b",
-          "end": "(?i)\\b(?=(or|else|end))\\b",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.ada"
             }
           },
+          "end": "(?i)\\b(?=(or|else|end))\\b",
           "patterns": [
             {
               "include": "#guard"
@@ -3008,12 +3012,12 @@
         },
         {
           "begin": "(?i)\\belse\\b",
-          "end": "(?i)\\b(?=end)\\b",
           "beginCaptures": {
             "0": {
               "name": "keyword.control.ada"
             }
           },
+          "end": "(?i)\\b(?=end)\\b",
           "patterns": [
             {
               "include": "#statement"
@@ -3030,14 +3034,13 @@
       ]
     },
     "simple_loop_statement": {
-      "name": "meta.statement.loop.ada",
       "begin": "(?i)\\bloop\\b",
-      "end": "(?i)\\b(end)\\s+(loop)(\\s+(?:\\w|\\d|_)+)?\\s*(;)",
       "beginCaptures": {
         "0": {
           "name": "keyword.control.ada"
         }
       },
+      "end": "(?i)\\b(end)\\s+(loop)(\\s+(?:\\w|\\d|_)+)?\\s*(;)",
       "endCaptures": {
         "1": {
           "name": "keyword.control.ada"
@@ -3052,6 +3055,7 @@
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.statement.loop.ada",
       "patterns": [
         {
           "include": "#statement"
@@ -3059,9 +3063,7 @@
       ]
     },
     "single_protected_declaration": {
-      "name": "meta.declaration.protected.ada",
       "begin": "(?i)\\b(protected)\\s+((?:\\w|\\d|_)+)\\b",
-      "end": "(?i)(?:\\b(end)\\s*(\\s\\2)?\\s*)?(;)",
       "beginCaptures": {
         "1": {
           "name": "keyword.ada"
@@ -3070,6 +3072,7 @@
           "name": "entity.name.protected.ada"
         }
       },
+      "end": "(?i)(?:\\b(end)\\s*(\\s\\2)?\\s*)?(;)",
       "endCaptures": {
         "1": {
           "name": "keyword.ada"
@@ -3081,24 +3084,25 @@
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.declaration.protected.ada",
       "patterns": [
         {
           "begin": "(?i)\\bis\\b",
-          "end": "(?i)(?=(\\bend\\b|;))",
           "beginCaptures": {
             "0": {
               "name": "keyword.ada"
             }
           },
+          "end": "(?i)(?=(\\bend\\b|;))",
           "patterns": [
             {
               "begin": "(?i)\\bnew\\b",
-              "end": "(?i)\\bwith\\b",
               "captures": {
                 "0": {
                   "name": "keyword.ada"
                 }
               },
+              "end": "(?i)\\bwith\\b",
               "patterns": [
                 {
                   "match": "(?i)\\band\\b",
@@ -3131,7 +3135,6 @@
     },
     "single_task_declaration": {
       "begin": "(?i)\\b(task)\\s+((?:\\w|\\d|_)+)\\b",
-      "end": "(?i)(?:\\b(end)\\s*(\\s\\2)?\\s*)?(;)",
       "beginCaptures": {
         "1": {
           "name": "keyword.ada"
@@ -3140,6 +3143,7 @@
           "name": "entity.name.task.ada"
         }
       },
+      "end": "(?i)(?:\\b(end)\\s*(\\s\\2)?\\s*)?(;)",
       "endCaptures": {
         "1": {
           "name": "keyword.ada"
@@ -3163,12 +3167,12 @@
           "patterns": [
             {
               "begin": "(?i)\\bnew\\b",
-              "end": "(?i)\\bwith\\b",
               "captures": {
                 "0": {
                   "name": "keyword.ada"
                 }
               },
+              "end": "(?i)\\bwith\\b",
               "patterns": [
                 {
                   "match": "(?i)\\band\\b",
@@ -3203,12 +3207,12 @@
       "patterns": [
         {
           "begin": "(?i)\\bbegin\\b",
-          "end": "(?i)\\b(end)\\s*(;)",
           "beginCaptures": {
             "0": {
               "name": "keyword.ada"
             }
           },
+          "end": "(?i)\\b(end)\\s*(;)",
           "endCaptures": {
             "1": {
               "name": "keyword.ada"
@@ -3283,8 +3287,6 @@
       ]
     },
     "string_literal": {
-      "name": "string.quoted.double.ada",
-      "match": "(\").*?(\")",
       "captures": {
         "1": {
           "name": "punctuation.definition.string.ada"
@@ -3292,7 +3294,9 @@
         "2": {
           "name": "punctuation.definition.string.ada"
         }
-      }
+      },
+      "match": "(\").*?(\")",
+      "name": "string.quoted.double.ada"
     },
     "subprogram_body": {
       "name": "meta.declaration.subprogram.body.ada",
@@ -3307,12 +3311,12 @@
     },
     "subprogram_renaming_declaration": {
       "begin": "(?i)\\brenames\\b",
-      "end": "(?=(with|;))",
       "beginCaptures": {
         "0": {
           "name": "keyword.ada"
         }
       },
+      "end": "(?=(with|;))",
       "patterns": [
         {
           "match": "(?:\\w|\\d|_|\\.)+",
@@ -3332,19 +3336,19 @@
       ]
     },
     "subtype_declaration": {
-      "name": "meta.declaration.subtype.ada",
       "begin": "(?i)\\bsubtype\\b",
-      "end": ";",
       "beginCaptures": {
         "0": {
           "name": "keyword.ada"
         }
       },
+      "end": ";",
       "endCaptures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.declaration.subtype.ada",
       "patterns": [
         {
           "begin": "(?i)\\bis\\b",
@@ -3356,8 +3360,8 @@
           "end": "(?=;)",
           "patterns": [
             {
-              "name": "storage.modifier.ada",
-              "match": "(?i)\\b(not\\s+null)\\b"
+              "match": "(?i)\\b(not\\s+null)\\b",
+              "name": "storage.modifier.ada"
             },
             {
               "include": "#composite_constraint"
@@ -3395,8 +3399,8 @@
     "subtype_mark": {
       "patterns": [
         {
-          "name": "storage.visibility.ada",
-          "match": "(?i)\\b(access|aliased|not\\s+null|constant)\\b"
+          "match": "(?i)\\b(access|aliased|not\\s+null|constant)\\b",
+          "name": "storage.visibility.ada"
         },
         {
           "include": "#attribute"
@@ -3418,12 +3422,12 @@
             },
             {
               "begin": "(?i)\\breturn\\b",
-              "end": "(?=(;|\\)))",
               "beginCaptures": {
                 "0": {
                   "name": "keyword.ada"
                 }
               },
+              "end": "(?=(;|\\)))",
               "patterns": [
                 {
                   "include": "#subtype_mark"
@@ -3433,18 +3437,18 @@
           ]
         },
         {
-          "name": "entity.name.type.ada",
-          "match": "\\b(?:\\w|\\d|\\.|_)+\\b",
           "captures": {
             "0": {
               "patterns": [
                 {
-                  "name": "punctuation.ada",
-                  "match": "[_.]"
+                  "match": "[_.]",
+                  "name": "punctuation.ada"
                 }
               ]
             }
-          }
+          },
+          "match": "\\b(?:\\w|\\d|\\.|_)+\\b",
+          "name": "entity.name.type.ada"
         },
         {
           "include": "#comment"
@@ -3452,9 +3456,7 @@
       ]
     },
     "task_body": {
-      "name": "meta.declaration.task.body.ada",
       "begin": "(?i)\\b(task)\\s+(body)\\s+((\\w|\\d|\\.|_)+)\\b",
-      "end": "(?i)(?:\\b(end)\\s*(?:\\s(\\3))?\\s*)?(;)",
       "beginCaptures": {
         "1": {
           "name": "keyword.ada"
@@ -3466,6 +3468,7 @@
           "name": "entity.name.task.ada"
         }
       },
+      "end": "(?i)(?:\\b(end)\\s*(?:\\s(\\3))?\\s*)?(;)",
       "endCaptures": {
         "1": {
           "name": "keyword.ada"
@@ -3477,15 +3480,16 @@
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.declaration.task.body.ada",
       "patterns": [
         {
           "begin": "(?i)\\bbegin\\b",
-          "end": "(?i)(?=end)",
           "beginCaptures": {
             "0": {
               "name": "keyword.ada"
             }
           },
+          "end": "(?i)(?=end)",
           "patterns": [
             {
               "include": "#handled_sequence_of_statements"
@@ -3522,9 +3526,7 @@
       ]
     },
     "task_type_declaration": {
-      "name": "meta.declaration.type.task.ada",
       "begin": "(?i)\\b(task)\\s+(type)\\s+((\\w|\\d|\\.|_)+)\\b",
-      "end": "(?i)(?:\\b(end)\\s*(?:\\s(\\3))?\\s*)?(;)",
       "beginCaptures": {
         "1": {
           "name": "storage.modifier.ada"
@@ -3536,6 +3538,7 @@
           "name": "entity.name.task.ada"
         }
       },
+      "end": "(?i)(?:\\b(end)\\s*(?:\\s(\\3))?\\s*)?(;)",
       "endCaptures": {
         "1": {
           "name": "keyword.ada"
@@ -3547,6 +3550,7 @@
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.declaration.type.task.ada",
       "patterns": [
         {
           "include": "#known_discriminant_part"
@@ -3562,12 +3566,12 @@
           "patterns": [
             {
               "begin": "(?i)\\bnew\\b",
-              "end": "(?i)\\bwith\\b",
               "captures": {
                 "0": {
                   "name": "keyword.ada"
                 }
               },
+              "end": "(?i)\\bwith\\b",
               "patterns": [
                 {
                   "match": "(?i)\\band\\b",
@@ -3647,23 +3651,23 @@
       ]
     },
     "use_package_clause": {
-      "name": "meta.context.use.package.ada",
       "begin": "(?i)\\buse\\b",
-      "end": ";",
       "beginCaptures": {
         "0": {
           "name": "keyword.other.using.ada"
         }
       },
+      "end": ";",
       "endCaptures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.context.use.package.ada",
       "patterns": [
         {
-          "name": "punctuation.ada",
-          "match": ","
+          "match": ",",
+          "name": "punctuation.ada"
         },
         {
           "include": "#package_mark"
@@ -3671,9 +3675,7 @@
       ]
     },
     "use_type_clause": {
-      "name": "meta.context.use.type.ada",
       "begin": "(?i)\\b(use)\\s+(?:(all)\\s+)?(type)\\b",
-      "end": ";",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.using.ada"
@@ -3685,15 +3687,17 @@
           "name": "keyword.modifier.ada"
         }
       },
+      "end": ";",
       "endCaptures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.context.use.type.ada",
       "patterns": [
         {
-          "name": "punctuation.ada",
-          "match": ","
+          "match": ",",
+          "name": "punctuation.ada"
         },
         {
           "include": "#subtype_mark"
@@ -3717,14 +3721,13 @@
       ]
     },
     "variant_part": {
-      "name": "meta.declaration.variant.ada",
       "begin": "(?i)\\bcase\\b",
-      "end": "(?i)\\b(end)\\s+(case);",
       "beginCaptures": {
         "0": {
           "name": "keyword.ada"
         }
       },
+      "end": "(?i)\\b(end)\\s+(case);",
       "endCaptures": {
         "1": {
           "name": "keyword.ada"
@@ -3736,6 +3739,7 @@
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.declaration.variant.ada",
       "patterns": [
         {
           "begin": "(?i)\\b(?<=case)\\b",
@@ -3761,12 +3765,12 @@
           "patterns": [
             {
               "begin": "(?i)\\bwhen\\b",
-              "end": "=>",
               "beginCaptures": {
                 "0": {
                   "name": "keyword.ada"
                 }
               },
+              "end": "=>",
               "endCaptures": {
                 "0": {
                   "name": "keyword.other.ada"
@@ -3794,14 +3798,13 @@
       ]
     },
     "while_loop_statement": {
-      "name": "meta.statement.loop.while.ada",
       "begin": "(?i)\\bwhile\\b",
-      "end": "(?i)\\b(end)\\s+(loop)(\\s+(?:\\w|\\d|_)+)?\\s*(;)",
       "beginCaptures": {
         "0": {
           "name": "keyword.control.ada"
         }
       },
+      "end": "(?i)\\b(end)\\s+(loop)(\\s+(?:\\w|\\d|_)+)?\\s*(;)",
       "endCaptures": {
         "1": {
           "name": "keyword.control.ada"
@@ -3816,6 +3819,7 @@
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.statement.loop.while.ada",
       "patterns": [
         {
           "begin": "(?i)(?<=while)\\b",
@@ -3837,9 +3841,7 @@
       ]
     },
     "with_clause": {
-      "name": "meta.context.with.ada",
       "begin": "(?i)\\b(?:(limited)\\s+)?(?:(private)\\s+)?(with)\\b",
-      "end": ";",
       "beginCaptures": {
         "1": {
           "name": "keyword.modifier.ada"
@@ -3851,15 +3853,17 @@
           "name": "keyword.other.using.ada"
         }
       },
+      "end": ";",
       "endCaptures": {
         "0": {
           "name": "punctuation.ada"
         }
       },
+      "name": "meta.context.with.ada",
       "patterns": [
         {
-          "name": "punctuation.ada",
-          "match": ","
+          "match": ",",
+          "name": "punctuation.ada"
         },
         {
           "include": "#package_mark"

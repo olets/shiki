@@ -1,8 +1,10 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "displayName": "Bicep",
+  "fileTypes": [
+    ".bicep"
+  ],
   "name": "bicep",
-  "scopeName": "source.bicep",
-  "fileTypes": [".bicep"],
   "patterns": [
     {
       "include": "#expression"
@@ -13,9 +15,9 @@
   ],
   "repository": {
     "array-literal": {
-      "name": "meta.array-literal.bicep",
       "begin": "\\[(?!(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*\\bfor\\b)",
       "end": "]",
+      "name": "meta.array-literal.bicep",
       "patterns": [
         {
           "include": "#expression"
@@ -26,9 +28,9 @@
       ]
     },
     "block-comment": {
-      "name": "comment.block.bicep",
       "begin": "/\\*",
-      "end": "\\*/"
+      "end": "\\*/",
+      "name": "comment.block.bicep"
     },
     "comments": {
       "patterns": [
@@ -41,9 +43,9 @@
       ]
     },
     "decorator": {
-      "name": "meta.decorator.bicep",
       "begin": "@(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*(?=\\b[_$[:alpha:]][_$[:alnum:]]*\\b)",
       "end": "",
+      "name": "meta.decorator.bicep",
       "patterns": [
         {
           "include": "#expression"
@@ -54,9 +56,9 @@
       ]
     },
     "directive": {
-      "name": "meta.directive.bicep",
       "begin": "#\\b[_a-zA-Z-0-9]+\\b",
       "end": "$",
+      "name": "meta.directive.bicep",
       "patterns": [
         {
           "include": "#directive-variable"
@@ -67,12 +69,12 @@
       ]
     },
     "directive-variable": {
-      "name": "keyword.control.declaration.bicep",
-      "match": "\\b[_a-zA-Z-0-9]+\\b"
+      "match": "\\b[_a-zA-Z-0-9]+\\b",
+      "name": "keyword.control.declaration.bicep"
     },
     "escape-character": {
-      "name": "constant.character.escape.bicep",
-      "match": "\\\\(u{[0-9A-Fa-f]+}|n|r|t|\\\\|'|\\${)"
+      "match": "\\\\(u{[0-9A-Fa-f]+}|n|r|t|\\\\|'|\\${)",
+      "name": "constant.character.escape.bicep"
     },
     "expression": {
       "patterns": [
@@ -115,7 +117,6 @@
       ]
     },
     "function-call": {
-      "name": "meta.function-call.bicep",
       "begin": "(\\b[_$[:alpha:]][_$[:alnum:]]*\\b)(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*\\(",
       "beginCaptures": {
         "1": {
@@ -123,6 +124,7 @@
         }
       },
       "end": "\\)",
+      "name": "meta.function-call.bicep",
       "patterns": [
         {
           "include": "#expression"
@@ -133,15 +135,14 @@
       ]
     },
     "identifier": {
-      "name": "variable.other.readwrite.bicep",
-      "match": "\\b[_$[:alpha:]][_$[:alnum:]]*\\b(?!(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*\\()"
+      "match": "\\b[_$[:alpha:]][_$[:alnum:]]*\\b(?!(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*\\()",
+      "name": "variable.other.readwrite.bicep"
     },
     "keyword": {
-      "name": "keyword.control.declaration.bicep",
-      "match": "\\b(metadata|targetScope|resource|module|param|var|output|for|in|if|existing|import|as|type|with|using|func|assert|provider)\\b"
+      "match": "\\b(metadata|targetScope|resource|module|param|var|output|for|in|if|existing|import|as|type|with|using|extends|func|assert|extension)\\b",
+      "name": "keyword.control.declaration.bicep"
     },
     "lambda-start": {
-      "name": "meta.lambda-start.bicep",
       "begin": "(\\((?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*\\b[_$[:alpha:]][_$[:alnum:]]*\\b(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*(,(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*\\b[_$[:alpha:]][_$[:alnum:]]*\\b(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*)*\\)|\\((?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*\\)|(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*\\b[_$[:alpha:]][_$[:alnum:]]*\\b(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*)(?=(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*=>)",
       "beginCaptures": {
         "1": {
@@ -156,24 +157,25 @@
           ]
         }
       },
-      "end": "(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*=>"
+      "end": "(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*=>",
+      "name": "meta.lambda-start.bicep"
     },
     "line-comment": {
-      "name": "comment.line.double-slash.bicep",
-      "match": "//.*(?=$)"
+      "match": "//.*(?=$)",
+      "name": "comment.line.double-slash.bicep"
     },
     "named-literal": {
-      "name": "constant.language.bicep",
-      "match": "\\b(true|false|null)\\b"
+      "match": "\\b(true|false|null)\\b",
+      "name": "constant.language.bicep"
     },
     "numeric-literal": {
-      "name": "constant.numeric.bicep",
-      "match": "[0-9]+"
+      "match": "[0-9]+",
+      "name": "constant.numeric.bicep"
     },
     "object-literal": {
-      "name": "meta.object-literal.bicep",
       "begin": "{",
       "end": "}",
+      "name": "meta.object-literal.bicep",
       "patterns": [
         {
           "include": "#object-property-key"
@@ -187,13 +189,13 @@
       ]
     },
     "object-property-key": {
-      "name": "variable.other.property.bicep",
-      "match": "\\b[_$[:alpha:]][_$[:alnum:]]*\\b(?=(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*:)"
+      "match": "\\b[_$[:alpha:]][_$[:alnum:]]*\\b(?=(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*:)",
+      "name": "variable.other.property.bicep"
     },
     "string-literal": {
-      "name": "string.quoted.single.bicep",
       "begin": "'(?!'')",
       "end": "'",
+      "name": "string.quoted.single.bicep",
       "patterns": [
         {
           "include": "#escape-character"
@@ -204,7 +206,6 @@
       ]
     },
     "string-literal-subst": {
-      "name": "meta.string-literal-subst.bicep",
       "begin": "(?<!\\\\)(\\${)",
       "beginCaptures": {
         "1": {
@@ -217,6 +218,7 @@
           "name": "punctuation.definition.template-expression.end.bicep"
         }
       },
+      "name": "meta.string-literal-subst.bicep",
       "patterns": [
         {
           "include": "#expression"
@@ -227,10 +229,12 @@
       ]
     },
     "string-verbatim": {
-      "name": "string.quoted.multi.bicep",
       "begin": "'''",
-      "end": "'''",
-      "patterns": []
+      "end": "'''(?!')",
+      "name": "string.quoted.multi.bicep",
+      "patterns": [
+      ]
     }
-  }
+  },
+  "scopeName": "source.bicep"
 }

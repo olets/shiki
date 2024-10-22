@@ -1,12 +1,18 @@
 {
-  "information_for_contributors": [
-    "This file has been converted from https://github.com/textmate/yaml.tmbundle/blob/master/Syntaxes/YAML.tmLanguage",
-    "If you want to provide a fix or improvement, please create a pull request against the original repository.",
-    "Once accepted there, we are happy to receive an update request."
+  "displayName": "YAML",
+  "fileTypes": [
+    "yaml",
+    "yml",
+    "rviz",
+    "reek",
+    "clang-format",
+    "yaml-tmlanguage",
+    "syntax",
+    "sublime-syntax"
   ],
-  "version": "https://github.com/textmate/yaml.tmbundle/commit/e54ceae3b719506dba7e481a77cea4a8b576ae46",
+  "firstLineMatch": "^%YAML( ?1.\\d+)?",
+  "keyEquivalent": "^~Y",
   "name": "yaml",
-  "scopeName": "source.yaml",
   "patterns": [
     {
       "include": "#comment"
@@ -617,5 +623,7 @@
         }
       ]
     }
-  }
+  },
+  "scopeName": "source.yaml",
+  "uuid": "686AD6AE-33F3-4493-9512-9E9FC1D5417F"
 }

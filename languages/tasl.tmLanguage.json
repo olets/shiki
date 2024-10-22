@@ -1,8 +1,10 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-  "scopeName": "source.tasl",
+  "displayName": "Tasl",
+  "fileTypes": [
+    "tasl"
+  ],
   "name": "tasl",
-  "fileTypes": ["tasl"],
   "patterns": [
     {
       "include": "#comment"
@@ -21,48 +23,6 @@
     }
   ],
   "repository": {
-    "comment": {
-      "match": "(#).*$",
-      "name": "comment.line.number-sign.tasl",
-      "captures": {
-        "1": {
-          "name": "punctuation.definition.comment.tasl"
-        }
-      }
-    },
-    "namespace": {
-      "match": "(?:^\\s*)(namespace)\\b(.*)",
-      "captures": {
-        "1": {
-          "name": "keyword.control.tasl.namespace"
-        },
-        "2": {
-          "patterns": [
-            {
-              "include": "#namespaceURI"
-            },
-            {
-              "match": "[a-zA-Z][a-zA-Z0-9]*\\b",
-              "name": "entity.name"
-            }
-          ]
-        }
-      }
-    },
-    "type": {
-      "begin": "(?:^\\s*)(type)\\b",
-      "beginCaptures": {
-        "1": {
-          "name": "keyword.control.tasl.type"
-        }
-      },
-      "end": "$",
-      "patterns": [
-        {
-          "include": "#expression"
-        }
-      ]
-    },
     "class": {
       "begin": "(?:^\\s*)(class)\\b",
       "beginCaptures": {
@@ -82,6 +42,58 @@
           "include": "#expression"
         }
       ]
+    },
+    "comment": {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.comment.tasl"
+        }
+      },
+      "match": "(#).*$",
+      "name": "comment.line.number-sign.tasl"
+    },
+    "component": {
+      "begin": "->",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.separator.tasl.component"
+        }
+      },
+      "end": "$",
+      "patterns": [
+        {
+          "include": "#expression"
+        }
+      ]
+    },
+    "coproduct": {
+      "begin": "\\[",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.block.tasl.coproduct"
+        }
+      },
+      "end": "\\]",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.block.tasl.coproduct"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#term"
+        },
+        {
+          "include": "#option"
+        }
+      ]
+    },
+    "datatype": {
+      "match": "[a-zA-Z][a-zA-Z0-9]*:(?:[A-Za-z0-9\\-._~!$&'()*+,;=:@/?]|%[0-9A-Fa-f]{2})+",
+      "name": "string.regexp"
     },
     "edge": {
       "begin": "(?:^\\s*)(edge)\\b",
@@ -144,6 +156,18 @@
         }
       ]
     },
+    "identifier": {
+      "captures": {
+        "1": {
+          "name": "variable"
+        }
+      },
+      "match": "([a-zA-Z][a-zA-Z0-9]*)\\b"
+    },
+    "key": {
+      "match": "[a-zA-Z][a-zA-Z0-9]*:(?:[A-Za-z0-9\\-._~!$&'()*+,;=:@/?]|%[0-9A-Fa-f]{2})+",
+      "name": "markup.bold entity.name.class"
+    },
     "literal": {
       "patterns": [
         {
@@ -151,9 +175,56 @@
         }
       ]
     },
-    "uri": {
-      "match": "<>",
-      "name": "variable.other.constant"
+    "namespace": {
+      "captures": {
+        "1": {
+          "name": "keyword.control.tasl.namespace"
+        },
+        "2": {
+          "patterns": [
+            {
+              "include": "#namespaceURI"
+            },
+            {
+              "match": "[a-zA-Z][a-zA-Z0-9]*\\b",
+              "name": "entity.name"
+            }
+          ]
+        }
+      },
+      "match": "(?:^\\s*)(namespace)\\b(.*)"
+    },
+    "namespaceURI": {
+      "match": "[a-z]+:[a-zA-Z0-9-._~:\\/?#\\[\\]@!$&'()*+,;%=]+",
+      "name": "markup.underline.link"
+    },
+    "option": {
+      "begin": "<-",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.separator.tasl.option"
+        }
+      },
+      "end": "$",
+      "patterns": [
+        {
+          "include": "#expression"
+        }
+      ]
+    },
+    "optional": {
+      "begin": "\\?",
+      "beginCaptures": {
+        "0": {
+          "name": "keyword.operator"
+        }
+      },
+      "end": "$",
+      "patterns": [
+        {
+          "include": "#expression"
+        }
+      ]
     },
     "product": {
       "begin": "{",
@@ -180,61 +251,7 @@
         }
       ]
     },
-    "component": {
-      "begin": "->",
-      "end": "$",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.separator.tasl.component"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#expression"
-        }
-      ]
-    },
-    "coproduct": {
-      "begin": "\\[",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.block.tasl.coproduct"
-        }
-      },
-      "end": "\\]",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.block.tasl.coproduct"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#comment"
-        },
-        {
-          "include": "#term"
-        },
-        {
-          "include": "#option"
-        }
-      ]
-    },
-    "option": {
-      "begin": "<-",
-      "end": "$",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.separator.tasl.option"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#expression"
-        }
-      ]
-    },
     "reference": {
-      "match": "(\\*)\\s*(.*)",
       "captures": {
         "1": {
           "name": "markup.bold keyword.operator"
@@ -246,21 +263,18 @@
             }
           ]
         }
-      }
+      },
+      "match": "(\\*)\\s*(.*)"
     },
-    "identifier": {
-      "match": "([a-zA-Z][a-zA-Z0-9]*)\\b",
-      "captures": {
-        "1": {
-          "name": "variable"
-        }
-      }
+    "term": {
+      "match": "[a-zA-Z][a-zA-Z0-9]*:(?:[A-Za-z0-9\\-._~!$&'()*+,;=:@/?]|%[0-9A-Fa-f]{2})+",
+      "name": "entity.other.tasl.key"
     },
-    "optional": {
-      "begin": "\\?",
+    "type": {
+      "begin": "(?:^\\s*)(type)\\b",
       "beginCaptures": {
-        "0": {
-          "name": "keyword.operator"
+        "1": {
+          "name": "keyword.control.tasl.type"
         }
       },
       "end": "$",
@@ -270,21 +284,10 @@
         }
       ]
     },
-    "namespaceURI": {
-      "match": "[a-z]+:[a-zA-Z0-9-._~:\\/?#\\[\\]@!$&'()*+,;%=]+",
-      "name": "markup.underline.link"
-    },
-    "key": {
-      "match": "[a-zA-Z][a-zA-Z0-9]*:(?:[A-Za-z0-9\\-._~!$&'()*+,;=:@/?]|%[0-9A-Fa-f]{2})+",
-      "name": "markup.bold entity.name.class"
-    },
-    "datatype": {
-      "match": "[a-zA-Z][a-zA-Z0-9]*:(?:[A-Za-z0-9\\-._~!$&'()*+,;=:@/?]|%[0-9A-Fa-f]{2})+",
-      "name": "string.regexp"
-    },
-    "term": {
-      "match": "[a-zA-Z][a-zA-Z0-9]*:(?:[A-Za-z0-9\\-._~!$&'()*+,;=:@/?]|%[0-9A-Fa-f]{2})+",
-      "name": "entity.other.tasl.key"
+    "uri": {
+      "match": "<>",
+      "name": "variable.other.constant"
     }
-  }
+  },
+  "scopeName": "source.tasl"
 }

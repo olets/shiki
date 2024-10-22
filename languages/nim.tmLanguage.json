@@ -1,5 +1,8 @@
 {
-  "fileTypes": ["nim"],
+  "displayName": "Nim",
+  "fileTypes": [
+    "nim"
+  ],
   "keyEquivalent": "^~N",
   "name": "nim",
   "patterns": [
@@ -122,8 +125,6 @@
       "match": "\\b\\s*(\\*)(?:\\s*(?=[,:])|\\s+(?=[=]))"
     },
     {
-      "comment": "Export qualifier following a type def.",
-      "match": "\\b([A-Z]\\w+)(\\*)",
       "captures": {
         "1": {
           "name": "support.type.nim"
@@ -131,7 +132,9 @@
         "2": {
           "name": "keyword.control.export"
         }
-      }
+      },
+      "comment": "Export qualifier following a type def.",
+      "match": "\\b([A-Z]\\w+)(\\*)"
     },
     {
       "include": "#string_literal"
@@ -297,12 +300,12 @@
           ]
         },
         {
-          "match": "\\b([[:alpha:]]\\w*)(?=\\.?\\}|,)",
           "captures": {
             "1": {
               "name": "meta.preprocessor.pragma.nim"
             }
-          }
+          },
+          "match": "\\b([[:alpha:]]\\w*)(?=\\.?\\}|,)"
         },
         {
           "begin": "\\b([[:alpha:]]\\w*)(\"\"\")",
@@ -1022,24 +1025,6 @@
     }
   ],
   "repository": {
-    "multilinecomment": {
-      "begin": "#\\[",
-      "end": "\\]#",
-      "patterns": [
-        {
-          "include": "#multilinecomment"
-        }
-      ]
-    },
-    "multilinedoccomment": {
-      "begin": "##\\[",
-      "end": "\\]##",
-      "patterns": [
-        {
-          "include": "#multilinedoccomment"
-        }
-      ]
-    },
     "char_escapes": {
       "patterns": [
         {
@@ -1096,32 +1081,70 @@
         }
       ]
     },
-    "string_escapes": {
+    "extended_string_quoted_double_raw": {
+      "begin": "\\b(\\w+)(\")",
+      "beginCaptures": {
+        "1": {
+          "name": "support.function.any-method.nim"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.nim"
+        }
+      },
+      "end": "\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.nim"
+        }
+      },
+      "name": "string.quoted.double.raw.nim",
       "patterns": [
         {
-          "match": "\\\\[pP]",
-          "name": "constant.character.escape.newline.nim"
-        },
-        {
-          "match": "\\\\[uU]\\h\\h\\h\\h",
-          "name": "constant.character.escape.hex.nim"
-        },
-        {
-          "match": "\\\\[uU]\\{\\h+\\}",
-          "name": "constant.character.escape.hex.nim"
-        },
-        {
-          "include": "#char_escapes"
+          "include": "#raw_string_escapes"
         }
       ]
     },
-    "raw_string_escapes": {
-      "match": "[^\"](\"\")",
-      "captures": {
+    "extended_string_quoted_triple_raw": {
+      "begin": "\\b(\\w+)(\"\"\")",
+      "beginCaptures": {
         "1": {
-          "name": "constant.character.escape.double-quote.nim"
+          "name": "support.function.any-method.nim"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.nim"
         }
-      }
+      },
+      "end": "\"\"\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.nim"
+        }
+      },
+      "name": "string.quoted.triple.raw.nim"
+    },
+    "float_literal": {
+      "patterns": [
+        {
+          "match": "\\b\\d[_\\d]*((\\.\\d[_\\d]*([eE][\\+\\-]?\\d[_\\d]*)?)|([eE][\\+\\-]?\\d[_\\d]*))('([fF](32|64|128)|[fFdD]))?",
+          "name": "constant.numeric.float.decimal.nim"
+        },
+        {
+          "match": "\\b0[xX]\\h[_\\h]*'([fF](32|64|128)|[fFdD])",
+          "name": "constant.numeric.float.hexadecimal.nim"
+        },
+        {
+          "match": "\\b0o[0-7][_0-7]*'([fF](32|64|128)|[fFdD])",
+          "name": "constant.numeric.float.octal.nim"
+        },
+        {
+          "match": "\\b0(b|B)[01][_01]*'([fF](32|64|128)|[fFdD])",
+          "name": "constant.numeric.float.binary.nim"
+        },
+        {
+          "match": "\\b(\\d[_\\d]*)'([fF](32|64|128)|[fFdD])",
+          "name": "constant.numeric.float.decimal.nim"
+        }
+      ]
     },
     "fmt_interpolation": {
       "begin": "\\{",
@@ -1136,6 +1159,7 @@
           "name": "punctuation.definition.template-expression.end.nim"
         }
       },
+      "name": "meta.template.expression.nim",
       "patterns": [
         {
           "begin": ":",
@@ -1144,47 +1168,6 @@
         },
         {
           "include": "source.nim"
-        }
-      ],
-      "name": "meta.template.expression.nim"
-    },
-    "string_literal": {
-      "patterns": [
-        {
-          "include": "#fmt_string_triple"
-        },
-        {
-          "include": "#fmt_string_triple_operator"
-        },
-        {
-          "include": "#extended_string_quoted_triple_raw"
-        },
-        {
-          "include": "#string_quoted_triple_raw"
-        },
-        {
-          "include": "#fmt_string_operator"
-        },
-        {
-          "include": "#fmt_string"
-        },
-        {
-          "include": "#fmt_string_call"
-        },
-        {
-          "include": "#string_quoted_double_raw"
-        },
-        {
-          "include": "#extended_string_quoted_double_raw"
-        },
-        {
-          "include": "#string_quoted_single"
-        },
-        {
-          "include": "#string_quoted_triple"
-        },
-        {
-          "include": "#string_quoted_double"
         }
       ]
     },
@@ -1213,82 +1196,6 @@
         {
           "include": "#raw_string_escapes"
         },
-        {
-          "include": "#fmt_interpolation"
-        }
-      ]
-    },
-    "fmt_string_triple": {
-      "begin": "\\b(fmt)(\"\"\")",
-      "beginCaptures": {
-        "1": {
-          "name": "support.function.any-method.nim"
-        },
-        "2": {
-          "name": "punctuation.definition.string.begin.nim"
-        }
-      },
-      "end": "\"\"\"",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.end.nim"
-        }
-      },
-      "name": "string.quoted.triple.raw.nim",
-      "patterns": [
-        {
-          "include": "#fmt_interpolation"
-        }
-      ]
-    },
-    "fmt_string_operator": {
-      "begin": "(&)(\")",
-      "beginCaptures": {
-        "1": {
-          "name": "keyword.operator.nim"
-        },
-        "2": {
-          "name": "punctuation.definition.string.begin.nim"
-        }
-      },
-      "end": "\"",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.end.nim"
-        }
-      },
-      "name": "string.quoted.double.nim",
-      "patterns": [
-        {
-          "match": "\"",
-          "name": "invalid.illegal.nim"
-        },
-        {
-          "include": "#string_escapes"
-        },
-        {
-          "include": "#fmt_interpolation"
-        }
-      ]
-    },
-    "fmt_string_triple_operator": {
-      "begin": "(&)(\"\"\")",
-      "beginCaptures": {
-        "1": {
-          "name": "keyword.operator.nim"
-        },
-        "2": {
-          "name": "punctuation.definition.string.begin.nim"
-        }
-      },
-      "end": "\"\"\"",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.end.nim"
-        }
-      },
-      "name": "string.quoted.triple.raw.nim",
-      "patterns": [
         {
           "include": "#fmt_interpolation"
         }
@@ -1332,6 +1239,187 @@
         }
       ]
     },
+    "fmt_string_operator": {
+      "begin": "(&)(\")",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.operator.nim"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.nim"
+        }
+      },
+      "end": "\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.nim"
+        }
+      },
+      "name": "string.quoted.double.nim",
+      "patterns": [
+        {
+          "match": "\"",
+          "name": "invalid.illegal.nim"
+        },
+        {
+          "include": "#string_escapes"
+        },
+        {
+          "include": "#fmt_interpolation"
+        }
+      ]
+    },
+    "fmt_string_triple": {
+      "begin": "\\b(fmt)(\"\"\")",
+      "beginCaptures": {
+        "1": {
+          "name": "support.function.any-method.nim"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.nim"
+        }
+      },
+      "end": "\"\"\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.nim"
+        }
+      },
+      "name": "string.quoted.triple.raw.nim",
+      "patterns": [
+        {
+          "include": "#fmt_interpolation"
+        }
+      ]
+    },
+    "fmt_string_triple_operator": {
+      "begin": "(&)(\"\"\")",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.operator.nim"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.nim"
+        }
+      },
+      "end": "\"\"\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.nim"
+        }
+      },
+      "name": "string.quoted.triple.raw.nim",
+      "patterns": [
+        {
+          "include": "#fmt_interpolation"
+        }
+      ]
+    },
+    "integer_literal": {
+      "patterns": [
+        {
+          "match": "\\b(0[xX]\\h[_\\h]*)('(([iIuU](8|16|32|64))|[uU]))?",
+          "name": "constant.numeric.integer.hexadecimal.nim"
+        },
+        {
+          "match": "\\b(0o[0-7][_0-7]*)('(([iIuU](8|16|32|64))|[uU]))?",
+          "name": "constant.numeric.integer.octal.nim"
+        },
+        {
+          "match": "\\b(0(b|B)[01][_01]*)('(([iIuU](8|16|32|64))|[uU]))?",
+          "name": "constant.numeric.integer.binary.nim"
+        },
+        {
+          "match": "\\b(\\d[_\\d]*)('(([iIuU](8|16|32|64))|[uU]))?",
+          "name": "constant.numeric.integer.decimal.nim"
+        }
+      ]
+    },
+    "multilinecomment": {
+      "begin": "#\\[",
+      "end": "\\]#",
+      "patterns": [
+        {
+          "include": "#multilinecomment"
+        }
+      ]
+    },
+    "multilinedoccomment": {
+      "begin": "##\\[",
+      "end": "\\]##",
+      "patterns": [
+        {
+          "include": "#multilinedoccomment"
+        }
+      ]
+    },
+    "raw_string_escapes": {
+      "captures": {
+        "1": {
+          "name": "constant.character.escape.double-quote.nim"
+        }
+      },
+      "match": "[^\"](\"\")"
+    },
+    "string_escapes": {
+      "patterns": [
+        {
+          "match": "\\\\[pP]",
+          "name": "constant.character.escape.newline.nim"
+        },
+        {
+          "match": "\\\\[uU]\\h\\h\\h\\h",
+          "name": "constant.character.escape.hex.nim"
+        },
+        {
+          "match": "\\\\[uU]\\{\\h+\\}",
+          "name": "constant.character.escape.hex.nim"
+        },
+        {
+          "include": "#char_escapes"
+        }
+      ]
+    },
+    "string_literal": {
+      "patterns": [
+        {
+          "include": "#fmt_string_triple"
+        },
+        {
+          "include": "#fmt_string_triple_operator"
+        },
+        {
+          "include": "#extended_string_quoted_triple_raw"
+        },
+        {
+          "include": "#string_quoted_triple_raw"
+        },
+        {
+          "include": "#fmt_string_operator"
+        },
+        {
+          "include": "#fmt_string"
+        },
+        {
+          "include": "#fmt_string_call"
+        },
+        {
+          "include": "#string_quoted_double_raw"
+        },
+        {
+          "include": "#extended_string_quoted_double_raw"
+        },
+        {
+          "include": "#string_quoted_single"
+        },
+        {
+          "include": "#string_quoted_triple"
+        },
+        {
+          "include": "#string_quoted_double"
+        }
+      ]
+    },
     "string_quoted_double": {
       "begin": "\"",
       "beginCaptures": {
@@ -1357,29 +1445,6 @@
       "begin": "\\br\"",
       "beginCaptures": {
         "0": {
-          "name": "punctuation.definition.string.begin.nim"
-        }
-      },
-      "end": "\"",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.end.nim"
-        }
-      },
-      "name": "string.quoted.double.raw.nim",
-      "patterns": [
-        {
-          "include": "#raw_string_escapes"
-        }
-      ]
-    },
-    "extended_string_quoted_double_raw": {
-      "begin": "\\b(\\w+)(\")",
-      "beginCaptures": {
-        "1": {
-          "name": "support.function.any-method.nim"
-        },
-        "2": {
           "name": "punctuation.definition.string.begin.nim"
         }
       },
@@ -1452,68 +1517,6 @@
         }
       },
       "name": "string.quoted.triple.raw.nim"
-    },
-    "extended_string_quoted_triple_raw": {
-      "begin": "\\b(\\w+)(\"\"\")",
-      "beginCaptures": {
-        "1": {
-          "name": "support.function.any-method.nim"
-        },
-        "2": {
-          "name": "punctuation.definition.string.begin.nim"
-        }
-      },
-      "end": "\"\"\"",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.end.nim"
-        }
-      },
-      "name": "string.quoted.triple.raw.nim"
-    },
-    "float_literal": {
-      "patterns": [
-        {
-          "match": "\\b\\d[_\\d]*((\\.\\d[_\\d]*([eE][\\+\\-]?\\d[_\\d]*)?)|([eE][\\+\\-]?\\d[_\\d]*))('([fF](32|64|128)|[fFdD]))?",
-          "name": "constant.numeric.float.decimal.nim"
-        },
-        {
-          "match": "\\b0[xX]\\h[_\\h]*'([fF](32|64|128)|[fFdD])",
-          "name": "constant.numeric.float.hexadecimal.nim"
-        },
-        {
-          "match": "\\b0o[0-7][_0-7]*'([fF](32|64|128)|[fFdD])",
-          "name": "constant.numeric.float.octal.nim"
-        },
-        {
-          "match": "\\b0(b|B)[01][_01]*'([fF](32|64|128)|[fFdD])",
-          "name": "constant.numeric.float.binary.nim"
-        },
-        {
-          "match": "\\b(\\d[_\\d]*)'([fF](32|64|128)|[fFdD])",
-          "name": "constant.numeric.float.decimal.nim"
-        }
-      ]
-    },
-    "integer_literal": {
-      "patterns": [
-        {
-          "match": "\\b(0[xX]\\h[_\\h]*)('(([iIuU](8|16|32|64))|[uU]))?",
-          "name": "constant.numeric.integer.hexadecimal.nim"
-        },
-        {
-          "match": "\\b(0o[0-7][_0-7]*)('(([iIuU](8|16|32|64))|[uU]))?",
-          "name": "constant.numeric.integer.octal.nim"
-        },
-        {
-          "match": "\\b(0(b|B)[01][_01]*)('(([iIuU](8|16|32|64))|[uU]))?",
-          "name": "constant.numeric.integer.binary.nim"
-        },
-        {
-          "match": "\\b(\\d[_\\d]*)('(([iIuU](8|16|32|64))|[uU]))?",
-          "name": "constant.numeric.integer.decimal.nim"
-        }
-      ]
     }
   },
   "scopeName": "source.nim",

@@ -1,9 +1,9 @@
 {
-  "name": "jinja",
-  "scopeName": "source.jinja",
   "comment": "Jinja Templates",
+  "displayName": "Jinja",
   "foldingStartMarker": "({%\\s*(block|filter|for|if|macro|raw))",
   "foldingStopMarker": "({%\\s*(endblock|endfilter|endfor|endif|endmacro|endraw)\\s*%})",
+  "name": "jinja",
   "patterns": [
     {
       "begin": "({%)\\s*(raw)\\s*(%})",
@@ -295,6 +295,12 @@
         "1": {
           "name": "constant.character.escape.newline.jinja"
         },
+        "10": {
+          "name": "constant.character.escape.tab.jinja"
+        },
+        "11": {
+          "name": "constant.character.escape.vertical-tab.jinja"
+        },
         "2": {
           "name": "constant.character.escape.backlash.jinja"
         },
@@ -318,12 +324,6 @@
         },
         "9": {
           "name": "constant.character.escape.return.jinja"
-        },
-        "10": {
-          "name": "constant.character.escape.tab.jinja"
-        },
-        "11": {
-          "name": "constant.character.escape.vertical-tab.jinja"
         }
       },
       "match": "(\\\\\\n)|(\\\\\\\\)|(\\\\\\\")|(\\\\')|(\\\\a)|(\\\\b)|(\\\\f)|(\\\\n)|(\\\\r)|(\\\\t)|(\\\\v)"
@@ -341,5 +341,6 @@
         }
       ]
     }
-  }
+  },
+  "scopeName": "source.jinja"
 }

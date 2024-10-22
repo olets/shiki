@@ -1,5 +1,9 @@
 {
-  "fileTypes": ["v", "vh"],
+  "displayName": "Verilog",
+  "fileTypes": [
+    "v",
+    "vh"
+  ],
   "keyEquivalent": "^~V",
   "name": "verilog",
   "patterns": [

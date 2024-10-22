@@ -1,12 +1,11 @@
 {
+  "displayName": "Clojure",
   "information_for_contributors": [
     "This file has been converted from https://github.com/atom/language-clojure/blob/master/grammars/clojure.cson",
     "If you want to provide a fix or improvement, please create a pull request against the original repository.",
     "Once accepted there, we are happy to receive an update request."
   ],
-  "version": "https://github.com/atom/language-clojure/commit/45bdb881501d0b8f8b707ca1d3fcc8b4b99fca03",
   "name": "clojure",
-  "scopeName": "source.clojure",
   "patterns": [
     {
       "include": "#comment"
@@ -111,9 +110,9 @@
         }
       ]
     },
-    "keyword": {
-      "match": "(?<=(\\s|\\(|\\[|\\{)):[\\w\\#\\.\\-\\_\\:\\+\\=\\>\\<\\/\\!\\?\\*]+(?=(\\s|\\)|\\]|\\}|\\,))",
-      "name": "constant.keyword.clojure"
+    "dynamic-variables": {
+      "match": "\\*[\\w\\.\\-\\_\\:\\+\\=\\>\\<\\!\\?\\d]+\\*",
+      "name": "meta.symbol.dynamic.clojure"
     },
     "keyfn": {
       "patterns": [
@@ -127,9 +126,9 @@
         }
       ]
     },
-    "dynamic-variables": {
-      "match": "\\*[\\w\\.\\-\\_\\:\\+\\=\\>\\<\\!\\?\\d]+\\*",
-      "name": "meta.symbol.dynamic.clojure"
+    "keyword": {
+      "match": "(?<=(\\s|\\(|\\[|\\{)):[\\w\\#\\.\\-\\_\\:\\+\\=\\>\\<\\/\\!\\?\\*]+(?=(\\s|\\)|\\]|\\}|\\,))",
+      "name": "constant.keyword.clojure"
     },
     "map": {
       "begin": "(\\{)",
@@ -191,6 +190,18 @@
               "include": "$self"
             }
           ]
+        }
+      ]
+    },
+    "namespace-symbol": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "meta.symbol.namespace.clojure"
+            }
+          },
+          "match": "([\\p{L}\\.\\-\\_\\+\\=\\>\\<\\!\\?\\*][\\w\\.\\-\\_\\:\\+\\=\\>\\<\\!\\?\\*\\d]*)/"
         }
       ]
     },
@@ -332,12 +343,12 @@
           "include": "#sexp"
         },
         {
-          "match": "(?<=\\()(.+?)(?=\\s|\\))",
           "captures": {
             "1": {
               "name": "entity.name.function.clojure"
             }
           },
+          "match": "(?<=\\()(.+?)(?=\\s|\\))",
           "patterns": [
             {
               "include": "$self"
@@ -380,18 +391,6 @@
         }
       ]
     },
-    "namespace-symbol": {
-      "patterns": [
-        {
-          "match": "([\\p{L}\\.\\-\\_\\+\\=\\>\\<\\!\\?\\*][\\w\\.\\-\\_\\:\\+\\=\\>\\<\\!\\?\\*\\d]*)/",
-          "captures": {
-            "1": {
-              "name": "meta.symbol.namespace.clojure"
-            }
-          }
-        }
-      ]
-    },
     "symbol": {
       "patterns": [
         {
@@ -427,5 +426,7 @@
         }
       ]
     }
-  }
+  },
+  "scopeName": "source.clojure",
+  "version": "https://github.com/atom/language-clojure/commit/45bdb881501d0b8f8b707ca1d3fcc8b4b99fca03"
 }

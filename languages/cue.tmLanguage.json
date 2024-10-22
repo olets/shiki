@@ -1,8 +1,10 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "displayName": "CUE",
+  "fileTypes": [
+    "cue"
+  ],
   "name": "cue",
-  "fileTypes": ["cue"],
-  "scopeName": "source.cue",
   "patterns": [
     {
       "include": "#whitespace"
@@ -11,7 +13,6 @@
       "include": "#comment"
     },
     {
-      "match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(package)[ \\t]+([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*)(?![\\p{L}\\p{Nd}_\\$\\#])",
       "captures": {
         "1": {
           "name": "keyword.other.package"
@@ -19,7 +20,8 @@
         "2": {
           "name": "entity.name.namespace"
         }
-      }
+      },
+      "match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(package)[ \\t]+([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*)(?![\\p{L}\\p{Nd}_\\$\\#])"
     },
     {
       "patterns": [
@@ -39,6 +41,7 @@
               "name": "punctuation.section.parens.end"
             }
           },
+          "name": "meta.imports",
           "patterns": [
             {
               "include": "#whitespace"
@@ -47,7 +50,6 @@
               "include": "#comment"
             },
             {
-              "match": "(?:([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*)[ \\t]+)?(\")([^:\"]+)(?:(:)([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*))?(\")",
               "captures": {
                 "1": {
                   "name": "entity.name.namespace"
@@ -68,6 +70,7 @@
                   "name": "punctuation.definition.string.end"
                 }
               },
+              "match": "(?:([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*)[ \\t]+)?(\")([^:\"]+)(?:(:)([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*))?(\")",
               "name": "meta.import-spec"
             },
             {
@@ -77,11 +80,9 @@
             {
               "include": "#invalid_in_parens"
             }
-          ],
-          "name": "meta.imports"
+          ]
         },
         {
-          "match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(import)[ \\t]+(?:([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*)[ \\t]+)?(\")([^:\"]+)(?:(:)([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*))?(\")",
           "captures": {
             "1": {
               "name": "keyword.other.import"
@@ -105,6 +106,7 @@
               "name": "punctuation.definition.string.end"
             }
           },
+          "match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(import)[ \\t]+(?:([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*)[ \\t]+)?(\")([^:\"]+)(?:(:)([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*))?(\")",
           "name": "meta.import"
         }
       ]
@@ -187,21 +189,21 @@
     "comment": {
       "patterns": [
         {
-          "match": "(//).*$\\n?",
           "captures": {
             "1": {
               "name": "punctuation.definition.comment"
             }
           },
+          "match": "(//).*$\\n?",
           "name": "comment.line"
         },
         {
+          "begin": "/\\*",
           "captures": {
             "0": {
               "name": "punctuation.definition.comment"
             }
           },
-          "begin": "/\\*",
           "end": "\\*/",
           "name": "comment.block"
         }
@@ -228,6 +230,7 @@
               "name": "punctuation.attribute-elements.end"
             }
           },
+          "name": "meta.annotation",
           "patterns": [
             {
               "include": "#punctuation_comma"
@@ -235,8 +238,7 @@
             {
               "include": "#attribute_element"
             }
-          ],
-          "name": "meta.annotation"
+          ]
         },
         {
           "match": "(?<!:)::(?!:)",
@@ -267,7 +269,6 @@
         {
           "patterns": [
             {
-              "match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(for)[ \\t]+([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)(?:[ \\t]*(,)[ \\t]*([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+))?[ \\t]+(in)(?![\\p{L}\\p{Nd}_\\$\\#])",
               "captures": {
                 "1": {
                   "name": "keyword.control.for"
@@ -284,14 +285,14 @@
                 "5": {
                   "name": "keyword.control.in"
                 }
-              }
+              },
+              "match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(for)[ \\t]+([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)(?:[ \\t]*(,)[ \\t]*([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+))?[ \\t]+(in)(?![\\p{L}\\p{Nd}_\\$\\#])"
             },
             {
               "match": "(?<![\\p{L}\\p{Nd}_\\$\\#])if(?![\\p{L}\\p{Nd}_\\$\\#])",
               "name": "keyword.control.conditional"
             },
             {
-              "match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(let)[ \\t]+([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)[ \\t]*(=)(?![=])",
               "captures": {
                 "1": {
                   "name": "keyword.control.let"
@@ -302,7 +303,8 @@
                 "3": {
                   "name": "punctuation.bind"
                 }
-              }
+              },
+              "match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(let)[ \\t]+([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)[ \\t]*(=)(?![=])"
             }
           ]
         },
@@ -331,7 +333,6 @@
           ]
         },
         {
-          "match": "(?<!\\.)(\\.)([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)(?![\\p{L}\\p{Nd}_\\$\\#])",
           "captures": {
             "1": {
               "name": "punctuation.accessor"
@@ -339,7 +340,8 @@
             "2": {
               "name": "variable.other.member"
             }
-          }
+          },
+          "match": "(?<!\\.)(\\.)([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)(?![\\p{L}\\p{Nd}_\\$\\#])"
         },
         {
           "patterns": [
@@ -436,6 +438,7 @@
                       "name": "punctuation.section.parens.end"
                     }
                   },
+                  "name": "meta.function-call",
                   "patterns": [
                     {
                       "include": "#whitespace"
@@ -452,8 +455,7 @@
                     {
                       "include": "#invalid_in_parens"
                     }
-                  ],
-                  "name": "meta.function-call"
+                  ]
                 },
                 {
                   "begin": "(?<![\\p{L}\\p{Nd}_\\$\\#])([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*)(\\.)(\\p{Lu}[\\p{L}\\p{Nd}_\\$\\#]*)(\\()",
@@ -477,6 +479,7 @@
                       "name": "punctuation.section.parens.end"
                     }
                   },
+                  "name": "meta.function-call",
                   "patterns": [
                     {
                       "include": "#whitespace"
@@ -493,8 +496,7 @@
                     {
                       "include": "#invalid_in_parens"
                     }
-                  ],
-                  "name": "meta.function-call"
+                  ]
                 }
               ]
             },
@@ -515,6 +517,7 @@
                   "name": "punctuation.definition.struct.end"
                 }
               },
+              "name": "meta.struct",
               "patterns": [
                 {
                   "include": "#whitespace"
@@ -534,8 +537,7 @@
                 {
                   "include": "#invalid_in_braces"
                 }
-              ],
-              "name": "meta.struct"
+              ]
             },
             {
               "begin": "\\[",
@@ -550,6 +552,7 @@
                   "name": "punctuation.section.brackets.end"
                 }
               },
+              "name": "meta.brackets",
               "patterns": [
                 {
                   "include": "#whitespace"
@@ -567,7 +570,6 @@
                   "include": "#punctuation_ellipsis"
                 },
                 {
-                  "match": "([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)[ \\t]*(=)",
                   "captures": {
                     "1": {
                       "name": "variable.other"
@@ -575,7 +577,8 @@
                     "2": {
                       "name": "punctuation.alias"
                     }
-                  }
+                  },
+                  "match": "([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)[ \\t]*(=)"
                 },
                 {
                   "include": "#expression"
@@ -584,8 +587,7 @@
                   "match": "[^\\]]+",
                   "name": "invalid"
                 }
-              ],
-              "name": "meta.brackets"
+              ]
             },
             {
               "begin": "\\(",
@@ -600,6 +602,7 @@
                   "name": "punctuation.section.parens.end"
                 }
               },
+              "name": "meta.parens",
               "patterns": [
                 {
                   "include": "#whitespace"
@@ -616,8 +619,7 @@
                 {
                   "include": "#invalid_in_parens"
                 }
-              ],
-              "name": "meta.parens"
+              ]
             }
           ]
         }
@@ -652,13 +654,14 @@
               "name": "punctuation.definition.string.begin"
             }
           },
+          "contentName": "string.quoted.double-multiline",
           "end": "\"\"\"#",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.string.end"
             }
           },
-          "contentName": "string.quoted.double-multiline",
+          "name": "meta.string",
           "patterns": [
             {
               "match": "\\\\#(?:\"\"\"|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
@@ -675,13 +678,14 @@
                   "name": "punctuation.section.interpolation.begin"
                 }
               },
+              "contentName": "source.cue.embedded",
               "end": "\\)",
               "endCaptures": {
                 "0": {
                   "name": "punctuation.section.interpolation.end"
                 }
               },
-              "contentName": "source.cue.embedded",
+              "name": "meta.interpolation",
               "patterns": [
                 {
                   "include": "#whitespace"
@@ -692,15 +696,13 @@
                 {
                   "include": "#invalid_in_parens"
                 }
-              ],
-              "name": "meta.interpolation"
+              ]
             },
             {
               "match": "\\\\#.",
               "name": "invalid.illegal"
             }
-          ],
-          "name": "meta.string"
+          ]
         },
         {
           "begin": "#\"",
@@ -709,13 +711,14 @@
               "name": "punctuation.definition.string.begin"
             }
           },
+          "contentName": "string.quoted.double",
           "end": "\"#",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.string.end"
             }
           },
-          "contentName": "string.quoted.double",
+          "name": "meta.string",
           "patterns": [
             {
               "match": "\\\\#(?:\"|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
@@ -732,13 +735,14 @@
                   "name": "punctuation.section.interpolation.begin"
                 }
               },
+              "contentName": "source.cue.embedded",
               "end": "\\)",
               "endCaptures": {
                 "0": {
                   "name": "punctuation.section.interpolation.end"
                 }
               },
-              "contentName": "source.cue.embedded",
+              "name": "meta.interpolation",
               "patterns": [
                 {
                   "include": "#whitespace"
@@ -749,15 +753,13 @@
                 {
                   "include": "#invalid_in_parens"
                 }
-              ],
-              "name": "meta.interpolation"
+              ]
             },
             {
               "match": "\\\\#.",
               "name": "invalid.illegal"
             }
-          ],
-          "name": "meta.string"
+          ]
         },
         {
           "begin": "#'''",
@@ -766,13 +768,14 @@
               "name": "punctuation.definition.string.begin"
             }
           },
+          "contentName": "string.quoted.single-multiline",
           "end": "'''#",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.string.end"
             }
           },
-          "contentName": "string.quoted.single-multiline",
+          "name": "meta.string",
           "patterns": [
             {
               "match": "\\\\#(?:'''|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
@@ -789,13 +792,14 @@
                   "name": "punctuation.section.interpolation.begin"
                 }
               },
+              "contentName": "source.cue.embedded",
               "end": "\\)",
               "endCaptures": {
                 "0": {
                   "name": "punctuation.section.interpolation.end"
                 }
               },
-              "contentName": "source.cue.embedded",
+              "name": "meta.interpolation",
               "patterns": [
                 {
                   "include": "#whitespace"
@@ -806,15 +810,13 @@
                 {
                   "include": "#invalid_in_parens"
                 }
-              ],
-              "name": "meta.interpolation"
+              ]
             },
             {
               "match": "\\\\#.",
               "name": "invalid.illegal"
             }
-          ],
-          "name": "meta.string"
+          ]
         },
         {
           "begin": "#'",
@@ -823,13 +825,14 @@
               "name": "punctuation.definition.string.begin"
             }
           },
+          "contentName": "string.quoted.single",
           "end": "'#",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.string.end"
             }
           },
-          "contentName": "string.quoted.single",
+          "name": "meta.string",
           "patterns": [
             {
               "match": "\\\\#(?:'|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
@@ -846,13 +849,14 @@
                   "name": "punctuation.section.interpolation.begin"
                 }
               },
+              "contentName": "source.cue.embedded",
               "end": "\\)",
               "endCaptures": {
                 "0": {
                   "name": "punctuation.section.interpolation.end"
                 }
               },
-              "contentName": "source.cue.embedded",
+              "name": "meta.interpolation",
               "patterns": [
                 {
                   "include": "#whitespace"
@@ -863,15 +867,13 @@
                 {
                   "include": "#invalid_in_parens"
                 }
-              ],
-              "name": "meta.interpolation"
+              ]
             },
             {
               "match": "\\\\#.",
               "name": "invalid.illegal"
             }
-          ],
-          "name": "meta.string"
+          ]
         },
         {
           "begin": "\"\"\"",
@@ -880,13 +882,14 @@
               "name": "punctuation.definition.string.begin"
             }
           },
+          "contentName": "string.quoted.double-multiline",
           "end": "\"\"\"",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.string.end"
             }
           },
-          "contentName": "string.quoted.double-multiline",
+          "name": "meta.string",
           "patterns": [
             {
               "match": "\\\\(?:\"\"\"|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
@@ -903,13 +906,14 @@
                   "name": "punctuation.section.interpolation.begin"
                 }
               },
+              "contentName": "source.cue.embedded",
               "end": "\\)",
               "endCaptures": {
                 "0": {
                   "name": "punctuation.section.interpolation.end"
                 }
               },
-              "contentName": "source.cue.embedded",
+              "name": "meta.interpolation",
               "patterns": [
                 {
                   "include": "#whitespace"
@@ -920,15 +924,13 @@
                 {
                   "include": "#invalid_in_parens"
                 }
-              ],
-              "name": "meta.interpolation"
+              ]
             },
             {
               "match": "\\\\.",
               "name": "invalid.illegal"
             }
-          ],
-          "name": "meta.string"
+          ]
         },
         {
           "begin": "\"",
@@ -937,13 +939,14 @@
               "name": "punctuation.definition.string.begin"
             }
           },
+          "contentName": "string.quoted.double",
           "end": "\"",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.string.end"
             }
           },
-          "contentName": "string.quoted.double",
+          "name": "meta.string",
           "patterns": [
             {
               "match": "\\\\(?:\"|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
@@ -960,13 +963,14 @@
                   "name": "punctuation.section.interpolation.begin"
                 }
               },
+              "contentName": "source.cue.embedded",
               "end": "\\)",
               "endCaptures": {
                 "0": {
                   "name": "punctuation.section.interpolation.end"
                 }
               },
-              "contentName": "source.cue.embedded",
+              "name": "meta.interpolation",
               "patterns": [
                 {
                   "include": "#whitespace"
@@ -977,15 +981,13 @@
                 {
                   "include": "#invalid_in_parens"
                 }
-              ],
-              "name": "meta.interpolation"
+              ]
             },
             {
               "match": "\\\\.",
               "name": "invalid.illegal"
             }
-          ],
-          "name": "meta.string"
+          ]
         },
         {
           "begin": "'''",
@@ -994,13 +996,14 @@
               "name": "punctuation.definition.string.begin"
             }
           },
+          "contentName": "string.quoted.single-multiline",
           "end": "'''",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.string.end"
             }
           },
-          "contentName": "string.quoted.single-multiline",
+          "name": "meta.string",
           "patterns": [
             {
               "match": "\\\\(?:'''|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
@@ -1017,13 +1020,14 @@
                   "name": "punctuation.section.interpolation.begin"
                 }
               },
+              "contentName": "source.cue.embedded",
               "end": "\\)",
               "endCaptures": {
                 "0": {
                   "name": "punctuation.section.interpolation.end"
                 }
               },
-              "contentName": "source.cue.embedded",
+              "name": "meta.interpolation",
               "patterns": [
                 {
                   "include": "#whitespace"
@@ -1034,15 +1038,13 @@
                 {
                   "include": "#invalid_in_parens"
                 }
-              ],
-              "name": "meta.interpolation"
+              ]
             },
             {
               "match": "\\\\.",
               "name": "invalid.illegal"
             }
-          ],
-          "name": "meta.string"
+          ]
         },
         {
           "begin": "'",
@@ -1051,13 +1053,14 @@
               "name": "punctuation.definition.string.begin"
             }
           },
+          "contentName": "string.quoted.single",
           "end": "'",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.string.end"
             }
           },
-          "contentName": "string.quoted.single",
+          "name": "meta.string",
           "patterns": [
             {
               "match": "\\\\(?:'|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
@@ -1074,13 +1077,14 @@
                   "name": "punctuation.section.interpolation.begin"
                 }
               },
+              "contentName": "source.cue.embedded",
               "end": "\\)",
               "endCaptures": {
                 "0": {
                   "name": "punctuation.section.interpolation.end"
                 }
               },
-              "contentName": "source.cue.embedded",
+              "name": "meta.interpolation",
               "patterns": [
                 {
                   "include": "#whitespace"
@@ -1091,15 +1095,13 @@
                 {
                   "include": "#invalid_in_parens"
                 }
-              ],
-              "name": "meta.interpolation"
+              ]
             },
             {
               "match": "\\\\.",
               "name": "invalid.illegal"
             }
-          ],
-          "name": "meta.string"
+          ]
         },
         {
           "begin": "`",
@@ -1108,13 +1110,13 @@
               "name": "punctuation.definition.string.begin"
             }
           },
+          "contentName": "string.quoted.backtick",
           "end": "`",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.string.end"
             }
           },
-          "contentName": "string.quoted.backtick",
           "name": "meta.string"
         }
       ]
@@ -1122,5 +1124,6 @@
     "whitespace": {
       "match": "[ \\t\\r\\n]+"
     }
-  }
+  },
+  "scopeName": "source.cue"
 }

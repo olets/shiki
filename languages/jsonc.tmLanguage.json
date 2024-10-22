@@ -1,12 +1,11 @@
 {
+  "displayName": "JSON with Comments",
   "information_for_contributors": [
     "This file has been converted from https://github.com/microsoft/vscode-JSON.tmLanguage/blob/master/JSON.tmLanguage",
     "If you want to provide a fix or improvement, please create a pull request against the original repository.",
     "Once accepted there, we are happy to receive an update request."
   ],
-  "version": "https://github.com/microsoft/vscode-JSON.tmLanguage/commit/9bd83f1c252b375e957203f21793316203f61f70",
   "name": "jsonc",
-  "scopeName": "source.json.comments",
   "patterns": [
     {
       "include": "#value"
@@ -135,26 +134,6 @@
         }
       ]
     },
-    "string": {
-      "begin": "\"",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.begin.json.comments"
-        }
-      },
-      "end": "\"",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.end.json.comments"
-        }
-      },
-      "name": "string.quoted.double.json.comments",
-      "patterns": [
-        {
-          "include": "#stringcontent"
-        }
-      ]
-    },
     "objectkey": {
       "begin": "\"",
       "beginCaptures": {
@@ -169,6 +148,26 @@
         }
       },
       "name": "string.json.comments support.type.property-name.json.comments",
+      "patterns": [
+        {
+          "include": "#stringcontent"
+        }
+      ]
+    },
+    "string": {
+      "begin": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.json.comments"
+        }
+      },
+      "end": "\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.json.comments"
+        }
+      },
+      "name": "string.quoted.double.json.comments",
       "patterns": [
         {
           "include": "#stringcontent"
@@ -209,5 +208,7 @@
         }
       ]
     }
-  }
+  },
+  "scopeName": "source.json.comments",
+  "version": "https://github.com/microsoft/vscode-JSON.tmLanguage/commit/9bd83f1c252b375e957203f21793316203f61f70"
 }

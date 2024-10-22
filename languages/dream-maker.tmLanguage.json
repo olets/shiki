@@ -1,5 +1,9 @@
 {
-  "fileTypes": ["dm", "dme"],
+  "displayName": "Dream Maker",
+  "fileTypes": [
+    "dm",
+    "dme"
+  ],
   "foldingStartMarker": "(?x)\n/\\*\\*(?!\\*)\n|^(?![^{]*?//|[^{]*?/\\*(?!.*?\\*/.*?\\{)).*?\\{\\s*($|//|/\\*(?!.*?\\*/.*\\S))",
   "foldingStopMarker": "(?<!\\*)\\*\\*/|^\\s*\\}",
   "name": "dream-maker",
@@ -17,8 +21,6 @@
       "include": "#comments"
     },
     {
-      "match": "(?x)\n(var)[\\/ ]\n(?:(static|global|tmp|const)\\/)?\n(?:(datum|atom(?:\\/movable)?|obj|mob|turf|area|savefile|list|client|sound|image|database|matrix|regex|exception)\\/)?\n(?:\n\t([a-zA-Z0-9_\\-$]*)\\/\n)*\n\n([A-Za-z0-9_$]*)\\b",
-      "name": "meta.initialization.dm",
       "captures": {
         "1": {
           "name": "storage.type.dm"
@@ -32,7 +34,9 @@
         "5": {
           "name": "variable.other.dm"
         }
-      }
+      },
+      "match": "(?x)\n(var)[\\/ ]\n(?:(static|global|tmp|const)\\/)?\n(?:(datum|atom(?:\\/movable)?|obj|mob|turf|area|savefile|list|client|sound|image|database|matrix|regex|exception)\\/)?\n(?:\n\t([a-zA-Z0-9_\\-$]*)\\/\n)*\n\n([A-Za-z0-9_$]*)\\b",
+      "name": "meta.initialization.dm"
     },
     {
       "match": "\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)\\b",

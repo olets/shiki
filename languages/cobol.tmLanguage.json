@@ -1,6 +1,7 @@
 {
-  "_copyright": "The MIT License (MIT)\nCopyright (c) 2015-2023 spgennard\nSource: https://github.com/spgennard/vscode_cobol/blob/main/syntaxes/COBOL.tmLanguage.json",
   "$schema": "https://raw.githubusercontent.com/spgennard/vscode_cobol/main/schemas/tmlanguage.json",
+  "_copyright": "The MIT License (MIT)\nCopyright (c) 2015-2023 spgennard\nSource: https://github.com/spgennard/vscode_cobol/blob/main/syntaxes/COBOL.tmLanguage.json",
+  "displayName": "COBOL",
   "fileTypes": [
     "ccp",
     "scbl",
@@ -35,7 +36,6 @@
       "name": "token.info-token.cobol"
     },
     {
-      "match": "(^[ \\*][ \\*][ \\*][ \\*][ \\*][ \\*])(\\/.*$)",
       "captures": {
         "1": {
           "name": "constant.numeric.cobol"
@@ -43,10 +43,10 @@
         "2": {
           "name": "comment.line.cobol.newpage"
         }
-      }
+      },
+      "match": "(^[ \\*][ \\*][ \\*][ \\*][ \\*][ \\*])(\\/.*$)"
     },
     {
-      "match": "(^[ \\*][ \\*][ \\*][ \\*][ \\*][ \\*])(\\*.*$)",
       "captures": {
         "1": {
           "name": "constant.numeric.cobol"
@@ -54,10 +54,10 @@
         "2": {
           "name": "comment.line.cobol.fixed"
         }
-      }
+      },
+      "match": "(^[ \\*][ \\*][ \\*][ \\*][ \\*][ \\*])(\\*.*$)"
     },
     {
-      "match": "(^[0-9\\s][0-9\\s][0-9\\s][0-9\\s][0-9\\s][0-9\\s])(\\/.*$)",
       "captures": {
         "1": {
           "name": "constant.numeric.cobol"
@@ -65,14 +65,14 @@
         "2": {
           "name": "comment.line.cobol.newpage"
         }
-      }
+      },
+      "match": "(^[0-9\\s][0-9\\s][0-9\\s][0-9\\s][0-9\\s][0-9\\s])(\\/.*$)"
     },
     {
       "match": "^[0-9\\s][0-9\\s][0-9\\s][0-9\\s][0-9\\s][0-9\\s]$",
       "name": "constant.numeric.cobol"
     },
     {
-      "match": "(^[0-9\\s][0-9\\s][0-9\\s][0-9\\s][0-9\\s][0-9\\s])(\\*.*$)",
       "captures": {
         "1": {
           "name": "constant.numeric.cobol"
@@ -80,10 +80,10 @@
         "2": {
           "name": "comment.line.cobol.fixed"
         }
-      }
+      },
+      "match": "(^[0-9\\s][0-9\\s][0-9\\s][0-9\\s][0-9\\s][0-9\\s])(\\*.*$)"
     },
     {
-      "match": "(^[0-9a-zA-Z\\s\\$#%\\.@\\- ][0-9a-zA-Z\\s\\$#%\\.@\\- ][0-9a-zA-Z\\s\\$#%\\.@\\- ][0-9a-zA-Z\\s\\$#%\\.@\\- ][0-9a-zA-Z\\s\\$#%\\.@\\- ][0-9a-zA-Z\\s\\$#%\\.@\\- ])(\\*.*$)",
       "captures": {
         "1": {
           "name": "constant.cobol"
@@ -91,10 +91,10 @@
         "2": {
           "name": "comment.line.cobol.fixed"
         }
-      }
+      },
+      "match": "(^[0-9a-zA-Z\\s\\$#%\\.@\\- ][0-9a-zA-Z\\s\\$#%\\.@\\- ][0-9a-zA-Z\\s\\$#%\\.@\\- ][0-9a-zA-Z\\s\\$#%\\.@\\- ][0-9a-zA-Z\\s\\$#%\\.@\\- ][0-9a-zA-Z\\s\\$#%\\.@\\- ])(\\*.*$)"
     },
     {
-      "match": "^\\s+(78)\\s+([0-9a-zA-Z][a-zA-Z\\-0-9_]+)",
       "captures": {
         "1": {
           "name": "constant.numeric.cobol"
@@ -102,10 +102,10 @@
         "2": {
           "name": "variable.other.constant"
         }
-      }
+      },
+      "match": "^\\s+(78)\\s+([0-9a-zA-Z][a-zA-Z\\-0-9_]+)"
     },
     {
-      "match": "^\\s+([0-9]+)\\s+([0-9a-zA-Z][a-zA-Z\\-0-9_]+)\\s+((?i:constant))",
       "captures": {
         "1": {
           "name": "constant.numeric.cobol"
@@ -116,10 +116,10 @@
         "3": {
           "name": "keyword.identifers.cobol"
         }
-      }
+      },
+      "match": "^\\s+([0-9]+)\\s+([0-9a-zA-Z][a-zA-Z\\-0-9_]+)\\s+((?i:constant))"
     },
     {
-      "match": "(^[0-9a-zA-Z\\s\\$#%\\.@][0-9a-zA-Z\\s\\$#%\\.@][0-9a-zA-Z\\s\\$#%\\.@][0-9a-zA-Z\\s\\$#%\\.@][0-9a-zA-Z\\s\\$#%\\.@][0-9a-zA-Z\\s\\$#%\\.@])(\\/.*$)",
       "captures": {
         "1": {
           "name": "constant.cobol"
@@ -127,14 +127,14 @@
         "2": {
           "name": "comment.line.cobol.newpage"
         }
-      }
+      },
+      "match": "(^[0-9a-zA-Z\\s\\$#%\\.@][0-9a-zA-Z\\s\\$#%\\.@][0-9a-zA-Z\\s\\$#%\\.@][0-9a-zA-Z\\s\\$#%\\.@][0-9a-zA-Z\\s\\$#%\\.@][0-9a-zA-Z\\s\\$#%\\.@])(\\/.*$)"
     },
     {
       "match": "^\\*.*$",
       "name": "comment.line.cobol.fixed"
     },
     {
-      "match": "((?:^|\\s+)(?i:\\$set)\\s+)((?i:constant)\\s+)([0-9a-zA-Z][a-zA-Z\\-0-9]+\\s*)([a-zA-Z\\-0-9]*)",
       "captures": {
         "1": {
           "name": "keyword.control.directive.conditional.cobol"
@@ -148,10 +148,10 @@
         "4": {
           "name": "keyword.control.directive.conditional.cobol"
         }
-      }
+      },
+      "match": "((?:^|\\s+)(?i:\\$set)\\s+)((?i:constant)\\s+)([0-9a-zA-Z][a-zA-Z\\-0-9]+\\s*)([a-zA-Z\\-0-9]*)"
     },
     {
-      "match": "((?i:\\$\\s*set\\s+)(ilusing)(\\()(.*)(\\)))",
       "captures": {
         "1": {
           "name": "entity.name.function.preprocessor.cobol"
@@ -168,10 +168,10 @@
         "5": {
           "name": "punctuation.end.bracket.round.cobol"
         }
-      }
+      },
+      "match": "((?i:\\$\\s*set\\s+)(ilusing)(\\()(.*)(\\)))"
     },
     {
-      "match": "((?i:\\$\\s*set\\s+)(ilusing)(\")(.*)(\"))",
       "captures": {
         "1": {
           "name": "entity.name.function.preprocessor.cobol"
@@ -188,10 +188,10 @@
         "5": {
           "name": "punctuation.definition.string.begin.cobol"
         }
-      }
+      },
+      "match": "((?i:\\$\\s*set\\s+)(ilusing)(\")(.*)(\"))"
     },
     {
-      "match": "((?i:\\$set))\\s+(\\w+)\\s*(\")(\\w*)(\")",
       "captures": {
         "1": {
           "name": "keyword.control.directive.conditional.cobol"
@@ -208,10 +208,10 @@
         "5": {
           "name": "punctuation.definition.string.begin.cobol"
         }
-      }
+      },
+      "match": "((?i:\\$set))\\s+(\\w+)\\s*(\")(\\w*)(\")"
     },
     {
-      "match": "((?i:\\$set))\\s+(\\w+)\\s*(\\()(.*)(\\))",
       "captures": {
         "1": {
           "name": "keyword.control.directive.conditional.cobol"
@@ -228,10 +228,10 @@
         "5": {
           "name": "punctuation.end.bracket.round.cobol"
         }
-      }
+      },
+      "match": "((?i:\\$set))\\s+(\\w+)\\s*(\\()(.*)(\\))"
     },
     {
-      "match": "(?:^|\\s+)(?i:\\$\\s*set\\s)((?i:01SHUFFLE|64KPARA|64KSECT|AUXOPT|CHIP|DATALIT|EANIM|EXPANDDATA|FIXING|FLAG-CHIP|MASM|MODEL|OPTSIZE|OPTSPEED|PARAS|PROTMODE|REGPARM|SEGCROSS|SEGSIZE|SIGNCOMPARE|SMALLDD|TABLESEGCROSS|TRICKLECHECK|\\s)+).*$",
       "captures": {
         "0": {
           "name": "keyword.control.directive.conditional.cobol"
@@ -242,10 +242,10 @@
         "2": {
           "name": "comment.line.set.cobol"
         }
-      }
+      },
+      "match": "(?:^|\\s+)(?i:\\$\\s*set\\s)((?i:01SHUFFLE|64KPARA|64KSECT|AUXOPT|CHIP|DATALIT|EANIM|EXPANDDATA|FIXING|FLAG-CHIP|MASM|MODEL|OPTSIZE|OPTSPEED|PARAS|PROTMODE|REGPARM|SEGCROSS|SEGSIZE|SIGNCOMPARE|SMALLDD|TABLESEGCROSS|TRICKLECHECK|\\s)+).*$"
     },
     {
-      "match": "(\\$region|\\$end-region)(.*$)",
       "captures": {
         "1": {
           "name": "keyword.control.directive.cobol"
@@ -253,7 +253,8 @@
         "2": {
           "name": "entity.other.attribute-name.preprocessor.cobol"
         }
-      }
+      },
+      "match": "(\\$region|\\$end-region)(.*$)"
     },
     {
       "begin": "\\$(?i:doc)(.*$)",
@@ -265,7 +266,24 @@
       "name": "invalid.illegal.meta.preprocessor.cobolit"
     },
     {
-      "match": "((((>>|\\$)[\\s]*)(?i:if|else|elif|end-if|end-evaluate|end|define|evaluate|when|display|call-convention|set))(.*$))",
+      "match": "(?i:substitute-case|substitute)\\s+",
+      "name": "invalid.illegal.functions.cobolit"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "invalid.illegal.keyword.control.directive.conditional.cobol"
+        },
+        "2": {
+          "name": "invalid.illegal.entity.name.function.preprocessor.cobol"
+        },
+        "3": {
+          "name": "invalid.illegal.entity.name.function.preprocessor.cobol"
+        }
+      },
+      "match": "((((>>|\\$)[\\s]*)(?i:elif))(.*$))"
+    },
+    {
       "captures": {
         "1": {
           "name": "keyword.control.directive.conditional.cobol"
@@ -276,10 +294,10 @@
         "3": {
           "name": "entity.name.function.preprocessor.cobol"
         }
-      }
+      },
+      "match": "((((>>|\\$)[\\s]*)(?i:if|else|elif|end-if|end-evaluate|end|define|evaluate|when|display|call-convention|set))(.*$))"
     },
     {
-      "match": "(\\*>)\\s+(@[0-9a-zA-Z][a-zA-Z\\-0-9]+)\\s+(.*$)",
       "captures": {
         "1": {
           "name": "comment.line.scantoken.cobol"
@@ -290,7 +308,8 @@
         "3": {
           "name": "string.cobol"
         }
-      }
+      },
+      "match": "(\\*>)\\s+(@[0-9a-zA-Z][a-zA-Z\\-0-9]+)\\s+(.*$)"
     },
     {
       "match": "(\\*>.*$)",
@@ -343,6 +362,8 @@
           "name": "keyword.identifiers.cobol"
         }
       },
+      "end": "(?=((?<![-_])(?i:remarks|author|date-written|source-computer|object-computer|installation|date-compiled|special-names|security|environment\\s+division|data\\s+division|working-storage\\s+section|input-output\\s+section|linkage\\s+section|procedure\\s+division|local-storage\\s+section)|^[ \\*][ \\*][ \\*][ \\*][ \\*][ \\*]\\*.*$|^\\+$))",
+      "name": "comment.block.cobol.remark",
       "patterns": [
         {
           "match": "(^[0-9 ][0-9 ][0-9 ][0-9 ][0-9 ][0-9 ])",
@@ -352,13 +373,9 @@
           "match": "(?i:with|debugging|mode)",
           "name": "keyword.identifiers.cobol"
         }
-      ],
-      "name": "comment.block.cobol.remark",
-      "end": "(?=((?<![-_])(?i:remarks|author|date-written|source-computer|object-computer|installation|date-compiled|special-names|security|environment\\s+division|data\\s+division|working-storage\\s+section|input-output\\s+section|linkage\\s+section|procedure\\s+division|local-storage\\s+section)|^[ \\*][ \\*][ \\*][ \\*][ \\*][ \\*]\\*.*$|^\\+$))"
+      ]
     },
     {
-      "match": "(?<=(\\(|\\[))((\\-\\+)*\\s*[0-9 ,\\.\\+\\-\\*\\/]+)(?=(\\)|\\]))",
-      "name": "constant.numeric.cobol",
       "captures": {
         "1": {
           "name": "keyword.start.bracket.cobol"
@@ -370,7 +387,9 @@
           "name": "keyword.end.bracket.cobol"
         }
       },
-      "comment": "simple numerics in () and []"
+      "comment": "simple numerics in () and []",
+      "match": "(?<=(\\(|\\[))((\\-\\+)*\\s*[0-9 ,\\.\\+\\-\\*\\/]+)(?=(\\)|\\]))",
+      "name": "constant.numeric.cobol"
     },
     {
       "include": "#number-complex-constant"
@@ -388,27 +407,36 @@
     },
     {
       "begin": "(?i:exec\\s+sqlims|exec\\s+sql)",
+      "contentName": "meta.embedded.block.openesql",
+      "end": "(?i:end\\-exec)",
       "name": "keyword.verb.cobol",
-      "contentName": "meta.embedded.block.sql",
       "patterns": [
         {
           "match": "(^\\s*\\*.*)$",
           "name": "comment.line.sql"
         },
         {
+          "match": "(--.*$)",
+          "name": "comment.line.sql"
+        },
+        {
+          "match": "(\\*>.*$)",
+          "name": "comment.line.modern"
+        },
+        {
           "match": "(\\:([0-9a-zA-Z\\-_])*)",
           "name": "variable.cobol"
         },
         {
-          "include": "source.sql"
+          "include": "source.openesql"
         }
-      ],
-      "end": "(?i:end\\-exec)"
+      ]
     },
     {
       "begin": "(?i:exec\\s+cics)",
-      "name": "keyword.verb.cobol",
       "contentName": "meta.embedded.block.cics",
+      "end": "(?i:end\\-exec)",
+      "name": "keyword.verb.cobol",
       "patterns": [
         {
           "match": "(\\()",
@@ -433,13 +461,13 @@
           "match": "([a-zA-Z-0-9_]*[a-zA-Z0-9]|([#]?[0-9a-zA-Z]+[a-zA-Z-0-9_]*[a-zA-Z0-9]))",
           "name": "variable.cobol"
         }
-      ],
-      "end": "(?i:end\\-exec)"
+      ]
     },
     {
       "begin": "(?i:exec\\s+dli)",
-      "name": "keyword.verb.cobol",
       "contentName": "meta.embedded.block.dli",
+      "end": "(?i:end\\-exec)",
+      "name": "keyword.verb.cobol",
       "patterns": [
         {
           "match": "(\\()",
@@ -447,6 +475,9 @@
         },
         {
           "include": "#dli-keywords"
+        },
+        {
+          "include": "#dli-options"
         },
         {
           "include": "#string-double-quoted-constant"
@@ -464,63 +495,73 @@
           "match": "([a-zA-Z-0-9_]*[a-zA-Z0-9]|([#]?[0-9a-zA-Z]+[a-zA-Z-0-9_]*[a-zA-Z0-9]))",
           "name": "variable.cobol"
         }
-      ],
-      "end": "(?i:end\\-exec)"
+      ]
     },
     {
       "begin": "(?i:exec\\s+sqlims)",
+      "contentName": "meta.embedded.block.openesql",
+      "end": "(?i:end\\-exec)",
       "name": "keyword.verb.cobol",
-      "contentName": "meta.embedded.block.sql",
       "patterns": [
+        {
+          "match": "(\\*>.*$)",
+          "name": "comment.line.modern"
+        },
         {
           "match": "(\\:([a-zA-Z\\-])*)",
           "name": "variable.cobol"
         },
         {
-          "include": "source.sql"
+          "include": "source.openesql"
         }
-      ],
-      "end": "(?i:end\\-exec)"
+      ]
     },
     {
       "begin": "(?i:exec\\s+ado)",
+      "contentName": "meta.embedded.block.openesql",
+      "end": "(?i:end\\-exec)",
       "name": "keyword.verb.cobol",
-      "contentName": "meta.embedded.block.sql",
       "patterns": [
+        {
+          "match": "(--.*$)",
+          "name": "comment.line.sql"
+        },
+        {
+          "match": "(\\*>.*$)",
+          "name": "comment.line.modern"
+        },
         {
           "match": "(\\:([a-zA-Z\\-])*)",
           "name": "variable.cobol"
         },
         {
-          "include": "source.sql"
+          "include": "source.openesql"
         }
-      ],
-      "end": "(?i:end\\-exec)"
+      ]
     },
     {
       "begin": "(?i:exec\\s+html)",
-      "name": "keyword.verb.cobol",
       "contentName": "meta.embedded.block.html",
+      "end": "(?i:end\\-exec)",
+      "name": "keyword.verb.cobol",
       "patterns": [
         {
           "include": "text.html.basic"
         }
-      ],
-      "end": "(?i:end\\-exec)"
+      ]
     },
     {
       "begin": "(?i:exec\\s+java)",
-      "name": "keyword.verb.cobol",
       "contentName": "meta.embedded.block.java",
+      "end": "(?i:end\\-exec)",
+      "name": "keyword.verb.cobol",
       "patterns": [
         {
           "include": "source.java"
         }
-      ],
-      "end": "(?i:end\\-exec)"
+      ]
     },
     {
-      "match": "(\")(CBL_.*)(\")",
       "captures": {
         "1": {
           "name": "punctuation.definition.string.begin.cobol"
@@ -531,10 +572,10 @@
         "3": {
           "name": "punctuation.definition.string.end.cobol"
         }
-      }
+      },
+      "match": "(\")(CBL_.*)(\")"
     },
     {
-      "match": "(\")(PC_.*)(\")",
       "captures": {
         "1": {
           "name": "punctuation.definition.string.begin.cobol"
@@ -545,7 +586,8 @@
         "3": {
           "name": "punctuation.definition.string.end.cobol"
         }
-      }
+      },
+      "match": "(\")(PC_.*)(\")"
     },
     {
       "begin": "\"",
@@ -563,7 +605,6 @@
       "name": "string.quoted.double.cobol"
     },
     {
-      "match": "(\\')(CBL_.*)(\\')",
       "captures": {
         "1": {
           "name": "punctuation.definition.string.begin.cobol"
@@ -574,10 +615,10 @@
         "3": {
           "name": "punctuation.definition.string.end.cobol"
         }
-      }
+      },
+      "match": "(\\')(CBL_.*)(\\')"
     },
     {
-      "match": "(\\')(PC_.*)(\\')",
       "captures": {
         "1": {
           "name": "punctuation.definition.string.begin.cobol"
@@ -588,7 +629,8 @@
         "3": {
           "name": "punctuation.definition.string.end.cobol"
         }
-      }
+      },
+      "match": "(\\')(PC_.*)(\\')"
     },
     {
       "begin": "'",
@@ -700,7 +742,6 @@
       "name": "keyword.identifiers.cobol"
     },
     {
-      "match": "(?<![-_])((?i:valuetype-id|operator-id|method-id|method|property-id|attribute-id|enum-id|iterator-id|class-id|program-id|operator-id|end\\s+program|end\\s+valuetype|extension))[\\.]*[\\s]+([a-zA-Z0-9_-]*)",
       "captures": {
         "1": {
           "name": "keyword.verb.cobol"
@@ -708,7 +749,8 @@
         "2": {
           "name": "entity.name.function.cobol"
         }
-      }
+      },
+      "match": "(?<![-_])((?i:valuetype-id|operator-id|method-id|method|property-id|attribute-id|enum-id|iterator-id|class-id|program-id|operator-id|end\\s+program|end\\s+valuetype|extension))[\\.]*[\\s]+([a-zA-Z0-9_-]*)"
     },
     {
       "match": "(?<![-_])(?i:implements|inherits|constraints|constrain)(?=\\s|\\.)",
@@ -743,11 +785,10 @@
       "name": "keyword.identifers.cobol"
     },
     {
-      "match": "(?<![-_])(?i:max|min|integer-of-date|integer-of-day|integer-part|integer|date-to-yyyymmdd|year-to-yyyy|day-to-yyyyddd|exp|exception-file|exception-location|exception-statement|exception-status|e|variance|integer-of-date|rem|pi|factorial|sqrt|log10|fraction-part|mean|exp|log|char|day-of-integer|date-of-integer|exp10|atan|integer-part|tan|sin|cos|midrange|addr|acos|asin|annuity|present-value|integer-of-day|ord-max|ord-min|ord|random|integer-of-date|sum|standard-deviation|median|reverse|abs|upper-case|lower-case|char-national|numval|mod|range|length|locale-date|locale-time-from-seconds|locale-time|seconds-past-midnight|stored-char-length|substitute-case|substitute|seconds-from-formatted-time|seconds-past-midnight|trim|length-an|numval-c|current-date|national-of|display-of|when-compiled|integer-of-boolean|combined-datetime|concatenate)(?=\\s|\\.|\\(|\\))",
+      "match": "(?<![-_])(?i:max|min|integer-of-date|integer-of-day|integer-part|integer|date-to-yyyymmdd|year-to-yyyy|day-to-yyyyddd|exp|exception-file|exception-location|exception-statement|exception-status|e|variance|integer-of-date|rem|pi|factorial|sqrt|log10|fraction-part|mean|exp|log|char|day-of-integer|date-of-integer|exp10|atan|integer-part|tan|sin|cos|midrange|addr|acos|asin|annuity|present-value|integer-of-day|ord-max|ord-min|ord|random|integer-of-date|sum|standard-deviation|median|reverse|abs|upper-case|lower-case|char-national|numval|mod|range|length|locale-date|locale-time-from-seconds|locale-time|seconds-past-midnight|stored-char-length|seconds-from-formatted-time|seconds-past-midnight|trim|length-an|numval-c|current-date|national-of|display-of|when-compiled|integer-of-boolean|combined-datetime|concatenate)(?=\\s|\\.|\\(|\\))",
       "name": "support.function.cobol"
     },
     {
-      "match": "(?<![-_])(?i:DFHRESP|DFHVALUE)(\\s*\\(\\s*)([a-zA-Z]*)(\\s*\\))",
       "captures": {
         "0": {
           "name": "support.function.cics.cobol"
@@ -761,7 +802,8 @@
         "3": {
           "name": "punctuation.definition.string.end.cobol"
         }
-      }
+      },
+      "match": "(?<![-_])(?i:DFHRESP|DFHVALUE)(\\s*\\(\\s*)([a-zA-Z]*)(\\s*\\))"
     },
     {
       "match": "(?<![-_])(?i:function)(?=\\s|\\.)",
@@ -780,7 +822,6 @@
       "name": "keyword.identifers.cobol"
     },
     {
-      "match": "(?<![-_])(?i:type|new)\\s+([a-zA-Z][a-zA-Z0-9\\$\\-\\._]*|[a-zA-Z])(?=\\.$)",
       "captures": {
         "0": {
           "name": "keyword.verb.cobol"
@@ -789,7 +830,8 @@
           "name": "storage.type.cobol"
         }
       },
-      "comment": "type ssss "
+      "comment": "type ssss ",
+      "match": "(?<![-_])(?i:type|new)\\s+([a-zA-Z][a-zA-Z0-9\\$\\-\\._]*|[a-zA-Z])(?=\\.$)"
     },
     {
       "match": "(?<![-_])(?i:string)(?=\\s+value|\\.)",
@@ -800,8 +842,6 @@
       "name": "storage.type.cobol"
     },
     {
-      "match": "(operator-id\\s+[+\\-\\*\\/])",
-      "name": "keyword.operator-id.cobol",
       "captures": {
         "1": {
           "name": "keyword.other.verb.cobol"
@@ -810,10 +850,11 @@
           "name": "meta.symbol.cobol"
         }
       },
-      "comment": "operator-id ssss "
+      "comment": "operator-id ssss ",
+      "match": "(operator-id\\s+[+\\-\\*\\/])",
+      "name": "keyword.operator-id.cobol"
     },
     {
-      "match": "(?i:self)(\\:\\:)([0-9a-zA-Z_\\-\\.]*)(?=\\.$)",
       "captures": {
         "1": {
           "name": "punctuation.accessor.cobol.b3"
@@ -822,10 +863,10 @@
           "name": "entity.name.function.b3"
         }
       },
-      "comment": " ::.. "
+      "comment": " ::.. ",
+      "match": "(?i:self)(\\:\\:)([0-9a-zA-Z_\\-\\.]*)(?=\\.$)"
     },
     {
-      "match": "(\\:\\:)([0-9a-zA-Z_\\-\\.]*)",
       "captures": {
         "1": {
           "name": "punctuation.accessor.cobol"
@@ -834,10 +875,10 @@
           "name": "entity.name.function.cobol"
         }
       },
-      "comment": " ::.. "
+      "comment": " ::.. ",
+      "match": "(\\:\\:)([0-9a-zA-Z_\\-\\.]*)"
     },
     {
-      "match": "(?<![-_])(?i:type)\\s+([0-9a-zA-Z\\.]*)",
       "captures": {
         "0": {
           "name": "keyword.verb.cobol.aa"
@@ -845,14 +886,14 @@
         "1": {
           "name": "storage.type.cobol.bb"
         }
-      }
+      },
+      "match": "(?<![-_])(?i:type)\\s+([0-9a-zA-Z\\.]*)"
     },
     {
       "match": "(?<![-_])(?i:if|else|end-if|exit\\s+iterator|exit\\s+program|exit\\s+method|evaluate|end-evaluate|exit\\s+perform|perform|end-perform|when\\s+other|when|continue|call|end-call|chain|end-chain|invoke|end\\s+invoke|go\\s+to|go|sort|merge|use|xml|parse|stop\\s+run|goback\\s+returning|goback|raise|exit\\s+function|exit\\sparagraph|await)(?![0-9A-Za-z_-])",
       "name": "keyword.control.cobol"
     },
     {
-      "match": "(?<![-_])((?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBxXuUpPnNzZ/,.]*)\\(([0-9]*)\\)([vV][-+sS\\*$09aAbBxXuUpPnNzZ/,\\.]*)\\(([0-9]*)\\)[-|+]",
       "captures": {
         "1": {
           "name": "storage.type.picture10.cobol"
@@ -866,10 +907,10 @@
         "4": {
           "name": "constant.numeric.cobol"
         }
-      }
+      },
+      "match": "(?<![-_])((?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBxXuUpPnNzZ/,.]*)\\(([0-9]*)\\)([vV][-+sS\\*$09aAbBxXuUpPnNzZ/,\\.]*)\\(([0-9]*)\\)[-|+]"
     },
     {
-      "match": "(?<![-_])((?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBxXuUpPnNzZ/,.]*)\\(([0-9]*)\\)([vV][-+sS\\*$09aAbBxXuUpPnNzZ/,\\.]*)\\(([0-9]*)\\)",
       "captures": {
         "1": {
           "name": "storage.type.picture9.cobol"
@@ -883,10 +924,10 @@
         "4": {
           "name": "constant.numeric.cobol"
         }
-      }
+      },
+      "match": "(?<![-_])((?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBxXuUpPnNzZ/,.]*)\\(([0-9]*)\\)([vV][-+sS\\*$09aAbBxXuUpPnNzZ/,\\.]*)\\(([0-9]*)\\)"
     },
     {
-      "match": "(?<![-_])((?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBxXuUpPnNzZ/,.]*)\\(([0-9]*)\\)([vV\\.][-+s\\*$09aAbBsSnNxXuUzZ/,]*[0-9\\.()])*",
       "captures": {
         "1": {
           "name": "storage.type.picture8.cobol"
@@ -897,7 +938,8 @@
         "3": {
           "name": "storage.type.picture8.cobol"
         }
-      }
+      },
+      "match": "(?<![-_])((?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBxXuUpPnNzZ/,.]*)\\(([0-9]*)\\)([vV\\.][-+s\\*$09aAbBsSnNxXuUzZ/,]*[0-9\\.()])*"
     },
     {
       "match": "(?<![-_])(?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBsSnpPNxXuUzZ/,.]*\\([0-9]*\\)[Vv\\.][-+s\\*0$9aAbBsSnNxpPxXuUzZ/,]*",
@@ -908,7 +950,6 @@
       "name": "storage.type.picture6.cobol"
     },
     {
-      "match": "(?<![-_])((?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBsSnpPNxuUXzZ/,.]*)\\(([0-9]*)\\)[-+s\\*0$9aAbBsSnNxpPxXuUzZ/,]*",
       "captures": {
         "1": {
           "name": "storage.type.picture5.cobol"
@@ -916,7 +957,8 @@
         "2": {
           "name": "constant.numeric.cobol"
         }
-      }
+      },
+      "match": "(?<![-_])((?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBsSnpPNxuUXzZ/,.]*)\\(([0-9]*)\\)[-+s\\*0$9aAbBsSnNxpPxXuUzZ/,]*"
     },
     {
       "match": "(?<![-_])(?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBsSnpNNxXuUzZ/,.]*\\([0-9]*\\)",
@@ -935,7 +977,6 @@
       "name": "storage.type.picture1.cobol"
     },
     {
-      "match": "((?<![-_])(?i:binary|computational-4|comp-4|computational-5|comp-5))\\(([0-9]*)\\)",
       "captures": {
         "1": {
           "name": "invalid.illegal.keyword.verb.acu.cobol"
@@ -943,7 +984,8 @@
         "2": {
           "name": "invalid.illegal.constant.numeric.integer"
         }
-      }
+      },
+      "match": "((?<![-_])(?i:binary|computational-4|comp-4|computational-5|comp-5))\\(([0-9]*)\\)"
     },
     {
       "match": "(?i:cblt-x1-compx-const|cblt-x2-compx-const|cblt-x4-compx-const|cblt-alphanum-const|cblt-x9-compx|cblt-x8-compx|cblt-x8-comp5|cblt-x4-compx|cblt-x4-comp5|cblt-x2-compx|cblt-x2-comp5|cblt-x1-compx|cblt-x1-comp5|cblt-x1|cblt-vfile-status|cblt-vfile-handle|cblt-sx8-comp5|cblt-sx4-comp5|cblt-sx2-comp5|cblt-sx1-comp5|cblt-subsys-params|cblt-splitjoin-buf|cblt-screen-position|cblt-rtncode|cblt-request-context|cblt-reqhand-service-info|cblt-reqhand-service-funcs|cblt-reqhand-response|cblt-reqhand-funcs|cblt-prog-info-params|cblt-prog-info-arg-info|cblt-printer-properties|cblt-printer-name|cblt-printer-info|cblt-printer-default|cblt-ppointer|cblt-pointer|cblt-os-ssize|cblt-os-size|cblt-os-offset|cblt-os-info-params|cblt-os-flags|cblt-node-name|cblt-nls-msg-params|cblt-nls-msg-number-pair|cblt-nls-msg-ins-struct|cblt-nls-msg-buffer|cblt-mouse-shape|cblt-mouse-rect|cblt-mouse-pos|cblt-mouse-event|cblt-mem-validate-param|cblt-idp-exit-service-funcs|cblt-idp-exit-info|cblt-HWND|cblt-HINSTANCE|cblt-get-scr-line-draw-buffer|cblt-get-scr-graphics-buffer|cblt-generic-attr-value|cblt-generic-attr-rgb-values|cblt-generic-attr-information|cblt-file-status|cblt-fileexist-buf|cblt-exit-params|cblt-exit-info-params|cblt-cancel-proc-params|cblt-bytestream-handle|cblt-alphanum)",
@@ -970,7 +1012,7 @@
       "name": "keyword.screens.cobol"
     },
     {
-      "match": "(\\s+|^)(?i:bold|high|lowlight|low|standard|background-high|background-low|background-standard)(?![0-9A-Za-z_-])",
+      "match": "(\\s+|^)(?i:bold|high|lowlight|low|background-high|background-low|background-standard)(?![0-9A-Za-z_-])",
       "name": "invalid.illegal.screens.acu.cobol"
     },
     {
@@ -1030,7 +1072,7 @@
       "name": "keyword.filler.cobol"
     },
     {
-      "match": "(?<![-_])(?i:address-of|date|day-of-week|day|debug-content|debug-item|debug-line|debug-item|debug-sub-1|debug-sub-2|debug-sub-3|shift-in|shift-out|sort-control|sort-core-size|sort-file-size|sort-message|sort-return|sort-mode-size|sort-return|tally|time|when-compiled|line-counter|page-counter|return-code|linage-counter|debug-line|debug-name|debug-contents|json-code|json-status|xml-code|xml-event|xml-information|xml-namespace-prefix|xml-namespace|xml-nnamespace-repfix|xml-nnamespace|xml-ntext|jnienvptr)(?![0-9A-Za-z_-])",
+      "match": "(?<![-_])(?i:address-of|date|day-of-week|day|debug-content|debug-item|debug-line|debug-item|debug-sub-1|debug-sub-2|debug-sub-3|shift-in|shift-out|sort-control|sort-core-size|sort-file-size|sort-message|sort-return|sort-mode-size|sort-return|tally|time|when-compiled|line-counter|page-counter|return-code|linage-counter|debug-line|debug-name|debug-contents|json-code|json-status|xml-code|xml-event|xml-information|xml-namespace-prefix|xml-namespace|xml-nnamespace-repfix|xml-nnamespace|xml-ntext|jnienvptr|igy-javaiop-call-exception)(?![0-9A-Za-z_-])",
       "name": "variable.language"
     },
     {
@@ -1050,7 +1092,6 @@
       "name": "constant.numeric.cobol"
     },
     {
-      "match": "(\\()([0-9]*)(:)([0-9]*)(\\))",
       "captures": {
         "1": {
           "name": "meta.symbol.cobol"
@@ -1067,7 +1108,8 @@
         "5": {
           "name": "meta.symbol.cobol"
         }
-      }
+      },
+      "match": "(\\()([0-9]*)(:)([0-9]*)(\\))"
     },
     {
       "match": "([a-zA-Z-0-9_]*[a-zA-Z0-9]|([#]?[0-9a-zA-Z]+[a-zA-Z-0-9_]*[a-zA-Z0-9]))",
@@ -1083,20 +1125,17 @@
       "match": "(?<![\\-\\w])(?i:accept|chkp|deq|dlet|gnp|gn|gu|isrt|load|log|pos|query|refresh|repl|retrieve|rolb|roll|rols|schd|sets|setu|symchkp|term|xrst)(?![\\-\\w])",
       "name": "keyword.verb.dli"
     },
-    "string-quoted-constant": {
-      "begin": "'",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.begin.cobol"
-        }
-      },
-      "end": "('|$)",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.end.cobol"
-        }
-      },
-      "name": "string.quoted.single.cobol"
+    "dli-options": {
+      "match": "(?<![\\-\\w])(?i:statusgroup|checkpoint|chkp|id|lockclass|segment|info|where|from|using|keyfeedback|feedbacklen|variable|first|last|current|seglength|offset|locked|movenext|getfirst|set|setcond|setzero|setparent|fieldlength|keys|maxlength|length[0-9]*|area[0-9]*|psc|pcs|pcb|sysserve|into)(?![\\-\\w])",
+      "name": "keyword.other.dli"
+    },
+    "number-complex-constant": {
+      "match": "(\\-|\\+)?((([0-9]+(\\.[0-9]+))|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)([LlFfUuDd]|UL|ul)?(?=\\s|\\.$|,|\\))",
+      "name": "constant.numeric.cobol"
+    },
+    "number-simple-constant": {
+      "match": "(\\-|\\+)?([0-9]+)(?=\\s|\\.$|,|\\))",
+      "name": "constant.numeric.cobol"
     },
     "string-double-quoted-constant": {
       "begin": "\"",
@@ -1112,13 +1151,20 @@
         }
       }
     },
-    "number-complex-constant": {
-      "match": "(\\-|\\+)?((([0-9]+(\\.[0-9]+))|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)([LlFfUuDd]|UL|ul)?(?=\\s|\\.$|,|\\))",
-      "name": "constant.numeric.cobol"
-    },
-    "number-simple-constant": {
-      "match": "(\\-|\\+)?([0-9]+)(?=\\s|\\.$|,|\\))",
-      "name": "constant.numeric.cobol"
+    "string-quoted-constant": {
+      "begin": "'",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.cobol"
+        }
+      },
+      "end": "('|$)",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.cobol"
+        }
+      },
+      "name": "string.quoted.single.cobol"
     }
   },
   "scopeName": "source.cobol"

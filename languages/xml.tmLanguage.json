@@ -1,12 +1,11 @@
 {
+  "displayName": "XML",
   "information_for_contributors": [
     "This file has been converted from https://github.com/atom/language-xml/blob/master/grammars/xml.cson",
     "If you want to provide a fix or improvement, please create a pull request against the original repository.",
     "Once accepted there, we are happy to receive an update request."
   ],
-  "version": "https://github.com/atom/language-xml/commit/7bc75dfe779ad5b35d9bf4013d9181864358cb49",
   "name": "xml",
-  "scopeName": "text.xml",
   "patterns": [
     {
       "begin": "(<\\?)\\s*([-_a-zA-Z0-9]+)",
@@ -231,6 +230,40 @@
       "match": "&",
       "name": "invalid.illegal.bad-ampersand.xml"
     },
+    "comments": {
+      "patterns": [
+        {
+          "begin": "<%--",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.comment.xml"
+            },
+            "end": "--%>",
+            "name": "comment.block.xml"
+          }
+        },
+        {
+          "begin": "<!--",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.comment.xml"
+            }
+          },
+          "end": "-->",
+          "name": "comment.block.xml",
+          "patterns": [
+            {
+              "begin": "--(?!>)",
+              "captures": {
+                "0": {
+                  "name": "invalid.illegal.bad-comments-or-CDATA.xml"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
     "doublequotedString": {
       "begin": "\"",
       "beginCaptures": {
@@ -348,40 +381,8 @@
           "include": "#singlequotedString"
         }
       ]
-    },
-    "comments": {
-      "patterns": [
-        {
-          "begin": "<%--",
-          "captures": {
-            "0": {
-              "name": "punctuation.definition.comment.xml"
-            },
-            "end": "--%>",
-            "name": "comment.block.xml"
-          }
-        },
-        {
-          "begin": "<!--",
-          "captures": {
-            "0": {
-              "name": "punctuation.definition.comment.xml"
-            }
-          },
-          "end": "-->",
-          "name": "comment.block.xml",
-          "patterns": [
-            {
-              "begin": "--(?!>)",
-              "captures": {
-                "0": {
-                  "name": "invalid.illegal.bad-comments-or-CDATA.xml"
-                }
-              }
-            }
-          ]
-        }
-      ]
     }
-  }
+  },
+  "scopeName": "text.xml",
+  "version": "https://github.com/atom/language-xml/commit/7bc75dfe779ad5b35d9bf4013d9181864358cb49"
 }

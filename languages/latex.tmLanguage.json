@@ -1,12 +1,11 @@
 {
+  "displayName": "LaTeX",
   "information_for_contributors": [
     "This file has been converted from https://github.com/jlelong/vscode-latex-basics/blob/master/syntaxes/LaTeX.tmLanguage.json",
     "If you want to provide a fix or improvement, please create a pull request against the original repository.",
     "Once accepted there, we are happy to receive an update request."
   ],
-  "version": "https://github.com/jlelong/vscode-latex-basics/commit/e0f2c26cdc94a9439acc565215c7bdbf379afb1f",
   "name": "latex",
-  "scopeName": "text.tex.latex",
   "patterns": [
     {
       "comment": "This scope identifies partially typed commands such as `\\tab`. We use this to trigger “Command Completion” only when it makes sense.",
@@ -41,13 +40,13 @@
               "name": "punctuation.definition.arguments.begin.latex"
             }
           },
+          "contentName": "support.class.latex",
           "end": "(\\})",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.arguments.end.latex"
             }
           },
-          "contentName": "support.class.latex",
           "patterns": [
             {
               "include": "$self"
@@ -94,7 +93,7 @@
         "4": {
           "patterns": [
             {
-              "include": "#optional-arg"
+              "include": "#optional-arg-bracket"
             }
           ]
         },
@@ -116,14 +115,12 @@
           "include": "text.tex#braces"
         },
         {
-          "include": "$base"
+          "include": "$self"
         }
       ]
     },
     {
-      "name": "meta.function.environment.songs.latex",
       "begin": "((?:\\s*)\\\\begin\\{songs\\}\\{.*\\})",
-      "end": "(\\\\end\\{songs\\}(?:\\s*\\n)?)",
       "captures": {
         "1": {
           "patterns": [
@@ -134,20 +131,22 @@
         }
       },
       "contentName": "meta.data.environment.songs.latex",
+      "end": "(\\\\end\\{songs\\}(?:\\s*\\n)?)",
+      "name": "meta.function.environment.songs.latex",
       "patterns": [
         {
-          "name": "meta.chord.block.latex support.class.chord.block.environment.latex",
           "begin": "\\\\\\[",
           "end": "\\]",
+          "name": "meta.chord.block.latex support.class.chord.block.environment.latex",
           "patterns": [
             {
-              "include": "$base"
+              "include": "$self"
             }
           ]
         },
         {
-          "name": "meta.chord.block.latex support.class.chord.block.environment.latex",
-          "match": "\\^"
+          "match": "\\^",
+          "name": "meta.chord.block.latex support.class.chord.block.environment.latex"
         },
         {
           "include": "$self"
@@ -155,8 +154,7 @@
       ]
     },
     {
-      "begin": "(^\\s*)?\\\\begin\\{(lstlisting|minted|pyglist)\\}(?=\\[|\\{)",
-      "end": "\\\\end\\{(?:minted|lstlisting|pyglist)\\}",
+      "begin": "(?:^\\s*)?\\\\begin\\{(lstlisting|minted|pyglist)\\}(?=\\[|\\{)",
       "captures": {
         "0": {
           "patterns": [
@@ -166,30 +164,10 @@
           ]
         }
       },
+      "end": "\\\\end\\{\\1\\}",
       "patterns": [
         {
           "include": "#multiline-optional-arg-no-highlight"
-        },
-        {
-          "begin": "(?:\\G|(?<=\\]))(\\{)((?:c|cpp))(\\})",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.begin.latex"
-            },
-            "2": {
-              "name": "variable.parameter.function.latex"
-            },
-            "3": {
-              "name": "punctuation.definition.arguments.end.latex"
-            }
-          },
-          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
-          "contentName": "source.cpp.embedded.latex",
-          "patterns": [
-            {
-              "include": "source.cpp.embedded.latex"
-            }
-          ]
         },
         {
           "begin": "(?:\\G|(?<=\\]))(\\{)((?:asy|asymptote))(\\})",
@@ -204,11 +182,53 @@
               "name": "punctuation.definition.arguments.end.latex"
             }
           },
-          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
           "contentName": "source.asy",
+          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
           "patterns": [
             {
               "include": "source.asy"
+            }
+          ]
+        },
+        {
+          "begin": "(?:\\G|(?<=\\]))(\\{)((?:bash))(\\})",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            },
+            "2": {
+              "name": "variable.parameter.function.latex"
+            },
+            "3": {
+              "name": "punctuation.definition.arguments.end.latex"
+            }
+          },
+          "contentName": "source.shell",
+          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
+          "patterns": [
+            {
+              "include": "source.shell"
+            }
+          ]
+        },
+        {
+          "begin": "(?:\\G|(?<=\\]))(\\{)((?:c|cpp))(\\})",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            },
+            "2": {
+              "name": "variable.parameter.function.latex"
+            },
+            "3": {
+              "name": "punctuation.definition.arguments.end.latex"
+            }
+          },
+          "contentName": "source.cpp.embedded.latex",
+          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
+          "patterns": [
+            {
+              "include": "source.cpp.embedded.latex"
             }
           ]
         },
@@ -225,11 +245,32 @@
               "name": "punctuation.definition.arguments.end.latex"
             }
           },
-          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
           "contentName": "source.css",
+          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
           "patterns": [
             {
               "include": "source.css"
+            }
+          ]
+        },
+        {
+          "begin": "(?:\\G|(?<=\\]))(\\{)((?:gnuplot))(\\})",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            },
+            "2": {
+              "name": "variable.parameter.function.latex"
+            },
+            "3": {
+              "name": "punctuation.definition.arguments.end.latex"
+            }
+          },
+          "contentName": "source.gnuplot",
+          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
+          "patterns": [
+            {
+              "include": "source.gnuplot"
             }
           ]
         },
@@ -246,8 +287,8 @@
               "name": "punctuation.definition.arguments.end.latex"
             }
           },
-          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
           "contentName": "source.haskell",
+          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
           "patterns": [
             {
               "include": "source.haskell"
@@ -267,32 +308,11 @@
               "name": "punctuation.definition.arguments.end.latex"
             }
           },
-          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
           "contentName": "text.html",
+          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
           "patterns": [
             {
               "include": "text.html.basic"
-            }
-          ]
-        },
-        {
-          "begin": "(?:\\G|(?<=\\]))(\\{)((?:xml))(\\})",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.begin.latex"
-            },
-            "2": {
-              "name": "variable.parameter.function.latex"
-            },
-            "3": {
-              "name": "punctuation.definition.arguments.end.latex"
-            }
-          },
-          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
-          "contentName": "text.xml",
-          "patterns": [
-            {
-              "include": "text.xml"
             }
           ]
         },
@@ -309,32 +329,11 @@
               "name": "punctuation.definition.arguments.end.latex"
             }
           },
-          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
           "contentName": "source.java",
+          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
           "patterns": [
             {
               "include": "source.java"
-            }
-          ]
-        },
-        {
-          "begin": "(?:\\G|(?<=\\]))(\\{)((?:lua))(\\})",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.begin.latex"
-            },
-            "2": {
-              "name": "variable.parameter.function.latex"
-            },
-            "3": {
-              "name": "punctuation.definition.arguments.end.latex"
-            }
-          },
-          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
-          "contentName": "source.lua",
-          "patterns": [
-            {
-              "include": "source.lua"
             }
           ]
         },
@@ -351,32 +350,11 @@
               "name": "punctuation.definition.arguments.end.latex"
             }
           },
-          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
           "contentName": "source.julia",
+          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
           "patterns": [
             {
               "include": "source.julia"
-            }
-          ]
-        },
-        {
-          "begin": "(?:\\G|(?<=\\]))(\\{)((?:rb|ruby))(\\})",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.begin.latex"
-            },
-            "2": {
-              "name": "variable.parameter.function.latex"
-            },
-            "3": {
-              "name": "punctuation.definition.arguments.end.latex"
-            }
-          },
-          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
-          "contentName": "source.ruby",
-          "patterns": [
-            {
-              "include": "source.ruby"
             }
           ]
         },
@@ -393,8 +371,8 @@
               "name": "punctuation.definition.arguments.end.latex"
             }
           },
-          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
           "contentName": "source.js",
+          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
           "patterns": [
             {
               "include": "source.js"
@@ -402,7 +380,7 @@
           ]
         },
         {
-          "begin": "(?:\\G|(?<=\\]))(\\{)((?:ts|typescript))(\\})",
+          "begin": "(?:\\G|(?<=\\]))(\\{)((?:lua))(\\})",
           "beginCaptures": {
             "1": {
               "name": "punctuation.definition.arguments.begin.latex"
@@ -414,16 +392,16 @@
               "name": "punctuation.definition.arguments.end.latex"
             }
           },
+          "contentName": "source.lua",
           "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
-          "contentName": "source.ts",
           "patterns": [
             {
-              "include": "source.ts"
+              "include": "source.lua"
             }
           ]
         },
         {
-          "begin": "(?:\\G|(?<=\\]))(\\{)((?:py|python))(\\})",
+          "begin": "(?:\\G|(?<=\\]))(\\{)((?:py|python|sage))(\\})",
           "beginCaptures": {
             "1": {
               "name": "punctuation.definition.arguments.begin.latex"
@@ -435,8 +413,8 @@
               "name": "punctuation.definition.arguments.end.latex"
             }
           },
-          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
           "contentName": "source.python",
+          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
           "patterns": [
             {
               "include": "source.python"
@@ -444,7 +422,7 @@
           ]
         },
         {
-          "begin": "(?:\\G|(?<=\\]))(\\{)((?:yaml))(\\})",
+          "begin": "(?:\\G|(?<=\\]))(\\{)((?:rb|ruby))(\\})",
           "beginCaptures": {
             "1": {
               "name": "punctuation.definition.arguments.begin.latex"
@@ -456,11 +434,11 @@
               "name": "punctuation.definition.arguments.end.latex"
             }
           },
+          "contentName": "source.ruby",
           "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
-          "contentName": "source.yaml",
           "patterns": [
             {
-              "include": "source.yaml"
+              "include": "source.ruby"
             }
           ]
         },
@@ -477,11 +455,74 @@
               "name": "punctuation.definition.arguments.end.latex"
             }
           },
-          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
           "contentName": "source.rust",
+          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
           "patterns": [
             {
               "include": "source.rust"
+            }
+          ]
+        },
+        {
+          "begin": "(?:\\G|(?<=\\]))(\\{)((?:ts|typescript))(\\})",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            },
+            "2": {
+              "name": "variable.parameter.function.latex"
+            },
+            "3": {
+              "name": "punctuation.definition.arguments.end.latex"
+            }
+          },
+          "contentName": "source.ts",
+          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
+          "patterns": [
+            {
+              "include": "source.ts"
+            }
+          ]
+        },
+        {
+          "begin": "(?:\\G|(?<=\\]))(\\{)((?:xml))(\\})",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            },
+            "2": {
+              "name": "variable.parameter.function.latex"
+            },
+            "3": {
+              "name": "punctuation.definition.arguments.end.latex"
+            }
+          },
+          "contentName": "text.xml",
+          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
+          "patterns": [
+            {
+              "include": "text.xml"
+            }
+          ]
+        },
+        {
+          "begin": "(?:\\G|(?<=\\]))(\\{)((?:yaml))(\\})",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            },
+            "2": {
+              "name": "variable.parameter.function.latex"
+            },
+            "3": {
+              "name": "punctuation.definition.arguments.end.latex"
+            }
+          },
+          "contentName": "source.yaml",
+          "end": "^\\s*(?=\\\\end\\{(?:minted|lstlisting|pyglist)\\})",
+          "patterns": [
+            {
+              "include": "source.yaml"
             }
           ]
         },
@@ -505,438 +546,7 @@
       ]
     },
     {
-      "begin": "\\s*\\\\begin\\{(?:cppcode)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
-      "end": "\\s*\\\\end\\{(?:cppcode)\\*?\\}",
-      "captures": {
-        "0": {
-          "patterns": [
-            {
-              "include": "#begin-env-tokenizer"
-            }
-          ]
-        }
-      },
-      "patterns": [
-        {
-          "include": "#multiline-optional-arg-no-highlight"
-        },
-        {
-          "begin": "(?:\\G|(?<=\\]))(\\{)",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.begin.latex"
-            }
-          },
-          "end": "(\\})",
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.end.latex"
-            }
-          },
-          "contentName": "variable.parameter.function.latex"
-        },
-        {
-          "begin": "^(?=\\s*)",
-          "end": "^\\s*(?=\\\\end\\{(?:cppcode)\\*?\\})",
-          "contentName": "source.cpp.embedded.latex",
-          "patterns": [
-            {
-              "include": "source.cpp.embedded.latex"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "begin": "\\s*\\\\begin\\{(?:hscode)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
-      "end": "\\s*\\\\end\\{(?:hscode)\\*?\\}",
-      "captures": {
-        "0": {
-          "patterns": [
-            {
-              "include": "#begin-env-tokenizer"
-            }
-          ]
-        }
-      },
-      "patterns": [
-        {
-          "include": "#multiline-optional-arg-no-highlight"
-        },
-        {
-          "begin": "(?:\\G|(?<=\\]))(\\{)",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.begin.latex"
-            }
-          },
-          "end": "(\\})",
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.end.latex"
-            }
-          },
-          "contentName": "variable.parameter.function.latex"
-        },
-        {
-          "begin": "^(?=\\s*)",
-          "end": "^\\s*(?=\\\\end\\{(?:hscode)\\*?\\})",
-          "contentName": "source.haskell",
-          "patterns": [
-            {
-              "include": "source.haskell"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "begin": "\\s*\\\\begin\\{(?:luacode)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
-      "end": "\\s*\\\\end\\{(?:luacode)\\*?\\}",
-      "captures": {
-        "0": {
-          "patterns": [
-            {
-              "include": "#begin-env-tokenizer"
-            }
-          ]
-        }
-      },
-      "patterns": [
-        {
-          "include": "#multiline-optional-arg-no-highlight"
-        },
-        {
-          "begin": "(?:\\G|(?<=\\]))(\\{)",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.begin.latex"
-            }
-          },
-          "end": "(\\})",
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.end.latex"
-            }
-          },
-          "contentName": "variable.parameter.function.latex"
-        },
-        {
-          "begin": "^(?=\\s*)",
-          "end": "^\\s*(?=\\\\end\\{(?:luacode)\\*?\\})",
-          "contentName": "source.lua",
-          "patterns": [
-            {
-              "include": "source.lua"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "begin": "\\s*\\\\begin\\{(?:jlcode|jlverbatim|jlblock|jlconcode|jlconsole|jlconverbatim)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
-      "end": "\\s*\\\\end\\{(?:jlcode|jlverbatim|jlblock|jlconcode|jlconsole|jlconverbatim)\\*?\\}",
-      "captures": {
-        "0": {
-          "patterns": [
-            {
-              "include": "#begin-env-tokenizer"
-            }
-          ]
-        }
-      },
-      "patterns": [
-        {
-          "include": "#multiline-optional-arg-no-highlight"
-        },
-        {
-          "begin": "(?:\\G|(?<=\\]))(\\{)",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.begin.latex"
-            }
-          },
-          "end": "(\\})",
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.end.latex"
-            }
-          },
-          "contentName": "variable.parameter.function.latex"
-        },
-        {
-          "begin": "^(?=\\s*)",
-          "end": "^\\s*(?=\\\\end\\{(?:jlcode|jlverbatim|jlblock|jlconcode|jlconsole|jlconverbatim)\\*?\\})",
-          "contentName": "source.julia",
-          "patterns": [
-            {
-              "include": "source.julia"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "begin": "\\s*\\\\begin\\{(?:juliacode|juliaverbatim|juliablock|juliaconcode|juliaconsole|juliaconverbatim)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
-      "end": "\\s*\\\\end\\{(?:juliacode|juliaverbatim|juliablock|juliaconcode|juliaconsole|juliaconverbatim)\\*?\\}",
-      "captures": {
-        "0": {
-          "patterns": [
-            {
-              "include": "#begin-env-tokenizer"
-            }
-          ]
-        }
-      },
-      "patterns": [
-        {
-          "include": "#multiline-optional-arg-no-highlight"
-        },
-        {
-          "begin": "(?:\\G|(?<=\\]))(\\{)",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.begin.latex"
-            }
-          },
-          "end": "(\\})",
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.end.latex"
-            }
-          },
-          "contentName": "variable.parameter.function.latex"
-        },
-        {
-          "begin": "^(?=\\s*)",
-          "end": "^\\s*(?=\\\\end\\{(?:juliacode|juliaverbatim|juliablock|juliaconcode|juliaconsole|juliaconverbatim)\\*?\\})",
-          "contentName": "source.julia",
-          "patterns": [
-            {
-              "include": "source.julia"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "begin": "\\s*\\\\begin\\{(?:sageblock|sagesilent|sageverbatim|sageexample|sagecommandline|python|pythonq|pythonrepl)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
-      "end": "\\s*\\\\end\\{(?:sageblock|sagesilent|sageverbatim|sageexample|sagecommandline|python|pythonq|pythonrepl)\\*?\\}",
-      "captures": {
-        "0": {
-          "patterns": [
-            {
-              "include": "#begin-env-tokenizer"
-            }
-          ]
-        }
-      },
-      "patterns": [
-        {
-          "include": "#multiline-optional-arg-no-highlight"
-        },
-        {
-          "begin": "(?:\\G|(?<=\\]))(\\{)",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.begin.latex"
-            }
-          },
-          "end": "(\\})",
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.end.latex"
-            }
-          },
-          "contentName": "variable.parameter.function.latex"
-        },
-        {
-          "begin": "^(?=\\s*)",
-          "end": "^\\s*(?=\\\\end\\{(?:sageblock|sagesilent|sageverbatim|sageexample|sagecommandline|python|pythonq|pythonrepl)\\*?\\})",
-          "contentName": "source.python",
-          "patterns": [
-            {
-              "include": "source.python"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "begin": "\\s*\\\\begin\\{(?:pycode|pyverbatim|pyblock|pyconcode|pyconsole|pyconverbatim)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
-      "end": "\\s*\\\\end\\{(?:pycode|pyverbatim|pyblock|pyconcode|pyconsole|pyconverbatim)\\*?\\}",
-      "captures": {
-        "0": {
-          "patterns": [
-            {
-              "include": "#begin-env-tokenizer"
-            }
-          ]
-        }
-      },
-      "patterns": [
-        {
-          "include": "#multiline-optional-arg-no-highlight"
-        },
-        {
-          "begin": "(?:\\G|(?<=\\]))(\\{)",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.begin.latex"
-            }
-          },
-          "end": "(\\})",
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.end.latex"
-            }
-          },
-          "contentName": "variable.parameter.function.latex"
-        },
-        {
-          "begin": "^(?=\\s*)",
-          "end": "^\\s*(?=\\\\end\\{(?:pycode|pyverbatim|pyblock|pyconcode|pyconsole|pyconverbatim)\\*?\\})",
-          "contentName": "source.python",
-          "patterns": [
-            {
-              "include": "source.python"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "begin": "\\s*\\\\begin\\{(?:pylabcode|pylabverbatim|pylabblock|pylabconcode|pylabconsole|pylabconverbatim)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
-      "end": "\\s*\\\\end\\{(?:pylabcode|pylabverbatim|pylabblock|pylabconcode|pylabconsole|pylabconverbatim)\\*?\\}",
-      "captures": {
-        "0": {
-          "patterns": [
-            {
-              "include": "#begin-env-tokenizer"
-            }
-          ]
-        }
-      },
-      "patterns": [
-        {
-          "include": "#multiline-optional-arg-no-highlight"
-        },
-        {
-          "begin": "(?:\\G|(?<=\\]))(\\{)",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.begin.latex"
-            }
-          },
-          "end": "(\\})",
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.end.latex"
-            }
-          },
-          "contentName": "variable.parameter.function.latex"
-        },
-        {
-          "begin": "^(?=\\s*)",
-          "end": "^\\s*(?=\\\\end\\{(?:pylabcode|pylabverbatim|pylabblock|pylabconcode|pylabconsole|pylabconverbatim)\\*?\\})",
-          "contentName": "source.python",
-          "patterns": [
-            {
-              "include": "source.python"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "begin": "\\s*\\\\begin\\{(?:sympycode|sympyverbatim|sympyblock|sympyconcode|sympyconsole|sympyconverbatim)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
-      "end": "\\s*\\\\end\\{(?:sympycode|sympyverbatim|sympyblock|sympyconcode|sympyconsole|sympyconverbatim)\\*?\\}",
-      "captures": {
-        "0": {
-          "patterns": [
-            {
-              "include": "#begin-env-tokenizer"
-            }
-          ]
-        }
-      },
-      "patterns": [
-        {
-          "include": "#multiline-optional-arg-no-highlight"
-        },
-        {
-          "begin": "(?:\\G|(?<=\\]))(\\{)",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.begin.latex"
-            }
-          },
-          "end": "(\\})",
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.end.latex"
-            }
-          },
-          "contentName": "variable.parameter.function.latex"
-        },
-        {
-          "begin": "^(?=\\s*)",
-          "end": "^\\s*(?=\\\\end\\{(?:sympycode|sympyverbatim|sympyblock|sympyconcode|sympyconsole|sympyconverbatim)\\*?\\})",
-          "contentName": "source.python",
-          "patterns": [
-            {
-              "include": "source.python"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "begin": "\\s*\\\\begin\\{(?:scalacode)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
-      "end": "\\s*\\\\end\\{(?:scalacode)\\*?\\}",
-      "captures": {
-        "0": {
-          "patterns": [
-            {
-              "include": "#begin-env-tokenizer"
-            }
-          ]
-        }
-      },
-      "patterns": [
-        {
-          "include": "#multiline-optional-arg-no-highlight"
-        },
-        {
-          "begin": "(?:\\G|(?<=\\]))(\\{)",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.begin.latex"
-            }
-          },
-          "end": "(\\})",
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.definition.arguments.end.latex"
-            }
-          },
-          "contentName": "variable.parameter.function.latex"
-        },
-        {
-          "begin": "^(?=\\s*)",
-          "end": "^\\s*(?=\\\\end\\{(?:scalacode)\\*?\\})",
-          "contentName": "source.scala",
-          "patterns": [
-            {
-              "include": "source.scala"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "begin": "\\s*\\\\begin\\{(?:asy|asycode)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
-      "end": "\\s*\\\\end\\{(?:asy|asycode)\\*?\\}",
       "captures": {
         "0": {
           "patterns": [
@@ -946,6 +556,7 @@
           ]
         }
       },
+      "end": "\\s*\\\\end\\{(?:asy|asycode)\\*?\\}",
       "patterns": [
         {
           "include": "#multiline-optional-arg-no-highlight"
@@ -957,18 +568,18 @@
               "name": "punctuation.definition.arguments.begin.latex"
             }
           },
+          "contentName": "variable.parameter.function.latex",
           "end": "(\\})",
           "endCaptures": {
             "1": {
               "name": "punctuation.definition.arguments.end.latex"
             }
-          },
-          "contentName": "variable.parameter.function.latex"
+          }
         },
         {
           "begin": "^(?=\\s*)",
-          "end": "^\\s*(?=\\\\end\\{(?:asy|asycode)\\*?\\})",
           "contentName": "source.asymptote",
+          "end": "^\\s*(?=\\\\end\\{(?:asy|asycode)\\*?\\})",
           "patterns": [
             {
               "include": "source.asymptote"
@@ -978,8 +589,7 @@
       ]
     },
     {
-      "begin": "\\s*\\\\begin\\{(?:dot2tex|dotcode)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
-      "end": "\\s*\\\\end\\{(?:dot2tex|dotcode)\\*?\\}",
+      "begin": "\\s*\\\\begin\\{(?:cppcode)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
       "captures": {
         "0": {
           "patterns": [
@@ -989,6 +599,7 @@
           ]
         }
       },
+      "end": "\\s*\\\\end\\{(?:cppcode)\\*?\\}",
       "patterns": [
         {
           "include": "#multiline-optional-arg-no-highlight"
@@ -1000,18 +611,61 @@
               "name": "punctuation.definition.arguments.begin.latex"
             }
           },
+          "contentName": "variable.parameter.function.latex",
           "end": "(\\})",
           "endCaptures": {
             "1": {
               "name": "punctuation.definition.arguments.end.latex"
             }
-          },
-          "contentName": "variable.parameter.function.latex"
+          }
         },
         {
           "begin": "^(?=\\s*)",
-          "end": "^\\s*(?=\\\\end\\{(?:dot2tex|dotcode)\\*?\\})",
+          "contentName": "source.cpp.embedded.latex",
+          "end": "^\\s*(?=\\\\end\\{(?:cppcode)\\*?\\})",
+          "patterns": [
+            {
+              "include": "source.cpp.embedded.latex"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "begin": "\\s*\\\\begin\\{(?:dot2tex|dotcode)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
+      "captures": {
+        "0": {
+          "patterns": [
+            {
+              "include": "#begin-env-tokenizer"
+            }
+          ]
+        }
+      },
+      "end": "\\s*\\\\end\\{(?:dot2tex|dotcode)\\*?\\}",
+      "patterns": [
+        {
+          "include": "#multiline-optional-arg-no-highlight"
+        },
+        {
+          "begin": "(?:\\G|(?<=\\]))(\\{)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "contentName": "variable.parameter.function.latex",
+          "end": "(\\})",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.end.latex"
+            }
+          }
+        },
+        {
+          "begin": "^(?=\\s*)",
           "contentName": "source.dot",
+          "end": "^\\s*(?=\\\\end\\{(?:dot2tex|dotcode)\\*?\\})",
           "patterns": [
             {
               "include": "source.dot"
@@ -1022,7 +676,6 @@
     },
     {
       "begin": "\\s*\\\\begin\\{(?:gnuplot)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
-      "end": "\\s*\\\\end\\{(?:gnuplot)\\*?\\}",
       "captures": {
         "0": {
           "patterns": [
@@ -1032,6 +685,7 @@
           ]
         }
       },
+      "end": "\\s*\\\\end\\{(?:gnuplot)\\*?\\}",
       "patterns": [
         {
           "include": "#multiline-optional-arg-no-highlight"
@@ -1043,18 +697,18 @@
               "name": "punctuation.definition.arguments.begin.latex"
             }
           },
+          "contentName": "variable.parameter.function.latex",
           "end": "(\\})",
           "endCaptures": {
             "1": {
               "name": "punctuation.definition.arguments.end.latex"
             }
-          },
-          "contentName": "variable.parameter.function.latex"
+          }
         },
         {
           "begin": "^(?=\\s*)",
-          "end": "^\\s*(?=\\\\end\\{(?:gnuplot)\\*?\\})",
           "contentName": "source.gnuplot",
+          "end": "^\\s*(?=\\\\end\\{(?:gnuplot)\\*?\\})",
           "patterns": [
             {
               "include": "source.gnuplot"
@@ -1064,7 +718,409 @@
       ]
     },
     {
-      "begin": "((?:\\s*)\\\\begin\\{([a-zA-Z]*code|lstlisting|minted|pyglist)(?:\\*)?\\}(?:\\[.*\\])?(?:\\{.*\\})?)",
+      "begin": "\\s*\\\\begin\\{(?:hscode)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
+      "captures": {
+        "0": {
+          "patterns": [
+            {
+              "include": "#begin-env-tokenizer"
+            }
+          ]
+        }
+      },
+      "end": "\\s*\\\\end\\{(?:hscode)\\*?\\}",
+      "patterns": [
+        {
+          "include": "#multiline-optional-arg-no-highlight"
+        },
+        {
+          "begin": "(?:\\G|(?<=\\]))(\\{)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "contentName": "variable.parameter.function.latex",
+          "end": "(\\})",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.end.latex"
+            }
+          }
+        },
+        {
+          "begin": "^(?=\\s*)",
+          "contentName": "source.haskell",
+          "end": "^\\s*(?=\\\\end\\{(?:hscode)\\*?\\})",
+          "patterns": [
+            {
+              "include": "source.haskell"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "begin": "\\s*\\\\begin\\{(?:jlcode|jlverbatim|jlblock|jlconcode|jlconsole|jlconverbatim)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
+      "captures": {
+        "0": {
+          "patterns": [
+            {
+              "include": "#begin-env-tokenizer"
+            }
+          ]
+        }
+      },
+      "end": "\\s*\\\\end\\{(?:jlcode|jlverbatim|jlblock|jlconcode|jlconsole|jlconverbatim)\\*?\\}",
+      "patterns": [
+        {
+          "include": "#multiline-optional-arg-no-highlight"
+        },
+        {
+          "begin": "(?:\\G|(?<=\\]))(\\{)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "contentName": "variable.parameter.function.latex",
+          "end": "(\\})",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.end.latex"
+            }
+          }
+        },
+        {
+          "begin": "^(?=\\s*)",
+          "contentName": "source.julia",
+          "end": "^\\s*(?=\\\\end\\{(?:jlcode|jlverbatim|jlblock|jlconcode|jlconsole|jlconverbatim)\\*?\\})",
+          "patterns": [
+            {
+              "include": "source.julia"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "begin": "\\s*\\\\begin\\{(?:juliacode|juliaverbatim|juliablock|juliaconcode|juliaconsole|juliaconverbatim)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
+      "captures": {
+        "0": {
+          "patterns": [
+            {
+              "include": "#begin-env-tokenizer"
+            }
+          ]
+        }
+      },
+      "end": "\\s*\\\\end\\{(?:juliacode|juliaverbatim|juliablock|juliaconcode|juliaconsole|juliaconverbatim)\\*?\\}",
+      "patterns": [
+        {
+          "include": "#multiline-optional-arg-no-highlight"
+        },
+        {
+          "begin": "(?:\\G|(?<=\\]))(\\{)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "contentName": "variable.parameter.function.latex",
+          "end": "(\\})",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.end.latex"
+            }
+          }
+        },
+        {
+          "begin": "^(?=\\s*)",
+          "contentName": "source.julia",
+          "end": "^\\s*(?=\\\\end\\{(?:juliacode|juliaverbatim|juliablock|juliaconcode|juliaconsole|juliaconverbatim)\\*?\\})",
+          "patterns": [
+            {
+              "include": "source.julia"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "begin": "\\s*\\\\begin\\{(?:luacode)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
+      "captures": {
+        "0": {
+          "patterns": [
+            {
+              "include": "#begin-env-tokenizer"
+            }
+          ]
+        }
+      },
+      "end": "\\s*\\\\end\\{(?:luacode)\\*?\\}",
+      "patterns": [
+        {
+          "include": "#multiline-optional-arg-no-highlight"
+        },
+        {
+          "begin": "(?:\\G|(?<=\\]))(\\{)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "contentName": "variable.parameter.function.latex",
+          "end": "(\\})",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.end.latex"
+            }
+          }
+        },
+        {
+          "begin": "^(?=\\s*)",
+          "contentName": "source.lua",
+          "end": "^\\s*(?=\\\\end\\{(?:luacode)\\*?\\})",
+          "patterns": [
+            {
+              "include": "source.lua"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "begin": "\\s*\\\\begin\\{(?:pycode|pyverbatim|pyblock|pyconcode|pyconsole|pyconverbatim)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
+      "captures": {
+        "0": {
+          "patterns": [
+            {
+              "include": "#begin-env-tokenizer"
+            }
+          ]
+        }
+      },
+      "end": "\\s*\\\\end\\{(?:pycode|pyverbatim|pyblock|pyconcode|pyconsole|pyconverbatim)\\*?\\}",
+      "patterns": [
+        {
+          "include": "#multiline-optional-arg-no-highlight"
+        },
+        {
+          "begin": "(?:\\G|(?<=\\]))(\\{)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "contentName": "variable.parameter.function.latex",
+          "end": "(\\})",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.end.latex"
+            }
+          }
+        },
+        {
+          "begin": "^(?=\\s*)",
+          "contentName": "source.python",
+          "end": "^\\s*(?=\\\\end\\{(?:pycode|pyverbatim|pyblock|pyconcode|pyconsole|pyconverbatim)\\*?\\})",
+          "patterns": [
+            {
+              "include": "source.python"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "begin": "\\s*\\\\begin\\{(?:pylabcode|pylabverbatim|pylabblock|pylabconcode|pylabconsole|pylabconverbatim)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
+      "captures": {
+        "0": {
+          "patterns": [
+            {
+              "include": "#begin-env-tokenizer"
+            }
+          ]
+        }
+      },
+      "end": "\\s*\\\\end\\{(?:pylabcode|pylabverbatim|pylabblock|pylabconcode|pylabconsole|pylabconverbatim)\\*?\\}",
+      "patterns": [
+        {
+          "include": "#multiline-optional-arg-no-highlight"
+        },
+        {
+          "begin": "(?:\\G|(?<=\\]))(\\{)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "contentName": "variable.parameter.function.latex",
+          "end": "(\\})",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.end.latex"
+            }
+          }
+        },
+        {
+          "begin": "^(?=\\s*)",
+          "contentName": "source.python",
+          "end": "^\\s*(?=\\\\end\\{(?:pylabcode|pylabverbatim|pylabblock|pylabconcode|pylabconsole|pylabconverbatim)\\*?\\})",
+          "patterns": [
+            {
+              "include": "source.python"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "begin": "\\s*\\\\begin\\{(?:sageblock|sagesilent|sageverbatim|sageexample|sagecommandline|python|pythonq|pythonrepl)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
+      "captures": {
+        "0": {
+          "patterns": [
+            {
+              "include": "#begin-env-tokenizer"
+            }
+          ]
+        }
+      },
+      "end": "\\s*\\\\end\\{(?:sageblock|sagesilent|sageverbatim|sageexample|sagecommandline|python|pythonq|pythonrepl)\\*?\\}",
+      "patterns": [
+        {
+          "include": "#multiline-optional-arg-no-highlight"
+        },
+        {
+          "begin": "(?:\\G|(?<=\\]))(\\{)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "contentName": "variable.parameter.function.latex",
+          "end": "(\\})",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.end.latex"
+            }
+          }
+        },
+        {
+          "begin": "^(?=\\s*)",
+          "contentName": "source.python",
+          "end": "^\\s*(?=\\\\end\\{(?:sageblock|sagesilent|sageverbatim|sageexample|sagecommandline|python|pythonq|pythonrepl)\\*?\\})",
+          "patterns": [
+            {
+              "include": "source.python"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "begin": "\\s*\\\\begin\\{(?:scalacode)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
+      "captures": {
+        "0": {
+          "patterns": [
+            {
+              "include": "#begin-env-tokenizer"
+            }
+          ]
+        }
+      },
+      "end": "\\s*\\\\end\\{(?:scalacode)\\*?\\}",
+      "patterns": [
+        {
+          "include": "#multiline-optional-arg-no-highlight"
+        },
+        {
+          "begin": "(?:\\G|(?<=\\]))(\\{)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "contentName": "variable.parameter.function.latex",
+          "end": "(\\})",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.end.latex"
+            }
+          }
+        },
+        {
+          "begin": "^(?=\\s*)",
+          "contentName": "source.scala",
+          "end": "^\\s*(?=\\\\end\\{(?:scalacode)\\*?\\})",
+          "patterns": [
+            {
+              "include": "source.scala"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "begin": "\\s*\\\\begin\\{(?:sympycode|sympyverbatim|sympyblock|sympyconcode|sympyconsole|sympyconverbatim)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
+      "captures": {
+        "0": {
+          "patterns": [
+            {
+              "include": "#begin-env-tokenizer"
+            }
+          ]
+        }
+      },
+      "end": "\\s*\\\\end\\{(?:sympycode|sympyverbatim|sympyblock|sympyconcode|sympyconsole|sympyconverbatim)\\*?\\}",
+      "patterns": [
+        {
+          "include": "#multiline-optional-arg-no-highlight"
+        },
+        {
+          "begin": "(?:\\G|(?<=\\]))(\\{)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "contentName": "variable.parameter.function.latex",
+          "end": "(\\})",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.end.latex"
+            }
+          }
+        },
+        {
+          "begin": "^(?=\\s*)",
+          "contentName": "source.python",
+          "end": "^\\s*(?=\\\\end\\{(?:sympycode|sympyverbatim|sympyblock|sympyconcode|sympyconsole|sympyconverbatim)\\*?\\})",
+          "patterns": [
+            {
+              "include": "source.python"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "begin": "\\s*\\\\begin\\{([a-zA-Z]*code|lstlisting|minted|pyglist)\\*?\\}(?:\\[.*\\])?(?:\\{.*\\})?",
+      "captures": {
+        "0": {
+          "patterns": [
+            {
+              "include": "#begin-env-tokenizer"
+            }
+          ]
+        }
+      },
+      "contentName": "meta.function.embedded.latex",
+      "end": "\\\\end\\{\\1\\}(?:\\s*\\n)?",
+      "name": "meta.embedded.block.generic.latex"
+    },
+    {
+      "begin": "((?:^\\s*)?\\\\begin\\{((?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?))\\})(?:\\[[^\\]]*\\]){,2}(?=\\{)",
       "captures": {
         "1": {
           "patterns": [
@@ -1074,9 +1130,762 @@
           ]
         }
       },
-      "end": "(\\\\end\\{\\2\\}(?:\\s*\\n)?)",
-      "contentName": "meta.function.embedded.latex",
-      "name": "meta.embedded.block.generic.latex"
+      "end": "(\\\\end\\{\\2\\})",
+      "patterns": [
+        {
+          "begin": "\\G(\\{)(?:__|[a-z\\s]*)(?i:asy|asymptote)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "end": "(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+          "patterns": [
+            {
+              "begin": "\\G",
+              "end": "(\\})\\s*$",
+              "endCaptures": {
+                "1": {
+                  "name": "punctuation.definition.arguments.end.latex"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "text.tex#braces"
+                },
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "begin": "^(\\s*)",
+              "contentName": "source.asy",
+              "end": "^\\s*(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+              "patterns": [
+                {
+                  "include": "source.asy"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "\\G(\\{)(?:__|[a-z\\s]*)(?i:bash)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "end": "(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+          "patterns": [
+            {
+              "begin": "\\G",
+              "end": "(\\})\\s*$",
+              "endCaptures": {
+                "1": {
+                  "name": "punctuation.definition.arguments.end.latex"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "text.tex#braces"
+                },
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "begin": "^(\\s*)",
+              "contentName": "source.shell",
+              "end": "^\\s*(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+              "patterns": [
+                {
+                  "include": "source.shell"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "\\G(\\{)(?:__|[a-z\\s]*)(?i:c|cpp)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "end": "(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+          "patterns": [
+            {
+              "begin": "\\G",
+              "end": "(\\})\\s*$",
+              "endCaptures": {
+                "1": {
+                  "name": "punctuation.definition.arguments.end.latex"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "text.tex#braces"
+                },
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "begin": "^(\\s*)",
+              "contentName": "source.cpp.embedded.latex",
+              "end": "^\\s*(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+              "patterns": [
+                {
+                  "include": "source.cpp.embedded.latex"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "\\G(\\{)(?:__|[a-z\\s]*)(?i:css)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "end": "(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+          "patterns": [
+            {
+              "begin": "\\G",
+              "end": "(\\})\\s*$",
+              "endCaptures": {
+                "1": {
+                  "name": "punctuation.definition.arguments.end.latex"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "text.tex#braces"
+                },
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "begin": "^(\\s*)",
+              "contentName": "source.css",
+              "end": "^\\s*(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+              "patterns": [
+                {
+                  "include": "source.css"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "\\G(\\{)(?:__|[a-z\\s]*)(?i:gnuplot)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "end": "(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+          "patterns": [
+            {
+              "begin": "\\G",
+              "end": "(\\})\\s*$",
+              "endCaptures": {
+                "1": {
+                  "name": "punctuation.definition.arguments.end.latex"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "text.tex#braces"
+                },
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "begin": "^(\\s*)",
+              "contentName": "source.gnuplot",
+              "end": "^\\s*(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+              "patterns": [
+                {
+                  "include": "source.gnuplot"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "\\G(\\{)(?:__|[a-z\\s]*)(?i:hs|haskell)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "end": "(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+          "patterns": [
+            {
+              "begin": "\\G",
+              "end": "(\\})\\s*$",
+              "endCaptures": {
+                "1": {
+                  "name": "punctuation.definition.arguments.end.latex"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "text.tex#braces"
+                },
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "begin": "^(\\s*)",
+              "contentName": "source.haskell",
+              "end": "^\\s*(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+              "patterns": [
+                {
+                  "include": "source.haskell"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "\\G(\\{)(?:__|[a-z\\s]*)(?i:html)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "end": "(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+          "patterns": [
+            {
+              "begin": "\\G",
+              "end": "(\\})\\s*$",
+              "endCaptures": {
+                "1": {
+                  "name": "punctuation.definition.arguments.end.latex"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "text.tex#braces"
+                },
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "begin": "^(\\s*)",
+              "contentName": "text.html",
+              "end": "^\\s*(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+              "patterns": [
+                {
+                  "include": "text.html.basic"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "\\G(\\{)(?:__|[a-z\\s]*)(?i:java)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "end": "(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+          "patterns": [
+            {
+              "begin": "\\G",
+              "end": "(\\})\\s*$",
+              "endCaptures": {
+                "1": {
+                  "name": "punctuation.definition.arguments.end.latex"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "text.tex#braces"
+                },
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "begin": "^(\\s*)",
+              "contentName": "source.java",
+              "end": "^\\s*(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+              "patterns": [
+                {
+                  "include": "source.java"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "\\G(\\{)(?:__|[a-z\\s]*)(?i:jl|julia)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "end": "(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+          "patterns": [
+            {
+              "begin": "\\G",
+              "end": "(\\})\\s*$",
+              "endCaptures": {
+                "1": {
+                  "name": "punctuation.definition.arguments.end.latex"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "text.tex#braces"
+                },
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "begin": "^(\\s*)",
+              "contentName": "source.julia",
+              "end": "^\\s*(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+              "patterns": [
+                {
+                  "include": "source.julia"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "\\G(\\{)(?:__|[a-z\\s]*)(?i:js|javascript)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "end": "(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+          "patterns": [
+            {
+              "begin": "\\G",
+              "end": "(\\})\\s*$",
+              "endCaptures": {
+                "1": {
+                  "name": "punctuation.definition.arguments.end.latex"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "text.tex#braces"
+                },
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "begin": "^(\\s*)",
+              "contentName": "source.js",
+              "end": "^\\s*(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+              "patterns": [
+                {
+                  "include": "source.js"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "\\G(\\{)(?:__|[a-z\\s]*)(?i:lua)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "end": "(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+          "patterns": [
+            {
+              "begin": "\\G",
+              "end": "(\\})\\s*$",
+              "endCaptures": {
+                "1": {
+                  "name": "punctuation.definition.arguments.end.latex"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "text.tex#braces"
+                },
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "begin": "^(\\s*)",
+              "contentName": "source.lua",
+              "end": "^\\s*(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+              "patterns": [
+                {
+                  "include": "source.lua"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "\\G(\\{)(?:__|[a-z\\s]*)(?i:py|python|sage)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "end": "(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+          "patterns": [
+            {
+              "begin": "\\G",
+              "end": "(\\})\\s*$",
+              "endCaptures": {
+                "1": {
+                  "name": "punctuation.definition.arguments.end.latex"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "text.tex#braces"
+                },
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "begin": "^(\\s*)",
+              "contentName": "source.python",
+              "end": "^\\s*(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+              "patterns": [
+                {
+                  "include": "source.python"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "\\G(\\{)(?:__|[a-z\\s]*)(?i:rb|ruby)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "end": "(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+          "patterns": [
+            {
+              "begin": "\\G",
+              "end": "(\\})\\s*$",
+              "endCaptures": {
+                "1": {
+                  "name": "punctuation.definition.arguments.end.latex"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "text.tex#braces"
+                },
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "begin": "^(\\s*)",
+              "contentName": "source.ruby",
+              "end": "^\\s*(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+              "patterns": [
+                {
+                  "include": "source.ruby"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "\\G(\\{)(?:__|[a-z\\s]*)(?i:rust)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "end": "(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+          "patterns": [
+            {
+              "begin": "\\G",
+              "end": "(\\})\\s*$",
+              "endCaptures": {
+                "1": {
+                  "name": "punctuation.definition.arguments.end.latex"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "text.tex#braces"
+                },
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "begin": "^(\\s*)",
+              "contentName": "source.rust",
+              "end": "^\\s*(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+              "patterns": [
+                {
+                  "include": "source.rust"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "\\G(\\{)(?:__|[a-z\\s]*)(?i:ts|typescript)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "end": "(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+          "patterns": [
+            {
+              "begin": "\\G",
+              "end": "(\\})\\s*$",
+              "endCaptures": {
+                "1": {
+                  "name": "punctuation.definition.arguments.end.latex"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "text.tex#braces"
+                },
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "begin": "^(\\s*)",
+              "contentName": "source.ts",
+              "end": "^\\s*(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+              "patterns": [
+                {
+                  "include": "source.ts"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "\\G(\\{)(?:__|[a-z\\s]*)(?i:xml)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "end": "(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+          "patterns": [
+            {
+              "begin": "\\G",
+              "end": "(\\})\\s*$",
+              "endCaptures": {
+                "1": {
+                  "name": "punctuation.definition.arguments.end.latex"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "text.tex#braces"
+                },
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "begin": "^(\\s*)",
+              "contentName": "text.xml",
+              "end": "^\\s*(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+              "patterns": [
+                {
+                  "include": "text.xml"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "\\G(\\{)(?:__|[a-z\\s]*)(?i:yaml)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "end": "(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+          "patterns": [
+            {
+              "begin": "\\G",
+              "end": "(\\})\\s*$",
+              "endCaptures": {
+                "1": {
+                  "name": "punctuation.definition.arguments.end.latex"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "text.tex#braces"
+                },
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "begin": "^(\\s*)",
+              "contentName": "source.yaml",
+              "end": "^\\s*(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+              "patterns": [
+                {
+                  "include": "source.yaml"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "\\G(\\{)(?:__|[a-z\\s]*)(?i:tikz|tikzpicture)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "end": "(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+          "patterns": [
+            {
+              "begin": "\\G",
+              "end": "(\\})\\s*$",
+              "endCaptures": {
+                "1": {
+                  "name": "punctuation.definition.arguments.end.latex"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "text.tex#braces"
+                },
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "begin": "^(\\s*)",
+              "contentName": "text.tex.latex",
+              "end": "^\\s*(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+              "patterns": [
+                {
+                  "include": "text.tex.latex"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "\\G(\\{)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            }
+          },
+          "end": "(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+          "patterns": [
+            {
+              "begin": "\\G",
+              "end": "(\\})\\s*$",
+              "endCaptures": {
+                "1": {
+                  "name": "punctuation.definition.arguments.end.latex"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "text.tex#braces"
+                },
+                {
+                  "include": "$self"
+                }
+              ]
+            },
+            {
+              "begin": "^(\\s*)",
+              "contentName": "meta.function.embedded.latex",
+              "end": "^\\s*(?=\\\\end\\{(?:RobExt)?(?:CacheMeCode|PlaceholderPathFromCode\\*?|PlaceholderFromCode\\*?|SetPlaceholderCode\\*?)\\})",
+              "name": "meta.embedded.block.generic.latex"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "begin": "(?:^\\s*)?\\\\begin\\{(terminal\\*?)\\}(?=\\[|\\{)",
+      "captures": {
+        "0": {
+          "patterns": [
+            {
+              "include": "#begin-env-tokenizer"
+            }
+          ]
+        }
+      },
+      "end": "\\\\end\\{\\1\\}",
+      "patterns": [
+        {
+          "include": "#multiline-optional-arg-no-highlight"
+        },
+        {
+          "begin": "(?:\\G|(?<=\\]))(\\{)([a-zA-Z]*)(\\})",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.arguments.begin.latex"
+            },
+            "2": {
+              "name": "variable.parameter.function.latex"
+            },
+            "3": {
+              "name": "punctuation.definition.arguments.end.latex"
+            }
+          },
+          "contentName": "meta.function.embedded.latex",
+          "end": "^\\s*(?=\\\\end\\{terminal\\*?\\})",
+          "name": "meta.embedded.block.generic.latex"
+        }
+      ]
     },
     {
       "begin": "((\\\\)addplot)(?:\\+?)((?:\\[[^\\[]*\\]))*\\s*(gnuplot)\\s*((?:\\[[^\\[]*\\]))*\\s*(\\{)",
@@ -1090,7 +1899,7 @@
         "3": {
           "patterns": [
             {
-              "include": "#optional-arg"
+              "include": "#optional-arg-bracket"
             }
           ]
         },
@@ -1100,7 +1909,7 @@
         "5": {
           "patterns": [
             {
-              "include": "#optional-arg"
+              "include": "#optional-arg-bracket"
             }
           ]
         },
@@ -1108,6 +1917,7 @@
           "name": "punctuation.definition.arguments.begin.latex"
         }
       },
+      "end": "\\s*(\\};)",
       "patterns": [
         {
           "begin": "%",
@@ -1122,8 +1932,7 @@
         {
           "include": "source.gnuplot"
         }
-      ],
-      "end": "\\s*(\\};)"
+      ]
     },
     {
       "begin": "(\\s*\\\\begin\\{((?:fboxv|boxedv|V|v|spv)erbatim\\*?)\\})",
@@ -1192,18 +2001,18 @@
           ]
         }
       },
-      "contentName": "punctuation.definition.comment.latex",
+      "contentName": "comment.line.percentage.latex",
       "end": "(\\\\end\\{\\2\\})",
       "name": "meta.function.verbatim.latex"
     },
     {
-      "comment": "Captures \\command[option]{url}{optional category}{optional name}{text}",
       "begin": "(?:\\s*)((\\\\)(?:href|hyperref|hyperimage))(?=\\[|\\{)",
       "beginCaptures": {
         "1": {
           "name": "support.function.url.latex"
         }
       },
+      "comment": "Captures \\command[option]{url}{optional category}{optional name}{text}",
       "end": "(\\})",
       "endCaptures": {
         "1": {
@@ -1231,13 +2040,13 @@
               "name": "punctuation.definition.arguments.begin.latex"
             }
           },
+          "contentName": "meta.variable.parameter.function.latex",
           "end": "(?=\\})",
           "patterns": [
             {
-              "include": "$base"
+              "include": "$self"
             }
-          ],
-          "contentName": "meta.variable.parameter.function.latex"
+          ]
         },
         {
           "begin": "(?:\\G|(?<=\\]))(?:(\\{)[^}]*(\\}))?(\\{)",
@@ -1252,20 +2061,21 @@
               "name": "punctuation.definition.arguments.begin.latex"
             }
           },
+          "contentName": "meta.variable.parameter.function.latex",
           "end": "(?=\\})",
           "patterns": [
             {
-              "include": "$base"
+              "include": "$self"
             }
-          ],
-          "contentName": "meta.variable.parameter.function.latex"
+          ]
         }
       ]
     },
     {
-      "match": "(?:\\s*)((\\\\)url)(\\{)([^}]*)(\\})",
-      "name": "meta.function.link.url.latex",
       "captures": {
+        "'": {
+          "name": "markup.underline.link.latex"
+        },
         "1": {
           "name": "support.function.url.latex"
         },
@@ -1277,29 +2087,26 @@
         },
         "5": {
           "name": "punctuation.definition.arguments.end.latex"
-        },
-        "'": {
-          "name": "markup.underline.link.latex"
         }
-      }
+      },
+      "match": "(?:\\s*)((\\\\)url)(\\{)([^}]*)(\\})",
+      "name": "meta.function.link.url.latex"
     },
     {
+      "captures": {
+        "1": {
+          "patterns": [
+            {
+              "include": "#begin-env-tokenizer"
+            }
+          ]
+        }
+      },
       "comment": "These two patterns match the \\begin{document} and \\end{document} commands, so that the environment matching pattern following them will ignore those commands.",
       "match": "(\\s*\\\\begin\\{document\\})",
-      "name": "meta.function.begin-document.latex",
-      "captures": {
-        "1": {
-          "patterns": [
-            {
-              "include": "#begin-env-tokenizer"
-            }
-          ]
-        }
-      }
+      "name": "meta.function.begin-document.latex"
     },
     {
-      "match": "(\\s*\\\\end\\{document\\})",
-      "name": "meta.function.end-document.latex",
       "captures": {
         "1": {
           "patterns": [
@@ -1308,7 +2115,9 @@
             }
           ]
         }
-      }
+      },
+      "match": "(\\s*\\\\end\\{document\\})",
+      "name": "meta.function.end-document.latex"
     },
     {
       "begin": "(?:\\s*)((\\\\)begin)(\\{)((?:\\+?array|equation|(?:IEEE)?eqnarray|multline|align|aligned|alignat|alignedat|flalign|flaligned|flalignat|split|gather|gathered|\\+?cases|(?:display)?math|\\+?[a-zA-Z]*matrix|[pbBvV]?NiceMatrix|[pbBvV]?NiceArray|(?:(?:arg)?(?:mini|maxi)))(?:\\*|!)?)(\\})(\\s*\\n)?",
@@ -1348,7 +2157,7 @@
           "include": "text.tex#math"
         },
         {
-          "include": "$base"
+          "include": "$self"
         }
       ]
     },
@@ -1382,7 +2191,7 @@
           "include": "text.tex#math"
         },
         {
-          "include": "$base"
+          "include": "$self"
         }
       ]
     },
@@ -1410,7 +2219,7 @@
           "name": "keyword.control.table.newline.latex"
         },
         {
-          "include": "$base"
+          "include": "$self"
         }
       ]
     },
@@ -1429,7 +2238,7 @@
       "name": "meta.function.environment.list.latex",
       "patterns": [
         {
-          "include": "$base"
+          "include": "$self"
         }
       ]
     },
@@ -1448,7 +2257,7 @@
       "name": "meta.function.environment.latex.tikz",
       "patterns": [
         {
-          "include": "$base"
+          "include": "$self"
         }
       ]
     },
@@ -1467,7 +2276,7 @@
       "name": "meta.function.environment.frame.latex",
       "patterns": [
         {
-          "include": "$base"
+          "include": "$self"
         }
       ]
     },
@@ -1496,8 +2305,8 @@
           ]
         }
       },
-      "end": "(\\\\end\\{markdown\\})",
       "contentName": "meta.embedded.markdown_latex_combined",
+      "end": "(\\\\end\\{markdown\\})",
       "patterns": [
         {
           "include": "text.tex.markdown_latex_combined"
@@ -1519,7 +2328,7 @@
       "name": "meta.function.environment.general.latex",
       "patterns": [
         {
-          "include": "$base"
+          "include": "$self"
         }
       ]
     },
@@ -1558,7 +2367,7 @@
         "3": {
           "patterns": [
             {
-              "include": "#optional-arg"
+              "include": "#optional-arg-bracket"
             }
           ]
         },
@@ -1578,7 +2387,7 @@
           "include": "text.tex#braces"
         },
         {
-          "include": "$base"
+          "include": "$self"
         }
       ]
     },
@@ -1594,7 +2403,7 @@
         "3": {
           "patterns": [
             {
-              "include": "#optional-arg"
+              "include": "#optional-arg-bracket"
             }
           ]
         },
@@ -1614,7 +2423,7 @@
           "include": "text.tex#braces"
         },
         {
-          "include": "$base"
+          "include": "$self"
         }
       ]
     },
@@ -1644,7 +2453,7 @@
           "include": "text.tex#braces"
         },
         {
-          "include": "$base"
+          "include": "$self"
         }
       ]
     },
@@ -1675,7 +2484,7 @@
           "include": "text.tex#braces"
         },
         {
-          "include": "$base"
+          "include": "$self"
         }
       ]
     },
@@ -1705,7 +2514,7 @@
           "include": "text.tex#braces"
         },
         {
-          "include": "$base"
+          "include": "$self"
         }
       ]
     },
@@ -1735,7 +2544,7 @@
           "include": "text.tex#braces"
         },
         {
-          "include": "$base"
+          "include": "$self"
         }
       ]
     },
@@ -1752,7 +2561,7 @@
       "name": "meta.scope.item.latex"
     },
     {
-      "begin": "((\\\\)(?:[aA]uto|foot|full|no|ref|short|[tT]ext|[pP]aren|[sS]mart)?[cC]ite(?:al)?(?:p|s|t|author|year(?:par)?|title)?[ANP]*\\*?)((?:(?:\\([^\\)]*\\)){0,2}(?:\\[[^\\]]*\\]){0,2}\\{[\\p{Alphabetic}:.]*\\})*)(?:([<\\[])[^\\]<>]*([>\\]]))?(?:(\\[)[^\\]]*(\\]))?(\\{)",
+      "begin": "((\\\\)(?:[aA]uto|foot|full|no|ref|short|[tT]ext|[pP]aren|[sS]mart)?[cC]ite(?:al)?(?:p|s|t|author|year(?:par)?|title)?[ANP]*\\*?)((?:(?:\\([^\\)]*\\)){0,2}(?:\\[[^\\]]*\\]){0,2}\\{[\\p{Alphabetic}\\p{Number}_:.-]*\\})*)(<[^\\]<>]*>)?((?:\\[[^\\]]*\\])*)(\\{)",
       "captures": {
         "1": {
           "name": "keyword.control.cite.latex"
@@ -1768,18 +2577,20 @@
           ]
         },
         "4": {
-          "name": "punctuation.definition.arguments.optional.begin.latex"
+          "patterns": [
+            {
+              "include": "#optional-arg-angle-no-highlight"
+            }
+          ]
         },
         "5": {
-          "name": "punctuation.definition.arguments.optional.end.latex"
+          "patterns": [
+            {
+              "include": "#optional-arg-bracket-no-highlight"
+            }
+          ]
         },
         "6": {
-          "name": "punctuation.definition.arguments.optional.begin.latex"
-        },
-        "7": {
-          "name": "punctuation.definition.arguments.optional.end.latex"
-        },
-        "8": {
           "name": "punctuation.definition.arguments.begin.latex"
         }
       },
@@ -1836,7 +2647,7 @@
       ]
     },
     {
-      "begin": "((\\\\)(?:\\w*[rR]ef\\*?))(\\{)",
+      "begin": "((\\\\)(?:\\w*[rR]ef\\*?))(?:\\[[^\\]]*\\])?(\\{)",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.ref.latex"
@@ -1924,13 +2735,19 @@
         "1": {
           "name": "support.function.verb.latex"
         },
+        "10": {
+          "name": "markup.raw.verb.latex"
+        },
+        "11": {
+          "name": "punctuation.definition.verb.latex"
+        },
         "2": {
           "name": "punctuation.definition.function.latex"
         },
         "3": {
           "patterns": [
             {
-              "include": "#optional-arg"
+              "include": "#optional-arg-bracket"
             }
           ]
         },
@@ -1951,12 +2768,6 @@
         },
         "9": {
           "name": "punctuation.definition.verb.latex"
-        },
-        "10": {
-          "name": "markup.raw.verb.latex"
-        },
-        "11": {
-          "name": "punctuation.definition.verb.latex"
         }
       },
       "match": "((\\\\)(?:mint|mintinline))((?:\\[[^\\[]*?\\])?)(\\{)[a-zA-Z]*(\\})(?:(?:([^a-zA-Z\\{])(.*?)(\\6))|(?:(\\{)(.*?)(\\})))",
@@ -1973,7 +2784,7 @@
         "3": {
           "patterns": [
             {
-              "include": "#optional-arg"
+              "include": "#optional-arg-bracket"
             }
           ]
         },
@@ -2010,7 +2821,7 @@
         "3": {
           "patterns": [
             {
-              "include": "#optional-arg"
+              "include": "#optional-arg-bracket"
             }
           ]
         },
@@ -2057,7 +2868,7 @@
         "3": {
           "patterns": [
             {
-              "include": "#optional-arg"
+              "include": "#optional-arg-bracket"
             }
           ]
         },
@@ -2094,6 +2905,32 @@
       "name": "meta.function.verb.latex"
     },
     {
+      "begin": "((\\\\)(?:directlua|luadirect))(\\{)",
+      "beginCaptures": {
+        "1": {
+          "name": "support.function.verb.latex"
+        },
+        "2": {
+          "name": "punctuation.definition.function.latex"
+        },
+        "3": {
+          "name": "punctuation.definition.arguments.begin.latex"
+        }
+      },
+      "contentName": "source.lua",
+      "end": "\\}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.arguments.end.latex"
+        }
+      },
+      "patterns": [
+        {
+          "include": "source.lua"
+        }
+      ]
+    },
+    {
       "match": "\\\\(?:newline|pagebreak|clearpage|linebreak|pause)(?:\\b)",
       "name": "keyword.control.layout.latex"
     },
@@ -2116,7 +2953,7 @@
           "include": "text.tex#math"
         },
         {
-          "include": "$base"
+          "include": "$self"
         }
       ]
     },
@@ -2143,7 +2980,7 @@
           "include": "text.tex#math"
         },
         {
-          "include": "$base"
+          "include": "$self"
         }
       ]
     },
@@ -2170,7 +3007,7 @@
           "include": "text.tex#math"
         },
         {
-          "include": "$base"
+          "include": "$self"
         }
       ]
     },
@@ -2193,7 +3030,7 @@
           "include": "text.tex#math"
         },
         {
-          "include": "$base"
+          "include": "$self"
         }
       ]
     },
@@ -2205,6 +3042,15 @@
       },
       "match": "(\\\\)(text(s(terling|ixoldstyle|urd|e(ction|venoldstyle|rvicemark))|yen|n(ineoldstyle|umero|aira)|c(ircledP|o(py(left|right)|lonmonetary)|urrency|e(nt(oldstyle)?|lsius))|t(hree(superior|oldstyle|quarters(emdash)?)|i(ldelow|mes)|w(o(superior|oldstyle)|elveudash)|rademark)|interrobang(down)?|zerooldstyle|o(hm|ne(superior|half|oldstyle|quarter)|penbullet|rd(feminine|masculine))|d(i(scount|ed|v(orced)?)|o(ng|wnarrow|llar(oldstyle)?)|egree|agger(dbl)?|blhyphen(char)?)|uparrow|p(ilcrow|e(so|r(t(housand|enthousand)|iodcentered))|aragraph|m)|e(stimated|ightoldstyle|uro)|quotes(traight(dblbase|base)|ingle)|f(iveoldstyle|ouroldstyle|lorin|ractionsolidus)|won|l(not|ira|e(ftarrow|af)|quill|angle|brackdbl)|a(s(cii(caron|dieresis|acute|grave|macron|breve)|teriskcentered)|cutedbl)|r(ightarrow|e(cipe|ferencemark|gistered)|quill|angle|brackdbl)|g(uarani|ravedbl)|m(ho|inus|u(sicalnote)?|arried)|b(igcircle|orn|ullet|lank|a(ht|rdbl)|rokenbar)))\\b",
       "name": "constant.character.latex"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.variable.latex"
+        }
+      },
+      "match": "(\\\\)(?:[cgl]_+[_\\p{Alphabetic}@]+_[a-z]+|[qs]_[_\\p{Alphabetic}@]+[\\p{Alphabetic}@])",
+      "name": "variable.other.latex3.latex"
     },
     {
       "captures": {
@@ -2223,22 +3069,139 @@
     }
   ],
   "repository": {
-    "optional-arg": {
+    "autocites-arg": {
       "patterns": [
         {
           "captures": {
             "1": {
-              "name": "punctuation.definition.arguments.optional.begin.latex"
+              "patterns": [
+                {
+                  "include": "#optional-arg-parenthesis-no-highlight"
+                }
+              ]
             },
             "2": {
-              "name": "variable.parameter.function.latex"
+              "patterns": [
+                {
+                  "include": "#optional-arg-bracket-no-highlight"
+                }
+              ]
             },
             "3": {
-              "name": "punctuation.definition.arguments.optional.end.latex"
+              "name": "punctuation.definition.arguments.begin.latex"
+            },
+            "4": {
+              "name": "constant.other.reference.citation.latex"
+            },
+            "5": {
+              "name": "punctuation.definition.arguments.end.latex"
+            },
+            "6": {
+              "patterns": [
+                {
+                  "include": "#autocites-arg"
+                }
+              ]
             }
           },
-          "match": "(\\[)([^\\[]*?)(\\])",
-          "name": "meta.parameter.optional.latex"
+          "match": "((?:\\([^\\)]*\\)){0,2})((?:\\[[^\\]]*\\]){0,2})(\\{)([\\p{Alphabetic}\\p{Number}_:.-]+)(\\})(.*)"
+        }
+      ]
+    },
+    "begin-env-tokenizer": {
+      "captures": {
+        "1": {
+          "name": "support.function.be.latex"
+        },
+        "10": {
+          "name": "variable.parameter.function.latex"
+        },
+        "11": {
+          "name": "punctuation.definition.arguments.end.latex"
+        },
+        "2": {
+          "name": "punctuation.definition.function.latex"
+        },
+        "3": {
+          "name": "punctuation.definition.arguments.begin.latex"
+        },
+        "4": {
+          "name": "variable.parameter.function.latex"
+        },
+        "5": {
+          "name": "punctuation.definition.arguments.end.latex"
+        },
+        "6": {
+          "name": "punctuation.definition.arguments.optional.begin.latex"
+        },
+        "7": {
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        "8": {
+          "name": "punctuation.definition.arguments.optional.end.latex"
+        },
+        "9": {
+          "name": "punctuation.definition.arguments.begin.latex"
+        }
+      },
+      "match": "\\s*((\\\\)(?:begin|end))(\\{)([a-zA-Z]*\\*?)(\\})(?:(\\[)([^\\]]*)(\\])){,2}(?:(\\{)([^{}]*)(\\}))?"
+    },
+    "definition-label": {
+      "begin": "((\\\\)z?label)((?:\\[[^\\[]*?\\])*)(\\{)",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.label.latex"
+        },
+        "2": {
+          "name": "punctuation.definition.keyword.latex"
+        },
+        "3": {
+          "patterns": [
+            {
+              "include": "#optional-arg-bracket"
+            }
+          ]
+        },
+        "4": {
+          "name": "punctuation.definition.arguments.begin.latex"
+        }
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.arguments.end.latex"
+        }
+      },
+      "name": "meta.definition.label.latex",
+      "patterns": [
+        {
+          "match": "[\\p{Alphabetic}\\p{Number}\\.,:/*!^_-]",
+          "name": "variable.parameter.definition.label.latex"
+        }
+      ]
+    },
+    "multiline-optional-arg": {
+      "begin": "\\G\\[",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.arguments.optional.begin.latex"
+        }
+      },
+      "contentName": "variable.parameter.function.latex",
+      "end": "\\]",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.arguments.optional.end.latex"
+        }
+      },
+      "name": "meta.parameter.optional.latex",
+      "patterns": [
+        {
+          "include": "$self"
         }
       ]
     },
@@ -2262,28 +3225,7 @@
         }
       ]
     },
-    "multiline-optional-arg": {
-      "begin": "\\G\\[",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.arguments.optional.begin.latex"
-        }
-      },
-      "end": "\\]",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.arguments.optional.end.latex"
-        }
-      },
-      "name": "meta.parameter.optional.latex",
-      "contentName": "variable.parameter.function.latex",
-      "patterns": [
-        {
-          "include": "$self"
-        }
-      ]
-    },
-    "autocites-arg": {
+    "optional-arg-angle-no-highlight": {
       "patterns": [
         {
           "captures": {
@@ -2292,109 +3234,84 @@
             },
             "2": {
               "name": "punctuation.definition.arguments.optional.end.latex"
-            },
-            "3": {
-              "name": "punctuation.definition.arguments.optional.begin.latex"
-            },
-            "4": {
-              "name": "punctuation.definition.arguments.optional.end.latex"
-            },
-            "5": {
-              "name": "punctuation.definition.arguments.begin.latex"
-            },
-            "6": {
-              "name": "constant.other.reference.citation.latex"
-            },
-            "7": {
-              "name": "punctuation.definition.arguments.end.latex"
-            },
-            "8": {
-              "patterns": [
-                {
-                  "include": "#autocites-arg"
-                }
-              ]
             }
           },
-          "match": "(?:(\\()[^\\)]*(\\))){0,2}(?:(\\[)[^\\]]*(\\])){0,2}(\\{)([\\p{Alphabetic}\\p{Number}:.]+)(\\})(.*)"
+          "match": "(<)[^<]*?(>)",
+          "name": "meta.parameter.optional.latex"
         }
       ]
     },
-    "begin-env-tokenizer": {
-      "captures": {
-        "1": {
-          "name": "support.function.be.latex"
-        },
-        "2": {
-          "name": "punctuation.definition.function.latex"
-        },
-        "3": {
-          "name": "punctuation.definition.arguments.begin.latex"
-        },
-        "4": {
-          "name": "variable.parameter.function.latex"
-        },
-        "5": {
-          "name": "punctuation.definition.arguments.end.latex"
-        },
-        "6": {
-          "name": "punctuation.definition.arguments.optional.begin.latex"
-        },
-        "7": {
-          "patterns": [
-            {
-              "include": "$base"
-            }
-          ]
-        },
-        "8": {
-          "name": "punctuation.definition.arguments.optional.end.latex"
-        },
-        "9": {
-          "name": "punctuation.definition.arguments.begin.latex"
-        },
-        "10": {
-          "name": "variable.parameter.function.latex"
-        },
-        "11": {
-          "name": "punctuation.definition.arguments.end.latex"
-        }
-      },
-      "match": "\\s*((\\\\)(?:begin|end))(\\{)([a-zA-Z]*\\*?)(\\})(?:(\\[)(.*)(\\]))?(?:(\\{)([^{}]*)(\\}))?"
-    },
-    "definition-label": {
-      "begin": "((\\\\)label)((?:\\[[^\\[]*?\\])*)(\\{)",
-      "beginCaptures": {
-        "1": {
-          "name": "keyword.control.label.latex"
-        },
-        "2": {
-          "name": "punctuation.definition.keyword.latex"
-        },
-        "3": {
-          "patterns": [
-            {
-              "include": "#optional-arg"
-            }
-          ]
-        },
-        "4": {
-          "name": "punctuation.definition.arguments.begin.latex"
-        }
-      },
-      "end": "\\}",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.arguments.end.latex"
-        }
-      },
-      "name": "meta.definition.label.latex",
+    "optional-arg-bracket": {
       "patterns": [
         {
-          "match": "[\\p{Alphabetic}\\p{Number}\\.,:/*!^_-]",
-          "name": "variable.parameter.definition.label.latex"
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.arguments.optional.begin.latex"
+            },
+            "2": {
+              "name": "variable.parameter.function.latex"
+            },
+            "3": {
+              "name": "punctuation.definition.arguments.optional.end.latex"
+            }
+          },
+          "match": "(\\[)([^\\[]*?)(\\])",
+          "name": "meta.parameter.optional.latex"
+        }
+      ]
+    },
+    "optional-arg-bracket-no-highlight": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.arguments.optional.begin.latex"
+            },
+            "2": {
+              "name": "punctuation.definition.arguments.optional.end.latex"
+            }
+          },
+          "match": "(\\[)[^\\[]*?(\\])",
+          "name": "meta.parameter.optional.latex"
+        }
+      ]
+    },
+    "optional-arg-parenthesis": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.arguments.optional.begin.latex"
+            },
+            "2": {
+              "name": "variable.parameter.function.latex"
+            },
+            "3": {
+              "name": "punctuation.definition.arguments.optional.end.latex"
+            }
+          },
+          "match": "(\\()([^\\(]*?)(\\))",
+          "name": "meta.parameter.optional.latex"
+        }
+      ]
+    },
+    "optional-arg-parenthesis-no-highlight": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.arguments.optional.begin.latex"
+            },
+            "2": {
+              "name": "punctuation.definition.arguments.optional.end.latex"
+            }
+          },
+          "match": "(\\()[^\\(]*?(\\))",
+          "name": "meta.parameter.optional.latex"
         }
       ]
     }
-  }
+  },
+  "scopeName": "text.tex.latex",
+  "version": "https://github.com/jlelong/vscode-latex-basics/commit/59971565a7065dbb617576c04add9d891b056319"
 }

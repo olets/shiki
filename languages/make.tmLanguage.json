@@ -1,12 +1,11 @@
 {
+  "displayName": "Makefile",
   "information_for_contributors": [
     "This file has been converted from https://github.com/fadeevab/make.tmbundle/blob/master/Syntaxes/Makefile.plist",
     "If you want to provide a fix or improvement, please create a pull request against the original repository.",
     "Once accepted there, we are happy to receive an update request."
   ],
-  "version": "https://github.com/fadeevab/make.tmbundle/commit/1d4c0b541959995db098df751ffc129da39a294b",
   "name": "make",
-  "scopeName": "source.makefile",
   "patterns": [
     {
       "include": "#comment"
@@ -28,6 +27,70 @@
     }
   ],
   "repository": {
+    "another-variable-braces": {
+      "patterns": [
+        {
+          "begin": "(?<={)(?!})",
+          "end": "(?=}|((?<!\\\\)\\n))",
+          "name": "variable.other.makefile",
+          "patterns": [
+            {
+              "include": "#variables"
+            },
+            {
+              "match": "\\\\\\n",
+              "name": "constant.character.escape.continuation.makefile"
+            }
+          ]
+        }
+      ]
+    },
+    "another-variable-parentheses": {
+      "patterns": [
+        {
+          "begin": "(?<=\\()(?!\\))",
+          "end": "(?=\\)|((?<!\\\\)\\n))",
+          "name": "variable.other.makefile",
+          "patterns": [
+            {
+              "include": "#variables"
+            },
+            {
+              "match": "\\\\\\n",
+              "name": "constant.character.escape.continuation.makefile"
+            }
+          ]
+        }
+      ]
+    },
+    "braces-interpolation": {
+      "begin": "{",
+      "end": "}",
+      "patterns": [
+        {
+          "include": "#variables"
+        },
+        {
+          "include": "#interpolation"
+        }
+      ]
+    },
+    "builtin-variable-braces": {
+      "patterns": [
+        {
+          "match": "(?<={)(MAKEFILES|VPATH|SHELL|MAKESHELL|MAKE|MAKELEVEL|MAKEFLAGS|MAKECMDGOALS|CURDIR|SUFFIXES|\\.LIBPATTERNS)(?=\\s*})",
+          "name": "variable.language.makefile"
+        }
+      ]
+    },
+    "builtin-variable-parentheses": {
+      "patterns": [
+        {
+          "match": "(?<=\\()(MAKEFILES|VPATH|SHELL|MAKESHELL|MAKE|MAKELEVEL|MAKEFLAGS|MAKECMDGOALS|CURDIR|SUFFIXES|\\.LIBPATTERNS)(?=\\s*\\))",
+          "name": "variable.language.makefile"
+        }
+      ]
+    },
     "comma": {
       "match": ",",
       "name": "punctuation.separator.delimeter.comma.makefile"
@@ -248,6 +311,161 @@
         }
       ]
     },
+    "flavor-variable-braces": {
+      "patterns": [
+        {
+          "begin": "(?<={)(origin|flavor)\\s(?=[^\\s}]+\\s*})",
+          "beginCaptures": {
+            "1": {
+              "name": "support.function.$1.makefile"
+            }
+          },
+          "contentName": "variable.other.makefile",
+          "end": "(?=})",
+          "name": "meta.scope.function-call.makefile",
+          "patterns": [
+            {
+              "include": "#variables"
+            }
+          ]
+        }
+      ]
+    },
+    "flavor-variable-parentheses": {
+      "patterns": [
+        {
+          "begin": "(?<=\\()(origin|flavor)\\s(?=[^\\s)]+\\s*\\))",
+          "beginCaptures": {
+            "1": {
+              "name": "support.function.$1.makefile"
+            }
+          },
+          "contentName": "variable.other.makefile",
+          "end": "(?=\\))",
+          "name": "meta.scope.function-call.makefile",
+          "patterns": [
+            {
+              "include": "#variables"
+            }
+          ]
+        }
+      ]
+    },
+    "function-variable-braces": {
+      "patterns": [
+        {
+          "begin": "(?<={)(subst|patsubst|strip|findstring|filter(-out)?|sort|word(list)?|firstword|lastword|dir|notdir|suffix|basename|addsuffix|addprefix|join|wildcard|realpath|abspath|info|error|warning|shell|foreach|if|or|and|call|eval|value|file|guile)\\s",
+          "beginCaptures": {
+            "1": {
+              "name": "support.function.$1.makefile"
+            }
+          },
+          "end": "(?=}|((?<!\\\\)\\n))",
+          "name": "meta.scope.function-call.makefile",
+          "patterns": [
+            {
+              "include": "#comma"
+            },
+            {
+              "include": "#variables"
+            },
+            {
+              "include": "#interpolation"
+            },
+            {
+              "match": "%|\\*",
+              "name": "constant.other.placeholder.makefile"
+            },
+            {
+              "match": "\\\\\\n",
+              "name": "constant.character.escape.continuation.makefile"
+            }
+          ]
+        }
+      ]
+    },
+    "function-variable-parentheses": {
+      "patterns": [
+        {
+          "begin": "(?<=\\()(subst|patsubst|strip|findstring|filter(-out)?|sort|word(list)?|firstword|lastword|dir|notdir|suffix|basename|addsuffix|addprefix|join|wildcard|realpath|abspath|info|error|warning|shell|foreach|if|or|and|call|eval|value|file|guile)\\s",
+          "beginCaptures": {
+            "1": {
+              "name": "support.function.$1.makefile"
+            }
+          },
+          "end": "(?=\\)|((?<!\\\\)\\n))",
+          "name": "meta.scope.function-call.makefile",
+          "patterns": [
+            {
+              "include": "#comma"
+            },
+            {
+              "include": "#variables"
+            },
+            {
+              "include": "#interpolation"
+            },
+            {
+              "match": "%|\\*",
+              "name": "constant.other.placeholder.makefile"
+            },
+            {
+              "match": "\\\\\\n",
+              "name": "constant.character.escape.continuation.makefile"
+            }
+          ]
+        }
+      ]
+    },
+    "interpolation": {
+      "patterns": [
+        {
+          "include": "#parentheses-interpolation"
+        },
+        {
+          "include": "#braces-interpolation"
+        }
+      ]
+    },
+    "parentheses-interpolation": {
+      "begin": "\\(",
+      "end": "\\)",
+      "patterns": [
+        {
+          "include": "#variables"
+        },
+        {
+          "include": "#interpolation"
+        }
+      ]
+    },
+    "recipe": {
+      "begin": "^\\t([+\\-@]*)",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.$1.makefile"
+        }
+      },
+      "end": "[^\\\\]$",
+      "name": "meta.scope.recipe.makefile",
+      "patterns": [
+        {
+          "match": "\\\\\\n",
+          "name": "constant.character.escape.continuation.makefile"
+        },
+        {
+          "include": "#variables"
+        }
+      ]
+    },
+    "simple-variable": {
+      "patterns": [
+        {
+          "match": "\\$[^(){}]",
+          "name": "variable.language.makefile"
+        }
+      ]
+    },
     "target": {
       "begin": "^(?!\\t)([^:]*)(:)(?!\\=)",
       "beginCaptures": {
@@ -307,25 +525,6 @@
         }
       ]
     },
-    "recipe": {
-      "begin": "^\\t([+\\-@]*)",
-      "beginCaptures": {
-        "1": {
-          "name": "keyword.control.$1.makefile"
-        }
-      },
-      "end": "[^\\\\]$",
-      "name": "meta.scope.recipe.makefile",
-      "patterns": [
-        {
-          "match": "\\\\\\n",
-          "name": "constant.character.escape.continuation.makefile"
-        },
-        {
-          "include": "#variables"
-        }
-      ]
-    },
     "variable-assignment": {
       "begin": "(^[ ]*|\\G\\s*)([^\\s:#=]+)\\s*((?<![?:+!])=|\\?=|:=|\\+=|!=)",
       "beginCaptures": {
@@ -352,92 +551,6 @@
         },
         {
           "include": "#variables"
-        }
-      ]
-    },
-    "interpolation": {
-      "patterns": [
-        {
-          "include": "#parentheses-interpolation"
-        },
-        {
-          "include": "#braces-interpolation"
-        }
-      ]
-    },
-    "parentheses-interpolation": {
-      "begin": "\\(",
-      "end": "\\)",
-      "patterns": [
-        {
-          "include": "#variables"
-        },
-        {
-          "include": "#interpolation"
-        }
-      ]
-    },
-    "braces-interpolation": {
-      "begin": "{",
-      "end": "}",
-      "patterns": [
-        {
-          "include": "#variables"
-        },
-        {
-          "include": "#interpolation"
-        }
-      ]
-    },
-    "variables": {
-      "patterns": [
-        {
-          "include": "#simple-variable"
-        },
-        {
-          "include": "#variable-parentheses"
-        },
-        {
-          "include": "#variable-braces"
-        }
-      ]
-    },
-    "simple-variable": {
-      "patterns": [
-        {
-          "match": "\\$[^(){}]",
-          "name": "variable.language.makefile"
-        }
-      ]
-    },
-    "variable-parentheses": {
-      "patterns": [
-        {
-          "begin": "\\$\\(",
-          "captures": {
-            "0": {
-              "name": "punctuation.definition.variable.makefile"
-            }
-          },
-          "end": "\\)|((?<!\\\\)\\n)",
-          "name": "string.interpolated.makefile",
-          "patterns": [
-            {
-              "include": "#variables"
-            },
-            {
-              "include": "#builtin-variable-parentheses"
-            },
-            {
-              "include": "#function-variable-parentheses"
-            },
-            {
-              "include": "#flavor-variable-parentheses"
-            },
-            {
-              "include": "#another-variable-parentheses"
-            }
-          ]
         }
       ]
     },
@@ -472,163 +585,51 @@
         }
       ]
     },
-    "builtin-variable-parentheses": {
+    "variable-parentheses": {
       "patterns": [
         {
-          "match": "(?<=\\()(MAKEFILES|VPATH|SHELL|MAKESHELL|MAKE|MAKELEVEL|MAKEFLAGS|MAKECMDGOALS|CURDIR|SUFFIXES|\\.LIBPATTERNS)(?=\\s*\\))",
-          "name": "variable.language.makefile"
-        }
-      ]
-    },
-    "builtin-variable-braces": {
-      "patterns": [
-        {
-          "match": "(?<={)(MAKEFILES|VPATH|SHELL|MAKESHELL|MAKE|MAKELEVEL|MAKEFLAGS|MAKECMDGOALS|CURDIR|SUFFIXES|\\.LIBPATTERNS)(?=\\s*})",
-          "name": "variable.language.makefile"
-        }
-      ]
-    },
-    "function-variable-parentheses": {
-      "patterns": [
-        {
-          "begin": "(?<=\\()(subst|patsubst|strip|findstring|filter(-out)?|sort|word(list)?|firstword|lastword|dir|notdir|suffix|basename|addsuffix|addprefix|join|wildcard|realpath|abspath|info|error|warning|shell|foreach|if|or|and|call|eval|value|file|guile)\\s",
-          "beginCaptures": {
-            "1": {
-              "name": "support.function.$1.makefile"
+          "begin": "\\$\\(",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.variable.makefile"
             }
           },
-          "end": "(?=\\)|((?<!\\\\)\\n))",
-          "name": "meta.scope.function-call.makefile",
+          "end": "\\)|((?<!\\\\)\\n)",
+          "name": "string.interpolated.makefile",
           "patterns": [
-            {
-              "include": "#comma"
-            },
             {
               "include": "#variables"
             },
             {
-              "include": "#interpolation"
+              "include": "#builtin-variable-parentheses"
             },
             {
-              "match": "%|\\*",
-              "name": "constant.other.placeholder.makefile"
+              "include": "#function-variable-parentheses"
             },
             {
-              "match": "\\\\\\n",
-              "name": "constant.character.escape.continuation.makefile"
+              "include": "#flavor-variable-parentheses"
+            },
+            {
+              "include": "#another-variable-parentheses"
             }
           ]
         }
       ]
     },
-    "function-variable-braces": {
+    "variables": {
       "patterns": [
         {
-          "begin": "(?<={)(subst|patsubst|strip|findstring|filter(-out)?|sort|word(list)?|firstword|lastword|dir|notdir|suffix|basename|addsuffix|addprefix|join|wildcard|realpath|abspath|info|error|warning|shell|foreach|if|or|and|call|eval|value|file|guile)\\s",
-          "beginCaptures": {
-            "1": {
-              "name": "support.function.$1.makefile"
-            }
-          },
-          "end": "(?=}|((?<!\\\\)\\n))",
-          "name": "meta.scope.function-call.makefile",
-          "patterns": [
-            {
-              "include": "#comma"
-            },
-            {
-              "include": "#variables"
-            },
-            {
-              "include": "#interpolation"
-            },
-            {
-              "match": "%|\\*",
-              "name": "constant.other.placeholder.makefile"
-            },
-            {
-              "match": "\\\\\\n",
-              "name": "constant.character.escape.continuation.makefile"
-            }
-          ]
-        }
-      ]
-    },
-    "flavor-variable-parentheses": {
-      "patterns": [
+          "include": "#simple-variable"
+        },
         {
-          "begin": "(?<=\\()(origin|flavor)\\s(?=[^\\s)]+\\s*\\))",
-          "contentName": "variable.other.makefile",
-          "beginCaptures": {
-            "1": {
-              "name": "support.function.$1.makefile"
-            }
-          },
-          "end": "(?=\\))",
-          "name": "meta.scope.function-call.makefile",
-          "patterns": [
-            {
-              "include": "#variables"
-            }
-          ]
-        }
-      ]
-    },
-    "flavor-variable-braces": {
-      "patterns": [
+          "include": "#variable-parentheses"
+        },
         {
-          "begin": "(?<={)(origin|flavor)\\s(?=[^\\s}]+\\s*})",
-          "contentName": "variable.other.makefile",
-          "beginCaptures": {
-            "1": {
-              "name": "support.function.$1.makefile"
-            }
-          },
-          "end": "(?=})",
-          "name": "meta.scope.function-call.makefile",
-          "patterns": [
-            {
-              "include": "#variables"
-            }
-          ]
-        }
-      ]
-    },
-    "another-variable-parentheses": {
-      "patterns": [
-        {
-          "begin": "(?<=\\()(?!\\))",
-          "end": "(?=\\)|((?<!\\\\)\\n))",
-          "name": "variable.other.makefile",
-          "patterns": [
-            {
-              "include": "#variables"
-            },
-            {
-              "match": "\\\\\\n",
-              "name": "constant.character.escape.continuation.makefile"
-            }
-          ]
-        }
-      ]
-    },
-    "another-variable-braces": {
-      "patterns": [
-        {
-          "begin": "(?<={)(?!})",
-          "end": "(?=}|((?<!\\\\)\\n))",
-          "name": "variable.other.makefile",
-          "patterns": [
-            {
-              "include": "#variables"
-            },
-            {
-              "match": "\\\\\\n",
-              "name": "constant.character.escape.continuation.makefile"
-            }
-          ]
+          "include": "#variable-braces"
         }
       ]
     }
-  }
+  },
+  "scopeName": "source.makefile",
+  "version": "https://github.com/fadeevab/make.tmbundle/commit/1d4c0b541959995db098df751ffc129da39a294b"
 }

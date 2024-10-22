@@ -1,16 +1,16 @@
 {
-  "name": "svelte",
-  "scopeName": "source.svelte",
-  "fileTypes": ["svelte"],
-  "uuid": "7582b62f-51d9-4a84-8c8d-fc189530faf6",
+  "displayName": "Svelte",
+  "fileTypes": [
+    "svelte"
+  ],
   "injections": {
     "L:(meta.script.svelte | meta.style.svelte) (meta.lang.js | meta.lang.javascript) - (meta source)": {
       "patterns": [
         {
           "begin": "(?<=>)(?!</)",
+          "contentName": "source.js",
           "end": "(?=</)",
           "name": "meta.embedded.block.svelte",
-          "contentName": "source.js",
           "patterns": [
             {
               "include": "source.js"
@@ -23,9 +23,9 @@
       "patterns": [
         {
           "begin": "(?<=>)(?!</)",
+          "contentName": "source.ts",
           "end": "(?=</)",
           "name": "meta.embedded.block.svelte",
-          "contentName": "source.ts",
           "patterns": [
             {
               "include": "source.ts"
@@ -38,9 +38,9 @@
       "patterns": [
         {
           "begin": "(?<=>)(?!</)",
+          "contentName": "source.coffee",
           "end": "(?=</)",
           "name": "meta.embedded.block.svelte",
-          "contentName": "source.coffee",
           "patterns": [
             {
               "include": "source.coffee"
@@ -49,13 +49,25 @@
         }
       ]
     },
+    "L:(source.ts, source.js, source.coffee)": {
+      "patterns": [
+        {
+          "match": "(?<![_$./'\"[:alnum:]])\\$(?=[_[:alpha:]][_$[:alnum:]]*)",
+          "name": "punctuation.definition.variable.svelte"
+        },
+        {
+          "match": "(?<![_$./'\"[:alnum:]])(\\$\\$)(?=props|restProps|slots)",
+          "name": "punctuation.definition.variable.svelte"
+        }
+      ]
+    },
     "L:meta.script.svelte - meta.lang - (meta source)": {
       "patterns": [
         {
           "begin": "(?<=>)(?!</)",
+          "contentName": "source.js",
           "end": "(?=</)",
           "name": "meta.embedded.block.svelte",
-          "contentName": "source.js",
           "patterns": [
             {
               "include": "source.js"
@@ -64,31 +76,16 @@
         }
       ]
     },
-    "L:meta.style.svelte meta.lang.stylus - (meta source)": {
+    "L:meta.style.svelte - meta.lang - (meta source)": {
       "patterns": [
         {
           "begin": "(?<=>)(?!</)",
+          "contentName": "source.css",
           "end": "(?=</)",
           "name": "meta.embedded.block.svelte",
-          "contentName": "source.stylus",
           "patterns": [
             {
-              "include": "source.stylus"
-            }
-          ]
-        }
-      ]
-    },
-    "L:meta.style.svelte meta.lang.sass - (meta source)": {
-      "patterns": [
-        {
-          "begin": "(?<=>)(?!</)",
-          "end": "(?=</)",
-          "name": "meta.embedded.block.svelte",
-          "contentName": "source.sass",
-          "patterns": [
-            {
-              "include": "source.sass"
+              "include": "source.css"
             }
           ]
         }
@@ -98,27 +95,12 @@
       "patterns": [
         {
           "begin": "(?<=>)(?!</)",
+          "contentName": "source.css",
           "end": "(?=</)",
           "name": "meta.embedded.block.svelte",
-          "contentName": "source.css",
           "patterns": [
             {
               "include": "source.css"
-            }
-          ]
-        }
-      ]
-    },
-    "L:meta.style.svelte meta.lang.scss - (meta source)": {
-      "patterns": [
-        {
-          "begin": "(?<=>)(?!</)",
-          "end": "(?=</)",
-          "name": "meta.embedded.block.svelte",
-          "contentName": "source.css.scss",
-          "patterns": [
-            {
-              "include": "source.css.scss"
             }
           ]
         }
@@ -128,9 +110,9 @@
       "patterns": [
         {
           "begin": "(?<=>)(?!</)",
+          "contentName": "source.css.less",
           "end": "(?=</)",
           "name": "meta.embedded.block.svelte",
-          "contentName": "source.css.less",
           "patterns": [
             {
               "include": "source.css.less"
@@ -143,9 +125,9 @@
       "patterns": [
         {
           "begin": "(?<=>)(?!</)",
+          "contentName": "source.css.postcss",
           "end": "(?=</)",
           "name": "meta.embedded.block.svelte",
-          "contentName": "source.css.postcss",
           "patterns": [
             {
               "include": "source.css.postcss"
@@ -154,31 +136,46 @@
         }
       ]
     },
-    "L:meta.style.svelte - meta.lang - (meta source)": {
+    "L:meta.style.svelte meta.lang.sass - (meta source)": {
       "patterns": [
         {
           "begin": "(?<=>)(?!</)",
+          "contentName": "source.sass",
           "end": "(?=</)",
           "name": "meta.embedded.block.svelte",
-          "contentName": "source.css",
           "patterns": [
             {
-              "include": "source.css"
+              "include": "source.sass"
             }
           ]
         }
       ]
     },
-    "L:meta.template.svelte meta.lang.pug - (meta source)": {
+    "L:meta.style.svelte meta.lang.scss - (meta source)": {
       "patterns": [
         {
           "begin": "(?<=>)(?!</)",
+          "contentName": "source.css.scss",
           "end": "(?=</)",
           "name": "meta.embedded.block.svelte",
-          "contentName": "text.pug",
           "patterns": [
             {
-              "include": "text.pug"
+              "include": "source.css.scss"
+            }
+          ]
+        }
+      ]
+    },
+    "L:meta.style.svelte meta.lang.stylus - (meta source)": {
+      "patterns": [
+        {
+          "begin": "(?<=>)(?!</)",
+          "contentName": "source.stylus",
+          "end": "(?=</)",
+          "name": "meta.embedded.block.svelte",
+          "patterns": [
+            {
+              "include": "source.stylus"
             }
           ]
         }
@@ -197,464 +194,29 @@
         }
       ]
     },
-    "L:(source.ts, source.js, source.coffee)": {
+    "L:meta.template.svelte meta.lang.pug - (meta source)": {
       "patterns": [
         {
-          "match": "(?<![_$./'\"[:alnum:]])\\$(?=[_[:alpha:]][_$[:alnum:]]*)",
-          "name": "punctuation.definition.variable.svelte"
-        },
-        {
-          "match": "(?<![_$./'\"[:alnum:]])(\\$\\$)(?=props|restProps|slots)",
-          "name": "punctuation.definition.variable.svelte"
+          "begin": "(?<=>)(?!</)",
+          "contentName": "text.pug",
+          "end": "(?=</)",
+          "name": "meta.embedded.block.svelte",
+          "patterns": [
+            {
+              "include": "text.pug"
+            }
+          ]
         }
       ]
     }
   },
+  "name": "svelte",
   "patterns": [
     {
       "include": "#scope"
     }
   ],
   "repository": {
-    "scope": {
-      "patterns": [
-        {
-          "include": "#comments"
-        },
-        {
-          "include": "#special-tags"
-        },
-        {
-          "include": "#tags"
-        },
-        {
-          "include": "#interpolation"
-        },
-        {
-          "begin": "(?<=>|})",
-          "end": "(?=<|{)",
-          "name": "text.svelte"
-        }
-      ]
-    },
-    "comments": {
-      "begin": "<!--",
-      "end": "-->",
-      "captures": {
-        "0": {
-          "name": "punctuation.definition.comment.svelte"
-        }
-      },
-      "name": "comment.block.svelte",
-      "patterns": [
-        {
-          "begin": "(@)(component)",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.keyword.svelte"
-            },
-            "2": {
-              "name": "storage.type.class.component.svelte keyword.declaration.class.component.svelte"
-            }
-          },
-          "end": "(?=-->)",
-          "contentName": "comment.block.documentation.svelte",
-          "patterns": [
-            {
-              "match": ".*?(?=-->)",
-              "captures": {
-                "0": {
-                  "patterns": [
-                    {
-                      "include": "text.html.markdown"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "include": "text.html.markdown"
-            }
-          ]
-        },
-        {
-          "match": "\\G-?>|<!--(?!>)|<!-(?=-->)|--!>",
-          "name": "invalid.illegal.characters-not-allowed-here.svelte"
-        }
-      ]
-    },
-    "destructuring": {
-      "patterns": [
-        {
-          "begin": "(?={)",
-          "end": "(?<=})",
-          "name": "meta.embedded.expression.svelte source.ts",
-          "patterns": [
-            {
-              "include": "source.ts#object-binding-pattern"
-            }
-          ]
-        },
-        {
-          "begin": "(?=\\[)",
-          "end": "(?<=\\])",
-          "name": "meta.embedded.expression.svelte source.ts",
-          "patterns": [
-            {
-              "include": "source.ts#array-binding-pattern"
-            }
-          ]
-        }
-      ]
-    },
-    "destructuring-const": {
-      "patterns": [
-        {
-          "begin": "(?={)",
-          "end": "(?<=})",
-          "name": "meta.embedded.expression.svelte source.ts",
-          "patterns": [
-            {
-              "include": "source.ts#object-binding-pattern-const"
-            }
-          ]
-        },
-        {
-          "begin": "(?=\\[)",
-          "end": "(?<=\\])",
-          "name": "meta.embedded.expression.svelte source.ts",
-          "patterns": [
-            {
-              "include": "source.ts#array-binding-pattern-const"
-            }
-          ]
-        }
-      ]
-    },
-    "interpolation": {
-      "patterns": [
-        {
-          "begin": "\\{",
-          "end": "\\}",
-          "beginCaptures": {
-            "0": {
-              "name": "punctuation.section.embedded.begin.svelte"
-            }
-          },
-          "endCaptures": {
-            "0": {
-              "name": "punctuation.section.embedded.end.svelte"
-            }
-          },
-          "contentName": "meta.embedded.expression.svelte source.ts",
-          "patterns": [
-            {
-              "begin": "\\G\\s*(?={)",
-              "end": "(?<=})",
-              "patterns": [
-                {
-                  "include": "source.ts#object-literal"
-                }
-              ]
-            },
-            {
-              "include": "source.ts"
-            }
-          ]
-        }
-      ]
-    },
-    "special-tags": {
-      "patterns": [
-        {
-          "include": "#special-tags-void"
-        },
-        {
-          "include": "#special-tags-block-begin"
-        },
-        {
-          "include": "#special-tags-block-end"
-        }
-      ]
-    },
-    "special-tags-keywords": {
-      "match": "([#@/:])(else\\s+if|[a-z]*)",
-      "captures": {
-        "1": {
-          "name": "punctuation.definition.keyword.svelte"
-        },
-        "2": {
-          "patterns": [
-            {
-              "match": "if|else\\s+if|else",
-              "name": "keyword.control.conditional.svelte"
-            },
-            {
-              "match": "each|key",
-              "name": "keyword.control.svelte"
-            },
-            {
-              "match": "await|then|catch",
-              "name": "keyword.control.flow.svelte"
-            },
-            {
-              "match": "snippet",
-              "name": "keyword.control.svelte"
-            },
-            {
-              "match": "html",
-              "name": "keyword.other.svelte"
-            },
-            {
-              "match": "render",
-              "name": "keyword.other.svelte"
-            },
-            {
-              "match": "debug",
-              "name": "keyword.other.debugger.svelte"
-            },
-            {
-              "match": "const",
-              "name": "storage.type.svelte"
-            }
-          ]
-        }
-      }
-    },
-    "special-tags-modes": {
-      "patterns": [
-        {
-          "begin": "(?<=(if|key|then|catch|snippet|html|render).*?)\\G",
-          "end": "(?=})",
-          "name": "meta.embedded.expression.svelte source.ts",
-          "patterns": [
-            {
-              "include": "source.ts"
-            }
-          ]
-        },
-        {
-          "begin": "(?<=const.*?)\\G",
-          "end": "(?=})",
-          "patterns": [
-            {
-              "include": "#destructuring-const"
-            },
-            {
-              "begin": "\\G\\s*([_$[:alpha:]][_$[:alnum:]]+)\\s*",
-              "end": "(?=\\=)",
-              "beginCaptures": {
-                "1": {
-                  "name": "variable.other.constant.svelte"
-                }
-              }
-            },
-            {
-              "begin": "(?=\\=)",
-              "name": "meta.embedded.expression.svelte source.ts",
-              "end": "(?=})",
-              "patterns": [
-                {
-                  "include": "source.ts"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "begin": "(?<=each.*?)\\G",
-          "end": "(?=})",
-          "patterns": [
-            {
-              "begin": "\\G\\s*?(?=\\S)",
-              "end": "(?=(?:^\\s*|\\s+)(as))",
-              "contentName": "meta.embedded.expression.svelte source.ts",
-              "patterns": [
-                {
-                  "include": "source.ts"
-                }
-              ]
-            },
-            {
-              "begin": "(as)",
-              "beginCaptures": {
-                "1": {
-                  "name": "keyword.control.as.svelte"
-                }
-              },
-              "end": "(?=})",
-              "patterns": [
-                {
-                  "include": "#destructuring"
-                },
-                {
-                  "begin": "\\(",
-                  "end": "\\)|(?=})",
-                  "captures": {
-                    "0": {
-                      "name": "meta.brace.round.svelte"
-                    }
-                  },
-                  "contentName": "meta.embedded.expression.svelte source.ts",
-                  "patterns": [
-                    {
-                      "include": "source.ts"
-                    }
-                  ]
-                },
-                {
-                  "match": "(\\s*([_$[:alpha:]][_$[:alnum:]]*)\\s*)",
-                  "captures": {
-                    "1": {
-                      "name": "meta.embedded.expression.svelte source.ts",
-                      "patterns": [
-                        {
-                          "include": "source.ts"
-                        }
-                      ]
-                    }
-                  }
-                },
-                {
-                  "match": ",",
-                  "name": "punctuation.separator.svelte"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "begin": "(?<=await.*?)\\G",
-          "end": "(?=})",
-          "patterns": [
-            {
-              "begin": "\\G\\s*?(?=\\S)",
-              "end": "\\s+(then)|(?=})",
-              "endCaptures": {
-                "1": {
-                  "name": "keyword.control.flow.svelte"
-                }
-              },
-              "contentName": "meta.embedded.expression.svelte source.ts",
-              "patterns": [
-                {
-                  "include": "source.ts"
-                }
-              ]
-            },
-            {
-              "begin": "(?<=then\\b)",
-              "end": "(?=})",
-              "contentName": "meta.embedded.expression.svelte source.ts",
-              "patterns": [
-                {
-                  "include": "source.ts"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "begin": "(?<=debug.*?)\\G",
-          "end": "(?=})",
-          "patterns": [
-            {
-              "match": "[_$[:alpha:]][_$[:alnum:]]*",
-              "captures": {
-                "0": {
-                  "name": "meta.embedded.expression.svelte source.ts",
-                  "patterns": [
-                    {
-                      "include": "source.ts"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "match": ",",
-              "name": "punctuation.separator.svelte"
-            }
-          ]
-        }
-      ]
-    },
-    "special-tags-void": {
-      "begin": "({)\\s*((?:[@:])(else\\s+if|[a-z]*))",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.block.begin.svelte"
-        },
-        "2": {
-          "patterns": [
-            {
-              "include": "#special-tags-keywords"
-            }
-          ]
-        }
-      },
-      "end": "\\}",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.block.end.svelte"
-        }
-      },
-      "name": "meta.special.$3.svelte",
-      "patterns": [
-        {
-          "include": "#special-tags-modes"
-        }
-      ]
-    },
-    "special-tags-block-begin": {
-      "begin": "({)\\s*(#([a-z]*))",
-      "end": "(})",
-      "name": "meta.special.$3.svelte meta.special.start.svelte",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.block.begin.svelte"
-        },
-        "2": {
-          "patterns": [
-            {
-              "include": "#special-tags-keywords"
-            }
-          ]
-        }
-      },
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.block.end.svelte"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#special-tags-modes"
-        }
-      ]
-    },
-    "special-tags-block-end": {
-      "begin": "({)\\s*(/([a-z]*))",
-      "end": "(})",
-      "name": "meta.special.$3.svelte meta.special.end.svelte",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.block.begin.svelte"
-        },
-        "2": {
-          "patterns": [
-            {
-              "include": "#special-tags-keywords"
-            }
-          ]
-        }
-      },
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.block.end.svelte"
-        }
-      }
-    },
     "attributes": {
       "patterns": [
         {
@@ -668,39 +230,48 @@
         }
       ]
     },
-    "attributes-interpolated": {
-      "begin": "(?<!:|=)\\s*({)",
-      "end": "(\\})",
-      "captures": {
-        "1": {
-          "name": "entity.other.attribute-name.svelte"
-        }
-      },
-      "contentName": "meta.embedded.expression.svelte source.ts",
-      "patterns": [
-        {
-          "include": "source.ts"
-        }
-      ]
-    },
-    "attributes-keyvalue": {
-      "begin": "((?:--)?[_$[:alpha:]][_\\-$[:alnum:]]*)",
+    "attributes-directives": {
+      "begin": "(?<!<)(on|use|bind|transition|in|out|animate|let|class|style)(:)(?:((?:--)?[_$[:alpha:]][_\\-$[:alnum:]]*(?=\\s*=))|((?:--)?[_$[:alpha:]][_\\-$[:alnum:]]*))((\\|\\w+)*)",
       "beginCaptures": {
-        "0": {
+        "1": {
           "patterns": [
             {
-              "match": "--.*",
-              "name": "support.type.property-name.svelte"
+              "include": "#attributes-directives-keywords"
+            }
+          ]
+        },
+        "2": {
+          "name": "punctuation.definition.keyword.svelte"
+        },
+        "3": {
+          "patterns": [
+            {
+              "include": "#attributes-directives-types-assigned"
+            }
+          ]
+        },
+        "4": {
+          "patterns": [
+            {
+              "include": "#attributes-directives-types"
+            }
+          ]
+        },
+        "5": {
+          "patterns": [
+            {
+              "match": "\\w+",
+              "name": "support.function.svelte"
             },
             {
-              "match": ".*",
-              "name": "entity.other.attribute-name.svelte"
+              "match": "\\|",
+              "name": "punctuation.separator.svelte"
             }
           ]
         }
       },
       "end": "(?=\\s*+[^=\\s])",
-      "name": "meta.attribute.$1.svelte",
+      "name": "meta.directive.$1.svelte",
       "patterns": [
         {
           "begin": "=",
@@ -713,59 +284,6 @@
           "patterns": [
             {
               "include": "#attributes-value"
-            }
-          ]
-        }
-      ]
-    },
-    "attributes-value": {
-      "patterns": [
-        {
-          "include": "#interpolation"
-        },
-        {
-          "match": "(?:(['\"])([0-9._]+[\\w%]{,4})(\\1))|(?:([0-9._]+[\\w%]{,4})(?=\\s|/?>))",
-          "captures": {
-            "1": {
-              "name": "punctuation.definition.string.begin.svelte"
-            },
-            "2": {
-              "name": "constant.numeric.decimal.svelte"
-            },
-            "3": {
-              "name": "punctuation.definition.string.end.svelte"
-            },
-            "4": {
-              "name": "constant.numeric.decimal.svelte"
-            }
-          }
-        },
-        {
-          "match": "([^\\s\"'=<>`/]|/(?!>))+",
-          "name": "string.unquoted.svelte",
-          "patterns": [
-            {
-              "include": "#interpolation"
-            }
-          ]
-        },
-        {
-          "begin": "(['\"])",
-          "end": "\\1",
-          "beginCaptures": {
-            "0": {
-              "name": "punctuation.definition.string.begin.svelte"
-            }
-          },
-          "endCaptures": {
-            "0": {
-              "name": "punctuation.definition.string.end.svelte"
-            }
-          },
-          "name": "string.quoted.svelte",
-          "patterns": [
-            {
-              "include": "#interpolation"
             }
           ]
         }
@@ -834,48 +352,65 @@
         }
       ]
     },
-    "attributes-directives": {
-      "begin": "(?<!<)(on|use|bind|transition|in|out|animate|let|class|style)(:)(?:((?:--)?[_$[:alpha:]][_\\-$[:alnum:]]*(?=\\s*=))|((?:--)?[_$[:alpha:]][_\\-$[:alnum:]]*))((\\|\\w+)*)",
+    "attributes-generics": {
+      "begin": "(generics)(=)([\"'])",
       "beginCaptures": {
         "1": {
-          "patterns": [
-            {
-              "include": "#attributes-directives-keywords"
-            }
-          ]
+          "name": "entity.other.attribute-name.svelte"
         },
         "2": {
-          "name": "punctuation.definition.keyword.svelte"
+          "name": "punctuation.separator.key-value.svelte"
         },
         "3": {
+          "name": "punctuation.definition.string.begin.svelte"
+        }
+      },
+      "contentName": "meta.embedded.expression.svelte source.ts",
+      "end": "(\\3)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.end.svelte"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#type-parameters"
+        }
+      ]
+    },
+    "attributes-interpolated": {
+      "begin": "(?<!:|=)\\s*({)",
+      "captures": {
+        "1": {
+          "name": "entity.other.attribute-name.svelte"
+        }
+      },
+      "contentName": "meta.embedded.expression.svelte source.ts",
+      "end": "(\\})",
+      "patterns": [
+        {
+          "include": "source.ts"
+        }
+      ]
+    },
+    "attributes-keyvalue": {
+      "begin": "((?:--)?[_$[:alpha:]][_\\-$[:alnum:]]*)",
+      "beginCaptures": {
+        "0": {
           "patterns": [
             {
-              "include": "#attributes-directives-types-assigned"
-            }
-          ]
-        },
-        "4": {
-          "patterns": [
-            {
-              "include": "#attributes-directives-types"
-            }
-          ]
-        },
-        "5": {
-          "patterns": [
-            {
-              "match": "\\w+",
-              "name": "support.function.svelte"
+              "match": "--.*",
+              "name": "support.type.property-name.svelte"
             },
             {
-              "match": "\\|",
-              "name": "punctuation.separator.svelte"
+              "match": ".*",
+              "name": "entity.other.attribute-name.svelte"
             }
           ]
         }
       },
       "end": "(?=\\s*+[^=\\s])",
-      "name": "meta.directive.$1.svelte",
+      "name": "meta.attribute.$1.svelte",
       "patterns": [
         {
           "begin": "=",
@@ -893,51 +428,495 @@
         }
       ]
     },
-    "attributes-generics": {
-      "begin": "(generics)(=)([\"'])",
-      "beginCaptures": {
-        "1": {
-          "name": "entity.other.attribute-name.svelte"
-        },
-        "2": {
-          "name": "punctuation.separator.key-value.svelte"
-        },
-        "3": {
-          "name": "punctuation.definition.string.begin.svelte"
-        }
-      },
-      "end": "(\\3)",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.string.end.svelte"
-        }
-      },
-      "contentName": "meta.embedded.expression.svelte source.ts",
+    "attributes-value": {
       "patterns": [
         {
-          "include": "#type-parameters"
+          "include": "#interpolation"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.string.begin.svelte"
+            },
+            "2": {
+              "name": "constant.numeric.decimal.svelte"
+            },
+            "3": {
+              "name": "punctuation.definition.string.end.svelte"
+            },
+            "4": {
+              "name": "constant.numeric.decimal.svelte"
+            }
+          },
+          "match": "(?:(['\"])([0-9._]+[\\w%]{,4})(\\1))|(?:([0-9._]+[\\w%]{,4})(?=\\s|/?>))"
+        },
+        {
+          "match": "([^\\s\"'=<>`/]|/(?!>))+",
+          "name": "string.unquoted.svelte",
+          "patterns": [
+            {
+              "include": "#interpolation"
+            }
+          ]
+        },
+        {
+          "begin": "(['\"])",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.svelte"
+            }
+          },
+          "end": "\\1",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.svelte"
+            }
+          },
+          "name": "string.quoted.svelte",
+          "patterns": [
+            {
+              "include": "#interpolation"
+            }
+          ]
         }
       ]
     },
-    "type-parameters": {
-      "name": "meta.type.parameters.ts",
+    "comments": {
+      "begin": "<!--",
+      "captures": {
+        "0": {
+          "name": "punctuation.definition.comment.svelte"
+        }
+      },
+      "end": "-->",
+      "name": "comment.block.svelte",
       "patterns": [
         {
-          "include": "source.ts#comment"
+          "begin": "(@)(component)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.keyword.svelte"
+            },
+            "2": {
+              "name": "storage.type.class.component.svelte keyword.declaration.class.component.svelte"
+            }
+          },
+          "contentName": "comment.block.documentation.svelte",
+          "end": "(?=-->)",
+          "patterns": [
+            {
+              "captures": {
+                "0": {
+                  "patterns": [
+                    {
+                      "include": "text.html.markdown"
+                    }
+                  ]
+                }
+              },
+              "match": ".*?(?=-->)"
+            },
+            {
+              "include": "text.html.markdown"
+            }
+          ]
         },
         {
-          "name": "storage.modifier.ts",
-          "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(extends|in|out|const)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+          "match": "\\G-?>|<!--(?!>)|<!-(?=-->)|--!>",
+          "name": "invalid.illegal.characters-not-allowed-here.svelte"
+        }
+      ]
+    },
+    "destructuring": {
+      "patterns": [
+        {
+          "begin": "(?={)",
+          "end": "(?<=})",
+          "name": "meta.embedded.expression.svelte source.ts",
+          "patterns": [
+            {
+              "include": "source.ts#object-binding-pattern"
+            }
+          ]
         },
         {
-          "include": "source.ts#type"
+          "begin": "(?=\\[)",
+          "end": "(?<=\\])",
+          "name": "meta.embedded.expression.svelte source.ts",
+          "patterns": [
+            {
+              "include": "source.ts#array-binding-pattern"
+            }
+          ]
+        }
+      ]
+    },
+    "destructuring-const": {
+      "patterns": [
+        {
+          "begin": "(?={)",
+          "end": "(?<=})",
+          "name": "meta.embedded.expression.svelte source.ts",
+          "patterns": [
+            {
+              "include": "source.ts#object-binding-pattern-const"
+            }
+          ]
         },
         {
-          "include": "source.ts#punctuation-comma"
+          "begin": "(?=\\[)",
+          "end": "(?<=\\])",
+          "name": "meta.embedded.expression.svelte source.ts",
+          "patterns": [
+            {
+              "include": "source.ts#array-binding-pattern-const"
+            }
+          ]
+        }
+      ]
+    },
+    "interpolation": {
+      "patterns": [
+        {
+          "begin": "\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.svelte"
+            }
+          },
+          "contentName": "meta.embedded.expression.svelte source.ts",
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.svelte"
+            }
+          },
+          "patterns": [
+            {
+              "begin": "\\G\\s*(?={)",
+              "end": "(?<=})",
+              "patterns": [
+                {
+                  "include": "source.ts#object-literal"
+                }
+              ]
+            },
+            {
+              "include": "source.ts"
+            }
+          ]
+        }
+      ]
+    },
+    "scope": {
+      "patterns": [
+        {
+          "include": "#comments"
         },
         {
-          "name": "keyword.operator.assignment.ts",
-          "match": "(=)(?!>)"
+          "include": "#special-tags"
+        },
+        {
+          "include": "#tags"
+        },
+        {
+          "include": "#interpolation"
+        },
+        {
+          "begin": "(?<=>|})",
+          "end": "(?=<|{)",
+          "name": "text.svelte"
+        }
+      ]
+    },
+    "special-tags": {
+      "patterns": [
+        {
+          "include": "#special-tags-void"
+        },
+        {
+          "include": "#special-tags-block-begin"
+        },
+        {
+          "include": "#special-tags-block-end"
+        }
+      ]
+    },
+    "special-tags-block-begin": {
+      "begin": "({)\\s*(#([a-z]*))",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.block.begin.svelte"
+        },
+        "2": {
+          "patterns": [
+            {
+              "include": "#special-tags-keywords"
+            }
+          ]
+        }
+      },
+      "end": "(})",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.block.end.svelte"
+        }
+      },
+      "name": "meta.special.$3.svelte meta.special.start.svelte",
+      "patterns": [
+        {
+          "include": "#special-tags-modes"
+        }
+      ]
+    },
+    "special-tags-block-end": {
+      "begin": "({)\\s*(/([a-z]*))",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.block.begin.svelte"
+        },
+        "2": {
+          "patterns": [
+            {
+              "include": "#special-tags-keywords"
+            }
+          ]
+        }
+      },
+      "end": "(})",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.block.end.svelte"
+        }
+      },
+      "name": "meta.special.$3.svelte meta.special.end.svelte"
+    },
+    "special-tags-keywords": {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.keyword.svelte"
+        },
+        "2": {
+          "patterns": [
+            {
+              "match": "if|else\\s+if|else",
+              "name": "keyword.control.conditional.svelte"
+            },
+            {
+              "match": "each|key",
+              "name": "keyword.control.svelte"
+            },
+            {
+              "match": "await|then|catch",
+              "name": "keyword.control.flow.svelte"
+            },
+            {
+              "match": "snippet",
+              "name": "keyword.control.svelte"
+            },
+            {
+              "match": "html",
+              "name": "keyword.other.svelte"
+            },
+            {
+              "match": "render",
+              "name": "keyword.other.svelte"
+            },
+            {
+              "match": "debug",
+              "name": "keyword.other.debugger.svelte"
+            },
+            {
+              "match": "const",
+              "name": "storage.type.svelte"
+            }
+          ]
+        }
+      },
+      "match": "([#@/:])(else\\s+if|[a-z]*)"
+    },
+    "special-tags-modes": {
+      "patterns": [
+        {
+          "begin": "(?<=(if|key|then|catch|snippet|html|render).*?)\\G",
+          "end": "(?=})",
+          "name": "meta.embedded.expression.svelte source.ts",
+          "patterns": [
+            {
+              "include": "source.ts"
+            }
+          ]
+        },
+        {
+          "begin": "(?<=const.*?)\\G",
+          "end": "(?=})",
+          "patterns": [
+            {
+              "include": "#destructuring-const"
+            },
+            {
+              "begin": "\\G\\s*([_$[:alpha:]][_$[:alnum:]]+)\\s*",
+              "beginCaptures": {
+                "1": {
+                  "name": "variable.other.constant.svelte"
+                }
+              },
+              "end": "(?=\\=)"
+            },
+            {
+              "begin": "(?=\\=)",
+              "end": "(?=})",
+              "name": "meta.embedded.expression.svelte source.ts",
+              "patterns": [
+                {
+                  "include": "source.ts"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "(?<=each.*?)\\G",
+          "end": "(?=})",
+          "patterns": [
+            {
+              "begin": "\\G\\s*?(?=\\S)",
+              "contentName": "meta.embedded.expression.svelte source.ts",
+              "end": "(?=(?:^\\s*|\\s+)(as))",
+              "patterns": [
+                {
+                  "include": "source.ts"
+                }
+              ]
+            },
+            {
+              "begin": "(as)",
+              "beginCaptures": {
+                "1": {
+                  "name": "keyword.control.as.svelte"
+                }
+              },
+              "end": "(?=})",
+              "patterns": [
+                {
+                  "include": "#destructuring"
+                },
+                {
+                  "begin": "\\(",
+                  "captures": {
+                    "0": {
+                      "name": "meta.brace.round.svelte"
+                    }
+                  },
+                  "contentName": "meta.embedded.expression.svelte source.ts",
+                  "end": "\\)|(?=})",
+                  "patterns": [
+                    {
+                      "include": "source.ts"
+                    }
+                  ]
+                },
+                {
+                  "captures": {
+                    "1": {
+                      "name": "meta.embedded.expression.svelte source.ts",
+                      "patterns": [
+                        {
+                          "include": "source.ts"
+                        }
+                      ]
+                    }
+                  },
+                  "match": "(\\s*([_$[:alpha:]][_$[:alnum:]]*)\\s*)"
+                },
+                {
+                  "match": ",",
+                  "name": "punctuation.separator.svelte"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "(?<=await.*?)\\G",
+          "end": "(?=})",
+          "patterns": [
+            {
+              "begin": "\\G\\s*?(?=\\S)",
+              "contentName": "meta.embedded.expression.svelte source.ts",
+              "end": "\\s+(then)|(?=})",
+              "endCaptures": {
+                "1": {
+                  "name": "keyword.control.flow.svelte"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "source.ts"
+                }
+              ]
+            },
+            {
+              "begin": "(?<=then\\b)",
+              "contentName": "meta.embedded.expression.svelte source.ts",
+              "end": "(?=})",
+              "patterns": [
+                {
+                  "include": "source.ts"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "(?<=debug.*?)\\G",
+          "end": "(?=})",
+          "patterns": [
+            {
+              "captures": {
+                "0": {
+                  "name": "meta.embedded.expression.svelte source.ts",
+                  "patterns": [
+                    {
+                      "include": "source.ts"
+                    }
+                  ]
+                }
+              },
+              "match": "[_$[:alpha:]][_$[:alnum:]]*"
+            },
+            {
+              "match": ",",
+              "name": "punctuation.separator.svelte"
+            }
+          ]
+        }
+      ]
+    },
+    "special-tags-void": {
+      "begin": "({)\\s*((?:[@:])(else\\s+if|[a-z]*))",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.block.begin.svelte"
+        },
+        "2": {
+          "patterns": [
+            {
+              "include": "#special-tags-keywords"
+            }
+          ]
+        }
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.block.end.svelte"
+        }
+      },
+      "name": "meta.special.$3.svelte",
+      "patterns": [
+        {
+          "include": "#special-tags-modes"
         }
       ]
     },
@@ -957,10 +936,134 @@
         }
       ]
     },
+    "tags-end-node": {
+      "captures": {
+        "1": {
+          "name": "meta.tag.end.svelte punctuation.definition.tag.begin.svelte"
+        },
+        "2": {
+          "name": "meta.tag.end.svelte",
+          "patterns": [
+            {
+              "include": "#tags-name"
+            }
+          ]
+        },
+        "3": {
+          "name": "meta.tag.end.svelte punctuation.definition.tag.end.svelte"
+        },
+        "4": {
+          "name": "meta.tag.start.svelte punctuation.definition.tag.end.svelte"
+        }
+      },
+      "match": "(</)(.*?)\\s*(>)|(/>)"
+    },
+    "tags-general-end": {
+      "begin": "(</)([^/\\s>]*)",
+      "beginCaptures": {
+        "1": {
+          "name": "meta.tag.end.svelte punctuation.definition.tag.begin.svelte"
+        },
+        "2": {
+          "name": "meta.tag.end.svelte",
+          "patterns": [
+            {
+              "include": "#tags-name"
+            }
+          ]
+        }
+      },
+      "end": "(>)",
+      "endCaptures": {
+        "1": {
+          "name": "meta.tag.end.svelte punctuation.definition.tag.end.svelte"
+        }
+      },
+      "name": "meta.scope.tag.$2.svelte"
+    },
+    "tags-general-start": {
+      "begin": "(<)([^/\\s>/]*)",
+      "beginCaptures": {
+        "0": {
+          "patterns": [
+            {
+              "include": "#tags-start-node"
+            }
+          ]
+        }
+      },
+      "end": "(/?>)",
+      "endCaptures": {
+        "1": {
+          "name": "meta.tag.start.svelte punctuation.definition.tag.end.svelte"
+        }
+      },
+      "name": "meta.scope.tag.$2.svelte",
+      "patterns": [
+        {
+          "include": "#tags-start-attributes"
+        }
+      ]
+    },
+    "tags-lang": {
+      "begin": "<(script|style|template)",
+      "beginCaptures": {
+        "0": {
+          "patterns": [
+            {
+              "include": "#tags-start-node"
+            }
+          ]
+        }
+      },
+      "end": "</\\1\\s*>|/>",
+      "endCaptures": {
+        "0": {
+          "patterns": [
+            {
+              "include": "#tags-end-node"
+            }
+          ]
+        }
+      },
+      "name": "meta.$1.svelte",
+      "patterns": [
+        {
+          "begin": "\\G(?=\\s*[^>]*?(type|lang)\\s*=\\s*(['\"]|)(?:text/)?(\\w+)\\2)",
+          "end": "(?=</|/>)",
+          "name": "meta.lang.$3.svelte",
+          "patterns": [
+            {
+              "include": "#tags-lang-start-attributes"
+            }
+          ]
+        },
+        {
+          "include": "#tags-lang-start-attributes"
+        }
+      ]
+    },
+    "tags-lang-start-attributes": {
+      "begin": "\\G",
+      "end": "(?=/>)|>",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.tag.end.svelte"
+        }
+      },
+      "name": "meta.tag.start.svelte",
+      "patterns": [
+        {
+          "include": "#attributes-generics"
+        },
+        {
+          "include": "#attributes"
+        }
+      ]
+    },
     "tags-name": {
       "patterns": [
         {
-          "match": "(svelte)(:)([a-z][\\w0-9:-]*)",
           "captures": {
             "1": {
               "name": "keyword.control.svelte"
@@ -971,7 +1074,8 @@
             "3": {
               "name": "entity.name.tag.svelte"
             }
-          }
+          },
+          "match": "(svelte)(:)([a-z][\\w0-9:-]*)"
         },
         {
           "match": "slot",
@@ -1001,26 +1105,7 @@
         }
       ]
     },
-    "tags-lang-start-attributes": {
-      "begin": "\\G",
-      "end": "(?=/>)|>",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.tag.end.svelte"
-        }
-      },
-      "name": "meta.tag.start.svelte",
-      "patterns": [
-        {
-          "include": "#attributes-generics"
-        },
-        {
-          "include": "#attributes"
-        }
-      ]
-    },
     "tags-start-node": {
-      "match": "(<)([^/\\s>/]*)",
       "captures": {
         "1": {
           "name": "punctuation.definition.tag.begin.svelte"
@@ -1033,67 +1118,8 @@
           ]
         }
       },
+      "match": "(<)([^/\\s>/]*)",
       "name": "meta.tag.start.svelte"
-    },
-    "tags-end-node": {
-      "match": "(</)(.*?)\\s*(>)|(/>)",
-      "captures": {
-        "1": {
-          "name": "meta.tag.end.svelte punctuation.definition.tag.begin.svelte"
-        },
-        "2": {
-          "name": "meta.tag.end.svelte",
-          "patterns": [
-            {
-              "include": "#tags-name"
-            }
-          ]
-        },
-        "3": {
-          "name": "meta.tag.end.svelte punctuation.definition.tag.end.svelte"
-        },
-        "4": {
-          "name": "meta.tag.start.svelte punctuation.definition.tag.end.svelte"
-        }
-      }
-    },
-    "tags-lang": {
-      "begin": "<(script|style|template)",
-      "end": "</\\1\\s*>|/>",
-      "beginCaptures": {
-        "0": {
-          "patterns": [
-            {
-              "include": "#tags-start-node"
-            }
-          ]
-        }
-      },
-      "endCaptures": {
-        "0": {
-          "patterns": [
-            {
-              "include": "#tags-end-node"
-            }
-          ]
-        }
-      },
-      "name": "meta.$1.svelte",
-      "patterns": [
-        {
-          "begin": "\\G(?=\\s*[^>]*?(type|lang)\\s*=\\s*(['\"]|)(?:text/)?(\\w+)\\2)",
-          "end": "(?=</|/>)",
-          "name": "meta.lang.$3.svelte",
-          "patterns": [
-            {
-              "include": "#tags-lang-start-attributes"
-            }
-          ]
-        },
-        {
-          "include": "#tags-lang-start-attributes"
-        }
-      ]
     },
     "tags-void": {
       "begin": "(<)(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)(?=\\s|/?>)",
@@ -1118,52 +1144,29 @@
         }
       ]
     },
-    "tags-general-start": {
-      "begin": "(<)([^/\\s>/]*)",
-      "end": "(/?>)",
-      "beginCaptures": {
-        "0": {
-          "patterns": [
-            {
-              "include": "#tags-start-node"
-            }
-          ]
-        }
-      },
-      "endCaptures": {
-        "1": {
-          "name": "meta.tag.start.svelte punctuation.definition.tag.end.svelte"
-        }
-      },
-      "name": "meta.scope.tag.$2.svelte",
+    "type-parameters": {
+      "name": "meta.type.parameters.ts",
       "patterns": [
         {
-          "include": "#tags-start-attributes"
+          "include": "source.ts#comment"
+        },
+        {
+          "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(extends|in|out|const)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))",
+          "name": "storage.modifier.ts"
+        },
+        {
+          "include": "source.ts#type"
+        },
+        {
+          "include": "source.ts#punctuation-comma"
+        },
+        {
+          "match": "(=)(?!>)",
+          "name": "keyword.operator.assignment.ts"
         }
       ]
-    },
-    "tags-general-end": {
-      "begin": "(</)([^/\\s>]*)",
-      "end": "(>)",
-      "beginCaptures": {
-        "1": {
-          "name": "meta.tag.end.svelte punctuation.definition.tag.begin.svelte"
-        },
-        "2": {
-          "name": "meta.tag.end.svelte",
-          "patterns": [
-            {
-              "include": "#tags-name"
-            }
-          ]
-        }
-      },
-      "endCaptures": {
-        "1": {
-          "name": "meta.tag.end.svelte punctuation.definition.tag.end.svelte"
-        }
-      },
-      "name": "meta.scope.tag.$2.svelte"
     }
-  }
+  },
+  "scopeName": "source.svelte",
+  "uuid": "7582b62f-51d9-4a84-8c8d-fc189530faf6"
 }

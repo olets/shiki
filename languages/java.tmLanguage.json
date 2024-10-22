@@ -1,12 +1,11 @@
 {
+  "displayName": "Java",
   "information_for_contributors": [
     "This file has been converted from https://github.com/redhat-developer/vscode-java/blob/master/language-support/java/java.tmLanguage.json",
     "If you want to provide a fix or improvement, please create a pull request against the original repository.",
     "Once accepted there, we are happy to receive an update request."
   ],
-  "version": "https://github.com/redhat-developer/vscode-java/commit/f09b712f5d6d6339e765f58c8dfab3f78a378183",
   "name": "java",
-  "scopeName": "source.java",
   "patterns": [
     {
       "begin": "\\b(package)\\b\\s*",
@@ -15,6 +14,7 @@
           "name": "keyword.other.package.java"
         }
       },
+      "contentName": "storage.modifier.package.java",
       "end": "\\s*(;)",
       "endCaptures": {
         "1": {
@@ -22,7 +22,6 @@
         }
       },
       "name": "meta.package.java",
-      "contentName": "storage.modifier.package.java",
       "patterns": [
         {
           "include": "#comments"
@@ -59,6 +58,7 @@
           "name": "storage.modifier.java"
         }
       },
+      "contentName": "storage.modifier.import.java",
       "end": "\\s*(;)",
       "endCaptures": {
         "1": {
@@ -66,7 +66,6 @@
         }
       },
       "name": "meta.import.java",
-      "contentName": "storage.modifier.import.java",
       "patterns": [
         {
           "include": "#comments"
@@ -161,8 +160,6 @@
           ]
         },
         {
-          "match": "(@)(interface)\\s+(\\w*)|((@)\\s*(\\w+))",
-          "name": "meta.declaration.annotation.java",
           "captures": {
             "1": {
               "name": "punctuation.definition.annotation.java"
@@ -179,7 +176,9 @@
             "6": {
               "name": "storage.type.annotation.java"
             }
-          }
+          },
+          "match": "(@)(interface)\\s+(\\w*)|((@)\\s*(\\w+))",
+          "name": "meta.declaration.annotation.java"
         }
       ]
     },
@@ -398,8 +397,8 @@
               "name": "punctuation.section.class.begin.bracket.curly.java"
             }
           },
-          "end": "(?=})",
           "contentName": "meta.class.body.java",
+          "end": "(?=})",
           "patterns": [
             {
               "include": "#class-body"
@@ -619,7 +618,6 @@
               "name": "keyword.other.documentation.javadoc.java"
             },
             {
-              "match": "(@param)\\s+(\\S+)",
               "captures": {
                 "1": {
                   "name": "keyword.other.documentation.javadoc.java"
@@ -627,10 +625,10 @@
                 "2": {
                   "name": "variable.parameter.java"
                 }
-              }
+              },
+              "match": "(@param)\\s+(\\S+)"
             },
             {
-              "match": "(@(?:exception|throws))\\s+(\\S+)",
               "captures": {
                 "1": {
                   "name": "keyword.other.documentation.javadoc.java"
@@ -638,10 +636,10 @@
                 "2": {
                   "name": "entity.name.type.class.java"
                 }
-              }
+              },
+              "match": "(@(?:exception|throws))\\s+(\\S+)"
             },
             {
-              "match": "{(@link)\\s+(\\S+)?#([\\w$]+\\s*\\([^\\(\\)]*\\)).*?}",
               "captures": {
                 "1": {
                   "name": "keyword.other.documentation.javadoc.java"
@@ -652,7 +650,8 @@
                 "3": {
                   "name": "variable.parameter.java"
                 }
-              }
+              },
+              "match": "{(@link)\\s+(\\S+)?#([\\w$]+\\s*\\([^\\(\\)]*\\)).*?}"
             }
           ]
         }
@@ -865,12 +864,12 @@
           "name": "storage.modifier.$1.java"
         },
         {
-          "match": "(?<!\\.)([a-zA-Z$_][a-zA-Z0-9$_]*)(?=\\s*<)",
           "captures": {
             "1": {
               "name": "storage.type.java"
             }
-          }
+          },
+          "match": "(?<!\\.)([a-zA-Z$_][a-zA-Z0-9$_]*)(?=\\s*<)"
         },
         {
           "include": "#primitive-arrays"
@@ -1089,8 +1088,8 @@
               "name": "punctuation.section.method.begin.bracket.curly.java"
             }
           },
-          "end": "(?=})",
           "contentName": "meta.method.body.java",
+          "end": "(?=})",
           "patterns": [
             {
               "include": "#code"
@@ -1104,7 +1103,6 @@
     },
     "module": {
       "begin": "((open)\\s)?(module)\\s+(\\w+)",
-      "end": "}",
       "beginCaptures": {
         "1": {
           "name": "storage.modifier.java"
@@ -1116,6 +1114,7 @@
           "name": "entity.name.type.module.java"
         }
       },
+      "end": "}",
       "endCaptures": {
         "0": {
           "name": "punctuation.section.module.end.bracket.curly.java"
@@ -1130,8 +1129,8 @@
               "name": "punctuation.section.module.begin.bracket.curly.java"
             }
           },
-          "end": "(?=})",
           "contentName": "meta.module.body.java",
+          "end": "(?=})",
           "patterns": [
             {
               "include": "#comments"
@@ -1202,7 +1201,6 @@
           ]
         },
         {
-          "match": "\\b((?:[A-Za-z_]\\w*\\s*\\.\\s*)*[A-Z_]\\w*)\\s*(?=<)",
           "captures": {
             "1": {
               "patterns": [
@@ -1216,10 +1214,10 @@
                 }
               ]
             }
-          }
+          },
+          "match": "\\b((?:[A-Za-z_]\\w*\\s*\\.\\s*)*[A-Z_]\\w*)\\s*(?=<)"
         },
         {
-          "match": "\\b((?:[A-Za-z_]\\w*\\s*\\.\\s*)*[A-Z_]\\w*)\\b((?=\\s*[A-Za-z$_\\n])|(?=\\s*\\.\\.\\.))",
           "captures": {
             "1": {
               "patterns": [
@@ -1233,7 +1231,8 @@
                 }
               ]
             }
-          }
+          },
+          "match": "\\b((?:[A-Za-z_]\\w*\\s*\\.\\s*)*[A-Z_]\\w*)\\b((?=\\s*[A-Za-z$_\\n])|(?=\\s*\\.\\.\\.))"
         }
       ]
     },
@@ -1243,13 +1242,13 @@
           "include": "#generics"
         },
         {
-          "match": "\\b(?:[A-Z]\\w*\\s*(\\.)\\s*)*[A-Z]\\w*\\b",
-          "name": "entity.other.inherited-class.java",
           "captures": {
             "1": {
               "name": "punctuation.separator.period.java"
             }
-          }
+          },
+          "match": "\\b(?:[A-Z]\\w*\\s*(\\.)\\s*)*[A-Z]\\w*\\b",
+          "name": "entity.other.inherited-class.java"
         },
         {
           "match": ",",
@@ -1379,7 +1378,6 @@
     "properties": {
       "patterns": [
         {
-          "match": "(\\.)\\s*(new)",
           "captures": {
             "1": {
               "name": "punctuation.separator.period.java"
@@ -1387,10 +1385,10 @@
             "2": {
               "name": "keyword.control.new.java"
             }
-          }
+          },
+          "match": "(\\.)\\s*(new)"
         },
         {
-          "match": "(\\.)\\s*([a-zA-Z_$][\\w$]*)(?=\\s*\\.\\s*[a-zA-Z_$][\\w$]*)",
           "captures": {
             "1": {
               "name": "punctuation.separator.period.java"
@@ -1398,10 +1396,10 @@
             "2": {
               "name": "variable.other.object.property.java"
             }
-          }
+          },
+          "match": "(\\.)\\s*([a-zA-Z_$][\\w$]*)(?=\\s*\\.\\s*[a-zA-Z_$][\\w$]*)"
         },
         {
-          "match": "(\\.)\\s*([a-zA-Z_$][\\w$]*)",
           "captures": {
             "1": {
               "name": "punctuation.separator.period.java"
@@ -1409,10 +1407,10 @@
             "2": {
               "name": "variable.other.object.property.java"
             }
-          }
+          },
+          "match": "(\\.)\\s*([a-zA-Z_$][\\w$]*)"
         },
         {
-          "match": "(\\.)\\s*([0-9][\\w$]*)",
           "captures": {
             "1": {
               "name": "punctuation.separator.period.java"
@@ -1420,7 +1418,8 @@
             "2": {
               "name": "invalid.illegal.identifier.java"
             }
-          }
+          },
+          "match": "(\\.)\\s*([0-9][\\w$]*)"
         }
       ]
     },
@@ -1555,8 +1554,8 @@
               "name": "punctuation.section.method.begin.bracket.curly.java"
             }
           },
-          "end": "(?=})",
           "contentName": "meta.method.body.java",
+          "end": "(?=})",
           "patterns": [
             {
               "include": "#code"
@@ -1714,8 +1713,8 @@
                   "name": "punctuation.section.try.begin.bracket.curly.java"
                 }
               },
-              "end": "(?=})",
               "contentName": "meta.try.body.java",
+              "end": "(?=})",
               "patterns": [
                 {
                   "include": "#code"
@@ -1749,13 +1748,13 @@
                   "name": "punctuation.definition.parameters.begin.bracket.round.java"
                 }
               },
+              "contentName": "meta.catch.parameters.java",
               "end": "\\)",
               "endCaptures": {
                 "0": {
                   "name": "punctuation.definition.parameters.end.bracket.round.java"
                 }
               },
-              "contentName": "meta.catch.parameters.java",
               "patterns": [
                 {
                   "include": "#comments"
@@ -1781,12 +1780,12 @@
                       "include": "#comments"
                     },
                     {
-                      "match": "\\w+",
                       "captures": {
                         "0": {
                           "name": "variable.parameter.java"
                         }
-                      }
+                      },
+                      "match": "\\w+"
                     }
                   ]
                 }
@@ -1799,8 +1798,8 @@
                   "name": "punctuation.section.catch.begin.bracket.curly.java"
                 }
               },
-              "end": "(?=})",
               "contentName": "meta.catch.body.java",
+              "end": "(?=})",
               "patterns": [
                 {
                   "include": "#code"
@@ -1831,8 +1830,8 @@
                   "name": "punctuation.section.finally.begin.bracket.curly.java"
                 }
               },
-              "end": "(?=})",
               "contentName": "meta.finally.body.java",
+              "end": "(?=})",
               "patterns": [
                 {
                   "include": "#code"
@@ -1849,12 +1848,12 @@
       "name": "meta.definition.variable.java",
       "patterns": [
         {
-          "match": "([A-Za-z$_][\\w$]*)(?=\\s*(\\[\\])*\\s*(;|:|=|,))",
           "captures": {
             "1": {
               "name": "variable.other.definition.java"
             }
-          }
+          },
+          "match": "([A-Za-z$_][\\w$]*)(?=\\s*(\\[\\])*\\s*(;|:|=|,))"
         },
         {
           "include": "#all-types"
@@ -1874,17 +1873,19 @@
           "name": "storage.type.local.java"
         },
         {
-          "match": "([A-Za-z$_][\\w$]*)(?=\\s*(\\[\\])*\\s*(=|:|;))",
           "captures": {
             "1": {
               "name": "variable.other.definition.java"
             }
-          }
+          },
+          "match": "([A-Za-z$_][\\w$]*)(?=\\s*(\\[\\])*\\s*(=|:|;))"
         },
         {
           "include": "#code"
         }
       ]
     }
-  }
+  },
+  "scopeName": "source.java",
+  "version": "https://github.com/redhat-developer/vscode-java/commit/f09b712f5d6d6339e765f58c8dfab3f78a378183"
 }

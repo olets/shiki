@@ -1,5 +1,9 @@
 {
-  "fileTypes": ["cmake", "CMakeLists.txt"],
+  "displayName": "CMake",
+  "fileTypes": [
+    "cmake",
+    "CMakeLists.txt"
+  ],
   "name": "cmake",
   "patterns": [
     {
@@ -41,8 +45,8 @@
       "name": "variable.source.cmake"
     },
     {
-      "comment": "BracketArgs",
       "begin": "#\\[(=*)\\[",
+      "comment": "BracketArgs",
       "end": "\\]\\1\\]",
       "name": "comment.source.cmake",
       "patterns": [
@@ -53,8 +57,8 @@
       ]
     },
     {
-      "comment": "BracketArgs",
       "begin": "\\[(=*)\\[",
+      "comment": "BracketArgs",
       "end": "\\]\\1\\]",
       "name": "argument.source.cmake",
       "patterns": [
@@ -99,8 +103,8 @@
       "name": "entity.source.cmake"
     },
     {
-      "comment": "Escaped Strings",
       "begin": "\\\\\"",
+      "comment": "Escaped Strings",
       "end": "\\\\\"",
       "name": "string.source.cmake",
       "patterns": [
@@ -111,8 +115,8 @@
       ]
     },
     {
-      "comment": "Normal Strings",
       "begin": "\"",
+      "comment": "Normal Strings",
       "end": "\"",
       "name": "string.source.cmake",
       "patterns": [
@@ -133,7 +137,8 @@
       "name": "variable.source.cmake"
     }
   ],
-  "repository": {},
+  "repository": {
+  },
   "scopeName": "source.cmake",
   "uuid": "7aed2d59-22d9-41c8-ba9e-4f178191e380"
 }

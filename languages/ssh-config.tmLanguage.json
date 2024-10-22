@@ -1,5 +1,10 @@
 {
-  "fileTypes": ["ssh_config", ".ssh/config", "sshd_config"],
+  "displayName": "SSH Config",
+  "fileTypes": [
+    "ssh_config",
+    ".ssh/config",
+    "sshd_config"
+  ],
   "name": "ssh-config",
   "patterns": [
     {

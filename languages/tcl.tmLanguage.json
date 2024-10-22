@@ -1,5 +1,8 @@
 {
-  "fileTypes": ["tcl"],
+  "displayName": "Tcl",
+  "fileTypes": [
+    "tcl"
+  ],
   "foldingStartMarker": "\\{\\s*$",
   "foldingStopMarker": "^\\s*\\}",
   "keyEquivalent": "^~T",
@@ -207,6 +210,14 @@
         }
       ]
     },
+    "numeric": {
+      "match": "(?<![a-zA-Z])([+-]?([0-9]*[.])?[0-9]+f?)(?![\\.a-zA-Z])",
+      "name": "constant.numeric.tcl"
+    },
+    "operator": {
+      "match": "(?<= |\\d)(-|\\+|~|&{1,2}|\\|{1,2}|<{1,2}|>{1,2}|\\*{1,2}|!|%|\\/|<=|>=|={1,2}|!=|\\^)(?= |\\d)",
+      "name": "keyword.operator.tcl"
+    },
     "regexp": {
       "begin": "(?=\\S)(?![\\n;\\]])",
       "comment": "matches a single word, named as a regexp, then swallows the rest of the command",
@@ -275,14 +286,6 @@
       },
       "match": "(\\$)((?:[a-zA-Z0-9_]|::)+(\\([^\\)]+\\))?|\\{[^\\}]*\\})",
       "name": "support.function.tcl"
-    },
-    "numeric": {
-      "match": "(?<![a-zA-Z])([+-]?([0-9]*[.])?[0-9]+f?)(?![\\.a-zA-Z])",
-      "name": "constant.numeric.tcl"
-    },
-    "operator": {
-      "match": "(?<= |\\d)(-|\\+|~|&{1,2}|\\|{1,2}|<{1,2}|>{1,2}|\\*{1,2}|!|%|\\/|<=|>=|={1,2}|!=|\\^)(?= |\\d)",
-      "name": "keyword.operator.tcl"
     }
   },
   "scopeName": "source.tcl",
