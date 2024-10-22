@@ -22,7 +22,13 @@ git checkout main
 
 ## Getting the latest changes from upstream
 
-TBD.
+```
+git fetch
+git fetch upstream
+git diff upstream/main..upstream-main -- ./packages/shiki-twoslash ./
+```
+
+and port any diff over to `main`.
 
 ## Background
 
