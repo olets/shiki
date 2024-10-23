@@ -30,12 +30,12 @@
   },
   "dependencies": {
     "@olets/shiki": "github:olets/shiki",
+    "@olets/shiki-twoslash": "github:olets/shiki-twoslash",
     "@types/unist": "^2.0.0",
     "@typescript/twoslash": "3.2.1",
     "@typescript/vfs": "1.4.0",
     "fenceparser": "^2.2.0",
     "regenerator-runtime": "^0.13.7",
-    "shiki-twoslash": "github:olets/shiki-twoslash",
     "tslib": "2.1.0",
     "unist-util-visit": "^2.0.0"
   },
@@ -51,6 +51,7 @@
     "@types/unist": "^2.0.0",
     "babel-jest": "^26.6.3",
     "esbuild": "^0.12.9",
+    "jest-file-snapshot": "^0.7.0",
     "rehype-stringify": "^6.0.1",
     "tsdx": "^0.14.1",
     "tslib": "^1.10.0",

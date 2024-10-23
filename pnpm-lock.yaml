@@ -4,6 +4,7 @@ specifiers:
   '@babel/core': ^7.0.0-0
   '@mdx-js/mdx': ^1.6.2
   '@olets/shiki': github:olets/shiki
+  '@olets/shiki-twoslash': github:olets/shiki-twoslash
   '@types/jest': ^25.1.3
   '@types/node': 14.14.31
   '@types/unist': ^2.0.0
@@ -12,9 +13,9 @@ specifiers:
   babel-jest: ^26.6.3
   esbuild: ^0.12.9
   fenceparser: ^2.2.0
+  jest-file-snapshot: ^0.7.0
   regenerator-runtime: ^0.13.7
   rehype-stringify: ^6.0.1
-  shiki-twoslash: github:olets/shiki-twoslash
   tsdx: ^0.14.1
   tslib: 2.1.0
   typescript: '>3'
@@ -22,13 +23,13 @@ specifiers:
   unist-util-visit: ^2.0.0
 
 dependencies:
-  '@olets/shiki': github.com/olets/shiki/0e98852f43877633c6f0d85588f8eed6b0f10680
+  '@olets/shiki': github.com/olets/shiki/cef93808097c27426765c44055aa250d0c905246
+  '@olets/shiki-twoslash': github.com/olets/shiki-twoslash/05bd0c955f411ed705d1283b6ad2d8a38619a411_typescript@5.6.3
   '@types/unist': 2.0.11
   '@typescript/twoslash': 3.2.1
   '@typescript/vfs': 1.4.0
   fenceparser: 2.2.0
   regenerator-runtime: 0.13.11
-  shiki-twoslash: github.com/olets/shiki-twoslash/b8d71fd66c465e634aee376589cde09b96900748_typescript@5.6.3
   tslib: 2.1.0
   unist-util-visit: 2.0.3
 
@@ -39,6 +40,7 @@ devDependencies:
   '@types/node': 14.14.31
   babel-jest: 26.6.3_@babel+core@7.25.9
   esbuild: 0.12.29
+  jest-file-snapshot: 0.7.0
   rehype-stringify: 6.0.1
   tsdx: 0.14.1_@types+node@14.14.31
   typescript: 5.6.3
@@ -1496,6 +1498,13 @@ packages:
       - supports-color
     dev: true
 
+  /@jest/schemas/29.6.3:
+    resolution: {integrity: sha512-mo5j5X+jIZmJQveBKeS/clAueipV7KgiX1vMgCxam1RNYiqE1w62n0/tJJnHtjW8ZHcQco5gY85jA3mi0L+nSA==}
+    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+    dependencies:
+      '@sinclair/typebox': 0.27.8
+    dev: true
+
   /@jest/source-map/25.5.0:
     resolution: {integrity: sha512-eIGx0xN12yVpMcPaVpjXPnn3N30QGJCJQSkEDUt9x1fI1Gdvb07Ml6K5iN2hG7NmMP6FDmtPEssE3z6doOYUwQ==}
     engines: {node: '>= 8.3'}
@@ -1742,6 +1751,10 @@ packages:
 
   /@rtsao/scc/1.1.0:
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
+    dev: true
+
+  /@sinclair/typebox/0.27.8:
+    resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
     dev: true
 
   /@sinonjs/commons/1.8.6:
@@ -2081,6 +2094,11 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       color-convert: 2.0.1
+    dev: true
+
+  /ansi-styles/5.2.0:
+    resolution: {integrity: sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==}
+    engines: {node: '>=10'}
     dev: true
 
   /anymatch/2.0.0:
@@ -3097,6 +3115,11 @@ packages:
     engines: {node: '>= 8.3'}
     dev: true
 
+  /diff-sequences/29.6.3:
+    resolution: {integrity: sha512-EjePK1srD3P08o2j4f0ExnylqRs5B9tJjcp9t1krH2qRi8CCdsYfwe9JgSLurFBWwq4uOlipzfk5fHNvwFKr8Q==}
+    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+    dev: true
+
   /doctrine/2.1.0:
     resolution: {integrity: sha512-35mSku4ZXK0vfCuHEDAwt55dg2jNajHZ1odvF+8SSr82EsZY4QmXfuWso8oEd8zRhVObSN18aM0CjSdoBX7zIw==}
     engines: {node: '>=0.10.0'}
@@ -3771,6 +3794,20 @@ packages:
     engines: {node: '>=4'}
     dependencies:
       flat-cache: 2.0.1
+    dev: true
+
+  /filename-reserved-regex/2.0.0:
+    resolution: {integrity: sha512-lc1bnsSr4L4Bdif8Xb/qrtokGbq5zlsms/CYH8PP+WtCkGNF65DPiQY8vG3SakEdRn8Dlnm+gW/qWKKjS5sZzQ==}
+    engines: {node: '>=4'}
+    dev: true
+
+  /filenamify/4.3.0:
+    resolution: {integrity: sha512-hcFKyUG57yWGAzu1CMt/dPzYZuv+jAJUT85bL8mrXvNe6hWj6yEHEc4EdcgiA6Z3oi1/9wXJdZPXF2dZNgwgOg==}
+    engines: {node: '>=8'}
+    dependencies:
+      filename-reserved-regex: 2.0.0
+      strip-outer: 1.0.1
+      trim-repeated: 1.0.0
     dev: true
 
   /fill-range/4.0.0:
@@ -4835,6 +4872,16 @@ packages:
       pretty-format: 25.5.0
     dev: true
 
+  /jest-diff/29.7.0:
+    resolution: {integrity: sha512-LMIgiIrhigmPrs03JHpxUh2yISK3vLFPkAodPeo0+BuF7wA2FoQbkEg1u8gBYBThncu7e1oEDUfIXVuTqLRUjw==}
+    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+    dependencies:
+      chalk: 4.1.2
+      diff-sequences: 29.6.3
+      jest-get-type: 29.6.3
+      pretty-format: 29.7.0
+    dev: true
+
   /jest-docblock/25.3.0:
     resolution: {integrity: sha512-aktF0kCar8+zxRHxQZwxMy70stc9R1mOmrLsT5VO3pIT0uzGRSDAXxSlz4NqQWpuLjPpuMhPRl7H+5FRsvIQAg==}
     engines: {node: '>= 8.3'}
@@ -4881,9 +4928,23 @@ packages:
       semver: 6.3.1
     dev: true
 
+  /jest-file-snapshot/0.7.0:
+    resolution: {integrity: sha512-HkuzLleG2bEVz5nu7ey3SkiBeBvTz8IhY0mJ9W+9BO4xiIi3nVUfB81jFLWS7PMPpeBVgkpW0G1YyrYKi3Hcxw==}
+    dependencies:
+      chalk: 4.1.2
+      filenamify: 4.3.0
+      jest-diff: 29.7.0
+      mkdirp: 3.0.1
+    dev: true
+
   /jest-get-type/25.2.6:
     resolution: {integrity: sha512-DxjtyzOHjObRM+sM1knti6or+eOgcGU4xVSb2HNP1TqO4ahsT+rqZg+nyqHWJSvWgKC5cG3QjGFBqxLghiF/Ig==}
     engines: {node: '>= 8.3'}
+    dev: true
+
+  /jest-get-type/29.6.3:
+    resolution: {integrity: sha512-zrteXnqYxfQh7l5FHyL38jL39di8H8rHoecLH3JNxH3BwOrBsNeabdap5e0I23lD4HHI8W5VFBZqG4Eaq5LNcw==}
+    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dev: true
 
   /jest-haste-map/25.5.1:
@@ -5662,6 +5723,12 @@ packages:
       minimist: 1.2.8
     dev: true
 
+  /mkdirp/3.0.1:
+    resolution: {integrity: sha512-+NsyUUAZDmo6YVHzL/stxSu3t9YS1iljliy3BSDrXJ/dkn1KYdmtZODGGjLcc9XLgVVpH4KshHB8XmZgMhaBXg==}
+    engines: {node: '>=10'}
+    hasBin: true
+    dev: true
+
   /mri/1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
     engines: {node: '>=4'}
@@ -6087,6 +6154,15 @@ packages:
       react-is: 16.13.1
     dev: true
 
+  /pretty-format/29.7.0:
+    resolution: {integrity: sha512-Pdlw/oPxN+aXdmM9R00JVC9WVFoCLTKJvDVLgmJ+qAffBMxsV85l/Lu7sNx4zSzPyoL2euImuEwHhOXdEgNFZQ==}
+    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+    dependencies:
+      '@jest/schemas': 29.6.3
+      ansi-styles: 5.2.0
+      react-is: 18.3.1
+    dev: true
+
   /progress-estimator/0.2.2:
     resolution: {integrity: sha512-GF76Ac02MTJD6o2nMNtmtOFjwWCnHcvXyn5HOWPQnEMO8OTLw7LAvNmrwe8LmdsB+eZhwUu9fX/c9iQnBxWaFA==}
     dependencies:
@@ -6152,6 +6228,10 @@ packages:
 
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
+    dev: true
+
+  /react-is/18.3.1:
+    resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
     dev: true
 
   /read-pkg-up/7.0.1:
@@ -6724,15 +6804,6 @@ packages:
     dev: true
     optional: true
 
-  /shiki/0.14.3:
-    resolution: {integrity: sha512-U3S/a+b0KS+UkTyMjoNojvTgrBHjgp7L6ovhFVZsXmBGnVdQ4K4U9oK0z63w538S91ATngv1vXigHCSWOwnr+g==}
-    dependencies:
-      ansi-sequence-parser: 1.1.1
-      jsonc-parser: 3.3.1
-      vscode-oniguruma: 1.7.0
-      vscode-textmate: 8.0.0
-    dev: false
-
   /side-channel/1.0.6:
     resolution: {integrity: sha512-fDW/EZ6Q9RiO8eFG8Hj+7u/oW+XrPTIChwCOM2+th2A6OblDtYYIpve9m+KvI9Z4C9qSEXlaGR6bTEYHReuglA==}
     engines: {node: '>= 0.4'}
@@ -7074,6 +7145,13 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /strip-outer/1.0.1:
+    resolution: {integrity: sha512-k55yxKHwaXnpYGsOzg4Vl8+tDrWylxDEpknGjhTiZB8dFRU5rTo9CAzeycivxV3s+zlTKwrs6WxMxR95n26kwg==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      escape-string-regexp: 1.0.5
+    dev: true
+
   /style-to-object/0.3.0:
     resolution: {integrity: sha512-CzFnRRXhzWIdItT3OmF8SQfWyahHhjq3HwcMNCNLn+N7klOOqPjMeG/4JSu77D7ypZdGvSzvkrbyeTMizz2VrA==}
     dependencies:
@@ -7238,6 +7316,13 @@ packages:
     resolution: {integrity: sha512-dTpowEjclQ7Kgx5SdBkqRzVhERQXov8/l9Ft9dVM9fmg0W0KQSVaXX9T4i6twCPNtYiZM53lpSSUAwJbFPOHxA==}
     dependencies:
       punycode: 2.3.1
+    dev: true
+
+  /trim-repeated/1.0.0:
+    resolution: {integrity: sha512-pkonvlKk8/ZuR0D5tLW8ljt5I8kmxp2XKymhepUeOdCEfKpZaktSArkLHZt76OB1ZvO9bssUsDty4SWhLvZpLg==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      escape-string-regexp: 1.0.5
     dev: true
 
   /trim-trailing-lines/1.1.4:
@@ -7933,26 +8018,26 @@ packages:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
     dev: true
 
-  github.com/olets/shiki-twoslash/b8d71fd66c465e634aee376589cde09b96900748_typescript@5.6.3:
-    resolution: {tarball: https://codeload.github.com/olets/shiki-twoslash/tar.gz/b8d71fd66c465e634aee376589cde09b96900748}
-    id: github.com/olets/shiki-twoslash/b8d71fd66c465e634aee376589cde09b96900748
+  github.com/olets/shiki-twoslash/05bd0c955f411ed705d1283b6ad2d8a38619a411_typescript@5.6.3:
+    resolution: {tarball: https://codeload.github.com/olets/shiki-twoslash/tar.gz/05bd0c955f411ed705d1283b6ad2d8a38619a411}
+    id: github.com/olets/shiki-twoslash/05bd0c955f411ed705d1283b6ad2d8a38619a411
     name: '@olets/shiki-twoslash'
     version: 3.1.3
     engines: {node: 14.16.0}
     peerDependencies:
       typescript: '>3'
     dependencies:
+      '@olets/shiki': github.com/olets/shiki/cef93808097c27426765c44055aa250d0c905246
       '@typescript/twoslash': 3.2.1
       '@typescript/vfs': 1.4.0
       fenceparser: 2.2.0
-      shiki: 0.14.3
       typescript: 5.6.3
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  github.com/olets/shiki/0e98852f43877633c6f0d85588f8eed6b0f10680:
-    resolution: {tarball: https://codeload.github.com/olets/shiki/tar.gz/0e98852f43877633c6f0d85588f8eed6b0f10680}
+  github.com/olets/shiki/cef93808097c27426765c44055aa250d0c905246:
+    resolution: {tarball: https://codeload.github.com/olets/shiki/tar.gz/cef93808097c27426765c44055aa250d0c905246}
     name: '@olets/shiki'
     version: 0.14.7
     engines: {node: 18.20.4}

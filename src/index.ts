@@ -5,7 +5,7 @@ import { TwoslashError, TwoSlashReturn } from "@typescript/twoslash";
 import visit from "unist-util-visit";
 import { lex, parse } from "fenceparser";
 import { Lang, Highlighter, getHighlighter } from "@olets/shiki";
-import { UserConfigSettings, renderCodeToHTML } from "shiki-twoslash";
+import { UserConfigSettings, renderCodeToHTML } from "@olets/shiki-twoslash";
 
 import { cachedTwoslashCall } from "./caching";
 import { addIncludes, replaceIncludesInCode } from "./includes";

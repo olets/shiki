@@ -1,4 +1,4 @@
-import { UserConfigSettings, runTwoSlash } from "shiki-twoslash";
+import { UserConfigSettings, runTwoSlash } from "@olets/shiki-twoslash";
 import type { TwoSlashReturn } from "@typescript/twoslash";
 
 /**
