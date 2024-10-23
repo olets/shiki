@@ -1,4 +1,4 @@
-import type { Node } from "unist"
+import type { RemarkCodeNode } from "./index"
 
 import {TwoslashError} from "@typescript/twoslash"
 
@@ -6,7 +6,7 @@ function escapeHtml(html: string) {
   return html.replace(/</g, "&lt;").replace(/>/g, "&gt;")
 }
 
-export const setupNodeForTwoslashException = (code: string, node: Node, error: unknown) => {
+export const setupNodeForTwoslashException = (code: string, node: RemarkCodeNode, error: unknown) => {
     const css = `<style>
 @import url('http://fonts.cdnfonts.com/css/caslon-os'); 
 

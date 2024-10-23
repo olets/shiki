@@ -152,7 +152,7 @@ const parseFence = (fence: string): Fence => {
 // --- The Remark API ---
 
 /* A rich AST node for uninst with twoslash'd data */
-type RemarkCodeNode = Node & {
+export type RemarkCodeNode = Node & {
   lang?: Lang;
   meta?: string;
   // ^ according to mdast
