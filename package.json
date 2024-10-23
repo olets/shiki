@@ -1,18 +1,18 @@
 {
-  "name": "eleventy-plugin-shiki-twoslash",
+  "name": "@olets/eleventy-plugin-shiki-twoslash",
   "version": "1.1.10",
   "license": "MIT",
-  "homepage": "https://github.com/shikijs/twoslash",
+  "homepage": "https://github.com/olets/eleventy-plugin-shiki-twoslash",
   "repository": {
-    "url": "https://github.com/shikijs/twoslash.git",
+    "url": "https://github.com/olets/eleventy-plugin-shiki-twoslash.git",
     "directory": "packages/eleventy-plugin-shiki-twoslash",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/shikijs/twoslash/issues"
+    "url": "https://github.com/olets/eleventy-plugin-shiki-twoslash/issues"
   },
   "description": "An 11ty plugin which adds shiki with optional twoslash-powered code samples",
-  "author": "Orta Therox",
+  "author": "Henry Bley-Vroman",
   "main": "./index.js",
   "typings": "./index.d.ts",
   "scripts": {
