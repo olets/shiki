@@ -1,4 +1,4 @@
-# eleventy-plugin-shiki-twoslash
+# @olets/eleventy-plugin-shiki-twoslash
 
 This is a fork of [shikijs/twoslash's eleventy-plugin-shiki-twoslash package](https://github.com/shikijs/twoslash/tree/main/packages/eleventy-plugin-shiki-twoslash) made available as a standalone repo.
 
