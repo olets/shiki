@@ -32,8 +32,5 @@
     "regenerator-runtime": "^0.13.7",
     "shiki-twoslash": "3.1.3",
     "shiki": "0.14.3"
-  },
-  "devDependencies": {
-    "shiki-twoslash": "3.1.3"
   }
 }
