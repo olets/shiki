@@ -1104,7 +1104,7 @@ const languages = [
   },
   {
     id: "mermaid",
-    scopeName: "source.mermaid",
+    scopeName: "markdown.mermaid.codeblock",
     path: "mermaid.tmLanguage.json",
     displayName: "Mermaid",
     samplePath: "mermaid.sample"
