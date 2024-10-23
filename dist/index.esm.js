@@ -925,13 +925,6 @@ const languages = [
     embeddedLangs: ["html", "css", "json", "javascript"]
   },
   {
-    id: "lisp",
-    scopeName: "source.lisp",
-    path: "lisp.tmLanguage.json",
-    displayName: "Lisp",
-    samplePath: "lisp.sample"
-  },
-  {
     id: "log",
     scopeName: "text.log",
     path: "log.tmLanguage.json",
