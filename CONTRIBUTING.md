@@ -4,7 +4,7 @@
 
 Check the [Issues](https://github.com/olets/shiki-twoslash/issues) to see if your topic has been discussed before or if it is being worked on. You may also want to check the roadmap (see above).
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
+Looking to add support for a new theme or language? See [@olets/shiki](https://github.com/olets/shiki).
 
 ## Setup
 
