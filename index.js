@@ -1,8 +1,11 @@
-import { setupForFile, transformAttributesToHTML } from "remark-shiki-twoslash";
+import {
+  setupForFile,
+  transformAttributesToHTML,
+} from "@olets/remark-shiki-twoslash";
 
 /**
  * @param {*} eleventyConfig
- * @param {import("shiki-twoslash").UserConfigSettings} options
+ * @param {import("@olets/shiki-twoslash").UserConfigSettings} options
  */
 
 // H/t https://github.com/shikijs/twoslash/issues/193#issue-2056662905
