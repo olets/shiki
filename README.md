@@ -73,7 +73,7 @@ and `themes: [<light theme name>, <dark theme name>]`:
 
 ```js
 {
-  theme: ["github-light-high-contrast", "github-dark-high-contrast"],
+  themes: ["github-light-high-contrast", "github-dark-high-contrast"],
 }
 ```
 
