@@ -1,30 +1,21 @@
-// @ts-check
-const { setupForFile, transformAttributesToHTML } = require("remark-shiki-twoslash")
-const { sleep } = require("deasync")
+import { setupForFile, transformAttributesToHTML } from "remark-shiki-twoslash";
 
 /**
  * @param {*} eleventyConfig
  * @param {import("shiki-twoslash").UserConfigSettings} options
  */
-module.exports = function (eleventyConfig, options = {}) {
-  /** @type {import("shiki").Highlighter[]} */
-  let highlighters = undefined
-  setupForFile(options).then(h => (highlighters = h.highlighters))
 
-  if (!highlighters) {
-    let count = 10000 / 200
-    while (!highlighters) {
-      sleep(200)
-      count -= 1
-      if (count <= 0)
-        throw new Error(
-          "Could not get Shiki loaded async via 'deasync'. 11ty doesn't have an API for async plugins, and Shiki needs this for the WASM syntax highlighter. You can try using a different version of node, or requesting APIs at https://github.com/11ty/eleventy"
-        )
-    }
-  }
+// H/t https://github.com/shikijs/twoslash/issues/193#issue-2056662905
+export default async function (eleventyConfig, options = {}) {
+  const { highlighters } = await setupForFile(options);
 
   eleventyConfig.addMarkdownHighlighter((code, lang, fence) => {
-    code = code.replace(/\r?\n$/, "") // strip trailing newline fed during code block parsing
-    return transformAttributesToHTML(code, [lang, fence].join(" "), highlighters, options)
-  })
+    code = code.replace(/\r?\n$/, ""); // strip trailing newline fed during code block parsing
+    return transformAttributesToHTML(
+      code,
+      [lang, fence].join(" "),
+      highlighters,
+      options
+    );
+  });
 }
