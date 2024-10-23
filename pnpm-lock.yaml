@@ -23,8 +23,8 @@ specifiers:
   unist-util-visit: ^2.0.0
 
 dependencies:
-  '@olets/shiki': github.com/olets/shiki/e4d9106a11e8dd82ec03c42200679789b38008ed
-  '@olets/shiki-twoslash': github.com/olets/shiki-twoslash/402f084b5d0e478c12dbdd078e1698ddebca84f0_typescript@5.6.3
+  '@olets/shiki': github.com/olets/shiki/3a72015c290a4f2ccbd04e8930d28e4627ab6464
+  '@olets/shiki-twoslash': github.com/olets/shiki-twoslash/180096d03faab8e6815183949598df3518f40210_typescript@5.6.3
   '@types/unist': 2.0.11
   '@typescript/twoslash': 3.2.1
   '@typescript/vfs': 1.4.0
@@ -8018,16 +8018,16 @@ packages:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
     dev: true
 
-  github.com/olets/shiki-twoslash/402f084b5d0e478c12dbdd078e1698ddebca84f0_typescript@5.6.3:
-    resolution: {tarball: https://codeload.github.com/olets/shiki-twoslash/tar.gz/402f084b5d0e478c12dbdd078e1698ddebca84f0}
-    id: github.com/olets/shiki-twoslash/402f084b5d0e478c12dbdd078e1698ddebca84f0
+  github.com/olets/shiki-twoslash/180096d03faab8e6815183949598df3518f40210_typescript@5.6.3:
+    resolution: {tarball: https://codeload.github.com/olets/shiki-twoslash/tar.gz/180096d03faab8e6815183949598df3518f40210}
+    id: github.com/olets/shiki-twoslash/180096d03faab8e6815183949598df3518f40210
     name: '@olets/shiki-twoslash'
     version: 3.1.3
     engines: {node: 14.16.0}
     peerDependencies:
       typescript: '>3'
     dependencies:
-      '@olets/shiki': github.com/olets/shiki/e4d9106a11e8dd82ec03c42200679789b38008ed
+      '@olets/shiki': github.com/olets/shiki/3a72015c290a4f2ccbd04e8930d28e4627ab6464
       '@typescript/twoslash': 3.2.1
       '@typescript/vfs': 1.4.0
       fenceparser: 2.2.0
@@ -8036,8 +8036,8 @@ packages:
       - supports-color
     dev: false
 
-  github.com/olets/shiki/e4d9106a11e8dd82ec03c42200679789b38008ed:
-    resolution: {tarball: https://codeload.github.com/olets/shiki/tar.gz/e4d9106a11e8dd82ec03c42200679789b38008ed}
+  github.com/olets/shiki/3a72015c290a4f2ccbd04e8930d28e4627ab6464:
+    resolution: {tarball: https://codeload.github.com/olets/shiki/tar.gz/3a72015c290a4f2ccbd04e8930d28e4627ab6464}
     name: '@olets/shiki'
     version: 0.14.7
     engines: {node: 18.20.4}
