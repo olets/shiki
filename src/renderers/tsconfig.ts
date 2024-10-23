@@ -1,63 +1,77 @@
-type Lines = import("shiki").IThemedToken[][]
+type Lines = import("shiki").IThemedToken[][];
 
-import type { IThemedToken } from "shiki"
-import { escapeHtml, Meta } from "../utils"
-import { tsconfig } from "../tsconfig-oneliners.generated"
-import { HtmlRendererOptions, preOpenerFromRenderingOptsWithExtras } from "./plain"
+import type { IThemedToken } from "shiki";
+import { escapeHtml, Meta } from "../utils";
+import { tsconfig } from "../tsconfig-oneliners.generated";
+import {
+  HtmlRendererOptions,
+  preOpenerFromRenderingOptsWithExtras,
+} from "./plain";
 
 /** Uses tmLanguage scopes to determine what the content of the token is */
 const tokenIsJSONKey = (token: IThemedToken) => {
-  if (!token.explanation) return false
-  return token.explanation.find(e => e.scopes.find(s => s.scopeName.includes("support.type.property-name")))
-}
+  if (!token.explanation) return false;
+  return token.explanation.find((e) =>
+    e.scopes.find((s) => s.scopeName.includes("support.type.property-name"))
+  );
+};
 
 /** Can you look up the token in the tsconfig reference? */
 const isKeyInTSConfig = (token: IThemedToken) => {
-  if (token.content === '"') return
-  const name = token.content.slice(1, token.content.length - 1)
-  return name in tsconfig
-}
+  if (token.content === '"') return;
+  const name = token.content.slice(1, token.content.length - 1);
+  return name in tsconfig;
+};
 
 /**
  * Renders a TSConfig JSON object with additional LSP-ish information
  * @param lines the result of shiki highlighting
  * @param options shiki display options
  */
-export function tsconfigJSONRenderer(lines: Lines, options: HtmlRendererOptions, meta: Meta) {
-  let html = ""
+export function tsconfigJSONRenderer(
+  lines: Lines,
+  options: HtmlRendererOptions,
+  meta: Meta
+) {
+  let html = "";
 
-  html += preOpenerFromRenderingOptsWithExtras(options, meta, ["tsconfig", "lsp"])
+  html += preOpenerFromRenderingOptsWithExtras(options, meta, [
+    "tsconfig",
+    "lsp",
+  ]);
   if (meta.title) {
-    html += `<div class="code-title">${meta.title}</div>`
+    html += `<div class="code-title">${meta.title}</div>`;
   }
 
   if (options.langId) {
-    html += `<div class="language-id">${options.langId}</div>`
+    html += `<div class="language-id">${options.langId}</div>`;
   }
 
-  html += `<div class='code-container'><code>`
+  html += `<div class='code-container'><code>`;
 
-  lines.forEach(l => {
+  lines.forEach((l) => {
     if (l.length === 0) {
-      html += `<div class='line'></div>`
+      html += `<div class='line'></div>`;
     } else {
-      html += `<div class='line'>`
-      l.forEach(token => {
+      html += `<div class='line'>`;
+      l.forEach((token) => {
         // This means we're looking at a token which could be '"module"', '"', '"compilerOptions"' etc
         if (tokenIsJSONKey(token) && isKeyInTSConfig(token)) {
-          const key = token.content.slice(1, token.content.length - 1)
-          const oneliner = (tsconfig as Record<string, string>)[key]
+          const key = token.content.slice(1, token.content.length - 1);
+          const oneliner = (tsconfig as Record<string, string>)[key];
           // prettier-ignore
           html += `<span style="color: ${token.color}">"<a aria-hidden=true tabindex="-1" href='https://www.typescriptlang.org/tsconfig#${key}'><data-lsp lsp="${oneliner}">${escapeHtml(key)}</data-lsp></a>"</span>`
         } else {
-          html += `<span style="color: ${token.color}">${escapeHtml(token.content)}</span>`
+          html += `<span style="color: ${token.color}">${escapeHtml(
+            token.content
+          )}</span>`;
         }
-      })
-      html += `</div>`
+      });
+      html += `</div>`;
     }
-  })
+  });
 
-  html = html.replace(/\n*$/, "") // Get rid of final new lines
-  html += `</code></div></pre>`
-  return html
+  html = html.replace(/\n*$/, ""); // Get rid of final new lines
+  html += `</code></div></pre>`;
+  return html;
 }
