@@ -82,49 +82,49 @@ const languages = [
   },
   {
     id: "angular-expression",
-    scopeName: "source.angular.expression",
+    scopeName: "expression.ng",
     path: "angular-expression.tmLanguage.json",
     displayName: "Angular Expression"
   },
   {
     id: "angular-html",
-    scopeName: "source.angular.html",
+    scopeName: "text.html.derivative.ng",
     path: "angular-html.tmLanguage.json",
     displayName: "Angular HTML"
   },
   {
     id: "angular-inline-style",
-    scopeName: "source.angular.inline.style",
+    scopeName: "inline-styles.ng",
     path: "angular-inline-style.tmLanguage.json",
     displayName: "Angular Inline Style"
   },
   {
     id: "angular-inline-template",
-    scopeName: "source.angular.inline.template",
+    scopeName: "inline-template.ng",
     path: "angular-inline-template.tmLanguage.json",
     displayName: "Angular Inline Template"
   },
   {
     id: "angular-let-declaration",
-    scopeName: "source.angular.let.declaration",
+    scopeName: "template.let.ng",
     path: "angular-let-declaration.tmLanguage.json",
     displayName: "Angular Let Declaration"
   },
   {
     id: "angular-template",
-    scopeName: "source.angular.template",
+    scopeName: "template.ng",
     path: "angular-template.tmLanguage.json",
     displayName: "Angular Template"
   },
   {
     id: "angular-template-blocks",
-    scopeName: "source.angular.template.blocks",
+    scopeName: "template.blocks.ng",
     path: "angular-template-blocks.tmLanguage.json",
     displayName: "Angular Template Blocks"
   },
   {
     id: "angular-ts",
-    scopeName: "source.angular.ts",
+    scopeName: "source.ts.ng",
     path: "angular-ts.tmLanguage.json",
     displayName: "Angular TypeScript"
   },
@@ -166,7 +166,7 @@ const languages = [
   },
   {
     id: "asciidoc",
-    scopeName: "source.asciidoc",
+    scopeName: "text.asciidoc",
     path: "asciidoc.tmLanguage.json",
     displayName: "AsciiDoc"
   },
@@ -302,7 +302,7 @@ const languages = [
   },
   {
     id: "codeowners",
-    scopeName: "source.codeowners",
+    scopeName: "text.codeowners",
     path: "codeowners.tmLanguage.json",
     displayName: "CODEOWNERS"
   },
@@ -324,7 +324,7 @@ const languages = [
   },
   {
     id: "common-lisp",
-    scopeName: "source.common.lisp",
+    scopeName: "source.commonlisp",
     path: "common-lisp.tmLanguage.json",
     displayName: "Common Lisp"
   },
@@ -445,7 +445,7 @@ const languages = [
   },
   {
     id: "edge",
-    scopeName: "source.edge",
+    scopeName: "text.html.edge",
     path: "edge.tmLanguage.json",
     displayName: "Edge"
   },
@@ -489,37 +489,37 @@ const languages = [
   },
   {
     id: "es-tag-css",
-    scopeName: "source.es.tag.css",
+    scopeName: "inline.es6-css",
     path: "es-tag-css.tmLanguage.json",
     displayName: "ES Tag CSS"
   },
   {
     id: "es-tag-glsl",
-    scopeName: "source.es.tag.glsl",
+    scopeName: "inline.es6-glsl",
     path: "es-tag-glsl.tmLanguage.json",
     displayName: "ES Tag GLSL"
   },
   {
     id: "es-tag-html",
-    scopeName: "source.es.tag.html",
+    scopeName: "inline.es6-html",
     path: "es-tag-html.tmLanguage.json",
     displayName: "ES Tag HTML"
   },
   {
     id: "es-tag-sql",
-    scopeName: "source.es.tag.sql",
+    scopeName: "inline.es6-sql",
     path: "es-tag-sql.tmLanguage.json",
     displayName: "ES Tag SQL"
   },
   {
     id: "es-tag-xml",
-    scopeName: "source.es.tag.xml",
+    scopeName: "inline.es6-xml",
     path: "es-tag-xml.tmLanguage.json",
     displayName: "ES Tag XML"
   },
   {
     id: "fennel",
-    scopeName: "source.fennel",
+    scopeName: "source.fnl",
     path: "fennel.tmLanguage.json",
     displayName: "Fennel"
   },
@@ -532,19 +532,19 @@ const languages = [
   },
   {
     id: "fluent",
-    scopeName: "source.fluent",
+    scopeName: "source.ftl",
     path: "fluent.tmLanguage.json",
     displayName: "Fluent"
   },
   {
     id: "fortran-fixed-form",
-    scopeName: "source.fortran.fixed.form",
+    scopeName: "source.fortran.fixed",
     path: "fortran-fixed-form.tmLanguage.json",
     displayName: "Fortran (Fixed Form)"
   },
   {
     id: "fortran-free-form",
-    scopeName: "source.fortran.free.form",
+    scopeName: "source.fortran.free",
     path: "fortran-free-form.tmLanguage.json",
     displayName: "Fortran (Free Form)"
   },
@@ -701,7 +701,7 @@ const languages = [
   },
   {
     id: "haxe",
-    scopeName: "source.haxe",
+    scopeName: "source.hx",
     path: "haxe.tmLanguage.json",
     displayName: "Haxe"
   },
@@ -736,7 +736,7 @@ const languages = [
   },
   {
     id: "html-derivative",
-    scopeName: "source.html.derivative",
+    scopeName: "text.html.derivative",
     path: "html-derivative.tmLanguage.json",
     displayName: "HTML (Derivative)"
   },
@@ -907,7 +907,7 @@ const languages = [
   },
   {
     id: "lean",
-    scopeName: "source.lean",
+    scopeName: "source.lean4",
     path: "lean.tmLanguage.json",
     displayName: "Lean 4"
   },
@@ -935,7 +935,7 @@ const languages = [
   },
   {
     id: "log",
-    scopeName: "source.log",
+    scopeName: "text.log",
     path: "log.tmLanguage.json",
     displayName: "Log file"
   },
@@ -1031,7 +1031,7 @@ const languages = [
   },
   {
     id: "markdown-vue",
-    scopeName: "source.markdown.vue",
+    scopeName: "markdown.vue.codeblock",
     path: "markdown-vue.tmLanguage.json",
     displayName: "Markdown Vue"
   },
@@ -1118,7 +1118,7 @@ const languages = [
   },
   {
     id: "mipsasm",
-    scopeName: "source.mipsasm",
+    scopeName: "source.mips",
     path: "mipsasm.tmLanguage.json",
     displayName: "MIPS Assembly"
   },
@@ -1386,7 +1386,7 @@ const languages = [
   },
   {
     id: "regexp",
-    scopeName: "source.regexp",
+    scopeName: "source.regexp.python",
     path: "regexp.tmLanguage.json",
     displayName: "RegExp"
   },
@@ -1525,7 +1525,7 @@ const languages = [
   },
   {
     id: "soy",
-    scopeName: "source.soy",
+    scopeName: "text.html.soy",
     path: "soy.tmLanguage.json",
     displayName: "Closure Templates"
   },
@@ -1637,7 +1637,7 @@ const languages = [
   },
   {
     id: "terraform",
-    scopeName: "source.terraform",
+    scopeName: "source.hcl.terraform",
     path: "terraform.tmLanguage.json",
     displayName: "Terraform"
   },
@@ -1664,7 +1664,7 @@ const languages = [
   },
   {
     id: "tsv",
-    scopeName: "source.tsv",
+    scopeName: "text.tsv",
     path: "tsv.tmLanguage.json",
     displayName: "TSV"
   },
@@ -1700,7 +1700,7 @@ const languages = [
   },
   {
     id: "typespec",
-    scopeName: "source.typespec",
+    scopeName: "source.tsp",
     path: "typespec.tmLanguage.json",
     displayName: "TypeSpec"
   },
@@ -1782,7 +1782,7 @@ const languages = [
   },
   {
     id: "vue-directives",
-    scopeName: "source.vue.directives",
+    scopeName: "vue.directives",
     path: "vue-directives.tmLanguage.json",
     displayName: "Vue Directives"
   },
@@ -1796,13 +1796,13 @@ const languages = [
   },
   {
     id: "vue-interpolations",
-    scopeName: "source.vue.interpolations",
+    scopeName: "vue.interpolations",
     path: "vue-interpolations.tmLanguage.json",
     displayName: "Vue Interpolations"
   },
   {
     id: "vue-sfc-style-variable-injection",
-    scopeName: "source.vue.sfc.style.variable.injection",
+    scopeName: "vue.sfc.style.variable.injection",
     path: "vue-sfc-style-variable-injection.tmLanguage.json",
     displayName: "Vue Sfc Style Variable Injection"
   },
