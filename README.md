@@ -1,4 +1,4 @@
-# remark-shiki-twoslash
+# @olets/remark-shiki-twoslash
 
 This is a fork of [shikijs/twoslash's remark-shiki-twoslash package](https://github.com/shikijs/twoslash/tree/main/packages/remark-shiki-twoslash) made available as a standalone repo.
 
