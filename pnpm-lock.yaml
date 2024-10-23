@@ -15,7 +15,7 @@ specifiers:
   unified: ^8.4.2
 
 dependencies:
-  '@olets/shiki': github.com/olets/shiki/0e98852f43877633c6f0d85588f8eed6b0f10680
+  '@olets/shiki': github.com/olets/shiki/cef93808097c27426765c44055aa250d0c905246
   '@typescript/twoslash': 3.2.1
   '@typescript/vfs': 1.4.0
   fenceparser: 2.2.0
@@ -7442,8 +7442,8 @@ packages:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
     dev: true
 
-  github.com/olets/shiki/0e98852f43877633c6f0d85588f8eed6b0f10680:
-    resolution: {tarball: https://codeload.github.com/olets/shiki/tar.gz/0e98852f43877633c6f0d85588f8eed6b0f10680}
+  github.com/olets/shiki/cef93808097c27426765c44055aa250d0c905246:
+    resolution: {tarball: https://codeload.github.com/olets/shiki/tar.gz/cef93808097c27426765c44055aa250d0c905246}
     name: '@olets/shiki'
     version: 0.14.7
     engines: {node: 18.20.4}
