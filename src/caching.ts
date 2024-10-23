@@ -11,9 +11,9 @@ export const cachedTwoslashCall = (
   lang: string,
   settings: UserConfigSettings
 ): TwoSlashReturn | undefined => {
-  // @ts-expect-error
   const isWebWorker =
     typeof self !== "undefined" &&
+    // @ts-expect-error
     typeof self.WorkerGlobalScope !== "undefined";
   const isBrowser =
     isWebWorker ||
