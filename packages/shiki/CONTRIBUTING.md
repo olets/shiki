@@ -12,7 +12,7 @@ Is @olets/shiki missing support for a Shiki theme (https://shiki.style/themes)? 
 1. Update [`src/themes.ts`](./src/themes.ts):
     - Add the JSON's `"name"` value to the `Theme` type. Keep it alphabetical.
     - Add the JSON's `"name"` value to the `themes` array. Keep it alphabetical.
-1. Run `bun run build`.
+1. From the monorepo root, run `bun run build`.
 
 ## Add a new language
 
@@ -33,4 +33,4 @@ Is @olets/shiki missing support for a Shiki language (https://shiki.style/langua
             displayName: <"displayName" from the JSON file>,
         },
         ```
-1. Run `bun run build`.
+1. From the monorepo root, run `bun run build`.
