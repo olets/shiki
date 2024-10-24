@@ -1,0 +1,36 @@
+{
+  "name": "@olets/eleventy-plugin-shiki-twoslash",
+  "version": "1.1.10",
+  "author": "Henry Bley-Vroman",
+  "repository": {
+    "url": "https://github.com/olets/eleventy-plugin-shiki-twoslash.git",
+    "directory": "packages/eleventy-plugin-shiki-twoslash",
+    "type": "git"
+  },
+  "main": "./index.js",
+  "dependencies": {
+    "@olets/remark-shiki-twoslash": "github:olets/remark-shiki-twoslash",
+    "@olets/shiki": "github:olets/shiki",
+    "@olets/shiki-twoslash": "github:olets/shiki-twoslash",
+    "@typescript/vfs": "1.4.0",
+    "deasync": "^0.1.21",
+    "fenceparser": "^2.2.0",
+    "regenerator-runtime": "^0.13.7",
+    "typescript": ">3"
+  },
+  "bugs": {
+    "url": "https://github.com/olets/eleventy-plugin-shiki-twoslash/issues"
+  },
+  "description": "An 11ty plugin which adds shiki with optional twoslash-powered code samples",
+  "engines": {
+    "node": "22.5.0"
+  },
+  "homepage": "https://github.com/olets/eleventy-plugin-shiki-twoslash",
+  "license": "MIT",
+  "packageManager": "bun@1.1.25",
+  "scripts": {
+    "bootstrap": "echo 'NOOP'",
+    "build": "pnpm exec tsc index.js --declaration --allowJs --emitDeclarationOnly --target es2018 -moduleResolution node"
+  },
+  "type": "module"
+}
