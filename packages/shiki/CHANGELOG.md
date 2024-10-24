@@ -1,5 +1,11 @@
 # @olets/shiki
 
+## 0.15.6
+
+### Patch Changes
+
+- 000845f: Use 'exports' not 'module', 'types' not 'typings'
+
 ## 0.15.5
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # shiki-twoslash
 
+## 3.2.6
+
+### Patch Changes
+
+- 000845f: Use 'exports' not 'module', 'types' not 'typings'
+- Updated dependencies [000845f]
+  - @olets/shiki@0.15.6
+
 ## 3.2.5
 
 ### Patch Changes

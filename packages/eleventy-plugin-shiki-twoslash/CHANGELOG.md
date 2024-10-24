@@ -1,5 +1,15 @@
 # eleventy-plugin-shiki-twoslash
 
+## 2.0.7
+
+### Patch Changes
+
+- 000845f: Use 'exports' not 'module', 'types' not 'typings'
+- Updated dependencies [000845f]
+  - @olets/remark-shiki-twoslash@3.2.6
+  - @olets/shiki@0.15.6
+  - @olets/shiki-twoslash@3.2.6
+
 ## 2.0.6
 
 ### Patch Changes
