@@ -594,24 +594,48 @@ function getHTML(code, fence, highlighters, twoslash, twoslashSettings) {
  * Runs twoslash across an AST node, switching out the text content, and lang
  * and adding a `twoslash` property to the node.
  */
-var runTwoSlashOnNode = function runTwoSlashOnNode(code, _ref, settings) {
-  var lang = _ref.lang,
-    meta = _ref.meta;
-  if (settings === void 0) {
-    settings = {};
-  }
-  // Offer a way to do high-perf iterations, this is less useful
-  // given that we cache the results of twoslash in the file-system
-  var shouldDisableTwoslash = typeof process !== "undefined" && process.env && !!process.env.TWOSLASH_DISABLE;
-  if (shouldDisableTwoslash) return undefined;
-  // Only run twoslash when the meta has the attribute twoslash
-  if (meta.twoslash) {
-    var importedCode = replaceIncludesInCode(includes, code);
-    return cachedTwoslashCall(importedCode, lang, settings);
-  }
-  return undefined;
-};
+function runTwoSlashOnNode(_x, _x2, _x3) {
+  return _runTwoSlashOnNode.apply(this, arguments);
+}
 // To make sure we only have one highlighter per theme in a process
+function _runTwoSlashOnNode() {
+  _runTwoSlashOnNode = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5(code, _ref, settings) {
+    var lang, meta, shouldDisableTwoslash, importedCode;
+    return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+      while (1) switch (_context5.prev = _context5.next) {
+        case 0:
+          lang = _ref.lang, meta = _ref.meta;
+          if (settings === void 0) {
+            settings = {};
+          }
+          // Offer a way to do high-perf iterations, this is less useful
+          // given that we cache the results of twoslash in the file-system
+          shouldDisableTwoslash = typeof process !== "undefined" && process.env && !!process.env.TWOSLASH_DISABLE;
+          if (!shouldDisableTwoslash) {
+            _context5.next = 5;
+            break;
+          }
+          return _context5.abrupt("return", undefined);
+        case 5:
+          if (!meta.twoslash) {
+            _context5.next = 10;
+            break;
+          }
+          importedCode = replaceIncludesInCode(includes, code);
+          _context5.next = 9;
+          return cachedTwoslashCall(importedCode, lang, settings);
+        case 9:
+          return _context5.abrupt("return", _context5.sent);
+        case 10:
+          return _context5.abrupt("return", undefined);
+        case 11:
+        case "end":
+          return _context5.stop();
+      }
+    }, _callee5);
+  }));
+  return _runTwoSlashOnNode.apply(this, arguments);
+}
 var highlighterCache = /*#__PURE__*/new Map();
 /** Sets up the highlighters, and cache's for recalls */
 var highlightersFromSettings = function highlightersFromSettings(settings) {
@@ -642,7 +666,7 @@ var highlightersFromSettings = function highlightersFromSettings(settings) {
         }
       }, _callee);
     }));
-    return function (_x) {
+    return function (_x4) {
       return _ref2.apply(this, arguments);
     };
   }()));
@@ -700,7 +724,7 @@ function remarkTwoslash(settings) {
         }
       }, _callee2);
     }));
-    return function transform(_x2) {
+    return function transform(_x5) {
       return _ref3.apply(this, arguments);
     };
   }();
@@ -781,7 +805,7 @@ function remarkVisitor(highlighters, twoslashSettings) {
         }
       }, _callee3, null, [[2, 6], [12, 21]]);
     }));
-    return function (_x3) {
+    return function (_x6) {
       return _ref4.apply(this, arguments);
     };
   }();
@@ -815,31 +839,31 @@ var setupForFile = /*#__PURE__*/function () {
       }
     }, _callee4);
   }));
-  return function setupForFile(_x4) {
+  return function setupForFile(_x7) {
     return _ref5.apply(this, arguments);
   };
 }();
-function transformAttributesToHTML(_x5, _x6, _x7, _x8) {
+function transformAttributesToHTML(_x8, _x9, _x10, _x11) {
   return _transformAttributesToHTML.apply(this, arguments);
 }
 function _transformAttributesToHTML() {
-  _transformAttributesToHTML = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5(code, fenceString, highlighters, settings) {
+  _transformAttributesToHTML = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6(code, fenceString, highlighters, settings) {
     var fence, twoslash, newCode;
-    return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-      while (1) switch (_context5.prev = _context5.next) {
+    return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+      while (1) switch (_context6.prev = _context6.next) {
         case 0:
           fence = parseFence(fenceString);
-          _context5.next = 3;
+          _context6.next = 3;
           return runTwoSlashOnNode(code, fence, settings);
         case 3:
-          twoslash = _context5.sent;
+          twoslash = _context6.sent;
           newCode = twoslash && twoslash.code || code;
-          return _context5.abrupt("return", getHTML(newCode, fence, highlighters, twoslash, settings));
+          return _context6.abrupt("return", getHTML(newCode, fence, highlighters, twoslash, settings));
         case 6:
         case "end":
-          return _context5.stop();
+          return _context6.stop();
       }
-    }, _callee5);
+    }, _callee6);
   }));
   return _transformAttributesToHTML.apply(this, arguments);
 }

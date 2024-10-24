@@ -12,7 +12,7 @@ declare type Fence = {
  * Runs twoslash across an AST node, switching out the text content, and lang
  * and adding a `twoslash` property to the node.
  */
-export declare const runTwoSlashOnNode: (code: string, { lang, meta }: Fence, settings?: UserConfigSettings) => Promise<TwoSlashReturn | undefined> | undefined;
+export declare function runTwoSlashOnNode(code: string, { lang, meta }: Fence, settings?: UserConfigSettings): Promise<TwoSlashReturn | undefined>;
 /** Sets up the highlighters, and cache's for recalls */
 export declare const highlightersFromSettings: (settings: UserConfigSettings) => Promise<Highlighter[]>;
 export declare type RemarkCodeNode = Node & {
