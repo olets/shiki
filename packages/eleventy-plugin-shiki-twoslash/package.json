@@ -1,6 +1,6 @@
 {
   "name": "@olets/eleventy-plugin-shiki-twoslash",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "author": "Henry Bley-Vroman",
   "repository": {
     "url": "https://github.com/olets/shiki.git",

@@ -1,5 +1,19 @@
 ### 1.4.0
 
+## 3.2.4
+
+### Patch Changes
+
+- 4ce5b0b: Use monorepo workspace cross-references
+- Build from TS.
+
+  Use monorepo workspace cross-references
+
+- Updated dependencies [4ce5b0b]
+- Updated dependencies
+  - @olets/shiki@0.15.4
+  - @olets/shiki-twoslash@3.2.4
+
 ## 3.2.3
 
 ### Patch Changes
