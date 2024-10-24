@@ -1,6 +1,6 @@
 {
   "name": "@olets/shiki-twoslash",
-  "version": "3.2.6",
+  "version": "3.3.0",
   "license": "MIT",
   "engines": {
     "node": "22.5.0"
@@ -35,7 +35,7 @@
     "lint": "tsdx lint"
   },
   "dependencies": {
-    "@olets/shiki": "^0.15.6",
+    "@olets/shiki": "^0.16.0",
     "@typescript/twoslash": "3.2.1",
     "@typescript/vfs": "1.4.0",
     "fenceparser": "^2.2.0"

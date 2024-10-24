@@ -1,5 +1,17 @@
 ### 1.4.0
 
+## 3.3.0
+
+### Minor Changes
+
+- b04160b: ESM-ify
+
+### Patch Changes
+
+- Updated dependencies [b04160b]
+  - @olets/shiki@0.16.0
+  - @olets/shiki-twoslash@3.3.0
+
 ## 3.2.6
 
 ### Patch Changes

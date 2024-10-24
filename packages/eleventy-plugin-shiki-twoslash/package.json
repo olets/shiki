@@ -1,6 +1,6 @@
 {
   "name": "@olets/eleventy-plugin-shiki-twoslash",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "author": "Henry Bley-Vroman",
   "repository": {
     "url": "https://github.com/olets/shiki.git",
@@ -14,9 +14,9 @@
   },
   "dependencies": {
     "@11ty/eleventy": "^3.0.0",
-    "@olets/remark-shiki-twoslash": "^3.2.6",
-    "@olets/shiki": "^0.15.6",
-    "@olets/shiki-twoslash": "^3.2.6",
+    "@olets/remark-shiki-twoslash": "^3.3.0",
+    "@olets/shiki": "^0.16.0",
+    "@olets/shiki-twoslash": "^3.3.0",
     "@typescript/vfs": "1.4.0",
     "deasync": "^0.1.21",
     "fenceparser": "^2.2.0",

@@ -1,5 +1,11 @@
 # @olets/shiki
 
+## 0.16.0
+
+### Minor Changes
+
+- b04160b: ESM-ify
+
 ## 0.15.6
 
 ### Patch Changes
