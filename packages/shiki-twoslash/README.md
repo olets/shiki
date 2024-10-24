@@ -1,4 +1,4 @@
-# @olets/shiki-twoslash
+# @olets/shiki-twoslash ![@olets/shiki-twoslash NPM Version](https://img.shields.io/npm/v/@olets/shiki-twoslash)
 
 This is a fork of [shikijs/twoslash's shiki-twoslash package](https://github.com/shikijs/twoslash/tree/main/packages/shiki-twoslash) made available as a standalone repo.
 

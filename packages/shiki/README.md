@@ -1,4 +1,4 @@
-# @olets/shiki
+# @olets/shiki ![@olets/shiki NPM Version](https://img.shields.io/npm/v/@olets/shiki)
 
 This is a fork of [shikijs/shikis's shiki package at v0.x](https://github.com/shikijs/shiki/tree/v0.14.7/packages/shiki) made available as a standalone repo.
 
