@@ -22,7 +22,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
 ## License
 
-<a href="https://github.com/olets/shiki/tree/main/packages/shiki-twoslash">@olets/shiki-twoslash</a> by <a href="https://github.com/olets">Henry Bley-Vroman</a> is released under the [MIT license](LICENSE).
+<a href="https://github.com/olets/shiki/tree/main/packages/shiki-twoslash">@olets/shiki-twoslash</a> by <a href="https://olets.dev">Henry Bley-Vroman</a> is released under the [MIT license](LICENSE).
 
 ## Acknowledgments
 
