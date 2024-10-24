@@ -7,8 +7,10 @@
     "directory": "packages/eleventy-plugin-shiki-twoslash",
     "type": "git"
   },
-  "main": "./index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/remark-shiki-twoslash.esm.js",
   "dependencies": {
+    "@11ty/eleventy": "^3.0.0",
     "@olets/remark-shiki-twoslash": "^3.2.3",
     "@olets/shiki": "^0.15.3",
     "@olets/shiki-twoslash": "^3.2.3",
@@ -25,12 +27,15 @@
   "engines": {
     "node": "22.5.0"
   },
+  "files": [
+    "dist"
+  ],
   "homepage": "https://github.com/olets/shiki",
   "license": "MIT",
   "packageManager": "bun@1.1.25",
   "scripts": {
-    "bootstrap": "echo 'NOOP'",
-    "build-TODO": "tsc index.js --declaration --allowJs --emitDeclarationOnly --target es2018 -moduleResolution node"
+    "build": "tsdx build"
   },
-  "type": "module"
+  "type": "module",
+  "typings": "./dist/index.d.ts"
 }
