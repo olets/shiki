@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "turbo build check-types",
+    "changeset": "changeset",
     "check-types": "tsc --noEmit",
     "eleventy-plugin-shiki-twoslash": "bun run --filter @olets/eleventy-plugin-shiki-twoslash",
     "remark-shiki-twoslash": "bun run --filter @olets/remark-shiki-twoslash",
@@ -14,6 +15,7 @@
     "packages/*"
   ],
   "devDependencies": {
+    "@changesets/cli": "^2.27.9",
     "turbo": "^2.2.3"
   }
 }
