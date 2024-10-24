@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "build": "turbo build check-types",
-    "changeset": "changeset",
+    "bump": "bun changeset version",
     "check-types": "tsc --noEmit",
-    "publish-packages": "bun run build && bun changeset version && bun changeset publish"
+    "publish-packages": "bun changeset publish",
+    "push-tags": "git push origin tag '@olets/*@*.*.*'",
+    "release": "bun run build && bun run bump && bun run publish-packages && bun run push-tags"
   },
   "workspaces": [
     "packages/*"

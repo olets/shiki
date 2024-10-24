@@ -20,5 +20,5 @@ Then
 To cut and publish new releases of changed packages, run
 
 ```shell
-bun run publish-packages
+bun run release
 ```
