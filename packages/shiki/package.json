@@ -9,6 +9,7 @@
     "node": "22.5.0"
   },
   "packageManager": "bun@1.1.25",
+  "type": "module",
   "main": "dist/index.js",
   "exports": {
     "import": "./dist/index.esm.js",

@@ -12,7 +12,7 @@ declare type Fence = {
  * Runs twoslash across an AST node, switching out the text content, and lang
  * and adding a `twoslash` property to the node.
  */
-export declare const runTwoSlashOnNode: (code: string, { lang, meta }: Fence, settings?: UserConfigSettings) => TwoSlashReturn | undefined;
+export declare const runTwoSlashOnNode: (code: string, { lang, meta }: Fence, settings?: UserConfigSettings) => Promise<TwoSlashReturn | undefined> | undefined;
 /** Sets up the highlighters, and cache's for recalls */
 export declare const highlightersFromSettings: (settings: UserConfigSettings) => Promise<Highlighter[]>;
 export declare type RemarkCodeNode = Node & {
@@ -32,11 +32,11 @@ declare function remarkTwoslash(settings?: Options): Transformer;
 /**
  * The function doing the work of transforming any codeblock samples in a remark AST.
  */
-export declare const remarkVisitor: (highlighters: Highlighter[], twoslashSettings?: UserConfigSettings) => (node: RemarkCodeNode) => void;
+export declare function remarkVisitor(highlighters: Highlighter[], twoslashSettings?: UserConfigSettings): (node: RemarkCodeNode) => Promise<void>;
 export default remarkTwoslash;
 /** Only the inner function exposed as a synchronous API for markdown-it */
 export declare const setupForFile: (settings?: UserConfigSettings) => Promise<{
     settings: UserConfigSettings;
     highlighters: Highlighter[];
 }>;
-export declare const transformAttributesToHTML: (code: string, fenceString: string, highlighters: Highlighter[], settings: UserConfigSettings) => string;
+export declare function transformAttributesToHTML(code: string, fenceString: string, highlighters: Highlighter[], settings: UserConfigSettings): Promise<string>;

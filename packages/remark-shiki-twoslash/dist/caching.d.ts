@@ -5,4 +5,4 @@ import type { TwoSlashReturn } from "@typescript/twoslash";
  * which should keep CI times down (e.g. the epub vs the handbook etc) - but also during
  * dev time, where it can be super useful.
  */
-export declare const cachedTwoslashCall: (code: string, lang: string, settings: UserConfigSettings) => TwoSlashReturn | undefined;
+export declare function cachedTwoslashCall(code: string, lang: string, settings: UserConfigSettings): Promise<TwoSlashReturn | undefined>;

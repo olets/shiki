@@ -6,11 +6,11 @@ import type { TwoSlashReturn } from "@typescript/twoslash";
  * which should keep CI times down (e.g. the epub vs the handbook etc) - but also during
  * dev time, where it can be super useful.
  */
-export const cachedTwoslashCall = (
+export async function cachedTwoslashCall(
   code: string,
   lang: string,
   settings: UserConfigSettings
-): TwoSlashReturn | undefined => {
+): Promise<TwoSlashReturn | undefined> {
   const isWebWorker =
     typeof self !== "undefined" &&
     // @ts-expect-error
@@ -26,12 +26,18 @@ export const cachedTwoslashCall = (
     return runTwoSlash(code, lang, settings);
   }
 
-  const { createHash } = require("crypto");
-  const { readFileSync, existsSync, mkdirSync, writeFileSync } = require("fs");
-  const { join } = require("path");
+  const { createHash } = await import("crypto");
+  const { readFileSync, existsSync, mkdirSync, writeFileSync } = await import(
+    "fs"
+  );
+  const { join } = await import("path");
 
-  const shikiVersion = require("@typescript/twoslash/package.json").version;
-  const tsVersion = require("typescript/package.json").version;
+  const shikiVersion = await import("@typescript/twoslash/package.json").then(
+    (m) => m.version
+  );
+  const tsVersion = await import("typescript/package.json").then(
+    (m) => m.version
+  );
   const shasum = createHash("sha1");
   const codeSha = shasum
     .update(`${code}-${shikiVersion}-${tsVersion}`)
@@ -50,9 +56,10 @@ export const cachedTwoslashCall = (
     }
   };
 
-  const getPnpCache = () => {
+  async function getPnpCache() {
     try {
-      const pnp = require("pnpapi");
+      // @ts-expect-error ts(2307)
+      const pnp = await import("pnpapi");
       return join(
         pnp.getPackageInformation(pnp.topLevel).packageLocation,
         "node_modules",
@@ -62,11 +69,11 @@ export const cachedTwoslashCall = (
     } catch (error) {
       return getNmCache();
     }
-  };
+  }
 
   const cacheRoot = process.versions.pnp ? getPnpCache() : getNmCache();
 
-  const cachePath = join(cacheRoot, `${codeSha}.json`);
+  const cachePath = join(await cacheRoot, `${codeSha}.json`);
 
   if (existsSync(cachePath)) {
     if (process.env.debug)
@@ -75,8 +82,9 @@ export const cachedTwoslashCall = (
     return JSON.parse(readFileSync(cachePath, "utf8"));
   } else {
     const results = runTwoSlash(code, lang, settings);
-    if (!existsSync(cacheRoot)) mkdirSync(cacheRoot, { recursive: true });
+    if (!existsSync(await cacheRoot))
+      mkdirSync(await cacheRoot, { recursive: true });
     writeFileSync(cachePath, JSON.stringify(results), "utf8");
     return results;
   }
-};
+}

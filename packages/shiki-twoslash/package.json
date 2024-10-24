@@ -17,6 +17,7 @@
   },
   "description": "API primitives to mix Shiki with Twoslash",
   "author": "Henry Bley-Vroman",
+  "type": "module",
   "main": "./dist/index.js",
   "exports": {
     "import": "./dist/shiki-twoslash.esm.js",

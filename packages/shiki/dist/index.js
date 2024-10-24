@@ -2919,7 +2919,7 @@ async function getOniguruma(wasmPath) {
     if (isBrowser) {
       if (typeof WASM === "string") {
         loader = mainExports$1.loadWASM({
-          data: await fetch(_resolvePath(join(...dirpathparts(wasmPath), "onig.wasm")))
+          data: await fetch(await _resolvePath(join(...dirpathparts(wasmPath), "onig.wasm")))
         });
       } else {
         loader = mainExports$1.loadWASM({
@@ -2927,9 +2927,9 @@ async function getOniguruma(wasmPath) {
         });
       }
     } else {
-      const path = require("path");
-      const wasmPath2 = path.join(require.resolve("vscode-oniguruma"), "../onig.wasm");
-      const fs = require("fs");
+      const path = await import('path');
+      const wasmPath2 = path.join(await undefined("vscode-oniguruma"), "../onig.wasm");
+      const fs = await import('fs');
       const wasmBin = fs.readFileSync(wasmPath2).buffer;
       loader = mainExports$1.loadWASM(wasmBin);
     }
@@ -2946,11 +2946,11 @@ async function getOniguruma(wasmPath) {
   }
   return _onigurumaPromise;
 }
-function _resolvePath(filepath) {
+async function _resolvePath(filepath) {
   if (isBrowser) {
     return `${CDN_ROOT}${filepath}`;
   } else {
-    const path = require("path");
+    const path = await import('path');
     if (path.isAbsolute(filepath)) {
       return filepath;
     } else {
@@ -2959,11 +2959,11 @@ function _resolvePath(filepath) {
   }
 }
 async function _fetchAssets(filepath) {
-  const path = _resolvePath(filepath);
+  const path = await _resolvePath(filepath);
   if (isBrowser) {
     return await fetch(path).then((r) => r.text());
   } else {
-    const fs = require("fs");
+    const fs = await import('fs');
     return await fs.promises.readFile(path, "utf-8");
   }
 }
