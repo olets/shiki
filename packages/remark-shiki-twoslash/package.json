@@ -30,8 +30,8 @@
     "lint": "tsdx lint"
   },
   "dependencies": {
-    "@olets/shiki": "workspace:*",
-    "@olets/shiki-twoslash": "workspace:*",
+    "@olets/shiki": "^0.15.2",
+    "@olets/shiki-twoslash": "^3.2.2",
     "@types/unist": "^2.0.0",
     "@typescript/twoslash": "3.2.1",
     "@typescript/vfs": "1.4.0",

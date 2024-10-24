@@ -9,9 +9,9 @@
   },
   "main": "./index.js",
   "dependencies": {
-    "@olets/remark-shiki-twoslash": "workspace:*",
-    "@olets/shiki": "workspace:*",
-    "@olets/shiki-twoslash": "workspace:*",
+    "@olets/remark-shiki-twoslash": "^3.2.2",
+    "@olets/shiki": "^0.15.2",
+    "@olets/shiki-twoslash": "^3.2.2",
     "@typescript/vfs": "1.4.0",
     "deasync": "^0.1.21",
     "fenceparser": "^2.2.0",
