@@ -1,5 +1,11 @@
 # eleventy-plugin-shiki-twoslash
 
+## 2.0.6
+
+### Patch Changes
+
+- 4364822: Correct module path
+
 ## 2.0.5
 
 ### Patch Changes
