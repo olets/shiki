@@ -4,4 +4,6 @@
 
 Check the [Issues](https://github.com/olets/shiki/issues) to see if your topic has been discussed before or if it is being worked on. You may also want to check the roadmap (see above).
 
-Looking to add support for a new theme or language? See [@olets/shiki](../shiki/).
+This package is part of a monorepo. Changes should be made in https://github.com/olets/shiki. See its [CONTRIBUTING.md](https://github.com/olets/shiki/blob/main/CONTRIBUTING.md).
+
+Looking to add support for a new theme or language? See the [@olets/shiki](https://github.com/olets/shiki/tree/main/packages/shiki) package.

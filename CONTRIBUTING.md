@@ -2,7 +2,9 @@
 
 ## Contributors
 
-After making a change
+Fork this repo, clone the fork, make your change(s) in the relevant package(s) (in [the ./packages/ director](./packages/)), commit.
+
+Then
 
 1. Run (in the monorepo root)
 
