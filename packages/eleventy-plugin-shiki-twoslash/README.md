@@ -15,36 +15,10 @@ This is an alternative to [@shikijs/markdown-it](https://shiki.style/packages/ma
 
 ## Installation
 
-### Bun
+Replace `<package manager>` with your package manager. Works with at least `bun`, `npm`, `pnpm`, and `yarn`.
 
 ```shell
-bun add github:olets/eleventy-plugin-shiki-twoslash
-```
-
-### NPM
-
-```shell
-npm add olets/eleventy-plugin-shiki-twoslash
-```
-
-### pnpm
-
-```shell
-pnpm add https://github.com/olets/eleventy-plugin-shiki-twoslash.git
-```
-
-### Yarn
-
-#### v2+
-
-```shell
-yarn add @olets/eleventy-plugin-shiki-twoslash@olets/eleventy-plugin-shiki-twoslash
-```
-
-#### v1
-
-```shell
-yarn add https://github.com/olets/eleventy-plugin-shiki-twoslash.git
+<package manager> add @olets/eleventy-plugin-shiki-twoslash
 ```
 
 ## Usage

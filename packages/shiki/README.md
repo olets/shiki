@@ -6,36 +6,10 @@ Learn more in this repo's [CONTRIBUTING.md](CONTRIBUTING.md), and in [shikijs/sh
 
 ## Installation
 
-### Bun
+Replace `<package manager>` with your package manager. Works with at least `bun`, `npm`, `pnpm`, and `yarn`.
 
 ```shell
-bun add github:olets/shiki
-```
-
-### NPM
-
-```shell
-npm add olets/shiki
-```
-
-### pnpm
-
-```shell
-pnpm add https://github.com/olets/shiki.git
-```
-
-### Yarn
-
-#### v2+
-
-```shell
-yarn add shiki@olets/shiki
-```
-
-#### v1
-
-```shell
-yarn add https://github.com/olets/shiki.git
+<package manager> add @olets/shiki
 ```
 
 ## Contributing

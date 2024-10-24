@@ -6,36 +6,10 @@ Learn more in this repo's [CONTRIBUTING.md](CONTRIBUTING.md), and in [shikijs/tw
 
 ## Installation
 
-### Bun
+Replace `<package manager>` with your package manager. Works with at least `bun`, `npm`, `pnpm`, and `yarn`.
 
 ```shell
-bun add github:olets/shiki-twoslash
-```
-
-### NPM
-
-```shell
-npm add olets/shiki-twoslash
-```
-
-### pnpm
-
-```shell
-pnpm add https://github.com/olets/shiki-twoslash.git
-```
-
-### Yarn
-
-#### v2+
-
-```shell
-yarn add shiki-twoslash@olets/shiki-twoslash
-```
-
-#### v1
-
-```shell
-yarn add https://github.com/olets/shiki-twoslash.git
+<package manager> add @olets/shiki-twoslash
 ```
 
 ## Contributing

@@ -6,30 +6,10 @@ Learn more in this repo's [CONTRIBUTING.md](CONTRIBUTING.md), and in [shikijs/tw
 
 ## Installation
 
-### Bun
+Replace `<package manager>` with your package manager. Works with at least `bun`, `npm`, `pnpm`, and `yarn`.
 
 ```shell
-bun add github:olets/remark-shiki-twoslash
-```
-
-### NPM
-
-```shell
-npm add olets/remark-shiki-twoslash
-```
-
-### pnpm
-
-```shell
-pnpm add https://github.com/olets/remark-shiki-twoslash.git
-```
-
-### Yarn
-
-#### v2+
-
-```shell
-yarn add remark-shiki-twoslash@olets/remark-shiki-twoslash
+<package manager> add @olets/remark-shiki-twoslash
 ```
 
 #### v1
