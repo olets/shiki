@@ -3,7 +3,7 @@
   "version": "2.0.1",
   "author": "Henry Bley-Vroman",
   "repository": {
-    "url": "https://github.com/olets/eleventy-plugin-shiki-twoslash.git",
+    "url": "https://github.com/olets/shiki.git",
     "directory": "packages/eleventy-plugin-shiki-twoslash",
     "type": "git"
   },
@@ -19,13 +19,13 @@
     "typescript": ">3"
   },
   "bugs": {
-    "url": "https://github.com/olets/eleventy-plugin-shiki-twoslash/issues"
+    "url": "https://github.com/olets/shiki/issues"
   },
   "description": "An 11ty plugin which adds shiki with optional twoslash-powered code samples",
   "engines": {
     "node": "22.5.0"
   },
-  "homepage": "https://github.com/olets/eleventy-plugin-shiki-twoslash",
+  "homepage": "https://github.com/olets/shiki",
   "license": "MIT",
   "packageManager": "bun@1.1.25",
   "scripts": {

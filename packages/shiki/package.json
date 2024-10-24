@@ -30,9 +30,13 @@
     "build": "rollup -c",
     "watch": "rollup -c -w"
   },
+  "bugs": {
+    "url": "https://github.com/olets/shiki/issues"
+  },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/olets/shiki.git"
+    "url": "git+https://github.com/olets/shiki.git",
+    "directory": "packages/shiki",
+    "type": "git"
   },
   "dependencies": {
     "ansi-sequence-parser": "^1.1.0",

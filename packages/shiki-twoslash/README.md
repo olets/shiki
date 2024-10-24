@@ -42,13 +42,13 @@ yarn add https://github.com/olets/shiki-twoslash.git
 
 > Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
-Check the [Issues](https://github.com/olets/shiki-twoslash/issues) to see if your topic has been discussed before or if it is being worked on. You may also want to check the roadmap (see above).
+Check the [Issues](https://github.com/olets/shiki/issues) to see if your topic has been discussed before or if it is being worked on. You may also want to check the roadmap (see above).
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
 ## License
 
-<a href="https://github.com/olets/shiki-twoslash">@olets/shiki-twoslash</a> by <a href="https://github.com/olets">Henry Bley-Vroman</a> is released under the [MIT license](LICENSE).
+<a href="https://github.com/olets/shiki/tree/main/packages/shiki-twoslash">@olets/shiki-twoslash</a> by <a href="https://github.com/olets">Henry Bley-Vroman</a> is released under the [MIT license](LICENSE).
 
 ## Acknowledgments
 

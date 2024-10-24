@@ -6,13 +6,14 @@
     "node": "22.5.0"
   },
   "packageManager": "bun@1.1.25",
-  "homepage": "https://github.com/olets/remark-shiki-twoslash",
+  "homepage": "https://github.com/olets/shiki",
   "repository": {
-    "url": "https://github.com/olets/remark-shiki-twoslash.git",
+    "url": "https://github.com/olets/shiki.git",
+    "directory": "packages/remark-shiki-twoslash",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/olets/remark-shiki-twoslash/issues"
+    "url": "https://github.com/olets/shiki/issues"
   },
   "description": "A remark plugin which renders code samples for all languages via Shiki, but has some real cool features for TS/JS code",
   "author": "Henry Bley-Vroman",
