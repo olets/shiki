@@ -1,0 +1,14 @@
+{
+  "name": "@olets/shiki-monorepo",
+  "packageManager": "bun@1.1.25",
+  "private": true,
+  "scripts": {
+    "eleventy-plugin-shiki-twoslash": "bun run --filter @olets/eleventy-plugin-shiki-twoslash",
+    "remark-shiki-twoslash": "bun run --filter @olets/remark-shiki-twoslash",
+    "shiki-twoslash": "bun run --filter @olets/shiki-twoslash",
+    "shiki": "bun run --filter @olets/shiki"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
