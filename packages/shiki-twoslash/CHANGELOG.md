@@ -1,5 +1,16 @@
 # shiki-twoslash
 
+## 3.2.0
+
+### Minor Changes
+
+- 0c07c27: Update dependencies to support more themes and languages, switch from pnpm to Bun, move from Node 22, track dist dir
+
+### Patch Changes
+
+- Updated dependencies [0c07c27]
+  - @olets/shiki@0.15.0
+
 ## 3.1.2
 
 ### Patch Changes

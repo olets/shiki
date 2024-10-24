@@ -1,5 +1,20 @@
 # eleventy-plugin-shiki-twoslash
 
+## 2.0.0
+
+### Major Changes
+
+- 0c07c27: Support Eleventy 3, drop support for Eleventy < 3, update dependencies to support more themes and languages, switch from pnpm to Bun, move from Node 22, track dist dir
+
+### Patch Changes
+
+- Updated dependencies [0c07c27]
+- Updated dependencies [0c07c27]
+- Updated dependencies [0c07c27]
+  - @olets/remark-shiki-twoslash@3.2.0
+  - @olets/shiki@0.15.0
+  - @olets/shiki-twoslash@3.2.0
+
 ## 1.1.3
 
 ### Patch Changes
