@@ -1,5 +1,11 @@
 # @olets/shiki
 
+## 0.15.2
+
+### Patch Changes
+
+- e96e4d0: Update urls in docs and package.json, update installation docs
+
 ## 0.15.1
 
 ### Patch Changes

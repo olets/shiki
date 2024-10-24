@@ -1,5 +1,13 @@
 # shiki-twoslash
 
+## 3.2.2
+
+### Patch Changes
+
+- e96e4d0: Update urls in docs and package.json, update installation docs
+- Updated dependencies [e96e4d0]
+  - @olets/shiki@0.15.2
+
 ## 3.2.1
 
 ### Patch Changes
