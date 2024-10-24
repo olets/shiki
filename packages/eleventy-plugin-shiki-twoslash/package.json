@@ -8,7 +8,7 @@
     "type": "git"
   },
   "main": "./dist/index.js",
-  "module": "./dist/remark-shiki-twoslash.esm.js",
+  "module": "./dist/eleventy-plugin-shiki-twoslash.esm.js",
   "dependencies": {
     "@11ty/eleventy": "^3.0.0",
     "@olets/remark-shiki-twoslash": "^3.2.5",
