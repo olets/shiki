@@ -1,5 +1,14 @@
 ### 1.4.0
 
+## 3.2.5
+
+### Patch Changes
+
+- 53f8e57: Do not use monorepo workspace cross-references
+- Updated dependencies [53f8e57]
+  - @olets/shiki@0.15.5
+  - @olets/shiki-twoslash@3.2.5
+
 ## 3.2.4
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @olets/shiki
 
+## 0.15.5
+
+### Patch Changes
+
+- 53f8e57: Do not use monorepo workspace cross-references
+
 ## 0.15.4
 
 ### Patch Changes

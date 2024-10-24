@@ -1,5 +1,15 @@
 # eleventy-plugin-shiki-twoslash
 
+## 2.0.5
+
+### Patch Changes
+
+- dfb9140: Build from TS. Do not use monorepo workspace cross-references
+- Updated dependencies [53f8e57]
+  - @olets/remark-shiki-twoslash@3.2.5
+  - @olets/shiki@0.15.5
+  - @olets/shiki-twoslash@3.2.5
+
 ## 2.0.4
 
 ### Patch Changes
