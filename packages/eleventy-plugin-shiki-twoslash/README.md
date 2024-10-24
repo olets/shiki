@@ -51,7 +51,7 @@ and `themes: [<light theme name>, <dark theme name>]`:
 }
 ```
 
-See [@olets/shiki-twoslash's UseConfigSettings type](../shiki-twoslash/src/index.ts) for all options.
+See [@olets/shiki-twoslash's UserConfigSettings type](../shiki-twoslash/src/index.ts) for all options.
 
 ## Contributing
 
