@@ -10,7 +10,10 @@
   },
   "packageManager": "bun@1.1.25",
   "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "exports": {
+    "import": "./dist/index.esm.js",
+    "require": "./dist/index.js"
+  },
   "types": "dist/index.d.ts",
   "unpkg": "dist/index.unpkg.iife.js",
   "jsdelivr": "dist/index.jsdelivr.iife.js",
