@@ -1,0 +1,78 @@
+[
+  {
+    "code": "export const MyTitle = () => <h1>Title</h1>",
+    "extension": "tsx",
+    "highlights": [],
+    "queries": [],
+    "staticQuickInfos": [
+      {
+        "text": "const MyTitle: () => JSX.Element",
+        "docs": "",
+        "start": 13,
+        "length": 7,
+        "line": 0,
+        "character": 13,
+        "targetString": "MyTitle"
+      },
+      {
+        "text": "(property) JSX.IntrinsicElements.h1: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>",
+        "docs": "",
+        "start": 30,
+        "length": 2,
+        "line": 0,
+        "character": 30,
+        "targetString": "h1"
+      },
+      {
+        "text": "(property) JSX.IntrinsicElements.h1: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>",
+        "docs": "",
+        "start": 40,
+        "length": 2,
+        "line": 0,
+        "character": 40,
+        "targetString": "h1"
+      }
+    ],
+    "errors": [],
+    "playgroundURL": "https://www.typescriptlang.org/play/#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgcilQ3wCgB6cuAWlrQFcZbrSkAPSWONCAOwGd4AWQCeAFWAwANkjgBeOAAoAlPIB8cADwALAIxqJ0pJvJ61QA",
+    "tags": []
+  },
+  {
+    "code": "export const MyTitle = () => <h1>Title</h1>",
+    "extension": "tsx",
+    "highlights": [],
+    "queries": [],
+    "staticQuickInfos": [
+      {
+        "text": "const MyTitle: () => JSX.Element",
+        "docs": "",
+        "start": 13,
+        "length": 7,
+        "line": 0,
+        "character": 13,
+        "targetString": "MyTitle"
+      },
+      {
+        "text": "(property) JSX.IntrinsicElements.h1: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>",
+        "docs": "",
+        "start": 30,
+        "length": 2,
+        "line": 0,
+        "character": 30,
+        "targetString": "h1"
+      },
+      {
+        "text": "(property) JSX.IntrinsicElements.h1: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>",
+        "docs": "",
+        "start": 40,
+        "length": 2,
+        "line": 0,
+        "character": 40,
+        "targetString": "h1"
+      }
+    ],
+    "errors": [],
+    "playgroundURL": "https://www.typescriptlang.org/play/#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgcilQ3wCgB6cuAWlrQFcZbrSkAPSWONCAOwGd4AWQCeAFWAwANkjgBeOAAoAlPIB8cADwALAIxqJ0pJvJ61QA",
+    "tags": []
+  }
+]

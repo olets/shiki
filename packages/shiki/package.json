@@ -1,0 +1,58 @@
+{
+  "name": "@olets/shiki",
+  "version": "0.15.1",
+  "description": "shiki",
+  "author": "Henry Bley-Vroman",
+  "homepage": "https://github.com/olets/shiki",
+  "license": "MIT",
+  "engines": {
+    "node": "22.5.0"
+  },
+  "packageManager": "bun@1.1.25",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "unpkg": "dist/index.unpkg.iife.js",
+  "jsdelivr": "dist/index.jsdelivr.iife.js",
+  "keywords": [
+    "shiki",
+    "syntax-highlighter",
+    "highlighter"
+  ],
+  "files": [
+    "dist",
+    "languages",
+    "themes",
+    "samples"
+  ],
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "build": "rollup -c",
+    "watch": "rollup -c -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olets/shiki.git"
+  },
+  "dependencies": {
+    "ansi-sequence-parser": "^1.1.0",
+    "jsonc-parser": "^3.2.0",
+    "vscode-oniguruma": "^1.7.0",
+    "vscode-textmate": "^8.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-replace": "^6.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/node": "^18.11.17",
+    "rollup": "^4.24.0",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-esbuild": "^6.1.1"
+  },
+  "browser": {
+    "fs": false,
+    "path": false
+  }
+}

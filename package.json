@@ -1,58 +1,22 @@
 {
-  "name": "@olets/shiki",
-  "version": "0.14.7",
-  "description": "shiki",
-  "author": "Henry Bley-Vroman",
-  "homepage": "https://github.com/olets/shiki",
-  "license": "MIT",
-  "engines": {
-    "node": "22.5.0"
-  },
+  "name": "@olets/shiki-monorepo",
   "packageManager": "bun@1.1.25",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
-  "unpkg": "dist/index.unpkg.iife.js",
-  "jsdelivr": "dist/index.jsdelivr.iife.js",
-  "keywords": [
-    "shiki",
-    "syntax-highlighter",
-    "highlighter"
-  ],
-  "files": [
-    "dist",
-    "languages",
-    "themes",
-    "samples"
-  ],
+  "private": true,
   "scripts": {
-    "prepublishOnly": "npm run build",
-    "build": "rollup -c",
-    "watch": "rollup -c -w"
+    "build": "turbo build check-types",
+    "changeset": "changeset",
+    "check-types": "tsc --noEmit",
+    "eleventy-plugin-shiki-twoslash": "bun run --filter @olets/eleventy-plugin-shiki-twoslash",
+    "publish-packages": "bun run build && bun changeset version && bun changeset publish",
+    "remark-shiki-twoslash": "bun run --filter @olets/remark-shiki-twoslash",
+    "shiki-twoslash": "bun run --filter @olets/shiki-twoslash",
+    "shiki": "bun run --filter @olets/shiki"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/olets/shiki.git"
-  },
-  "dependencies": {
-    "ansi-sequence-parser": "^1.1.0",
-    "jsonc-parser": "^3.2.0",
-    "vscode-oniguruma": "^1.7.0",
-    "vscode-textmate": "^8.0.0"
-  },
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^28.0.1",
-    "@rollup/plugin-node-resolve": "^15.3.0",
-    "@rollup/plugin-replace": "^6.0.1",
-    "@rollup/plugin-terser": "^0.4.4",
-    "@types/node": "^18.11.17",
-    "rollup": "^4.24.0",
-    "rollup-plugin-copy": "^3.5.0",
-    "rollup-plugin-dts": "^6.1.1",
-    "rollup-plugin-esbuild": "^6.1.1"
-  },
-  "browser": {
-    "fs": false,
-    "path": false
+    "@changesets/cli": "^2.27.9",
+    "turbo": "^2.2.3"
   }
 }

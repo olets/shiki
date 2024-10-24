@@ -1,3 +1,5 @@
+'use strict';
+
 const themes = [
   "andromeeda",
   "aurora-x",
@@ -1881,14 +1883,44 @@ const languages = [
   }
 ];
 
-var FontStyle = /* @__PURE__ */ ((FontStyle2) => {
+var MetadataConsts;
+(function(MetadataConsts2) {
+  MetadataConsts2[MetadataConsts2["LANGUAGEID_MASK"] = 255] = "LANGUAGEID_MASK";
+  MetadataConsts2[MetadataConsts2["TOKEN_TYPE_MASK"] = 768] = "TOKEN_TYPE_MASK";
+  MetadataConsts2[MetadataConsts2["BALANCED_BRACKETS_MASK"] = 1024] = "BALANCED_BRACKETS_MASK";
+  MetadataConsts2[MetadataConsts2["FONT_STYLE_MASK"] = 14336] = "FONT_STYLE_MASK";
+  MetadataConsts2[MetadataConsts2["FOREGROUND_MASK"] = 8372224] = "FOREGROUND_MASK";
+  MetadataConsts2[MetadataConsts2["BACKGROUND_MASK"] = 4286578688] = "BACKGROUND_MASK";
+  MetadataConsts2[MetadataConsts2["LANGUAGEID_OFFSET"] = 0] = "LANGUAGEID_OFFSET";
+  MetadataConsts2[MetadataConsts2["TOKEN_TYPE_OFFSET"] = 8] = "TOKEN_TYPE_OFFSET";
+  MetadataConsts2[MetadataConsts2["BALANCED_BRACKETS_OFFSET"] = 10] = "BALANCED_BRACKETS_OFFSET";
+  MetadataConsts2[MetadataConsts2["FONT_STYLE_OFFSET"] = 11] = "FONT_STYLE_OFFSET";
+  MetadataConsts2[MetadataConsts2["FOREGROUND_OFFSET"] = 15] = "FOREGROUND_OFFSET";
+  MetadataConsts2[MetadataConsts2["BACKGROUND_OFFSET"] = 24] = "BACKGROUND_OFFSET";
+})(MetadataConsts || (MetadataConsts = {}));
+var TemporaryStandardTokenType;
+(function(TemporaryStandardTokenType2) {
+  TemporaryStandardTokenType2[TemporaryStandardTokenType2["Other"] = 0] = "Other";
+  TemporaryStandardTokenType2[TemporaryStandardTokenType2["Comment"] = 1] = "Comment";
+  TemporaryStandardTokenType2[TemporaryStandardTokenType2["String"] = 2] = "String";
+  TemporaryStandardTokenType2[TemporaryStandardTokenType2["RegEx"] = 4] = "RegEx";
+  TemporaryStandardTokenType2[TemporaryStandardTokenType2["MetaEmbedded"] = 8] = "MetaEmbedded";
+})(TemporaryStandardTokenType || (TemporaryStandardTokenType = {}));
+exports.FontStyle = void 0;
+(function(FontStyle2) {
   FontStyle2[FontStyle2["NotSet"] = -1] = "NotSet";
   FontStyle2[FontStyle2["None"] = 0] = "None";
   FontStyle2[FontStyle2["Italic"] = 1] = "Italic";
   FontStyle2[FontStyle2["Bold"] = 2] = "Bold";
   FontStyle2[FontStyle2["Underline"] = 4] = "Underline";
-  return FontStyle2;
-})(FontStyle || {});
+})(exports.FontStyle || (exports.FontStyle = {}));
+var StandardTokenType;
+(function(StandardTokenType2) {
+  StandardTokenType2[StandardTokenType2["Other"] = 0] = "Other";
+  StandardTokenType2[StandardTokenType2["Comment"] = 1] = "Comment";
+  StandardTokenType2[StandardTokenType2["String"] = 2] = "String";
+  StandardTokenType2[StandardTokenType2["RegEx"] = 4] = "RegEx";
+})(StandardTokenType || (StandardTokenType = {}));
 class StackElementMetadata {
   static toBinaryStr(metadata) {
     let r = metadata.toString(2);
@@ -1912,22 +1944,22 @@ class StackElementMetadata {
     });
   }
   static getLanguageId(metadata) {
-    return (metadata & 255 /* LANGUAGEID_MASK */) >>> 0 /* LANGUAGEID_OFFSET */;
+    return (metadata & 255) >>> 0;
   }
   static getTokenType(metadata) {
-    return (metadata & 768 /* TOKEN_TYPE_MASK */) >>> 8 /* TOKEN_TYPE_OFFSET */;
+    return (metadata & 768) >>> 8;
   }
   static getFontStyle(metadata) {
-    return (metadata & 14336 /* FONT_STYLE_MASK */) >>> 11 /* FONT_STYLE_OFFSET */;
+    return (metadata & 14336) >>> 11;
   }
   static getForeground(metadata) {
-    return (metadata & 8372224 /* FOREGROUND_MASK */) >>> 15 /* FOREGROUND_OFFSET */;
+    return (metadata & 8372224) >>> 15;
   }
   static getBackground(metadata) {
-    return (metadata & 4286578688 /* BACKGROUND_MASK */) >>> 24 /* BACKGROUND_OFFSET */;
+    return (metadata & 4286578688) >>> 24;
   }
   static containsBalancedBrackets(metadata) {
-    return (metadata & 1024 /* BALANCED_BRACKETS_MASK */) !== 0;
+    return (metadata & 1024) !== 0;
   }
   static set(metadata, languageId, tokenType, fontStyle, foreground, background) {
     let _languageId = StackElementMetadata.getLanguageId(metadata);
@@ -1935,16 +1967,14 @@ class StackElementMetadata {
     let _fontStyle = StackElementMetadata.getFontStyle(metadata);
     let _foreground = StackElementMetadata.getForeground(metadata);
     let _background = StackElementMetadata.getBackground(metadata);
-    let _containsBalancedBracketsBit = StackElementMetadata.containsBalancedBrackets(
-      metadata
-    ) ? 1 : 0;
+    let _containsBalancedBracketsBit = StackElementMetadata.containsBalancedBrackets(metadata) ? 1 : 0;
     if (languageId !== 0) {
       _languageId = languageId;
     }
-    if (tokenType !== 0 /* Other */) {
-      _tokenType = tokenType === 8 /* MetaEmbedded */ ? 0 /* Other */ : tokenType;
+    if (tokenType !== 0) {
+      _tokenType = tokenType === 8 ? 0 : tokenType;
     }
-    if (fontStyle !== -1 /* NotSet */) {
+    if (fontStyle !== -1) {
       _fontStyle = fontStyle;
     }
     if (foreground !== 0) {
@@ -1953,16 +1983,18 @@ class StackElementMetadata {
     if (background !== 0) {
       _background = background;
     }
-    return (_languageId << 0 /* LANGUAGEID_OFFSET */ | _tokenType << 8 /* TOKEN_TYPE_OFFSET */ | _fontStyle << 11 /* FONT_STYLE_OFFSET */ | _containsBalancedBracketsBit << 10 /* BALANCED_BRACKETS_OFFSET */ | _foreground << 15 /* FOREGROUND_OFFSET */ | _background << 24 /* BACKGROUND_OFFSET */) >>> 0;
+    return (_languageId << 0 | _tokenType << 8 | _fontStyle << 11 | _containsBalancedBracketsBit << 10 | _foreground << 15 | _background << 24) >>> 0;
   }
 }
 
 function trimEndSlash(str) {
-  if (str.endsWith("/") || str.endsWith("\\")) return str.slice(0, -1);
+  if (str.endsWith("/") || str.endsWith("\\"))
+    return str.slice(0, -1);
   return str;
 }
 function trimStartDot(str) {
-  if (str.startsWith("./")) return str.slice(2);
+  if (str.startsWith("./"))
+    return str.slice(2);
   return str;
 }
 function dirpathparts(str) {
@@ -1973,7 +2005,7 @@ function join(...parts) {
   return parts.map(trimEndSlash).map(trimStartDot).join("/");
 }
 function groupBy(elements, keyGetter) {
-  const map = /* @__PURE__ */ new Map();
+  const map = new Map();
   for (const element of elements) {
     const key = keyGetter(element);
     if (map.has(key)) {
@@ -2973,7 +3005,8 @@ async function fetchGrammar(filepath) {
   return await _fetchJSONAssets(filepath);
 }
 function repairTheme(theme) {
-  if (!theme.settings) theme.settings = [];
+  if (!theme.settings)
+    theme.settings = [];
   if (theme.settings[0] && theme.settings[0].settings && !theme.settings[0].scope) {
     return;
   }
@@ -3059,9 +3092,7 @@ class Resolver {
     if (lang.grammar) {
       return lang.grammar;
     }
-    const g = await fetchGrammar(
-      languages.includes(lang) ? `${this.languagesPath}${lang.path}` : lang.path
-    );
+    const g = await fetchGrammar(languages.includes(lang) ? `${this.languagesPath}${lang.path}` : lang.path);
     lang.grammar = g;
     return g;
   }
@@ -3131,10 +3162,7 @@ function tokenizeWithTheme(theme, colorMap, fileContents, grammar, options) {
         let offset = 0;
         while (startIndex + offset < nextStartIndex) {
           let tokenWithScopes = tokensWithScopes[tokensWithScopesIndex];
-          let tokenWithScopesText = line.substring(
-            tokenWithScopes.startIndex,
-            tokenWithScopes.endIndex
-          );
+          let tokenWithScopesText = line.substring(tokenWithScopes.startIndex, tokenWithScopes.endIndex);
           offset += tokenWithScopesText.length;
           explanation.push({
             content: tokenWithScopesText,
@@ -3482,43 +3510,37 @@ function createColorPalette(namedColorsMap = defaultNamedColorsMap) {
 
 function tokenizeAnsiWithTheme(theme, fileContents) {
   const lines = fileContents.split(/\r?\n/);
-  const colorPalette = createColorPalette(
-    Object.fromEntries(
-      namedColors.map((name) => [
-        name,
-        theme.colors[`terminal.ansi${name[0].toUpperCase()}${name.substring(1)}`]
-      ])
-    )
-  );
+  const colorPalette = createColorPalette(Object.fromEntries(namedColors.map((name) => [
+    name,
+    theme.colors[`terminal.ansi${name[0].toUpperCase()}${name.substring(1)}`]
+  ])));
   const parser = createAnsiSequenceParser();
-  return lines.map(
-    (line) => parser.parse(line).map((token) => {
-      let color;
-      if (token.decorations.has("reverse")) {
-        color = token.background ? colorPalette.value(token.background) : theme.bg;
-      } else {
-        color = token.foreground ? colorPalette.value(token.foreground) : theme.fg;
-      }
-      if (token.decorations.has("dim")) {
-        color = dimColor(color);
-      }
-      let fontStyle = FontStyle.None;
-      if (token.decorations.has("bold")) {
-        fontStyle |= FontStyle.Bold;
-      }
-      if (token.decorations.has("italic")) {
-        fontStyle |= FontStyle.Italic;
-      }
-      if (token.decorations.has("underline")) {
-        fontStyle |= FontStyle.Underline;
-      }
-      return {
-        content: token.value,
-        color,
-        fontStyle
-      };
-    })
-  );
+  return lines.map((line) => parser.parse(line).map((token) => {
+    let color;
+    if (token.decorations.has("reverse")) {
+      color = token.background ? colorPalette.value(token.background) : theme.bg;
+    } else {
+      color = token.foreground ? colorPalette.value(token.foreground) : theme.fg;
+    }
+    if (token.decorations.has("dim")) {
+      color = dimColor(color);
+    }
+    let fontStyle = exports.FontStyle.None;
+    if (token.decorations.has("bold")) {
+      fontStyle |= exports.FontStyle.Bold;
+    }
+    if (token.decorations.has("italic")) {
+      fontStyle |= exports.FontStyle.Italic;
+    }
+    if (token.decorations.has("underline")) {
+      fontStyle |= exports.FontStyle.Underline;
+    }
+    return {
+      content: token.value,
+      color,
+      fontStyle
+    };
+  }));
 }
 function dimColor(color) {
   const hexMatch = color.match(/#([0-9a-f]{3})([0-9a-f]{3})?([0-9a-f]{2})?/);
@@ -3568,53 +3590,37 @@ function renderToHtml(lines, options = {}) {
     }
     return "";
   }
-  return h(
-    "pre",
-    { className: "shiki " + (options.themeName || ""), style: `background-color: ${bg}` },
-    [
-      options.langId ? `<div class="language-id">${options.langId}</div>` : "",
-      h(
-        "code",
-        {},
-        lines.map((line, index) => {
-          const lineNumber = index + 1;
-          const lineOptions = optionsByLineNumber.get(lineNumber) ?? [];
-          const lineClasses = getLineClasses(lineOptions).join(" ");
-          return h(
-            "line",
-            {
-              className: lineClasses,
-              lines,
-              line,
-              index
-            },
-            line.map((token, index2) => {
-              const cssDeclarations = [`color: ${token.color || options.fg}`];
-              if (token.fontStyle & FontStyle.Italic) {
-                cssDeclarations.push("font-style: italic");
-              }
-              if (token.fontStyle & FontStyle.Bold) {
-                cssDeclarations.push("font-weight: bold");
-              }
-              if (token.fontStyle & FontStyle.Underline) {
-                cssDeclarations.push("text-decoration: underline");
-              }
-              return h(
-                "token",
-                {
-                  style: cssDeclarations.join("; "),
-                  tokens: line,
-                  token,
-                  index: index2
-                },
-                [escapeHtml(token.content)]
-              );
-            })
-          );
-        })
-      )
-    ]
-  );
+  return h("pre", { className: "shiki " + (options.themeName || ""), style: `background-color: ${bg}` }, [
+    options.langId ? `<div class="language-id">${options.langId}</div>` : "",
+    h("code", {}, lines.map((line, index) => {
+      const lineNumber = index + 1;
+      const lineOptions = optionsByLineNumber.get(lineNumber) ?? [];
+      const lineClasses = getLineClasses(lineOptions).join(" ");
+      return h("line", {
+        className: lineClasses,
+        lines,
+        line,
+        index
+      }, line.map((token, index2) => {
+        const cssDeclarations = [`color: ${token.color || options.fg}`];
+        if (token.fontStyle & exports.FontStyle.Italic) {
+          cssDeclarations.push("font-style: italic");
+        }
+        if (token.fontStyle & exports.FontStyle.Bold) {
+          cssDeclarations.push("font-weight: bold");
+        }
+        if (token.fontStyle & exports.FontStyle.Underline) {
+          cssDeclarations.push("text-decoration: underline");
+        }
+        return h("token", {
+          style: cssDeclarations.join("; "),
+          tokens: line,
+          token,
+          index: index2
+        }, [escapeHtml(token.content)]);
+      }));
+    }))
+  ]);
 }
 const htmlEscapes = {
   "&": "&amp;",
@@ -3627,7 +3633,7 @@ function escapeHtml(html) {
   return html.replace(/[&<>"']/g, (chr) => htmlEscapes[chr]);
 }
 function getLineClasses(lineOptions) {
-  const lineClasses = /* @__PURE__ */ new Set(["line"]);
+  const lineClasses = new Set(["line"]);
   for (const lineOption of lineOptions) {
     for (const lineClass of lineOption.classes ?? []) {
       lineClasses.add(lineClass);
@@ -3643,7 +3649,7 @@ class Registry extends mainExports.Registry {
     this.themesPath = "themes/";
     this._resolvedThemes = {};
     this._resolvedGrammars = {};
-    this._langGraph = /* @__PURE__ */ new Map();
+    this._langGraph = new Map();
     this._langMap = languages.reduce((acc, lang) => {
       acc[lang.id] = lang;
       return acc;
@@ -3907,4 +3913,12 @@ function setOnigasmWASM(path) {
   setWasm(path);
 }
 
-export { languages as BUNDLED_LANGUAGES, themes as BUNDLED_THEMES, FontStyle, getHighlighter, fetchTheme as loadTheme, renderToHtml, setCDN, setOnigasmWASM, setWasm, toShikiTheme };
+exports.BUNDLED_LANGUAGES = languages;
+exports.BUNDLED_THEMES = themes;
+exports.getHighlighter = getHighlighter;
+exports.loadTheme = fetchTheme;
+exports.renderToHtml = renderToHtml;
+exports.setCDN = setCDN;
+exports.setOnigasmWASM = setOnigasmWASM;
+exports.setWasm = setWasm;
+exports.toShikiTheme = toShikiTheme;
