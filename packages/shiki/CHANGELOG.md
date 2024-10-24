@@ -1,5 +1,11 @@
 # @olets/shiki
 
+## 0.15.1
+
+### Patch Changes
+
+- 4a27a5c: Previous release went out without its version bump.
+
 ## 0.15.0
 
 ### Minor Changes

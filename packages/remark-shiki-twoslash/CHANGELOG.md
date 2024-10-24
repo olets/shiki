@@ -1,5 +1,14 @@
 ### 1.4.0
 
+## 3.2.1
+
+### Patch Changes
+
+- 4a27a5c: Previous release went out without its version bump.
+- Updated dependencies [4a27a5c]
+  - @olets/shiki-twoslash@3.2.1
+  - @olets/shiki@0.15.1
+
 ## 3.2.0
 
 ### Minor Changes
