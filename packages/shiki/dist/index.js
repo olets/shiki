@@ -1,5 +1,6 @@
 'use strict';
 
+var _documentCurrentScript = typeof document !== 'undefined' ? document.currentScript : null;
 const themes = [
   "andromeeda",
   "aurora-x",
@@ -2903,11 +2904,10 @@ const isWebWorker = typeof self !== "undefined" && typeof self.WorkerGlobalScope
 const isNode = "process" in globalThis && typeof process !== "undefined" && typeof process.release !== "undefined" && process.release.name === "node";
 const isBun = "process" in globalThis && typeof process !== "undefined" && typeof process.release !== "undefined" && process.release.name === "bun";
 const isBrowser = isWebWorker || !isNode && !isBun;
-let CDN_ROOT = "";
 let WASM = "";
 const WASM_PATH = "dist/";
 function setCDN(root) {
-  CDN_ROOT = root.endsWith("/") ? root : root + "/";
+  root.endsWith("/") ? root : root + "/";
 }
 function setWasm(data) {
   WASM = data;
@@ -2927,8 +2927,10 @@ async function getOniguruma(wasmPath) {
         });
       }
     } else {
-      const path = await import('path');
-      const wasmPath2 = path.join(await undefined("vscode-oniguruma"), "../onig.wasm");
+      const join2 = await import('path').then((m) => m.join);
+      const createRequire = await import('node:module').then((m) => m.default.createRequire);
+      const require$1 = createRequire((typeof document === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : (_documentCurrentScript && _documentCurrentScript.tagName.toUpperCase() === 'SCRIPT' && _documentCurrentScript.src || new URL('index.js', document.baseURI).href)));
+      const wasmPath2 = join2(require$1.resolve("vscode-oniguruma"), "../onig.wasm");
       const fs = await import('fs');
       const wasmBin = fs.readFileSync(wasmPath2).buffer;
       loader = mainExports$1.loadWASM(wasmBin);
@@ -2948,12 +2950,15 @@ async function getOniguruma(wasmPath) {
 }
 async function _resolvePath(filepath) {
   if (isBrowser) {
-    return `${CDN_ROOT}${filepath}`;
+    return filepath;
   } else {
     const path = await import('path');
     if (path.isAbsolute(filepath)) {
       return filepath;
     } else {
+      console.log("asdfasdf");
+      const fileURLToPath = await import('url').then((m) => m.default.fileURLToPath);
+      const __dirname = path.dirname(fileURLToPath((typeof document === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : (_documentCurrentScript && _documentCurrentScript.tagName.toUpperCase() === 'SCRIPT' && _documentCurrentScript.src || new URL('index.js', document.baseURI).href))));
       return path.resolve(__dirname, "..", filepath);
     }
   }

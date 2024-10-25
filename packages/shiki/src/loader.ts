@@ -80,11 +80,17 @@ export async function getOniguruma(wasmPath?: string): Promise<IOnigLib> {
         });
       }
     } else {
-      const path = await import("path");
-      const wasmPath = path.join(
-        await import.meta.resolve("vscode-oniguruma"),
+      const join = await import("path").then((m) => m.join);
+      const createRequire = await import("node:module").then(
+        (m) => m.default.createRequire
+      );
+
+      const require = createRequire(import.meta.url);
+      const wasmPath = join(
+        require.resolve("vscode-oniguruma"),
         "../onig.wasm"
       );
+
       const fs = await import("fs");
       const wasmBin = fs.readFileSync(wasmPath).buffer;
       loader = loadWASM(wasmBin);
@@ -104,15 +110,21 @@ export async function getOniguruma(wasmPath?: string): Promise<IOnigLib> {
   return _onigurumaPromise;
 }
 
-async function _resolvePath(filepath: string) {
+async function _resolvePath(filepath) {
   if (isBrowser) {
-    return `${CDN_ROOT}${filepath}`;
+    return filepath;
   } else {
     const path = await import("path");
-
     if (path.isAbsolute(filepath)) {
       return filepath;
     } else {
+      console.log("asdfasdf");
+      const fileURLToPath = await import("url").then(
+        (m) => m.default.fileURLToPath
+      );
+
+      const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
       return path.resolve(__dirname, "..", filepath);
     }
   }
