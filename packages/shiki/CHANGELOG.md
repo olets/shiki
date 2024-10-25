@@ -1,5 +1,11 @@
 # @olets/shiki
 
+## 0.16.2
+
+### Patch Changes
+
+- 98d7409: Remove console log
+
 ## 0.16.1
 
 ### Patch Changes

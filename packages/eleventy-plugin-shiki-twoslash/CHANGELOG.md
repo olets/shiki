@@ -1,5 +1,14 @@
 # eleventy-plugin-shiki-twoslash
 
+## 2.0.11
+
+### Patch Changes
+
+- Updated dependencies [98d7409]
+  - @olets/remark-shiki-twoslash@3.3.2
+  - @olets/shiki@0.16.2
+  - @olets/shiki-twoslash@3.3.2
+
 ## 2.0.9
 
 ### Patch Changes
