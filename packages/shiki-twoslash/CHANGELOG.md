@@ -1,5 +1,13 @@
 # shiki-twoslash
 
+## 3.3.1
+
+### Patch Changes
+
+- fa1bf37: Update dependencies
+- Updated dependencies [18cf0c5]
+  - @olets/shiki@0.16.1
+
 ## 3.3.0
 
 ### Minor Changes

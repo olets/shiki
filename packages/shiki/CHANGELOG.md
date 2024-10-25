@@ -1,5 +1,11 @@
 # @olets/shiki
 
+## 0.16.1
+
+### Patch Changes
+
+- 18cf0c5: Loader works with ESM
+
 ## 0.16.0
 
 ### Minor Changes

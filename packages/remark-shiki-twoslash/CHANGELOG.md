@@ -1,5 +1,16 @@
 ### 1.4.0
 
+## 3.3.1
+
+### Patch Changes
+
+- cc2afc1: Rebuild
+- 2697da6: Rebuild
+- Updated dependencies [18cf0c5]
+- Updated dependencies [fa1bf37]
+  - @olets/shiki@0.16.1
+  - @olets/shiki-twoslash@3.3.1
+
 ## 3.3.0
 
 ### Minor Changes
