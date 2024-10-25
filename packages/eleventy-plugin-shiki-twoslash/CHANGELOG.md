@@ -1,4 +1,4 @@
-# eleventy-plugin-shiki-twoslash
+# olets/eleventy-plugin-shiki-twoslash
 
 ## 2.0.11
 

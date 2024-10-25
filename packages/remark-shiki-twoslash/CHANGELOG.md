@@ -1,4 +1,4 @@
-### 1.4.0
+# olets/remark-shiki-twoslash
 
 ## 3.3.2
 

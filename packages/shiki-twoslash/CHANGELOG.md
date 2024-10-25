@@ -1,4 +1,4 @@
-# shiki-twoslash
+# @olets/shiki-twoslash
 
 ## 3.3.2
 
