@@ -2953,7 +2953,6 @@ async function _resolvePath(filepath) {
     if (path.isAbsolute(filepath)) {
       return filepath;
     } else {
-      console.log("asdfasdf");
       const fileURLToPath = await import('url').then((m) => m.default.fileURLToPath);
       const __dirname = path.dirname(fileURLToPath(import.meta.url));
       return path.resolve(__dirname, "..", filepath);

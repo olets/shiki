@@ -2956,7 +2956,6 @@ async function _resolvePath(filepath) {
     if (path.isAbsolute(filepath)) {
       return filepath;
     } else {
-      console.log("asdfasdf");
       const fileURLToPath = await import('url').then((m) => m.default.fileURLToPath);
       const __dirname = path.dirname(fileURLToPath((typeof document === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : (_documentCurrentScript && _documentCurrentScript.tagName.toUpperCase() === 'SCRIPT' && _documentCurrentScript.src || new URL('index.js', document.baseURI).href))));
       return path.resolve(__dirname, "..", filepath);
