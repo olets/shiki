@@ -4,6 +4,8 @@ This is a fork of [shikijs/shikis's shiki package at v0.x](https://github.com/sh
 
 Compared to shikijs/shikis's shiki package at v0.x, @olets/shiki switches to ESM, and adds additional themes and languages.
 
+The themes and languages are most or all of those listed at https://shiki.style/themes and https://shiki.style/languages. (Something missing? Contribute it!)
+
 Learn more in this repo's [CONTRIBUTING.md](CONTRIBUTING.md), and in [shikijs/shikijs's shiki package's v0.x README.md](https://github.com/shikijs/shiki/blob/v0.14.7/packages/shiki/README.md).
 
 ## Installation

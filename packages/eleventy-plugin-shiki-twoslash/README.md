@@ -66,6 +66,8 @@ and `themes: [<light theme name>, <dark theme name>]`:
 }
 ```
 
+See [@olets/shiki-twoslash's README](https://github.com/olets/shiki/blob/main/packages/shiki/README.md) for supported themes.
+
 See [@olets/shiki-twoslash's UserConfigSettings type](https://github.com/olets/shiki/blob/main/packages/shiki/src/index.ts) for all options.
 
 ## Contributing
