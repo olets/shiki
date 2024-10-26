@@ -1,6 +1,8 @@
 # @olets/remark-shiki-twoslash ![@olets/remark-shiki-twoslash NPM Version](https://img.shields.io/npm/v/@olets/remark-shiki-twoslash)
 
-This is a fork of [shikijs/twoslash's remark-shiki-twoslash package](https://github.com/shikijs/twoslash/tree/main/packages/remark-shiki-twoslash) made available as a standalone repo.
+This is a fork of [shikijs/twoslash's remark-shiki-twoslash package](https://github.com/shikijs/twoslash/tree/main/packages/remark-shiki-twoslash) at 3.x made available as a standalone repo.
+
+Compared to shikijs/twoslash's remark-shiki-twoslash package package at 3.x, @olets/remark-shiki-twoslash package switches to ESM, and adds (via [@olets/shiki](https://github.com/olets/shiki/tree/main/packages/shiki)) additional themes and languages.
 
 Learn more in this repo's [CONTRIBUTING.md](CONTRIBUTING.md), and in [shikijs/twoslash's remark-shiki-twoslash package's README.md](https://github.com/shikijs/twoslash/blob/5ad23a59c9ead4a3df4d11293948b10bdef373f9/packages/remark-shiki-twoslash/README.md).
 

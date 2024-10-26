@@ -1,17 +1,14 @@
 # @olets/eleventy-plugin-shiki-twoslash ![@olets/eleventy-plugin-shiki-twoslash NPM Version](https://img.shields.io/npm/v/@olets/eleventy-plugin-shiki-twoslash)
 
-This is a fork of [shikijs/twoslash's eleventy-plugin-shiki-twoslash package](https://github.com/shikijs/twoslash/tree/main/packages/eleventy-plugin-shiki-twoslash) made available as a standalone repo.
-
-Learn more in this repo's [CONTRIBUTING.md](CONTRIBUTING.md), and in [shikijs/twoslash's eleventy-plugin-shiki-twoslash package's README.md](https://github.com/shikijs/twoslash/blob/5ad23a59c9ead4a3df4d11293948b10bdef373f9/packages/eleventy-plugin-shiki-twoslash/README.md).
+This is a fork of [shikijs/twoslash's eleventy-plugin-shiki-twoslash package](https://github.com/shikijs/twoslash/tree/main/packages/eleventy-plugin-shiki-twoslash) at 1.x made available as a standalone repo.
 
 Syntax highlight Eleventy Markdown code blocks with [@olets/shiki](https://github.com/olets/shiki/tree/main/packages/shiki), a fork of [Shiki](https://shiki.style/) v0.x.
 
-This is an alternative to [@shikijs/markdown-it](https://shiki.style/packages/markdown-it). It behaves like shikijs/twoslash's eleventy-plugin-shiki-twoslash package, providing an easier migration pathway for Eleventy users who used that in Eleventy < 3.
+Compared to shikijs/twoslash's eleventy-plugin-shiki-twoslash package at 1.x, @olets/eleventy-plugin-shiki-twoslash switches to ESM, adds Eleventy 3 support, drops Eleventy < 3 support, and adds (via [@olets/shiki](https://github.com/olets/shiki/tree/main/packages/shiki)) additional themes and languages.
 
-> [!IMPORTANT]
-> These are the significant differences between `@olets/eleventy-plugin-shiki-twoslash` and ShikiJS's `eleventy-plugin-shiki-twoslash` and `remark-shiki-twoslash`. As of this writing:
-> 1. `@olets/eleventy-plugin-shiki-twoslash` supports Eleventy v3.x, and does not support Eleventy < 3. (ShikiJS's `eleventy-plugin-shiki-twoslash` only supports Eleventy < 3.)
-> 1. `@olets/eleventy-plugin-shiki-twoslash` endeavors to support all the themes and languages supported by [Shiki](https://shiki.style/) 1.x. (ShikiJS's `eleventy-plugin-shiki-twoslash` and `remark-shiki-twoslash` do not receive regular theme and language updates.)
+This is an alternative to [@shikijs/markdown-it](https://shiki.style/packages/markdown-it). It behaves like shikijs/twoslash's eleventy-plugin-shiki-twoslash package, providing an straightforward migration pathway for Eleventy users who used that in Eleventy < 3.
+
+Learn more in this repo's [CONTRIBUTING.md](CONTRIBUTING.md), and in [shikijs/twoslash's eleventy-plugin-shiki-twoslash package's README.md](https://github.com/shikijs/twoslash/blob/5ad23a59c9ead4a3df4d11293948b10bdef373f9/packages/eleventy-plugin-shiki-twoslash/README.md).
 
 ## Installation
 
