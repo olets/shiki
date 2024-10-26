@@ -1,5 +1,7 @@
 'use strict';
 
+var node_module = require('node:module');
+
 var _documentCurrentScript = typeof document !== 'undefined' ? document.currentScript : null;
 const themes = [
   "andromeeda",
@@ -2900,14 +2902,16 @@ var ParseErrorCode;
     ParseErrorCode[ParseErrorCode["InvalidCharacter"] = 16] = "InvalidCharacter";
 })(ParseErrorCode || (ParseErrorCode = {}));
 
+const require$1 = node_module.createRequire((typeof document === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : (_documentCurrentScript && _documentCurrentScript.tagName.toUpperCase() === 'SCRIPT' && _documentCurrentScript.src || new URL('index.js', document.baseURI).href)));
 const isWebWorker = typeof self !== "undefined" && typeof self.WorkerGlobalScope !== "undefined";
 const isNode = "process" in globalThis && typeof process !== "undefined" && typeof process.release !== "undefined" && process.release.name === "node";
 const isBun = "process" in globalThis && typeof process !== "undefined" && typeof process.release !== "undefined" && process.release.name === "bun";
 const isBrowser = isWebWorker || !isNode && !isBun;
+let CDN_ROOT = "";
 let WASM = "";
 const WASM_PATH = "dist/";
 function setCDN(root) {
-  root.endsWith("/") ? root : root + "/";
+  CDN_ROOT = root.endsWith("/") ? root : root + "/";
 }
 function setWasm(data) {
   WASM = data;
@@ -2919,7 +2923,7 @@ async function getOniguruma(wasmPath) {
     if (isBrowser) {
       if (typeof WASM === "string") {
         loader = mainExports$1.loadWASM({
-          data: await fetch(await _resolvePath(join(...dirpathparts(wasmPath), "onig.wasm")))
+          data: await fetch(_resolvePath(join(...dirpathparts(wasmPath), "onig.wasm")))
         });
       } else {
         loader = mainExports$1.loadWASM({
@@ -2927,11 +2931,9 @@ async function getOniguruma(wasmPath) {
         });
       }
     } else {
-      const join2 = await import('path').then((m) => m.join);
-      const createRequire = await import('node:module').then((m) => m.default.createRequire);
-      const require$1 = createRequire((typeof document === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : (_documentCurrentScript && _documentCurrentScript.tagName.toUpperCase() === 'SCRIPT' && _documentCurrentScript.src || new URL('index.js', document.baseURI).href)));
-      const wasmPath2 = join2(require$1.resolve("vscode-oniguruma"), "../onig.wasm");
-      const fs = await import('fs');
+      const path = require$1("path");
+      const wasmPath2 = path.join(require$1.resolve("vscode-oniguruma"), "../onig.wasm");
+      const fs = require$1("fs");
       const wasmBin = fs.readFileSync(wasmPath2).buffer;
       loader = mainExports$1.loadWASM(wasmBin);
     }
@@ -2948,26 +2950,26 @@ async function getOniguruma(wasmPath) {
   }
   return _onigurumaPromise;
 }
-async function _resolvePath(filepath) {
+function _resolvePath(filepath) {
   if (isBrowser) {
-    return filepath;
+    return `${CDN_ROOT}${filepath}`;
   } else {
-    const path = await import('path');
+    const path = require$1("path");
     if (path.isAbsolute(filepath)) {
       return filepath;
     } else {
-      const fileURLToPath = await import('url').then((m) => m.default.fileURLToPath);
+      const { fileURLToPath } = require$1("url");
       const __dirname = path.dirname(fileURLToPath((typeof document === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : (_documentCurrentScript && _documentCurrentScript.tagName.toUpperCase() === 'SCRIPT' && _documentCurrentScript.src || new URL('index.js', document.baseURI).href))));
       return path.resolve(__dirname, "..", filepath);
     }
   }
 }
 async function _fetchAssets(filepath) {
-  const path = await _resolvePath(filepath);
+  const path = _resolvePath(filepath);
   if (isBrowser) {
     return await fetch(path).then((r) => r.text());
   } else {
-    const fs = await import('fs');
+    const fs = require$1("fs");
     return await fs.promises.readFile(path, "utf-8");
   }
 }

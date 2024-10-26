@@ -4,30 +4,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-function _interopNamespace(e) {
-  if (e && e.__esModule) { return e; } else {
-    var n = {};
-    if (e) {
-      Object.keys(e).forEach(function (k) {
-        var d = Object.getOwnPropertyDescriptor(e, k);
-        Object.defineProperty(n, k, d.get ? d : {
-          enumerable: true,
-          get: function () {
-            return e[k];
-          }
-        });
-      });
-    }
-    n['default'] = e;
-    return n;
-  }
-}
-
 var twoslash = require('@typescript/twoslash');
 var visit = _interopDefault(require('unist-util-visit'));
 var fenceparser = require('fenceparser');
 var shiki = require('@olets/shiki');
 var shikiTwoslash = require('@olets/shiki-twoslash');
+var node_module = require('node:module');
 
 function asyncGeneratorStep(n, t, e, r, o, a, c) {
   try {
@@ -365,141 +347,63 @@ function _regeneratorRuntime() {
   }, e;
 }
 
+var require$1 = /*#__PURE__*/node_module.createRequire((typeof document === 'undefined' ? new (require('u' + 'rl').URL)('file:' + __filename).href : (document.currentScript && document.currentScript.src || new URL('remark-shiki-twoslash.cjs.development.js', document.baseURI).href)));
 /**
  * Keeps a cache of the JSON responses to a twoslash call in node_modules/.cache/twoslash
  * which should keep CI times down (e.g. the epub vs the handbook etc) - but also during
  * dev time, where it can be super useful.
  */
-function cachedTwoslashCall(_x, _x2, _x3) {
-  return _cachedTwoslashCall.apply(this, arguments);
-}
-function _cachedTwoslashCall() {
-  _cachedTwoslashCall = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(code, lang, settings) {
-    var isWebWorker, isBrowser, _yield$import, createHash, _yield$import2, readFileSync, existsSync, mkdirSync, writeFileSync, _yield$import3, join, shikiVersion, tsVersion, shasum, codeSha, getNmCache, getPnpCache, _getPnpCache, cacheRoot, cachePath, results;
-    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-      while (1) switch (_context2.prev = _context2.next) {
-        case 0:
-          _getPnpCache = function _getPnpCache3() {
-            _getPnpCache = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-              var pnp;
-              return _regeneratorRuntime().wrap(function _callee$(_context) {
-                while (1) switch (_context.prev = _context.next) {
-                  case 0:
-                    _context.prev = 0;
-                    _context.next = 3;
-                    return new Promise(function (resolve) { resolve(_interopNamespace(require('pnpapi'))); });
-                  case 3:
-                    pnp = _context.sent;
-                    return _context.abrupt("return", join(pnp.getPackageInformation(pnp.topLevel).packageLocation, "node_modules", ".cache", "twoslash"));
-                  case 7:
-                    _context.prev = 7;
-                    _context.t0 = _context["catch"](0);
-                    return _context.abrupt("return", getNmCache());
-                  case 10:
-                  case "end":
-                    return _context.stop();
-                }
-              }, _callee, null, [[0, 7]]);
-            }));
-            return _getPnpCache.apply(this, arguments);
-          };
-          getPnpCache = function _getPnpCache2() {
-            return _getPnpCache.apply(this, arguments);
-          };
-          isWebWorker = typeof self !== "undefined" &&
-          // @ts-expect-error
-          typeof self.WorkerGlobalScope !== "undefined";
-          isBrowser = isWebWorker || typeof window !== "undefined" && typeof window.document !== "undefined" && typeof fetch !== "undefined";
-          if (!isBrowser) {
-            _context2.next = 6;
-            break;
-          }
-          return _context2.abrupt("return", shikiTwoslash.runTwoSlash(code, lang, settings));
-        case 6:
-          _context2.next = 8;
-          return new Promise(function (resolve) { resolve(_interopNamespace(require('crypto'))); });
-        case 8:
-          _yield$import = _context2.sent;
-          createHash = _yield$import.createHash;
-          _context2.next = 12;
-          return new Promise(function (resolve) { resolve(_interopNamespace(require('fs'))); });
-        case 12:
-          _yield$import2 = _context2.sent;
-          readFileSync = _yield$import2.readFileSync;
-          existsSync = _yield$import2.existsSync;
-          mkdirSync = _yield$import2.mkdirSync;
-          writeFileSync = _yield$import2.writeFileSync;
-          _context2.next = 19;
-          return new Promise(function (resolve) { resolve(_interopNamespace(require('path'))); });
-        case 19:
-          _yield$import3 = _context2.sent;
-          join = _yield$import3.join;
-          _context2.next = 23;
-          return new Promise(function (resolve) { resolve(_interopNamespace(require('@typescript/twoslash/package.json'))); }).then(function (m) {
-            return m.version;
-          });
-        case 23:
-          shikiVersion = _context2.sent;
-          _context2.next = 26;
-          return new Promise(function (resolve) { resolve(_interopNamespace(require('typescript/package.json'))); }).then(function (m) {
-            return m.version;
-          });
-        case 26:
-          tsVersion = _context2.sent;
-          shasum = createHash("sha1");
-          codeSha = shasum.update(code + "-" + shikiVersion + "-" + tsVersion).digest("hex");
-          getNmCache = function getNmCache() {
-            if (__dirname.includes("node_modules")) {
-              return join(__dirname.split("node_modules")[0], "node_modules", ".cache", "twoslash");
-            } else {
-              return join(__dirname, "..", "..", ".cache", "twoslash");
-            }
-          };
-          cacheRoot = process.versions.pnp ? getPnpCache() : getNmCache();
-          _context2.t0 = join;
-          _context2.next = 34;
-          return cacheRoot;
-        case 34:
-          _context2.t1 = _context2.sent;
-          _context2.t2 = codeSha + ".json";
-          cachePath = (0, _context2.t0)(_context2.t1, _context2.t2);
-          if (!existsSync(cachePath)) {
-            _context2.next = 42;
-            break;
-          }
-          if (process.env.debug) console.log("Using cached twoslash results from " + cachePath);
-          return _context2.abrupt("return", JSON.parse(readFileSync(cachePath, "utf8")));
-        case 42:
-          results = shikiTwoslash.runTwoSlash(code, lang, settings);
-          _context2.t3 = existsSync;
-          _context2.next = 46;
-          return cacheRoot;
-        case 46:
-          _context2.t4 = _context2.sent;
-          if ((0, _context2.t3)(_context2.t4)) {
-            _context2.next = 54;
-            break;
-          }
-          _context2.t5 = mkdirSync;
-          _context2.next = 51;
-          return cacheRoot;
-        case 51:
-          _context2.t6 = _context2.sent;
-          _context2.t7 = {
-            recursive: true
-          };
-          (0, _context2.t5)(_context2.t6, _context2.t7);
-        case 54:
-          writeFileSync(cachePath, JSON.stringify(results), "utf8");
-          return _context2.abrupt("return", results);
-        case 56:
-        case "end":
-          return _context2.stop();
-      }
-    }, _callee2);
-  }));
-  return _cachedTwoslashCall.apply(this, arguments);
-}
+var cachedTwoslashCall = function cachedTwoslashCall(code, lang, settings) {
+  var isWebWorker = typeof self !== "undefined" &&
+  // @ts-expect-error
+  typeof self.WorkerGlobalScope !== "undefined";
+  var isBrowser = isWebWorker || typeof window !== "undefined" && typeof window.document !== "undefined" && typeof fetch !== "undefined";
+  if (isBrowser) {
+    // Not in Node, run un-cached
+    return shikiTwoslash.runTwoSlash(code, lang, settings);
+  }
+  var _require = require$1("crypto"),
+    createHash = _require.createHash;
+  var _require2 = require$1("fs"),
+    readFileSync = _require2.readFileSync,
+    existsSync = _require2.existsSync,
+    mkdirSync = _require2.mkdirSync,
+    writeFileSync = _require2.writeFileSync;
+  var _require3 = require$1("path"),
+    join = _require3.join;
+  var shikiVersion = require$1("@typescript/twoslash/package.json").version;
+  var tsVersion = require$1("typescript/package.json").version;
+  var shasum = createHash("sha1");
+  var codeSha = shasum.update(code + "-" + shikiVersion + "-" + tsVersion).digest("hex");
+  var getNmCache = function getNmCache() {
+    if (__dirname.includes("node_modules")) {
+      return join(__dirname.split("node_modules")[0], "node_modules", ".cache", "twoslash");
+    } else {
+      return join(__dirname, "..", "..", ".cache", "twoslash");
+    }
+  };
+  var getPnpCache = function getPnpCache() {
+    try {
+      var pnp = require$1("pnpapi");
+      return join(pnp.getPackageInformation(pnp.topLevel).packageLocation, "node_modules", ".cache", "twoslash");
+    } catch (error) {
+      return getNmCache();
+    }
+  };
+  var cacheRoot = process.versions.pnp ? getPnpCache() : getNmCache();
+  var cachePath = join(cacheRoot, codeSha + ".json");
+  if (existsSync(cachePath)) {
+    if (process.env.debug) console.log("Using cached twoslash results from " + cachePath);
+    return JSON.parse(readFileSync(cachePath, "utf8"));
+  } else {
+    var results = shikiTwoslash.runTwoSlash(code, lang, settings);
+    if (!existsSync(cacheRoot)) mkdirSync(cacheRoot, {
+      recursive: true
+    });
+    writeFileSync(cachePath, JSON.stringify(results), "utf8");
+    return results;
+  }
+};
 
 var addIncludes = function addIncludes(map, name, code) {
   var lines = [];
@@ -619,48 +523,24 @@ function getHTML(code, fence, highlighters, twoslash, twoslashSettings) {
  * Runs twoslash across an AST node, switching out the text content, and lang
  * and adding a `twoslash` property to the node.
  */
-function runTwoSlashOnNode(_x, _x2, _x3) {
-  return _runTwoSlashOnNode.apply(this, arguments);
-}
+var runTwoSlashOnNode = function runTwoSlashOnNode(code, _ref, settings) {
+  var lang = _ref.lang,
+    meta = _ref.meta;
+  if (settings === void 0) {
+    settings = {};
+  }
+  // Offer a way to do high-perf iterations, this is less useful
+  // given that we cache the results of twoslash in the file-system
+  var shouldDisableTwoslash = typeof process !== "undefined" && process.env && !!process.env.TWOSLASH_DISABLE;
+  if (shouldDisableTwoslash) return undefined;
+  // Only run twoslash when the meta has the attribute twoslash
+  if (meta.twoslash) {
+    var importedCode = replaceIncludesInCode(includes, code);
+    return cachedTwoslashCall(importedCode, lang, settings);
+  }
+  return undefined;
+};
 // To make sure we only have one highlighter per theme in a process
-function _runTwoSlashOnNode() {
-  _runTwoSlashOnNode = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5(code, _ref, settings) {
-    var lang, meta, shouldDisableTwoslash, importedCode;
-    return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-      while (1) switch (_context5.prev = _context5.next) {
-        case 0:
-          lang = _ref.lang, meta = _ref.meta;
-          if (settings === void 0) {
-            settings = {};
-          }
-          // Offer a way to do high-perf iterations, this is less useful
-          // given that we cache the results of twoslash in the file-system
-          shouldDisableTwoslash = typeof process !== "undefined" && process.env && !!process.env.TWOSLASH_DISABLE;
-          if (!shouldDisableTwoslash) {
-            _context5.next = 5;
-            break;
-          }
-          return _context5.abrupt("return", undefined);
-        case 5:
-          if (!meta.twoslash) {
-            _context5.next = 10;
-            break;
-          }
-          importedCode = replaceIncludesInCode(includes, code);
-          _context5.next = 9;
-          return cachedTwoslashCall(importedCode, lang, settings);
-        case 9:
-          return _context5.abrupt("return", _context5.sent);
-        case 10:
-          return _context5.abrupt("return", undefined);
-        case 11:
-        case "end":
-          return _context5.stop();
-      }
-    }, _callee5);
-  }));
-  return _runTwoSlashOnNode.apply(this, arguments);
-}
 var highlighterCache = /*#__PURE__*/new Map();
 /** Sets up the highlighters, and cache's for recalls */
 var highlightersFromSettings = function highlightersFromSettings(settings) {
@@ -691,7 +571,7 @@ var highlightersFromSettings = function highlightersFromSettings(settings) {
         }
       }, _callee);
     }));
-    return function (_x4) {
+    return function (_x) {
       return _ref2.apply(this, arguments);
     };
   }()));
@@ -749,7 +629,7 @@ function remarkTwoslash(settings) {
         }
       }, _callee2);
     }));
-    return function transform(_x5) {
+    return function transform(_x2) {
       return _ref3.apply(this, arguments);
     };
   }();
@@ -758,90 +638,56 @@ function remarkTwoslash(settings) {
 /**
  * The function doing the work of transforming any codeblock samples in a remark AST.
  */
-function remarkVisitor(highlighters, twoslashSettings) {
+var remarkVisitor = function remarkVisitor(highlighters, twoslashSettings) {
   if (twoslashSettings === void 0) {
     twoslashSettings = {};
   }
-  return /*#__PURE__*/function () {
-    var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(node) {
-      var code, fence, twoslashError, twoslash$1, shouldAlwaysRaise, yeahButNotInTests, shikiHTML;
-      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-        while (1) switch (_context3.prev = _context3.next) {
-          case 0:
-            code = node.value;
-            fence = undefined;
-            _context3.prev = 2;
-            fence = parseFence([node.lang, node.meta].filter(Boolean).join(" "));
-            _context3.next = 10;
-            break;
-          case 6:
-            _context3.prev = 6;
-            _context3.t0 = _context3["catch"](2);
-            twoslashError = new twoslash.TwoslashError("Codefence error", "Could not parse the codefence for this code sample", "It's usually an unclosed string", code);
-            return _context3.abrupt("return", setupNodeForTwoslashException(code, node, twoslashError));
-          case 10:
-            if (!(Object.keys(fence.meta).filter(function (key) {
-              return (twoslashSettings.ignoreCodeblocksWithCodefenceMeta || []).includes(key);
-            }).length > 0)) {
-              _context3.next = 12;
-              break;
-            }
-            return _context3.abrupt("return");
-          case 12:
-            _context3.prev = 12;
-            _context3.t1 = node.twoslash;
-            if (_context3.t1) {
-              _context3.next = 18;
-              break;
-            }
-            _context3.next = 17;
-            return runTwoSlashOnNode(code, fence, twoslashSettings);
-          case 17:
-            _context3.t1 = _context3.sent;
-          case 18:
-            twoslash$1 = _context3.t1;
-            _context3.next = 30;
-            break;
-          case 21:
-            _context3.prev = 21;
-            _context3.t2 = _context3["catch"](12);
-            shouldAlwaysRaise = process && process.env && !!process.env.CI;
-            yeahButNotInTests = typeof jest === "undefined";
-            if (!(shouldAlwaysRaise && yeahButNotInTests || twoslashSettings.alwayRaiseForTwoslashExceptions)) {
-              _context3.next = 29;
-              break;
-            }
-            throw _context3.t2;
-          case 29:
-            return _context3.abrupt("return", setupNodeForTwoslashException(code, node, _context3.t2));
-          case 30:
-            if (twoslash$1) {
-              node.value = twoslash$1.code;
-              node.lang = twoslash$1.extension;
-              node.twoslash = twoslash$1;
-            }
-            shikiHTML = getHTML(node.value, fence, highlighters, twoslash$1, twoslashSettings);
-            node.type = "html";
-            node.value = shikiHTML;
-            node.children = [];
-          case 35:
-          case "end":
-            return _context3.stop();
-        }
-      }, _callee3, null, [[2, 6], [12, 21]]);
-    }));
-    return function (_x6) {
-      return _ref4.apply(this, arguments);
-    };
-  }();
-}
+  return function (node) {
+    var code = node.value;
+    var fence = undefined;
+    try {
+      fence = parseFence([node.lang, node.meta].filter(Boolean).join(" "));
+    } catch (error) {
+      var twoslashError = new twoslash.TwoslashError("Codefence error", "Could not parse the codefence for this code sample", "It's usually an unclosed string", code);
+      return setupNodeForTwoslashException(code, node, twoslashError);
+    }
+    // Do nothing if the node has an attribute to ignore
+    if (Object.keys(fence.meta).filter(function (key) {
+      return (twoslashSettings.ignoreCodeblocksWithCodefenceMeta || []).includes(key);
+    }).length > 0) {
+      return;
+    }
+    var twoslash$1;
+    try {
+      // By allowing node.twoslash to already exist you can set it up yourself in a browser
+      twoslash$1 = node.twoslash || runTwoSlashOnNode(code, fence, twoslashSettings);
+    } catch (error) {
+      var shouldAlwaysRaise = process && process.env && !!process.env.CI;
+      var yeahButNotInTests = typeof jest === "undefined";
+      if (shouldAlwaysRaise && yeahButNotInTests || twoslashSettings.alwayRaiseForTwoslashExceptions) {
+        throw error;
+      } else {
+        return setupNodeForTwoslashException(code, node, error);
+      }
+    }
+    if (twoslash$1) {
+      node.value = twoslash$1.code;
+      node.lang = twoslash$1.extension;
+      node.twoslash = twoslash$1;
+    }
+    var shikiHTML = getHTML(node.value, fence, highlighters, twoslash$1, twoslashSettings);
+    node.type = "html";
+    node.value = shikiHTML;
+    node.children = [];
+  };
+};
 // --- The Markdown-it API ---
 /** Only the inner function exposed as a synchronous API for markdown-it */
 var setupForFile = /*#__PURE__*/function () {
-  var _ref5 = /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4(settings) {
+  var _ref4 = /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(settings) {
     var highlighters;
-    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-      while (1) switch (_context4.prev = _context4.next) {
+    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+      while (1) switch (_context3.prev = _context3.next) {
         case 0:
           if (settings === void 0) {
             settings = {};
@@ -850,48 +696,30 @@ var setupForFile = /*#__PURE__*/function () {
           if (!highlighterCache.has(settings)) {
             highlighterCache.set(settings, highlightersFromSettings(settings));
           }
-          _context4.next = 5;
+          _context3.next = 5;
           return highlighterCache.get(settings);
         case 5:
-          highlighters = _context4.sent;
-          return _context4.abrupt("return", {
+          highlighters = _context3.sent;
+          return _context3.abrupt("return", {
             settings: settings,
             highlighters: highlighters
           });
         case 7:
         case "end":
-          return _context4.stop();
+          return _context3.stop();
       }
-    }, _callee4);
+    }, _callee3);
   }));
-  return function setupForFile(_x7) {
-    return _ref5.apply(this, arguments);
+  return function setupForFile(_x3) {
+    return _ref4.apply(this, arguments);
   };
 }();
-function transformAttributesToHTML(_x8, _x9, _x10, _x11) {
-  return _transformAttributesToHTML.apply(this, arguments);
-}
-function _transformAttributesToHTML() {
-  _transformAttributesToHTML = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6(code, fenceString, highlighters, settings) {
-    var fence, twoslash, newCode;
-    return _regeneratorRuntime().wrap(function _callee6$(_context6) {
-      while (1) switch (_context6.prev = _context6.next) {
-        case 0:
-          fence = parseFence(fenceString);
-          _context6.next = 3;
-          return runTwoSlashOnNode(code, fence, settings);
-        case 3:
-          twoslash = _context6.sent;
-          newCode = twoslash && twoslash.code || code;
-          return _context6.abrupt("return", getHTML(newCode, fence, highlighters, twoslash, settings));
-        case 6:
-        case "end":
-          return _context6.stop();
-      }
-    }, _callee6);
-  }));
-  return _transformAttributesToHTML.apply(this, arguments);
-}
+var transformAttributesToHTML = function transformAttributesToHTML(code, fenceString, highlighters, settings) {
+  var fence = parseFence(fenceString);
+  var twoslash = runTwoSlashOnNode(code, fence, settings);
+  var newCode = twoslash && twoslash.code || code;
+  return getHTML(newCode, fence, highlighters, twoslash, settings);
+};
 
 exports.default = remarkTwoslash;
 exports.highlightersFromSettings = highlightersFromSettings;

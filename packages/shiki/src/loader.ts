@@ -19,6 +19,9 @@ import {
 } from "vscode-oniguruma";
 import { parse, ParseError } from "jsonc-parser";
 import type { IShikiTheme } from "./types";
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
 
 export const isWebWorker =
   typeof self !== "undefined" && typeof self.WorkerGlobalScope !== "undefined";
@@ -71,7 +74,7 @@ export async function getOniguruma(wasmPath?: string): Promise<IOnigLib> {
       if (typeof WASM === "string") {
         loader = loadWASM({
           data: await fetch(
-            await _resolvePath(join(...dirpathparts(wasmPath), "onig.wasm"))
+            _resolvePath(join(...dirpathparts(wasmPath), "onig.wasm"))
           ),
         });
       } else {
@@ -80,18 +83,12 @@ export async function getOniguruma(wasmPath?: string): Promise<IOnigLib> {
         });
       }
     } else {
-      const join = await import("path").then((m) => m.join);
-      const createRequire = await import("node:module").then(
-        (m) => m.default.createRequire
-      );
-
-      const require = createRequire(import.meta.url);
-      const wasmPath = join(
+      const path: typeof import("path") = require("path");
+      const wasmPath = path.join(
         require.resolve("vscode-oniguruma"),
         "../onig.wasm"
       );
-
-      const fs = await import("fs");
+      const fs: typeof import("fs") = require("fs");
       const wasmBin = fs.readFileSync(wasmPath).buffer;
       loader = loadWASM(wasmBin);
     }
@@ -110,17 +107,16 @@ export async function getOniguruma(wasmPath?: string): Promise<IOnigLib> {
   return _onigurumaPromise;
 }
 
-async function _resolvePath(filepath) {
+function _resolvePath(filepath: string) {
   if (isBrowser) {
-    return filepath;
+    return `${CDN_ROOT}${filepath}`;
   } else {
-    const path = await import("path");
+    const path = require("path") as typeof import("path");
+
     if (path.isAbsolute(filepath)) {
       return filepath;
     } else {
-      const fileURLToPath = await import("url").then(
-        (m) => m.default.fileURLToPath
-      );
+      const { fileURLToPath } = require("url");
 
       const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -133,11 +129,11 @@ async function _resolvePath(filepath) {
  * @param filepath assert path related to ./packages/shiki
  */
 async function _fetchAssets(filepath: string): Promise<string> {
-  const path = await _resolvePath(filepath);
+  const path = _resolvePath(filepath);
   if (isBrowser) {
     return await fetch(path).then((r) => r.text());
   } else {
-    const fs = await import("fs");
+    const fs = require("fs") as typeof import("fs");
     return await fs.promises.readFile(path, "utf-8");
   }
 }

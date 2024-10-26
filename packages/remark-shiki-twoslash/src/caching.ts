@@ -1,16 +1,19 @@
 import { UserConfigSettings, runTwoSlash } from "@olets/shiki-twoslash";
 import type { TwoSlashReturn } from "@typescript/twoslash";
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
 
 /**
  * Keeps a cache of the JSON responses to a twoslash call in node_modules/.cache/twoslash
  * which should keep CI times down (e.g. the epub vs the handbook etc) - but also during
  * dev time, where it can be super useful.
  */
-export async function cachedTwoslashCall(
+export const cachedTwoslashCall = (
   code: string,
   lang: string,
   settings: UserConfigSettings
-): Promise<TwoSlashReturn | undefined> {
+): TwoSlashReturn | undefined => {
   const isWebWorker =
     typeof self !== "undefined" &&
     // @ts-expect-error
@@ -26,18 +29,12 @@ export async function cachedTwoslashCall(
     return runTwoSlash(code, lang, settings);
   }
 
-  const { createHash } = await import("crypto");
-  const { readFileSync, existsSync, mkdirSync, writeFileSync } = await import(
-    "fs"
-  );
-  const { join } = await import("path");
+  const { createHash } = require("crypto");
+  const { readFileSync, existsSync, mkdirSync, writeFileSync } = require("fs");
+  const { join } = require("path");
 
-  const shikiVersion = await import("@typescript/twoslash/package.json").then(
-    (m) => m.version
-  );
-  const tsVersion = await import("typescript/package.json").then(
-    (m) => m.version
-  );
+  const shikiVersion = require("@typescript/twoslash/package.json").version;
+  const tsVersion = require("typescript/package.json").version;
   const shasum = createHash("sha1");
   const codeSha = shasum
     .update(`${code}-${shikiVersion}-${tsVersion}`)
@@ -56,10 +53,9 @@ export async function cachedTwoslashCall(
     }
   };
 
-  async function getPnpCache() {
+  const getPnpCache = () => {
     try {
-      // @ts-expect-error ts(2307)
-      const pnp = await import("pnpapi");
+      const pnp = require("pnpapi");
       return join(
         pnp.getPackageInformation(pnp.topLevel).packageLocation,
         "node_modules",
@@ -69,11 +65,11 @@ export async function cachedTwoslashCall(
     } catch (error) {
       return getNmCache();
     }
-  }
+  };
 
   const cacheRoot = process.versions.pnp ? getPnpCache() : getNmCache();
 
-  const cachePath = join(await cacheRoot, `${codeSha}.json`);
+  const cachePath = join(cacheRoot, `${codeSha}.json`);
 
   if (existsSync(cachePath)) {
     if (process.env.debug)
@@ -82,9 +78,8 @@ export async function cachedTwoslashCall(
     return JSON.parse(readFileSync(cachePath, "utf8"));
   } else {
     const results = runTwoSlash(code, lang, settings);
-    if (!existsSync(await cacheRoot))
-      mkdirSync(await cacheRoot, { recursive: true });
+    if (!existsSync(cacheRoot)) mkdirSync(cacheRoot, { recursive: true });
     writeFileSync(cachePath, JSON.stringify(results), "utf8");
     return results;
   }
-}
+};

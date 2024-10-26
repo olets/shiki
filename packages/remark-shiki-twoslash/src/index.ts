@@ -76,11 +76,11 @@ function getHTML(
  * Runs twoslash across an AST node, switching out the text content, and lang
  * and adding a `twoslash` property to the node.
  */
-export async function runTwoSlashOnNode(
+export const runTwoSlashOnNode = (
   code: string,
   { lang, meta }: Fence,
   settings: UserConfigSettings = {}
-) {
+) => {
   // Offer a way to do high-perf iterations, this is less useful
   // given that we cache the results of twoslash in the file-system
   const shouldDisableTwoslash =
@@ -92,11 +92,11 @@ export async function runTwoSlashOnNode(
   // Only run twoslash when the meta has the attribute twoslash
   if (meta.twoslash) {
     const importedCode = replaceIncludesInCode(includes, code);
-    return await cachedTwoslashCall(importedCode, lang, settings);
+    return cachedTwoslashCall(importedCode, lang, settings);
   }
 
   return undefined;
-}
+};
 
 // To make sure we only have one highlighter per theme in a process
 const highlighterCache = new Map<UserConfigSettings, Promise<Highlighter[]>>();
@@ -185,11 +185,9 @@ function remarkTwoslash(settings: Options = {}) {
 /**
  * The function doing the work of transforming any codeblock samples in a remark AST.
  */
-export function remarkVisitor(
-  highlighters: Highlighter[],
-  twoslashSettings: UserConfigSettings = {}
-) {
-  return async (node: RemarkCodeNode) => {
+export const remarkVisitor =
+  (highlighters: Highlighter[], twoslashSettings: UserConfigSettings = {}) =>
+  (node: RemarkCodeNode) => {
     const code = node.value;
     let fence: Fence = undefined!;
 
@@ -218,8 +216,7 @@ export function remarkVisitor(
     try {
       // By allowing node.twoslash to already exist you can set it up yourself in a browser
       twoslash =
-        node.twoslash ||
-        (await runTwoSlashOnNode(code, fence, twoslashSettings));
+        node.twoslash || runTwoSlashOnNode(code, fence, twoslashSettings);
     } catch (error) {
       const shouldAlwaysRaise = process && process.env && !!process.env.CI;
       const yeahButNotInTests = typeof jest === "undefined";
@@ -251,7 +248,6 @@ export function remarkVisitor(
     node.value = shikiHTML;
     node.children = [];
   };
-}
 
 export default remarkTwoslash;
 
@@ -270,15 +266,15 @@ export const setupForFile = async (settings: UserConfigSettings = {}) => {
   return { settings, highlighters };
 };
 
-export async function transformAttributesToHTML(
+export const transformAttributesToHTML = (
   code: string,
   fenceString: string,
   highlighters: Highlighter[],
   settings: UserConfigSettings
-) {
+) => {
   const fence = parseFence(fenceString);
 
-  const twoslash = await runTwoSlashOnNode(code, fence, settings);
+  const twoslash = runTwoSlashOnNode(code, fence, settings);
   const newCode = (twoslash && twoslash.code) || code;
   return getHTML(newCode, fence, highlighters, twoslash, settings);
-}
+};
