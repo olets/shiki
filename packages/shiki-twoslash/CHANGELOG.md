@@ -1,5 +1,12 @@
 # @olets/shiki-twoslash
 
+## 3.3.3
+
+### Patch Changes
+
+- Updated dependencies [17c6363]
+  - @olets/shiki@0.16.3
+
 ## 3.3.2
 
 ### Patch Changes

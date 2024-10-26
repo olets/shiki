@@ -1,5 +1,14 @@
 # olets/remark-shiki-twoslash
 
+## 3.3.3
+
+### Patch Changes
+
+- 17c6363: Revert introduction of promises
+- Updated dependencies [17c6363]
+  - @olets/shiki@0.16.3
+  - @olets/shiki-twoslash@3.3.3
+
 ## 3.3.2
 
 ### Patch Changes
