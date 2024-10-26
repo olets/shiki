@@ -23,13 +23,31 @@ Replace `<package manager>` with your package manager. Works with at least `bun`
 
 ## Usage
 
+### Minimal
+
 ```ts
 // eleventy.config.js
 
 import shikiTwoslash from "@olets/eleventy-plugin-shiki-twoslash";
 
 export default function (eleventyConfig) {
+  // …
+  eleventyConfig.addPlugin(shikiTwoslash)
+  // …
+}
+```
+
+### With options
+
+```ts
+// eleventy.config.js
+
+import shikiTwoslash from "@olets/eleventy-plugin-shiki-twoslash";
+
+export default function (eleventyConfig) {
+  // …
   eleventyConfig.addPlugin(shikiTwoslash, options)
+  // …
 }
 ```
 
